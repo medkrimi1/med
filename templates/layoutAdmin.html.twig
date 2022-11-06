@@ -105,6 +105,7 @@
                         <div class="d-flex align-items-center py-3"><img class="me-9" src="{{ asset('images/logo.png') }}" alt="" width="700" /></div>
                     </a>
                 </div>
+                <hr class="d-lg-none d-lg-block">
                 <div class="collapse navbar-collapse" id="navbarVerticalCollapse">
                     <div class="navbar-vertical-content scrollbar">
                         <ul class="navbar-nav flex-column mb-3" id="navbarVerticalNav">
@@ -308,15 +309,22 @@
                             <a class="nav-link notification-indicator notification-indicator-primary px-0 fa-icon-wait" id="navbarDropdownNotification" href="#" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><span class="fas fa-bell" data-fa-transform="shrink-6" style="font-size: 33px;"></span></a>
                             <div class="dropdown-menu dropdown-menu-end dropdown-menu-card dropdown-menu-notification" aria-labelledby="navbarDropdownNotification">
                                 <div class="card card-notification shadow-none">
-                                    <div class="card-header">
+                                    <div class="card-header bg-300">
                                         <div class="row justify-content-between align-items-center">
                                             <div class="col-auto">
                                                 <h6 class="card-header-title tecos-h text-center">Notifications</h6>
                                             </div>
+                                           
+                                     
                                         </div>
                                     </div>
                                     <div class="scrollbar-overlay" style="max-height:19rem">
                                         <div class="list-group list-group-flush fw-normal fs--1">
+                                                    <iframe src="{{path('dashboard_notifications_layout')}}"
+ 
+                
+                height="500">
+        </iframe>
                                         </div>
                                     </div>
                                     <div class="card-footer text-center border-top"><a class="card-link d-block" href="{{ path('dashboard_notifications') }}">Voir plus</a></div>

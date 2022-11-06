@@ -120,7 +120,7 @@ class OffersController extends AbstractController
             $destination = $this->getParameter('kernel.project_dir').'/public/images/jobs';
             if ($uploadedImage) {
             $ImageName = 'image'.uniqid().'.'.$uploadedImage->guessExtension();
-            $CoverName = 'cover'.uniqid().'.'.$uploadedCover->guessExtension();
+           
                 $newImageName = $ImageName;
                 $uploadedImage->move($destination,$newImageName);
                 $jobs->setImage($ImageName);
@@ -128,7 +128,7 @@ class OffersController extends AbstractController
             }
             else { $jobs->setImage('DefaultImage.png');}
              if ($uploadedCover) {
-               
+             $CoverName = 'cover'.uniqid().'.'.$uploadedCover->guessExtension();
               
                 $newCoverName = $CoverName;
                 $uploadedCover->move($destination,$newCoverName);
@@ -176,7 +176,7 @@ class OffersController extends AbstractController
             $destination = $this->getParameter('kernel.project_dir').'/public/images/jobs';
             if ($uploadedImage) {
             $ImageName = uniqid().'.'.$uploadedImage->guessExtension();
-            $CoverName = uniqid().'.'.$uploadedCover->guessExtension();
+         
                 $newImageName = $ImageName;
                 $uploadedImage->move($destination,$newImageName);
                 $job->setImage($ImageName);
@@ -185,7 +185,7 @@ class OffersController extends AbstractController
                
             }
              if ($uploadedCover) {
-               
+             $CoverName = uniqid().'.'.$uploadedCover->guessExtension();
               
                 $newCoverName = $CoverName;
                 $uploadedCover->move($destination,$newCoverName);

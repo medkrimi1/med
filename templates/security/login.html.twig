@@ -1,8 +1,10 @@
 
 
 
-    <meta charset="UTF-8">
-        <title>{% block title %}Welcome!{% endblock %}</title>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <title>{% block title %}Login!{% endblock %}</title>
         <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 128 128%22><text y=%221.2em%22 font-size=%2296%22>⚫️</text></svg>">
         {# Run `composer require symfony/webpack-encore-bundle` to start using Symfony UX #}
         {% block stylesheets %}
@@ -25,24 +27,7 @@
           
         {% endblock %}
 
-        {% block javascripts %}
-            <script src="{{ asset('vendors/popper/popper.min.js') }}"></script>
-            <script src="{{ asset('vendors/bootstrap/bootstrap.min.js') }}"></script>
-            <script src="{{ asset('vendors/anchorjs/anchor.min.js') }}"></script>
-            <script src="{{ asset('vendors/is/is.min.js') }}"></script>
-            <script src="{{ asset('vendors/echarts/echarts.min.js') }}"></script>
-            <script src="{{ asset('vendors/fontawesome/all.min.js') }}"></script>
-            <script src="{{ asset('vendors/lodash/lodash.min.js') }}"></script>
-            <script src="{{ asset('assets/js/theme.js') }}"></script>
-            <script src="{{ asset('vendors/tinymce/tinymce.min.js') }}"></script>
-            <script src="{{ asset('js/jquery.min.js') }}"></script>
-            <script src="{{ asset('vendors/magnific-popup/magnific-popup.js') }}"></script>
-            <script src="{{ asset('js/custom.js') }}"></script>
-            <script src="{{ asset('js/custom.js') }}"></script>
-            <script src="{{ asset('js/multiselect-dropdown.js') }}"></script>
-            <script src="{{ asset('vendors/choices/choices.min.js') }}"></script>
-
-        {% endblock %}
+    
     </head>
 {% block body %}
 

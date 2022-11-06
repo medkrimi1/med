@@ -27,6 +27,14 @@ class NotificationsController extends AbstractController
         return $this->render('dashboard/Notifications/index.html.twig',compact('applications'));
     }
 
+       /**
+     * @Route("/dashboard/notifications/layout", name="dashboard_notifications_layout")
+     */
+    public function layouy(){
+        $applications = $this->manager->getRepository(Applications::class)->findAll();
+        return $this->render('dashboard/Notifications/layout.html.twig',compact('applications'));
+    }
+
 
  
 }

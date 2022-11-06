@@ -129,7 +129,7 @@ class CandidatesRepository extends ServiceEntityRepository
 
   if (!empty($search->Country)) {
             $query = $query
-                ->andWhere('p.Country IN (:Country)')
+                ->andWhere('p.country IN (:Country)')
                 ->setParameter('Country', $search->Country);
         }
           if (!empty($search->Skills)) {
@@ -222,7 +222,7 @@ class CandidatesRepository extends ServiceEntityRepository
 
   if (!empty($search->Country)) {
             $query = $query
-                ->andWhere('p.Country IN (:Country)')
+                ->andWhere('p.country IN (:Country)')
                 ->setParameter('Country', $search->Country);
         }
           if (!empty($search->Skills)) {
@@ -332,7 +332,7 @@ class CandidatesRepository extends ServiceEntityRepository
 
   if (!empty($search->Country)) {
             $query = $query
-                ->andWhere('p.Country IN (:Country)')
+                ->andWhere('p.country IN (:Country)')
                 ->setParameter('Country', $search->Country);
         }
           if (!empty($search->Skills)) {

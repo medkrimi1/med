@@ -113,13 +113,13 @@
                                      
                                     <div class="d-flex m-b20 ">
                                         <a href="javascript:void(0);" data-bs-toggle="modal" data-bs-target="#changeimg"><span>
-                              <img class="job-post-company "  src="
+                              <img class="job-post-company d-none d-lg-block "  src="
                               {{asset('images/jobs/' ~job.image)}}" ></span></a>
                               </span></a>
                                         <div class="job-post-info">
                                             <ul>
                                           <li>  <a  href="{{path('offre_get',{'slug':job.slug,'id':job.id})}}"  class=" text-bold">
-                                                <h4 class="m-b5  text-dark">{{ job.title  }} </h4>
+                                                <h4 class="mt-1 fw-bold text-dark">{{ job.title  }} </h4>
                                                </li>
                                                 <li>
                                         

@@ -38,12 +38,14 @@ class ApplicantsController extends AbstractController
              $offres=[];
             foreach($candidate->getApplications() as $offre)
             { 
+            $str = [' ','é','è','\'','ç'];
+            $rplc =['-','e','e','','c'];
              $title=$offre->getJob()->getTitle();
              $offres[]=[
              'id'=>$offre->getId() ,
              'jobid'=>$offre->getJob()->getId(),
              'title'=>$offre->getJob()->getTitle(),
-             'slug'=> strtolower(str_replace(' ', '-',$title)),
+            'slug'=> strtolower(str_replace($str,$rplc,$title)),
              'appdate'=>$offre->getAppdate(),
 
              ] ;

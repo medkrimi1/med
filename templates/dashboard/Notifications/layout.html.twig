@@ -1,0 +1,64 @@
+
+      {% block stylesheets %}
+
+            <!-- FAVICONS ICON -->
+       
+         
+            <link href="//fonts.googleapis.com/css?family=Open+Sans:300,400,500,600,700%7cPoppins:300,400,500,600,700,800,900&amp;display=swap" rel="stylesheet">
+        
+           
+       
+        
+   
+           
+            <link href="{{ asset('assets/css/theme.min.css') }}" rel="stylesheet" id="style-default">
+
+
+        {% endblock %}
+
+    
+
+{% block body %}
+
+      
+                                              
+                                                    <table class="table table-dashboard mb-0 table-borderless fs--1 border-200">
+                                                   
+                                                        <tbody>
+                                                        {% for application in applications %}
+                                                     <table class="table table-dashboard mb-0 table-borderless fs--1 border-200">
+                                                    
+                                    <thead class="bg-light">
+                                    </thead>
+                                    <tbody>
+                                       <tr class="border-bottom border-400">
+                                          <td>
+                                             <div class="d-flex align-items-center position-relative">
+                                               {% if application.job.title !=609679 %}
+                                                <div class="posted-info clearfix  ">
+                                                   <div class="m-tb0  float-start "><span  class=" text-dark  ">Nouvelle candidature pour: </span>{{application.job.title}} <span  class=" text-dark  ">par</span><a
+                                                   class="" target="_blank" href="{{path('candidatProfile',{'fname':application.candidate.fname,'lname':application.candidate.lname,'id':application.candidate.id})}}" > {{application.candidate.fullname}} </a></div>
+                                                </div>
+                                                {% else %}
+                                              <div class="posted-info clearfix  ">
+                                                   <div class="m-tb0  float-start "><span  class=" text-dark  ">Nouvelle candidature spontanée </span> <span  class=" text-dark  ">par</span><a
+                                                   class="" target="_blank" href="{{path('candidatProfile',{'fname':application.candidate.fname,'lname':application.candidate.lname,'id':application.candidate.id})}}" > {{application.candidate.fullname}} </a></div>
+                                                </div>
+
+                                                {% endif %}
+
+                                             </div>
+                                             <div class="m-tb0 float-start text-secondary  ">{{application.appdate|date("m/d/Y g:ia")}}</div>
+                                          </td>
+                                       </tr>
+
+                                    </tbody>
+
+                                 </table>
+                                 {% endfor %}
+                                                        </tbody>
+                                                    </table>
+                                             
+                       
+
+{% endblock %}
