@@ -1,0 +1,58 @@
+
+{% extends 'layoutAdmin.html.twig' %}
+
+{% block body %}
+
+
+
+<div class="content-block">
+
+<div class="section-full  browse-job p-t50 p-b20">
+        <div class="container">
+            <div class="row">
+            
+                
+                
+                    <div class="job-bx job-profile border border-dark bg-white ">
+                        <div class="job-bx-title clearfix">
+                            <h5 class="font-weight-700 float-start text-uppercase text-primary">Change Password</h5>
+                        
+                            
+                        </div>
+                        
+                  <div class="row">
+                                                                                                 
+                                <div class="col-lg-6"> 
+        
+                      <div class="fs-0">Old Password</div>
+                        <input class="form-control" placeholder="Enter your password" name="currentPassword" id="currentPassword" required="" type="password"> 
+                        </div>
+                            <div class="col-lg-6"> 
+                      </div>
+                                <div class="col-lg-6">
+                                    <div class="form-group">
+                                        <div class="fs-0">New Password </div> 
+                                        <input type="password" class="form-control" name="new_Password" id="new_Password" pattern=".{8,}" title="Min 8 and Max 20 characters" required="" placeholder="Enter your new password">
+                                    </div>
+                                </div>
+                                    <div class="col-lg-6">
+                                    <div class="form-group">
+                                        <div class="fs-0">New Password </div>
+                                        <input type="password" class="form-control" name="confirmPassword" id="confirmPassword" pattern=".{8,}" title="Min 8 and Max 20 characters" required="" placeholder="Enter your new password">
+                                    </div>
+                                </div>
+                                
+                                <div class="col-lg-12 m-b10">
+                                    <button type="submit" id="btnSubmit" name="submit" value="submit" onclick="return Validate()" class="btn btn-primary">Update</button>
+                                </div>
+                            </div>
+                
+                    </div>
+        
+            </div>
+        </div>
+    </div>
+
+</div>
+
+{% endblock %}

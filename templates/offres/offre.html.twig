@@ -1,0 +1,324 @@
+{% extends 'layout.html.twig' %}
+
+{% block body %}
+    <div class="header-w bg-white" > </div>
+
+    <div class="dez-bnr-inr overlay-black-middle" >
+        <img class="dez-bnr-inr overlay-black-middle" style="background-image " alt="image"   src="{{asset('images/jobs/' ~job.cover)}}">
+        <div class="pxp-hero-opacity "    >
+            
+        </div>
+        <div class="pxp-single-candidate-hero-caption" >
+            <div class="container">
+                <img class="pxp-single-job-cover-logo" style="background-image " alt=""   src="{{asset('images/jobs/' ~job.image)}}"  >
+
+             
+            </div>
+        </div>
+    </div>
+    <div class="container">
+        <div class="pxp-single-job-content mt-4 mt-lg-5">
+            <div class="row">
+                <div class=" col-lg-7 col-xl-8 col-xxl-9">
+                    <div class="row justify-content-between align-items-center">
+                        <div class=" col-xl-8 col-xxl-6">
+                            <ul></ul>
+                            <div class="job-title  text-dark display-4 ">{{job.title}}</div>
+                        </div>
+                  
+                        
+                      <div class="col-auto">
+                                    <div class="pxp-single-job-options mt-4 col-xl-0">
+                                        
+                                
+                                <div class="sticky-sidebar">
+                                        <div class="apply-job-wrapper"><a href="javascript:void(0);" title="READ MORE" rel="bookmark" data-bs-toggle="modal" data-bs-target="#jobapply" class="btn btn-primary rounded-pill btn-lg"> Postuler </a>
+                        </div>
+                                </div>
+                                    </div>
+                                </div>
+                    </div>
+                    <p id="data"></p>
+                    <div class="row mt-4 justify-content-between align-items-center">
+                        <div class="col-6">
+                        </div>
+                        <div class="col-auto">
+                            <div class="pxp-single-job-date pxp-text-light">publié :{{ job.CreatedAt|date("m/d/Y") }}</div>
+                        </div>
+                    </div>
+                            {% for message in app.flashes('successApply') %}
+            <div class="text-center text-dark alert alert-success">
+                {{ message }}
+            </div>
+            {% endfor %}
+                {% for message in app.flashes('error') %}
+            <div class="text-center text-dark alert alert-warning">
+                {{ message }}
+            </div>
+        {% endfor %}
+                    <div class="job-bx-title clearfix">
+                    </div>
+                    <div class="card mb-3">
+                        <div class="card-header bg-300">
+                            <h2 class="explore-des text-dark">Presentation</h2>
+                        </div>
+                        <div class="card-body">
+                            <p class="text-dark"> {{ job.presentation}}</p>
+                        </div>
+                    </div>
+                    <div class="card mb-3">
+                        <div class="card-header bg-300">
+                            <h5 class="explore-des text-dark">Description du poste</h5>
+                        </div>
+                        <div class="card-body">
+                            <p class="text-dark"> {{ job.resp }}</p>
+                        </div>
+                    </div>
+                    <div class="card mb-3">
+                        <div class="card-header bg-300">
+                            <h5 class="explore-des text-dark">Profil recherché</h5>
+                        </div>
+                        <div class="card-body">
+                            <p class="text-dark">{{ job.req }}</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-5 col-xl-4 col-xxl-3 text-center">
+                    <div class="">
+                        <div>
+                            <div class="">
+                                <div class="sticky-sidebar">
+                                    <div class="card mb-3">
+                                        </br>
+                                        <h6 class="explore-des-2 text-dark">lieu de travail</h6>
+                                        <h5 class="explore-des-3 text-primary"><i class=" fas fa-map-marker-alt"></i> {{  job.country|lower }},{{  job.city }}</h5>
+                                        <div class="job-bx-title clearfix">
+                                        </div>
+                                        <h6 class="explore-des-2 text-dark">Experience</h6>
+                                        <h5 class="explore-des-3 text-primary">{{ job.exp.title}}</h5>
+                                        <div class="job-bx-title clearfix">
+                                        </div>
+                                        <h6 class="explore-des-2 text-dark">Type d'emploi</h6>
+                                        <h5 class="explore-des-3 text-primary">{{ job.typeid.title}}</h5>
+                                        <div class="job-bx-title clearfix">
+                                        </div>
+                                        <h6 class="explore-des-2 text-dark">Compétences</h6>
+                                        <div class="pxp-single-job-side-info-data"></div>
+
+                                        <div class="job-time  m-t15 m-b10">
+                                            
+                                 {% for skill in job.skills %}    
+                                 <span class="">
+                                 <h6 class="mt-1 text-primary">{{ skill.title}}</h6>
+                                        
+                                         </span>
+                                        {% endfor %}
+                                       </div>
+                                        <div class="job-bx-title clearfix">
+                                        </div>
+                                        <div class="">
+                                            <h6 class="explore-des-2 text-dark">Date limite </h6>
+                                            <h5 class="explore-des-3 text-primary">{{ job.expiredAt|date("m/d/Y")}}</h5>
+                                        </div>
+                                        <ul></ul>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="card mb-3">
+                            <div class="card-header bg-300" >
+                                <h2 class="explore-des text-dark">Contact</h2>
+                            </div>
+                            <div class="card-body explore-des-3 text-primary">
+                                <div class="explore-des-2 text-dark">Téléphone</div>
+                                <div class="explore-des-3 text-primary">+33 1 43 37 85 74</div>
+                                <div class="mt-4">
+                                    <div class="explore-des-2 text-dark">Email</div>
+                                    <div class="explore-des-3 text-primary">contact@it-tecos.fr</div>
+                                </div>
+                                <div class="mt-4">
+                                    <div class="explore-des-2 text-dark">Lieu</div>
+                                    <div class="explore-des-3 text-primary">Paris, France</div>
+                                </div>
+                                <div class="job-bx-title clearfix">
+                                </div>
+                                <div class="mt-4">
+                                    <div class="explore-des-2 text-secondary">Suivez-nous</div>
+                                </div>
+                                <ul></ul>
+                                <ul class="list-inline m-a0">
+                                    <li><a target="_blank" href="'.$fb.'" class="site-button  facebook circle "><i class="fab fa-facebook-f"></i></a></li>
+                                    <li><a target="_blank" href="'.$gl.'" class="site-button  google-plus circle "><i class="fab fa-google-plus-g"></i></a></li>
+                                    <li><a target="_blank" href="'.$ln.'" class="site-button  linkedin circle "><i class="fab fa-linkedin-in"></i></a></li>
+                                    <li><a target="_blank" href="'.$tw.'" class="site-button  twitter circle "><i class="fab fa-twitter"></i></a></li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    <div class="modal" id="jobapply" tabindex="-1" role="dialog" aria-hidden="true">
+   <div class="modal-dialog modal-dialog-centered" role="document">
+      <div class="modal-content position-relative border border-dark">
+         <div class="d-flex flex-row-reverse">
+            <button class="btn-close btn btn-sm btn-circle d-flex flex-center transition-base" data-bs-dismiss="modal" aria-label="Close"></button>
+         </div>
+         <div class="modal-body">
+            <div class="row gap-20">
+               <div class="">
+                  <div class=" tab-content ">
+                     <div id="signup_apply" class="tab-pane active  col-12 p-a0 "  >
+                        <h4 class=" popup-title text-center text-dark">S'inscrire</h4>
+                        <p class="text-center">Créez maintenant votre compte</p>
+                         {{ form_start(form ,{attr: {class: ''}}) }}  
+                        <div id="error3"></div>
+                        <div class=" row gap-20 m-b20">
+                        
+                       
+                           <div class=" col-sm-6 col-md-6 ">
+                             
+                                 <div class="fs-0">Nom</div>
+                                {{ form_widget(form.lname,{attr: {class: 'form-control'}}) }}
+                              
+                           </div>
+                           <div class=" col-sm-6 col-md-6">
+                             
+                                 <div class="fs-0">Prénom</div>
+                                {{ form_widget(form.fname,{attr: {class: 'form-control'}}) }}
+                             
+                           </div>
+                           <div class=" col-sm-6 col-md-6">
+                            
+                                 <div class="fs-0">Adresse E-mail</div>
+                              {{ form_widget(form.email, {'attr': {'pattern': '[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,63}$'}}) }}
+                           </div>
+                           <div class=" col-sm-6 col-md-6">
+                             
+                                 <div class="fs-0">Mot de passe</div>
+                                 <input class="form-control" placeholder="Min 8 and Max 20 characters" name="password" id="password_signup"  type="password"> 
+                       
+                           </div>
+                            <div class=" col-sm-6 col-md-6">
+                            
+                                 <div class="fs-0">titre</div>
+                                 {{ form_widget(form.titre,{attr: {class: 'js-choice'}}) }}
+                         
+                           </div>
+                            <div class=" col-sm-6 col-md-6">
+                          
+                                 <div class="fs-0">Pays</div>
+                                  {{ form_widget(form.Country,{attr: {class: 'js-choice'}}) }}
+                           </div>
+                             <div class=" col-sm-6 col-md-6">
+                          
+                                 <div class="fs-0">expérience</div>
+                                  {{ form_widget(form.Experience,{attr: {class: 'js-choice'}}) }}
+
+                   
+                           </div>
+                             <div class=" col-sm-6 col-md-6">
+                      
+                                 <div class="fs-0">Votre CV</div>
+                                  {{ form_widget(form.cvfield,{attr: {class: ''}}) }}
+
+                   
+                           </div>
+                             <div class="col-lg-12 col-sm-6 col-md-6">
+                          
+                                 <div class="fs-0">compétences</div>
+                                  {{ form_widget(form.skill,{attr: {class: 'multiselect-dropdown'}}) }}
+
+                   
+                           </div>
+                        </div>
+                      
+                      
+                      <div class="d-grid gap-2"><button class="btn btn-primary" type="submit">Postuler</button></div>
+                          {{ form_end(form) }}
+                        <hr class="hr-text bg-dark" data-content="AND">
+                        <div class="text-center"> 
+                           <a class="btn btn-outline-secondary rounded-pill " data-bs-toggle="tab" href="#login_apply">Se connecter</a>
+                        </div>
+                     </div>
+                     <div id="login_apply"  class="tab-pane fade col-12 p-a0 " name="frm"  method="POST" autocomplete="off " >
+                        <h4 class=" popup-title text-center text-dark">Se connecter</h4>
+                        <p class="text-center">Si vous avez un compte chez nous, veuillez vous identifier.</p>
+                        <div id="error2"></div>
+                        <div class="form-group">
+                           <div class="fs-0">Adresse E-mail</div>
+                           <input class="form-control" placeholder="Enter your email address" name="email" id="Email" required type="email"> 
+                        </div>
+                        <div class="form-group">
+                           <div class="fs-0">Mot de passe</div>
+                           <input class="form-control" placeholder="Enter your password" name="password" id="Password" required type="password"> 
+                        </div>
+                        <div class="text-center">
+                           <input type="button" name="login_job" id="login_job" class="btn btn-primary rounded-pill" value="Login" />
+                        </div>
+                        <ul></ul>
+                        <div class="text-center" >
+                           <a data-bs-toggle="tab" href="#forgot-password-apply" class=""><i class="fa fa-unlock-alt"></i> Mot de passe oublié ?</a>
+                        </div>
+                        <hr class="hr-text bg-dark" data-content="AND">
+                        <div class="text-center" >
+                           <a class="btn btn-outline-success rounded-pill" data-bs-toggle="tab" href="#signup_apply">S'inscrire</a>
+                        </div>
+                     </div>
+                     <div id="forgot-password-apply" class="tab-pane fade  col-12 p-a0">
+                        <h4 class="popup-title text-center text-dark text-dark">Mot de passe oublié ?</h4>
+                        <p class="text-center">Nous vous enverrons un e-mail pour réinitialiser votre mot de passe</p>
+                        <div class="form-group">
+                           <div class="fs-0">E-mail</div>
+                           <input name="dzName" required="" class="form-control" placeholder="Your Email Address" required type="email">
+                        </div>
+                        <div class="text-left"> 
+                           <a class="btn btn-outline-primary  gray rounded-pill" data-bs-toggle="tab" href="#login_apply">Retour</a>
+                           <button class="btn btn-primary float-end rounded-pill">Envoyer</button>
+                        </div>
+                     </div>
+                  </div>
+               </div>
+            </div>
+         </div>
+      </div>
+   </div>
+</div>
+</div>
+{% endblock %}

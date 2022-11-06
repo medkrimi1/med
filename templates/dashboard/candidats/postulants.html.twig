@@ -1,0 +1,265 @@
+{% extends 'layoutAdmin.html.twig' %}
+
+{% block body %}
+  
+                        <div class="job-bx job-profile bg-white">
+                        {{ form_start(form ,{attr: {class: ''}}) }}
+                           
+                                 <div class="row justify-content-between m-b10">
+                                    <h5 class="font-weight-700 col-lg-9  text-primary">Liste des Postulants  ({{candidates|length}}) </h5>
+                               
+
+
+
+                                     <div class="col-lg-3  ">
+                                        
+  <a class="py-0 m-l10 float-end" type="button" href="{{ path('dashboard_candidats') }}"><i class=" fas fa-undo-alt fa-lg"></i></a>
+                                 
+                                          
+                                          <div class=" float-end">
+  <a class=" text-danger "  data-bs-toggle="dropdown" data-display="static" aria-haspopup="true" aria-expanded="false"><i class="far fa-calendar-alt fa-lg"></i></a>
+    
+  <div class="dropdown-menu py-0 fs-0">
+
+    <div class="card shadow-none border-0 " style="width: 15rem;height:9rem;">
+      <div class="card-body">
+
+        <div class="row text-start justify-content-between align-items-center mb-2">
+         
+          
+     
+        <div class="position-relative mt-5">
+          
+          <div class="divider-content-center"><div class="fs-0 text-center" >Date début
+    </div>
+       {{ form_widget(form.startdate,{attr: {class: ''}}) }}
+        <div class="fs-0 text-center " >Date fin
+    </div>
+       {{ form_widget(form.enddate,{attr: {class: ''}}) }}
+        
+  {{ form_widget(form.dfiltre,{attr: {class: 'd-none'}}) }}
+    
+        </div>
+        <div class="">
+       
+       </div>
+        </div>
+         </div>
+       
+      </div>
+    </div>
+  </div>
+</div>
+
+<button class="btn py-0  float-end text-primary"  type="submit" ><i class="fa fa-search fa-lg "></i></button>
+
+                                    </div>
+                                     
+                              
+                                </div>
+                         
+   
+ 
+<div class="row m-r10 bg-300  border border rounded-3">
+     
+ <div class="col-lg-4 col-md-6">
+
+
+                                      
+                                            <div class="fs-0" >Nom:</div>
+                                             {{ form_widget(form.s,{attr: {class: 'form-control'}}) }}
+  
+                                        
+                                        
+
+                                    </div>
+                                     <div class="col-lg-4 col-md-6 ">
+
+                                        <div class="">
+                                            <div class="fs-0" >Email:</div>
+                                             {{ form_widget(form.mail,{attr: {class: 'form-control'}}) }}
+                                        </div>
+                                     
+
+                                    </div>
+                                       <div class="col-lg-4">
+                                     <div class="fs-0" >Offre:</div>
+                                              {{ form_widget(form.Jobs,{attr: {class: 'js-choice'}}) }}
+
+                                       
+                                      
+
+                                  
+                                </div>
+                                     
+                                    
+                                   
+                                        <div class="col-lg-4 ">
+                                            <div class="m-b10">
+                                 
+                                         <div class="fs-0" >Pays</div>
+                                          {{ form_row(form.Country,{attr: {class: 'multiselect-dropdown'}}) }}
+                                      </div>
+                                          
+                                      
+
+                                  
+                                </div>
+                                       <div class="col-lg-4 ">
+                                       
+
+                                        
+                                            <div class="fs-0" >expérience:</div>
+                                          {{ form_widget(form.Experience,{attr: {class: 'multiselect-dropdown' }}) }}
+                                       
+
+                                   
+                                
+                            </div>
+                             
+                                 
+                                     <div class="col-lg-4">
+                                     <div class="m-1b0" >
+
+                                    
+                                            <div class="fs-0" >Compétences:</div>
+                                         
+                                          {{ form_row(form.Skills,{attr: {class: 'multiselect-dropdown'}}) }}
+                                      
+                                       </div>
+                                    </div>
+
+
+
+                                     
+
+                                </div>
+                                {{ form_end(form) }}
+                                <hr>
+                    <div class="GridLex-col-9_sm-8_xs-12">
+                        <div class="admin-content-wrapper">
+                            <div class="admin-section-title">
+                            </div>
+                            <div class="job-item-grid-wrapper">
+                                <div class="GridLex-gap-30">
+                                    <div class="GridLex-grid-noGutter-equalHeight">
+                                          {% if candidates is empty %}
+                           <div class="alert alert-warning text-center" role="alert">
+  0 candidat trouvé 
+</div>
+                              {% else %}
+                                  <div class="row">
+                                       {% for candidate in candidates %}
+                                    
+                            <div class="col-md-6 col-xl-4 col-xxl-3 pxp-candiadates-card-1-container m-b30">
+                        <div class="job-bx border border-5 bg-200   text-center">
+                            {% if candidate.seen==1 %}
+                             <button class="badge badge-soft bg-300  rounded-pill text-primary d-block" >  Lu  </button>
+                            {% else %}
+                           <button class="badge badge-soft bg-300  rounded-pill text-primary d-block" >Non Lu</button>
+                            {% endif %} 
+                            
+                            <div class="pxp-candiadates-card-1-top">
+
+                                <div class="pxp-candiadates-card-1-avatar pxp-cover" style="background-image: url(https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRuVsmsQZnenIKX-x181542ZNLakNQoqwjbhQ&usqp=CAU);"></div>
+                                <div class="tecos-h m-t10
+                                " ><a class="text-dark" href="{{path('candidatProfile',{'fname':candidate.fname,'lname':candidate.lname,'id':candidate.id})}}">{{candidate.fname}} {{candidate.lname}}</a>
+                               
+                                </div>
+                                <div class="pxp-candiadates-card-1-title"> {{candidate.titre}}</div>
+                              
+                                <div class="pxp-candiadates-card-1-title">  <a  data-bs-toggle="modal" data-bs-target="#candidate{{candidate.id}}" class="text-primary"><i ></i>Applications ({{candidate.applications|length}})</a></div>
+
+                                <div class="modal" id="candidate{{candidate.id}}" tabindex="-1" role="dialog" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered" role="document">
+            <div class="modal-content position-relative border border-dark">
+                <div class="d-flex flex-row-reverse">
+                    <button class="btn-close btn btn-sm btn-circle d-flex flex-center transition-base" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <div class="row ">
+                      
+                            <div class=" tab-content ">
+                                    <h4 class=" font-weight-700 text-center">Applications  
+                                     ({{candidate.applications|length}})</h4>
+                                    <hr>
+                                    <p class="font-weight-600"></p>
+                                    <div class="table-responsive scrollbar">
+                                      {% for applications in candidate.applications|slice(0, 5) %}
+                                           
+                                           <table class="table table-dashboard mb-0 table-borderless fs--1 border-200">
+                                    <thead class="bg-light">
+                                    </thead>
+                                    <tbody>
+                                       <tr class="border-bottom border-400">
+                                          <td>
+                                             <div class="d-flex align-items-center position-relative">
+                                               {% if applications.title != 609679 %} 
+                                                <div class="posted-info clearfix  ">
+                                                   <div class="m-tb0  float-start "><span  class=" text-dark  ">Nouvelle candidature pour:</span><a
+                                                   class="" href="{{path('offre_get',{'slug':applications.slug,'id':applications.jobid})}}" > {{applications.title}} </a></div>
+                                                </div>
+                                                {% else %}
+                                                <div class="posted-info clearfix  ">
+                                                   <p class="m-tb0  float-start  "><span class=" text-dark  ">Nouvelle </span><span class="text-primary">candidature spontanée </span><a href=""></p>
+                                                </div>
+                                                {% endif %}
+
+                                             </div>
+                                             <div class="m-tb0 float-start text-secondary  ">{{applications.appdate|date("d/m/Y g:ia")}}</div>
+                                          </td>
+                                       </tr>
+
+                                    </tbody>
+
+                                 </table>
+                             
+                                 </a></p>
+                                 
+                                                    {% endfor %}
+                                                </div>
+                                    <div class=" row gap-20 text-center">
+                                   {% if candidate.applications|length >5 %}
+                                    <a class=" btn btn-outline-primary" href="{{path('applications',{'id':candidate.id})}}"
+                                    >Voir Plus >></a> 
+                                    {% endif %}
+                            </div>
+                        </div>
+                     
+                   
+                </div>
+                 </div>
+                  </div>
+                   </div>
+                    </div>
+                    
+                            </div>
+
+                                    </div>
+                                    
+                                      
+
+                                </div>
+
+                                 
+                             {% endfor %}
+                             {% endif %}
+                               </ul>
+
+                        </div>
+                    </div>
+                </div>
+                            </div>
+                         
+                        </div>
+                    </div>
+                           
+                                       
+                                      
+                                           </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+            
+{% endblock %}

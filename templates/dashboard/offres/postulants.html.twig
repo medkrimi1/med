@@ -1,0 +1,182 @@
+
+{% extends 'layoutAdmin.html.twig' %}
+
+{% block body %}
+
+        
+                     <div class="job-bx job-profile  bg-white">
+                           {{ form_start(form ,{attr: {class: ''}}) }}
+                           
+                                 <div class="row justify-content-between m-b10">
+                                    <h5 class="font-weight-700 col-lg-10  text-primary">Liste des postulants({{candidates|length}})  :
+                                       
+                                     </h5>
+                                  
+                              
+                                              <div class="col-lg-2 ">
+                                        
+  
+                                 
+                                          
+                                          <div class=" float-end">
+  <a class=" text-danger "  data-bs-toggle="dropdown" data-display="static" aria-haspopup="true" aria-expanded="false"><i class="far fa-calendar-alt fa-lg"></i></a>
+    
+  <div class="dropdown-menu py-0 fs-0">
+
+    <div class="card shadow-none border-0 " style="width: 15rem;height:9rem;">
+      <div class="card-body">
+
+        <div class="row text-start justify-content-between align-items-center mb-2">
+         
+          
+     
+        <div class="position-relative mt-5">
+          
+          <div class="divider-content-center"><div class="fs-0 text-center" >Date début
+    </div>
+       {{ form_widget(form.startdate,{attr: {class: ''}}) }}
+        <div class="fs-0 text-center " >Date fin
+    </div>
+       {{ form_widget(form.enddate,{attr: {class: ''}}) }}
+        
+       <div class="text-center">
+  {{ form_row(form.dfiltre,{attr: {class: 'form-check-input'}}) }}
+     </div>
+        </div>
+        <div class="">
+       
+       </div>
+        </div>
+         </div>
+       
+      </div>
+    </div>
+  </div>
+</div>
+
+<button class="btn py-0 float-end text-primary"  type="submit" ><i class="fa fa-search fa-lg "></i></button>
+                                    </div>
+                                     
+                              
+                                </div>
+                                <div class="row m-r10 bg-300  border-top border-dark border-bottom m-t30">
+ <div class="col-lg-4 col-md-6">
+
+                                      
+                                            <div class="fs-0" >Nom:</div>
+                                             {{ form_widget(form.s,{attr: {class: 'form-control'}}) }}
+  
+                                        
+                                        
+
+                                    </div>
+                                     <div class="col-lg-4 col-md-6 ">
+
+                                        <div class="">
+                                            <div class="fs-0" >Email:</div>
+                                             {{ form_row(form.email,{attr: {class: 'form-control'}}) }}
+                                        </div>
+                                     
+
+                                    </div>
+                                       <div class="col-lg-4">
+                                   
+
+                                       
+                                            <div class="fs-0" >Pays</div>
+                                          {{ form_row(form.Country,{attr: {class: 'multiselect-dropdown'}}) }}
+                                      
+
+                                  
+                                </div>
+                                     
+                                    
+                                   
+                                        <div class="col-lg-4 ">
+                                       <div class="form-group " >
+
+                                            <div class="fs-0" >Titre:</div>
+                                              {{ form_widget(form.Professions,{attr: {class: 'multiselect-dropdown'}}) }}
+                                      
+
+                                    </div>
+                                </div>
+                                       <div class="col-lg-4 ">
+                                        <div class="row" >
+
+                                        
+                                            <div class="fs-0" >éxperience:</div>
+                                          {{ form_row(form.Experience,{attr: {class: 'multiselect-dropdown' }}) }}
+                                       
+
+                                    </div>
+                                
+                            </div>
+                             
+                                 
+                                     <div class="col-lg-4">
+                                     <div class="row" >
+
+                                    
+                                            <div class="fs-0" >Compétences:</div>
+                                         
+                                          {{ form_row(form.Skills,{attr: {class: 'multiselect-dropdown'}}) }}
+                                      
+                                       </div>
+                                    </div>
+
+
+
+                                    
+
+                                </div>
+                                {{ form_end(form) }}
+                                <hr>
+                    <div class="GridLex-col-9_sm-8_xs-12">
+                        <div class="admin-content-wrapper">
+                            <div class="admin-section-title">
+                            </div>
+                            <div class="job-item-grid-wrapper">
+                                <div class="GridLex-gap-30">
+                                    <div class="GridLex-grid-noGutter-equalHeight">
+                                          {% if candidates is empty %}
+                           <div class="alert alert-warning text-center" role="alert">
+  0 candidat trouvé 
+</div>
+                        
+                        
+                             
+                                {% else %}
+                                <div class="row">
+                                  {% for candidate in candidates %}
+                                 
+                            
+                                             
+                            <div class="col-md-6 col-xl-4 col-xxl-3 pxp-candiadates-card-1-container m-b30">
+                        <div class="job-bx border border-5  {% if candidate.seen==1 %}bg-100{% else %}bg-300 {% endif %}     text-center">
+                            <div class="pxp-candiadates-card-1-top">
+                                <div class="pxp-candiadates-card-1-avatar pxp-cover" style="background-image: url(https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRuVsmsQZnenIKX-x181542ZNLakNQoqwjbhQ&usqp=CAU);"></div>
+                                 <div class="tecos-h m-t10
+                                " ><a class="text-dark" href="{{path('candidatProfile',{'fname':candidate.fname,'lname':candidate.lname,'id':candidate.id})}}">{{candidate.fname}} {{candidate.lname}}</a>
+                               
+                                </div>
+                                <div class="pxp-candiadates-card-1-title"> {{candidate.titre}}</div>
+                                
+                              
+                               </div>
+                           </div>
+                       </div>
+                         
+                         
+                          
+                               {% endfor %} 
+                                {% endif %}
+                            
+                            
+                           </div>
+                        </div>
+            
+
+
+
+{% endblock %}

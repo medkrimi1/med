@@ -1,0 +1,153 @@
+{% extends 'layoutAdmin.html.twig' %}
+
+{% block body %}
+
+
+
+ 
+                            <div class="job-bx job-profile  bg-white">
+                                <div class="job-bx-title clearfix">
+                                    <h5 class="font-weight-70d FDV0 float-start  text-primary">Dashboard</h5>
+                                </div>
+                                <div class="row g-3 mb-3 text-center">
+                                    <div class="col-sm-6 col-md-4 ">
+                                        <div class="card overflow-hidden" style="min-width: 12rem">
+                                            <div class="bg-holder bg-card" style="background-image:url(../assets/img/icons/spot-illustrations/corner-1.png);"></div>
+                                            <!--/.bg-holder-->
+                                            <div class="card-body position-relative">
+                                                <a href="{{ path('dashboard_candidats') }}">
+                                                    <h6 class="tecos-h" >Candidats<span class="badge badge-soft-warning rounded-pill ms-2"></span></h6>
+                                                </a>
+                                                <div class="display-4 fs-4 mb-2 fw-normal font-sans-serif text-warning" data-countup="{&quot;endValue&quot;:{{candidates|length}},&quot;decimalPlaces&quot;:0,&quot;suffix&quot;:&quot;&quot;}">0</div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-sm-6 col-md-4">
+                                        <div class="card overflow-hidden" style="min-width: 12rem">
+                                            <div class="bg-holder bg-card" style="background-image:url(../assets/img/icons/spot-illustrations/corner-2.png);"></div>
+                                            <!--/.bg-holder-->
+                                            <div class="card-body position-relative">
+                                                <a href="{{ path('dashboard_applicants') }}">
+                                                    <h6 class="tecos-h">Postulants<span class="badge badge-soft-info rounded-pill ms-2"></span></h6>
+                                                </a>
+                                                <div class="display-4 fs-4 mb-2 fw-normal font-sans-serif text-info" data-countup="{&quot;endValue&quot;:{{applicants|length}},&quot;decimalPlaces&quot;:0,&quot;suffix&quot;:&quot;&quot;}">165</div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-4">
+                                        <div class="card overflow-hidden" style="min-width: 12rem">
+                                            <div class="bg-holder bg-card" style="background-image:url(../assets/img/icons/spot-illustrations/corner-3.png);"></div>
+                                            <!--/.bg-holder-->
+                                            <div class="card-body position-relative">
+                                                <a href="{{path('dashboard_spontanee')}}">
+                                                    <h6 class="tecos-h">candidature spontanée<span class="badge badge-soft-success rounded-pill ms-2"></span></h6>
+                                                </a>
+                                                <div class="display-4 fs-4 mb-2 fw-normal font-sans-serif"  data-countup="{&quot;endValue&quot;:{{spontane|length}},&quot;decimalPlaces&quot;:0,&quot;suffix&quot;:&quot;&quot;}">1</div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row g-0">
+                                    <div class="col-lg-8 col-xl-8 col-xxl-8 mb-3 pe-lg-2 mb-3">
+                                        <div class="card h-lg-100 overflow-hidden">
+                                            <div class="card-body p-0">
+                                                <div class="table-responsive scrollbar">
+                                                    <table class="table table-dashboard mb-0 table-borderless fs--1 border-200">
+                                                        <thead class="bg-300">
+                                                        <tr class="text-900">
+                                                            <th class="tecos-h text-dark">Notifications ({{applications|length}})</th>
+                                                            <th class="text-end">
+                                                                <div class="col-auto"><a class="btn btn-sm btn-falcon-default" href="{{path('dashboard_notifications')}}">Voir Plus</a></div>
+                                                            </th>
+                                                        </tr>
+                                                        </thead>
+                                                        <tbody>
+                                                        {% for application in applications|slice(0,6) %}
+                                                    <table class="table table-dashboard mb-0 table-borderless fs--1 border-200">
+                                                    
+                                    <thead class="bg-light">
+                                    </thead>
+                                    <tbody>
+                                       <tr class="border-bottom border-400">
+                                          <td>
+                                             <div class="d-flex align-items-center position-relative">
+                                               {% if application.job.title !=609679 %}
+                                                <div class="posted-info clearfix  ">
+                                                   <div class="m-tb0  float-start "><span  class=" text-dark  ">Nouvelle candidature pour: </span>{{application.job.title}} <span  class=" text-dark  ">par</span><a
+                                                   class="" href="{{path('candidatProfile',{'fname':application.candidate.fname,'lname':application.candidate.lname,'id':application.candidate.id})}}" > {{application.candidate.fullname}} </a></div>
+                                                </div>
+                                                {% else %}
+                                              <div class="posted-info clearfix  ">
+                                                   <div class="m-tb0  float-start "><span  class=" text-dark  ">Nouvelle candidature spontanée </span> <span  class=" text-dark  ">par</span><a
+                                                   class="" href="{{path('candidatProfile',{'fname':application.candidate.fname,'lname':application.candidate.lname,'id':application.candidate.id})}}" > {{application.candidate.fullname}} </a></div>
+                                                </div>
+
+                                                {% endif %}
+
+                                             </div>
+                                             <div class="m-tb0 float-start text-secondary  ">{{application.appdate|date("m/d/Y g:ia")}}</div>
+                                          </td>
+                                       </tr>
+
+                                    </tbody>
+
+                                 </table>
+                                 {% endfor %}
+                                                        </tbody>
+                                                    </table>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-4 col-xl-4 col-xxl-4 mb-3 ps-lg-2">
+                                        <div class="card mb-3   ">
+                                            <div class="">
+                                                <div class="card overflow-hidden" style="min-width: 12rem">
+                                                    <div class="bg-holder bg-card" style="background-image:url(../assets/img/icons/spot-illustrations/corner-3.png);"></div>
+                                                    <!--/.bg-holder-->
+                                                    <div class="card-body position-relative">
+                                                        <a href="{{ path('dashboard_offers') }}">
+                                                            <h6 class="tecos-h text-center">Totale Offres<span class="badge badge-soft-success rounded-pill ms-2"></span></h6>
+                                                        </a>
+                                                        <div class="display-4 fs-4 mb-2 fw-normal font-sans-serif text-center"  data-countup="{&quot;endValue&quot;:{{jobs|length}},&quot;decimalPlaces&quot;:0,&quot;suffix&quot;:&quot;&quot;}">14</div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="card mb-3   ">
+                                            <div class="text-center">
+                                                <div class="card overflow-hidden" style="min-width: 12rem">
+                                                    <div class="bg-holder bg-card" style="background-image:url(../assets/img/icons/spot-illustrations/corner-3.png);"></div>
+                                                    <!--/.bg-holder-->
+                                                    <div class="card-body position-relative">
+                                                        <a href="{{ path('dashboard_skills') }}">
+                                                        <h6 class="tecos-h">Compétences <span class="badge badge-soft-success rounded-pill ms-2"></span></h6></a>
+                                                        <div class="display-4 fs-4 mb-2 fw-normal font-sans-serif"  data-countup="{&quot;endValue&quot;:{{skills|length}},&quot;decimalPlaces&quot;:0,&quot;suffix&quot;:&quot;&quot;}"></div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="card mb-3   ">
+                                            <div class="text-center">
+                                                <div class="card overflow-hidden" style="min-width: 12rem">
+                                                    <div class="bg-holder bg-card" style="background-image:url(../assets/img/icons/spot-illustrations/corner-3.png);"></div>
+                                                    <!--/.bg-holder-->
+                                                    <div class="card-body position-relative">
+                                                        <a href="{{ path('dashboard_Titles') }}">
+                                                        <h6 class="tecos-h">Titres<span class="badge badge-soft-success rounded-pill ms-2"></span></h6></a>
+                                                        <div class="display-4 fs-4 mb-2 fw-normal font-sans-serif"  data-countup="{&quot;endValue&quot;:{{professions|length}},&quot;decimalPlaces&quot;:0,&quot;suffix&quot;:&quot;&quot;}"></div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                 
+
+
+
+
+
+
+{% endblock %}

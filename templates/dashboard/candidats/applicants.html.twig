@@ -1,0 +1,86 @@
+{% extends 'layoutAdmin.html.twig' %}
+
+{% block body %}
+    <div class=" page-wraper-glass">
+        <div class=" page-content">
+            <div class="content-block">
+                <div class="container">
+                    <div class="row">
+                        <div class="job-bx job-profile  bg-white">
+                            <div class="row ">
+                                <div class="col-lg-7 col-md-6">
+                                    <h5 class="font-weight-700 float-start  text-primary">aa ()</h5>
+                                </div>
+                                <div class=" col-lg-4 col-md-6">
+                                    <input type="text" class="form-control" name="search"  placeholder="">
+                                </div>
+                                <div class="col-lg-1 col-md-6">
+                                    <button  type="submit" class="btn btn-primary "><i class="fa fa-search" ></i></button>
+                                </div>
+                                <div class="job-bx-title clearfix">
+                                </div>
+                            </div>
+                            <div class="GridLex-col-9_sm-8_xs-12">
+                                <div class="admin-content-wrapper">
+                                    <div class="admin-section-title">
+                                    </div>
+                                    <div class="job-item-grid-wrapper">
+                                        <div class="GridLex-gap-30">
+                                            <div class="GridLex-grid-noGutter-equalHeight">
+                                                <ul class=" post-job-bx border-border-dark  ">
+                                                    <div class="post-bx bg-200 border border-dark">
+                                                        <div class="d-flex ">
+                                                            <div class="">
+                                                                <a href="javascript:void(0);" data-bs-toggle="modal" data-bs-target="#changeimg"><span>
+                                                <img class="job-post-company "  style="background-image " src="../images/default.jpg" title="'.$myfname.'" alt=""  />
+                                                </span></a>
+                                                            </div>
+                                                            <div class="job-post-info ">
+                                                                <a  href="?a=candidate&memberid=" class="text-bold">
+                                                                    <h4 class="heading text-dark"> {{job.title}}</h4>
+                                                                </a>
+                                                                <ul>
+                                                                    <li>
+                                                                        <div class="explore-des-1 fw-bold text-secondary">title </div>
+                                                                    </li>
+                                                                    <li><i class="text-dark">|</i></li>
+                                                                    <li class=" fw-bold text-dark" >
+                                                                        <h class="explore-des-1 text-secondary" >ans d'experience</h>
+                                                                    </li>
+                                                                </ul>
+                                                            </div>
+                                                        </div>
+                                                        <label class="like-btn">
+                                                            <button class="btn btn-primary  btn-sm" href="#" role="button"  id="dropdownMenuLink" data-bs-toggle="dropdown" aria-expanded="false"class=" btn btn-outline-success add-btn btn-sm"><i class="far fa-file-pdf"></i>
+                                                            </button>
+                                                            <ul class="dropdown-menu" aria-labelledby="dropdownMenuLink">
+                                                                <li><a href="../employee/view-cv.php?id=">CV (#76213927310)</a>
+                                                                </li>
+                                                            </ul>
+                                                            <div  name="frmChange" class="post-form-wrapper" action="../my_cv/" method="post">
+                                                            </div>
+                                                        </label>
+                                                        <hr style="height:2px;border-width:0;color:gray;background-color:gray">
+                                                        </hr>
+                                                        <div class=" bg-200 rounded-pill " >
+                                                            <p class="m-tb0  float-center  "><span class="tecos-h text-dark  fw-bold ">Nom d'offre :</span> <span class="tecos-h text-primary" >full stack developer</span></p>
+                                                            <p class="m-tb0  float-center  "><span class="tecos-h  text-dark fw-bold ">Date de candidature :</span> <span class="text-dark" >12/12/12</span></p>
+                                                        </div>
+                                                    </div>
+                                                    <li></li>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="pagination-bx float-end m-t30">
+                                        <ul class="pagination">
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}

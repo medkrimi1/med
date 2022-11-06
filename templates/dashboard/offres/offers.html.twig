@@ -1,0 +1,246 @@
+{% extends 'layoutAdmin.html.twig' %}
+
+{% block body %}
+  
+                        <div class="job-bx job-profile  bg-white ">
+                            <div class="dezPlaceAni">
+                                <div class="job-bx-title clearfix">
+                                    <h5 class="font-weight-700 float-start  text-primary">Liste des offres  ({{jobs|length}}) </h5>
+                              
+                                    <div class="float-end">
+                                          <a data-bs-toggle="offcanvas" data-bs-target="#offcanvasRight" class="text-right "><h5 class="text-primary">
+                                                Filtrer <i class="fas fa-filter fa-sm"></i> <h5>
+                                            </a>
+                                    </div>
+                                </div>
+                                                 {% for message in app.flashes('success') %}
+            <div class="text-center text-dark alert alert-success">
+                {{ message }}
+            </div>
+        {% endfor %}
+                            </div>
+
+ <div class="offcanvas offcanvas-end bg-200" id="offcanvasRight" tabindex="-1" aria-labelledby="offcanvasRightLabel">
+  <div class="offcanvas-header settings-panel-header bg-shape">
+            <div class="z-index-1 py-1 light">
+                <h5 class="text-white"> <i class="fas fa-filter fa-sm"></i> Filtrer</h5>
+          </div>
+            <button class="btn-close btn-close-white z-index-1 mt-0" type="button" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+
+        </div>
+  <div class="offcanvas-body">
+
+                                                {{ form_start(form ,{attr: {class: ''}}) }}
+  
+
+ <div class="fs-0" for="organizerSingle">Nom  <div class=" float-end"><a class="" type="button" href="{{ path('dashboard_offers') }}?enddate%5Byear%5D=2027"><i class=" fas fa-undo-alt fa-lg"></i></a>
+  <a class="" type="button" data-bs-toggle="dropdown" data-display="static" aria-haspopup="true" aria-expanded="false"><i class="far fa-calendar-alt fa-lg"></i></a>
+  <div class="dropdown-menu py-0 fs-0">
+    <div class="card shadow-none border-0 " style="width: 15rem;height:9rem;">
+      <div class="card-body">
+        <div class="row text-start justify-content-between align-items-center mb-2">
+         
+          
+     
+        <div class="position-relative mt-5">
+          
+          <div class="divider-content-center "><div class="fs-0 text-center" >Date début
+    </div>
+       {{ form_widget(form.startdate,{attr: {class: ''}}) }}
+        <div class="fs-0 text-center " >Date fin
+    </div>
+       {{ form_widget(form.enddate,{attr: {class: ''}}) }}
+        </div>
+        </div>
+         </div>
+       
+      </div>
+    </div>
+  </div>
+</div>
+  </div>
+  
+ 
+  {{ form_widget(form.Title,{attr: {class: 'js-choice'}}) }}
+
+ 
+
+    <div class="fs-0">Type
+    </div>
+       {{ form_widget(form.TypeJobs,{attr: {class: 'multiselect-dropdown'}}) }}
+   
+    <div class="fs-0" >Experience
+    </div>
+       {{ form_row(form.Experience,{attr: {class: 'multiselect-native-select'}}) }}
+    <div class="fs-0">Pays
+    </div>
+       {{ form_widget(form.Country,{attr: {class: 'multiselect-dropdown'}}) }}
+       
+       <div class="fs-0">Compétence
+    </div>
+       {{ form_widget(form.Skills,{attr: {class: 'multiselect-dropdown'}}) }}
+     
+      
+   
+
+
+<div class="d-grid gap-2 m-t20" ><button class="btn btn-primary" type="submit">Rechercher</button>
+</div>
+
+
+
+
+{{ form_end(form) }}
+                                         
+                              </div>
+</div>
+
+
+            
+                                           
+                                   
+                      
+
+                        {% if jobs is empty %}
+                           <div class="alert alert-warning text-center" role="alert">
+  0 offre trouvé 
+</div>
+                              {% else %}
+
+                            <ul class=" post-job-bx ">
+                                {% for job in jobs %}
+                                <div class="post-bx bg-100 border border-2  m-b30">
+                                     
+                                    <div class="d-flex m-b20 ">
+                                        <a href="javascript:void(0);" data-bs-toggle="modal" data-bs-target="#changeimg"><span>
+                              <img class="job-post-company "  src="
+                              {{asset('images/jobs/' ~job.image)}}" ></span></a>
+                              </span></a>
+                                        <div class="job-post-info">
+                                            <ul>
+                                          <li>  <a  href="{{path('offre_get',{'slug':job.slug,'id':job.id})}}"  class=" text-bold">
+                                                <h4 class="m-b5  text-dark">{{ job.title  }} </h4>
+                                               </li>
+                                                <li>
+                                        
+  {% if job.today > job.expire   %}
+   <button class="badge badge rounded-pill d-block  bg-danger" type="button">Expiré</button>
+
+
+    {% else %}
+
+ <button class="badge badge rounded-pill   bg-success" type="button">Actif</button>
+{% endif %}
+
+                                    
+
+
+
+
+                                     
+                                              </li>
+                                               </ul>
+
+
+                                            </a>
+                                            <ul>
+                                                <li>
+                                                    <i class="fas fa-map-marker-alt text-primary"></i>
+                                                    <h class="explore-des-1 fw-bold text-secondary">
+                                                   {{  job.country }},{{  job.city }} </h>
+                                                </li>
+                                                <li><i class=" far fa-bookmark text-primary"></i>
+                                                  <h class="explore-des-1 fw-bold text-secondary" >{{job.type}}</h> </li>
+                                                <li><i class="far fa-clock text-primary"></i>
+                                                 <h class="explore-des-1 fw-bold text-secondary" > Publié :</h>{{ job.beginAt|date("m/d/Y") }}</li>
+
+                                                 
+                                            </ul>
+                                        </div>
+                                    </div>
+
+                                    <div class="float-end m-b30">
+                                       <div class="d-flex ">
+                                <a  data-bs-toggle="modal" data-bs-target="#job{{job.id}}" class="text-primary"><i ></i> Postulants({{job.applications|length}}) </a>
+                                 <div class="modal" id="job{{job.id}}" tabindex="-1" role="dialog" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered" role="document">
+            <div class="modal-content position-relative border border-dark">
+                <div class="d-flex flex-row-reverse">
+                    <button class="btn-close btn btn-sm btn-circle d-flex flex-center transition-base" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <div class="row ">
+                        <div class="">
+                            <div class=" tab-content ">
+                                    <h4 class=" font-weight-700 text-center">
+                                    Postulants ({{job.applications|length}})</h4>
+                                    <hr>
+                                    <p class="font-weight-600"></p>
+                                    {% for applications in job.applications|slice(0, 5)   %}
+
+                                        <div class=" d-flex float-start m-b10">
+                                            <div class=" avatar avatar-3xl">
+                                           
+                                                <a href="javascript:void(0);"><span>
+                              <img class="rounded-circle m-t5" style="background-image " src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRuVsmsQZnenIKX-x181542ZNLakNQoqwjbhQ&usqp=CAU" >
+                              </span></a></div>
+                                          
+                                            <div class="m-l20 job-post-info m-t10">
+                                                <h6><a href="{{path('candidatProfile',{'fname':applications.candidate.fname,'lname':applications.candidate.lname,'id':applications.candidate.id})}}">{{applications.candidate.fname}} {{applications.candidate.lname}}</a></h6>
+                                        
+                                                    <h6>{{applications.candidate.titre}}</h6>
+                                                    
+                                               
+                                            </div>
+                                           
+                                        </div>
+                                    
+                                    </li> 
+                                <div class="m-b10 float-end" <
+                                            <h6 class="text-secondary">{{applications.appdate|date("m/d/Y")}}</h6></div>
+                                <hr>
+                                                    {% endfor %}
+
+                                    <div class=" row gap-20 text-center">
+                                   
+                                {% if job.applications|length > 4 %}
+                                    <a class=" btn btn-outline-primary" href="{{path('dashboard_candidats')}}/?Jobs={{job.id}}" >
+                                    Voir Plus >></a> 
+                                    {% endif %}
+                              
+                            </div>
+                        </div>
+                     
+                    </div>
+                </div>
+                 </div>
+                  </div>
+                   </div>
+                    </div>
+                    
+                            </div>
+
+                                    </div>
+                                    <label class="like-btn">
+                                        <a href="{{path('offers_edit',{'id':job.id})}}"  class="btn btn-outline-primary add-btn btn-sm"><i class="fas fa-pencil-alt m-r4"></i> </a>
+                                        <li></li>
+                                        <a onclick = "return confirm('Voulez-vous vraiment supprimer cette offre ?')" href="{{path('offre_delete',{'id':job.id})}}" class=" btn btn-outline-danger add-btn btn-sm"><i class="fas fa-trash m-r4"></i></a>
+
+                                </div>
+
+                                 
+                             {% endfor %}
+                             {% endif %}
+                               </ul>
+
+                        </div>
+                    </div>
+                </div>
+
+                <div class="d-flex justify-content-center">
+                    <div class="pagination-bx float-end m-t30">
+                        <ul class="pagination">
+                        </ul>
+                    </div>
+         
+{% endblock %}

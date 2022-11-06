@@ -1,0 +1,143 @@
+{% extends 'layout.html.twig' %}
+
+{% block body %}
+    <div class="header-w bg-white" > </div>
+
+    <div class="dez-bnr-inr overlay-black-middle" >
+        <img class="dez-bnr-inr overlay-black-middle" style="background-image " alt="background-image"   src="https://timelinecovers.pro/facebook-cover/download/photography-city-lights-facebook-cover.jpg">
+        <div class="pxp-hero-opacity "    >
+            
+        </div>
+        <div class="pxp-single-candidate-hero-caption" >
+            <div class="container">
+                <img class="pxp-single-job-cover-logo" style="background-image " alt=""   src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRuVsmsQZnenIKX-x181542ZNLakNQoqwjbhQ&usqp=CAU"  >
+
+             
+            </div>
+        </div>
+    </div>
+    <div class="container">
+        <div class="pxp-single-job-content mt-4 mt-lg-5">
+            <div class="row">
+                <div class=" col-lg-7 col-xl-8 col-xxl-9">
+                    <div class="row justify-content-between align-items-center">
+                        <div class=" col-xl-8 col-xxl-6">
+                            <ul></ul>
+                            <div class="job-title  text-dark display-4 ">{{job.title}}</div>
+                        </div>
+                        <div class="col-auto">
+                            <div class="pxp-single-job-options mt-4 col-xl-0">
+                                <div class="sticky-sidebar" >
+                                    <div class="apply-job-wrapper"></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <p id="data"></p>
+                    <div class="row mt-4 justify-content-between align-items-center">
+                        <div class="col-6">
+                        </div>
+                        <div class="col-auto">
+                            <div class="pxp-single-job-date pxp-text-light">Publié: {{ job.beginAt }} </div>
+                        </div>
+                    </div>
+                    <div class="job-bx-title clearfix">
+                    </div>
+                    <div class="card mb-3">
+                        <div class="card-header bg-300">
+                            <h2 class="explore-des text-dark">Presentation</h2>
+                        </div>
+                        <div class="card-body">
+                            <p class="text-dark"> {{ job.presentation}}</p>
+                        </div>
+                    </div>
+                    <div class="card mb-3">
+                        <div class="card-header bg-300">
+                            <h5 class="explore-des text-dark">Description du poste</h5>
+                        </div>
+                        <div class="card-body">
+                            <p class="text-dark"> {{ job.resp }}</p>
+                        </div>
+                    </div>
+                    <div class="card mb-3">
+                        <div class="card-header bg-300">
+                            <h5 class="explore-des text-dark">Profil recherché</h5>
+                        </div>
+                        <div class="card-body">
+                            <p class="text-dark">{{ job.req }}</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-5 col-xl-4 col-xxl-3 text-center">
+                    <div class="">
+                        <div>
+                            <div class="">
+                                <div class="sticky-sidebar">
+                                    <div class="card mb-3">
+                                        </br>
+                                        <h6 class="explore-des-2 text-dark">lieu de travail</h6>
+                                        <h5 class="explore-des-3 text-primary"><i class=" fas fa-map-marker-alt"></i> {{  job.country }} ,{{  job.city }}</h5>
+                                        <div class="job-bx-title clearfix">
+                                        </div>
+                                        <h6 class="explore-des-2 text-dark">Experience</h6>
+                                        <h5 class="explore-des-3 text-primary">{{ job.exp.title}}</h5>
+                                        <div class="job-bx-title clearfix">
+                                        </div>
+                                        <h6 class="explore-des-2 text-dark">Type d'emploi</h6>
+                                        <h5 class="explore-des-3 text-primary">{{ job.typeid.title}}</h5>
+                                        <div class="job-bx-title clearfix">
+                                        </div>
+                                        <h6 class="explore-des-2 text-dark">Compétences</h6>
+                                        <div class="pxp-single-job-side-info-data"></div>
+                                        <div class="job-time  m-t15 m-b10">
+                                 <span class="">
+                                {% for skill in job.skill %}
+                                 <h6 class="mt-1 text-primary">{{ skill.title}}
+                                        </div>
+                                        {% endfor %}
+                                        <div class="job-bx-title clearfix">
+                                        </div>
+                                        <div class="">
+                                            <h6 class="explore-des-2 text-dark">Date limite </h6>
+                                            <h5 class="explore-des-3 text-primary">{{ job.expireAt}}</h5>
+                                        </div>
+                                        <ul></ul>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="card mb-3">
+                            <div class="card-header bg-300" >
+                                <h2 class="explore-des text-dark">Contact</h2>
+                            </div>
+                            <div class="card-body explore-des-3 text-primary">
+                                <div class="explore-des-2 text-dark">Téléphone</div>
+                                <div class="explore-des-3 text-primary">+33 1 43 37 85 74</div>
+                                <div class="mt-4">
+                                    <div class="explore-des-2 text-dark">Email</div>
+                                    <div class="explore-des-3 text-primary">contact@it-tecos.fr</div>
+                                </div>
+                                <div class="mt-4">
+                                    <div class="explore-des-2 text-dark">Lieu</div>
+                                    <div class="explore-des-3 text-primary">Paris, France</div>
+                                </div>
+                                <div class="job-bx-title clearfix">
+                                </div>
+                                <div class="mt-4">
+                                    <div class="explore-des-2 text-secondary">Suivez-nous</div>
+                                </div>
+                                <ul></ul>
+                                <ul class="list-inline m-a0">
+                                    <li><a target="_blank" href="'.$fb.'" class="site-button  facebook circle "><i class="fab fa-facebook-f"></i></a></li>
+                                    <li><a target="_blank" href="'.$gl.'" class="site-button  google-plus circle "><i class="fab fa-google-plus-g"></i></a></li>
+                                    <li><a target="_blank" href="'.$ln.'" class="site-button  linkedin circle "><i class="fab fa-linkedin-in"></i></a></li>
+                                    <li><a target="_blank" href="'.$tw.'" class="site-button  twitter circle "><i class="fab fa-twitter"></i></a></li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}

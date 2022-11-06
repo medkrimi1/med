@@ -1,0 +1,285 @@
+{% extends 'layout.html.twig' %}
+
+{% block body %}
+
+   <div class="header-w bg-white" > </div>
+      <div class=" page-wraper-glass">
+         <div class=" page-content">
+            <div class="content-block">
+               <div class=" bg- browse-job p-t50 p-b20">
+                  <div class="container">
+                     <div class="row">
+                        <div class="d-none d-lg-block col-xl-3 col-lg-4 m-b30 ">
+                           <div class="sticky-top">
+                              <div class="candidate-info bg-white radius-md">
+                                 <div class="candidate-detail text-center ">
+                                    <a class="upload-link" href="?a=Candidate_Profile#avatar" title="update" data-bs-toggle="tooltip" data-placement="right">
+                                       <div class="canditate-des" >
+                                          <center><img class=" canditate-des-img" src="../images/default.jpg"  alt="image"  /></center>
+                                       </div>
+                                    </a>
+                                    <div class=" candidate-title">
+                                       <div class="">
+                                          <h4 class="m-b5">
+                                             <a href="javascript:void(0);">
+                                                <h4 class="mt-2 text-dark">Med krimi</h4>
+                                             </a>
+                                          </h4>
+                                          <p class="m-b0">
+                                             <a href="javascript:void(0);">
+                                          <h6 class="mt-1">title</h6></a></p>
+                                       </div>
+                                       <a class="btn btn-outline-primary rounded-pill btn-sm" href="{{ path('candidat_profil')}}">Voir profil</a>
+                                    </div>
+                                 </div>
+                                 <div class="row navbar-vertical-label-wrapper " >
+                                    <ul class="">
+                                       <li>
+                                          <a href="{{ path('candidate_profile')}}" class="active">
+                                             <span>
+                                                <h6 class="fs-0 text-white fw-bold"><i class=" far fa-user" aria-hidden="true"></i> Profil</h6>
+                                             </span>
+                                          </a>
+                                       </li>
+                                       <li>
+                                          <a href="{{ path('my_resume')}}">
+                                             <span>
+                                                <h6 class="fs-0"><i class="far fa-file-alt" aria-hidden="true"></i> Ma carrière</h6>
+                                             </span>
+                                          </a>
+                                       </li>
+                                       <li>
+                                          <a href="{{ path('my_applications')}}">
+                                             <span>
+                                                <h6 class="fs-0"><i class="fa fa-briefcase " aria-hidden="true"></i> Mes candidatures</h6>
+                                             </span>
+                                          </a>
+                                       </li>
+                                       <li>
+                                          <a href="{{ path('my_cv')}}">
+                                             <span>
+                                                <h6 class="fs-0"><i class="far fa-id-card" aria-hidden="true"></i> Gérer CV</h6>
+                                             </span>
+                                          </a>
+                                       </li>
+                                       <li>
+                                          <a href="{{ path('candidate_password')}}">
+                                             <span>
+                                                <h6 class="fs-0"><i class="fa fa-key" aria-hidden="true"></i> Changer Mot de passe</h6>
+                                             </span>
+                                          </a>
+                                       </li>
+                                       <li>
+                                          <a href="./logout.php">
+                                             <span>
+                                                <h6 class="fs-0"> <i class="fas fa-sign-out-alt" aria-hidden="true"></i> Déconnexion</h6>
+                                             </span>
+                                          </a>
+                                       </li>
+                                    </ul>
+                                 </div>
+                              </div>
+                           </div>
+                        </div>
+                        <div class="col-xl-9 col-lg-8 m-b30">
+                           <div class="job-bx job-profile  bg-white ">
+                              <div class="job-bx-title clearfix">
+                                 <h5 class="mb-0">Information basique</h5>
+                              </div>
+                              <div class="row m-b30">
+                                 <div class="col-lg-6 col-md-6">
+                                    <div class="form-group">
+                                       <div class="fs-0">Nom</div>
+                                       <input name="lname"  required type="text"  class="form-control" value="med" placeholder="Enter your first name">
+                                    </div>
+                                 </div>
+                                 <div class="col-lg-6 col-md-6">
+                                    <div class=" form-group" >
+                                       <div class="fs-0">Prénom</div>
+                                       <input name="fname"  type="text" required type="text" class="form-control" value="krimi" placeholder="Enter your last name">
+                                    </div>
+                                 </div>
+                                 <div class="clear"></div>
+                                 <div class="col-lg-6 col-md-6">
+                                    <div class="form-group">
+                                       <div class="fs-0">Date de naissance</div>
+                                       <div class="row">
+                                          <div class="col-lg-4 col-md-3">
+                                             <select name="date" required class="form-select form-control" data-live-search="false">
+                                                <option disabled value="">day</option>
+                                                <option >12</option>
+                                             </select>
+                                          </div>
+                                          <div class="col-lg-4 col-md-3">
+                                             <select name="month" required class="form-select form-control" data-live-search="false">
+                                                <option >12</option>
+                                             </select>
+                                          </div>
+                                          <div class="col-lg-4 col-md-3">
+                                             <select name="year" class="form-select form-control" data-live-search="false">
+                                                <option >12</option>
+                                             </select>
+                                          </div>
+                                       </div>
+                                    </div>
+                                 </div>
+                                 <div class="col-lg-6 col-md-6">
+                                    <div class="form-group">
+                                       <div class="fs-0">Profession</div>
+                                       <select name="title" required class="form-select show-tick form-control " data-live-search="true">
+                                          <option disabled value=""></option>
+                                       </select>
+                                    </div>
+                                 </div>
+                                 <div class="col-lg-6 col-md-6">
+                                    <div class="form-group">
+                                       <div class="fs-0">Années d'expérience</div>
+                                       <select name="experience"  class="form-select show-tick form-control" data-live-search="false">
+                                          <option  value="">Select</option>
+                                       </select>
+                                    </div>
+                                 </div>
+                                 <div class="col-lg-12 col-md-12">
+                                    <div class="form-group bootstrap-wysihtml5-wrapper">
+                                       <div class="fs-0">À propos de moi</div>
+                                       <textarea name="about" class="bootstrap-wysihtml5 form-control" placeholder="Enter your short description ..." style="height: 200px;">description</textarea>
+                                    </div>
+                                 </div>
+                              </div>
+                              <div class="job-bx-title clearfix">
+                                 <h5 class="mb-0">Informations de contact</h5>
+                              </div>
+                              <div class="row">
+                                 <div class="col-lg-6 col-md-6">
+                                    <div class="form-group">
+                                       <div class="fs-0">Numéro de téléphone</div>
+                                       <div class="row">
+                                          <div class="col-lg-4 col-md-3">
+                                             <select name="phonecode"  class="form-select form-control " >
+                                                <option disabled value="">Select</option>
+                                             </select>
+                                          </div>
+                                          <div class="col-lg-8 col-md-9">
+                                             <div class="form-group">
+                                                <input  type="text" name="phone" pattern="[+,0-9]{5,15}" class="form-control" value="1210382">
+                                             </div>
+                                          </div>
+                                       </div>
+                                    </div>
+                                 </div>
+                                 <div class="col-lg-6 col-md-6">
+                                    <div class="form-group">
+                                       <div class="fs-0">Adresse E-mail</div>
+                                       <input type="email" name="email" required class="form-control" value="hamakrimi@gmail.com" placeholder="Enter your email address">
+                                    </div>
+                                 </div>
+                                 <div class="col-lg-6 col-md-6">
+                                    <div class="form-group">
+                                       <div class="fs-0">Pays</div>
+                                       <select name="country" required class="form-select show-tick form-control " data-live-search="true">
+                                          <option value="select">Select</option>
+                                       </select>
+                                    </div>
+                                 </div>
+                                 <div class="col-lg-6 col-md-6">
+                                    <div class="form-group">
+                                       <div class="fs-0">Code postal </div>
+                                       <input name="zip" type="text" class="form-control" value="12078">
+                                    </div>
+                                 </div>
+                                 <div class="col-lg-6 col-md-6">
+                                    <div class="form-group">
+                                       <div class="fs-0">Ville</div>
+                                       <input name="city" type="text" class="form-control" value="tunis">
+                                    </div>
+                                 </div>
+                                 <div class="col-lg-6 col-md-6">
+                                    <div class="form-group">
+                                       <div class="fs-0">Adresse</div>
+                                       <input name="street"  type="text" class="form-control" value="omrane sup">
+                                    </div>
+                                 </div>
+                                 <div class="form-group">
+                                    <div class="fs-0">Site web personnel</div>
+                                    <input  value="medkrimi.com" class="form-control" placeholder="Enter job title" type="text" name="pw" > 
+                                 </div>
+                                 <div class="job-bx-title clearfix">
+                                    <h4 class=" mb-0">Profils sociaux</h4>
+                                 </div>
+                                 <div class="row">
+                                    <div class="col-lg-6 col-md-6">
+                                       <div class="form-group">
+                                          <div class="fs-0">Facebook</div>
+                                          <input value="" name="fb"  type="text" class="form-control" placeholder="https://www.facebook.com/">
+                                       </div>
+                                    </div>
+                                    <div class="col-lg-6 col-md-6">
+                                       <div class="form-group">
+                                          <div class="fs-0">Twitter</div>
+                                          <input value="" name="tw"  type="text" class="form-control" placeholder="https://www.twitter.com/">
+                                       </div>
+                                    </div>
+                                    <div class="col-lg-6 col-md-6">
+                                       <div class="form-group">
+                                          <div class="fs-0">Google</div>
+                                          <input value="" name="gl"  type="text" class="form-control" placeholder="https://www.google.com/">
+                                       </div>
+                                    </div>
+                                    <div class="col-lg-6 col-md-6">
+                                       <div class="form-group">
+                                          <div class="fs-0">Linkedin</div>
+                                          <input value="" name="ln"  type="text" class="form-control" placeholder="https://www.linkedin.com/">
+                                       </div>
+                                    </div>
+                                 </div>
+                                 <ul> </ul>
+                              </div>
+                              <div class="text-center" >
+                                 <button type="submit" class="btn btn-primary rounded-pill">Mettre à jour</button> 
+                              </div>
+                              <ul></ul>
+                              <div class="job-bx-title clearfix">
+                                 <h4 class="mb-0">Photo de profile & couverture</h4>
+                              </div>
+                              <div class=" text-center col-lg-12 col-md-12">
+                                 <div class="form-group">
+                                    <div class="fs-0"> Photo de profil </div>
+                                    <div class="custom-file border border-dark">
+                                       <p class="m-a0">
+                                          <i class="fa fa-upload "></i>
+                                          choisissez ou glissez ici 
+                                       </p>
+                                       <input onchange="validateSize(this)" accept="image/*" type="file" name="image" class="btn btn-primary rounded-pill form-control" >
+                                    </div>
+                                 </div>
+                                 <button  type="submit" class="btn btn-primary rounded-pill">Mettre à jour</button>
+                                 <a onclick = "return confirm('Voulez-vous vraiment supprimer votre photo de profil ?')" class="btn btn-outline-danger  rounded-pill" href="employee/app/drop-dp.php">Suprimer</a> 
+                              </div>
+                              <div class=" text-center col-lg-12 col-md-12">
+                                 <div class="form-group">
+                                    <div class="fs-0">Photo de couverture</div>
+                                    <div class="custom-file border border-dark">
+                                       <p class="m-a0">
+                                          <i class="fa fa-upload "></i>
+                                          choisissez ou glissez ici 
+                                       </p>
+                                       <input onchange="validateSize(this)" accept="image/*" type="file" name="image" class="btn btn-primary rounded-pill form-control" >
+                                    </div>
+                                 </div>
+                                 <button  type="submit" class="btn btn-primary rounded-pill">Mettre à jour</button>
+                                 <a onclick = "return confirm('Are you sure you want to delete your cover photo ?')" class="btn btn-outline-danger  rounded-pill " href="employee/app/drop-dp.php">suprimer</a>
+                              </div>
+                           </div>
+                        </div>
+                     </div>
+                  </div>
+               </div>
+            </div>
+         </div>
+      </div>
+
+
+
+
+
+{% endblock %}

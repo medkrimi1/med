@@ -1,0 +1,62 @@
+
+{% extends 'layoutAdmin.html.twig' %}
+
+{% block body %}
+
+         <div class=" page-content">
+            <div class="content-block">
+               <div class="container">
+                  <div class="row">
+                     <div class="job-bx job-profile  bg-white">
+                        <div class="job-bx-title clearfix">
+                           <h5 class="font-weight-700 float-start  text-primary">Applications de {{ candidate.fname }} {{ candidate.lname }} ({{candidate.applications|length}})</h5>
+                        </div>
+                        <div class="">
+                           <div class="card-body p-0">
+                              <div class="table-responsive scrollbar">
+                                   {% for applications in candidate.applications %}
+
+                                 <table class="table table-dashboard mb-0 table-borderless fs--1 border-200">
+                                    <thead class="bg-light">
+                                    </thead>
+                                    <tbody>
+                                       <tr class="border-bottom border-400">
+                                          <td>
+                                             {% if applications.job.title !=609679 %}
+                                             <div class="d-flex align-items-center position-relative">
+                                               
+                                                <div class="posted-info clearfix  ">
+                                                   <p class="m-tb0  float-start  "><span class=" text-dark  ">Nouvelle candidature pour </span><span class="text-primary">{{applications.job.title}} </span><a href=""></p>
+                                                </div>
+
+                                             </div>
+                                             {% else %}
+                                         <div class="d-flex align-items-center position-relative">
+                                               
+                                                <div class="posted-info clearfix  ">
+                                                   <p class="m-tb0  float-start  "><span class=" text-dark  ">Nouvelle </span><span class="text-primary">candidature spontanée </span><a href=""></p>
+                                                </div>
+
+                                             </div>
+
+                                             {% endif %}
+                                             <div class=" text-secondary  ">{{applications.appdate|date("d/m/Y g:ia")}}</div>
+                                          </td>
+                                       </tr>
+
+                                    </tbody>
+
+                                 </table>
+                               {% endfor %} 
+                              </div>
+                           </div>
+                        </div>
+                     </div>
+                  </div>
+               </div>
+            </div>
+         </div>
+
+
+
+{% endblock %}

@@ -1,0 +1,199 @@
+{% extends 'layoutAdmin.html.twig' %}
+
+{% block body %}
+   
+                        <div class="job-bx job-profile bg-white">
+                            <div class="job-bx-title clearfix">
+                                <h5 class="font-weight-700 float-start text-primary">Modifier offre</h5>
+
+
+                            </div>
+
+                          {{ form_start(form) }}
+
+                                <div class="row gap-20">
+
+
+                                    <div class="col-lg-12 col-md-6">
+
+                                        <div class="form-group">
+                                            <div class="fs-0" >Titre de l'emploi</div>
+                                          {{ form_widget(form.title) }}  
+                                        </div>
+
+                                    </div>
+
+                                    <div class="clear"></div>
+
+                                    <div class="col-lg-6 col-md-6">
+
+                                        <div class="form-group">
+                                            <div class="fs-0" >Ville</div>
+                                         {{ form_widget(form.city) }} 
+                                        </div>
+
+                                    </div>
+
+                                    <div class="col-lg-6 col-md-6">
+
+                                        <div class="form-group">
+                                            <div class="fs-0" >Pays</div>
+                                             {{ form_widget(form.country,{attr: {class: 'js-choice'}}) }}  
+                                        </div>
+
+                                    </div>
+
+                                    <div class="col-lg-6 col-md-6">
+
+                                        <div class="form-group mb-20">
+                                            <div class="fs-0" >Experience:</div>
+                                            {{ form_widget(form.exp,{attr: {class: 'js-choice'}}) }} 
+                                        </div>
+                                         </div>
+                                        <div class="col-lg-6 col-md-6">
+
+                                         <div class="form-group mb-20">
+                                            <div class="fs-0" >Type:</div>
+                                          
+                                            {{ form_widget(form.typeid,{attr: {class: 'js-choice'}}) }} 
+                                        </div>
+
+
+                                    </div>
+
+                                    <div class="clear"></div>
+                                  
+                                        <div class="col-lg-12 col-sm-8 col-md-8">
+                                            <div class="fs-0" >Compétences</div>
+                                            <div class=" form-group">
+
+                                                <label for="organizerMultiple"></label> {{ form_widget(form.Skills,{attr: {class: 'multiselect-dropdown'}}) }} 
+
+                                            </div>
+
+                                        </div>
+                                       
+
+                                    <div class="col-sm-12 col-md-12">
+
+                                        <div class="form-group bootstrap3-wysihtml5-wrapper">
+                                            <div class="fs-0" >Presentation</div>
+                                            {{ form_widget(form.presentation) }} 
+                                        </div>
+
+                                    </div>
+
+                                    <div class="clear"></div>
+
+                                    <div class="col-sm-12 col-md-12">
+
+                                        <div class="form-group bootstrap3-wysihtml5-wrapper">
+                                            <div class="fs-0" >Description du poste</div>
+                                           {{ form_widget(form.resp) }} 
+                                        </div>
+
+                                    </div>
+
+                                    <div class="clear"></div>
+
+                                    <div class="col-sm-12 col-md-12">
+
+                                        <div class="form-group bootstrap3-wysihtml5-wrapper">
+                                            <div class="fs-0" >Profil recherché</div>
+                                            {{ form_widget(form.req) }} 
+                                        </div>
+
+                                    </div>
+                               
+                                    <div class="col-lg-6 col-md-6">
+
+
+                                        <div class="form-group">
+                                            <div class="fs-0"  >Date limite</div>
+                                             {{ form_widget(form.ExpiredAt ) }} 
+                                        </div>
+                                    
+
+                                    </div>
+                                   
+
+
+
+
+
+                                    <div
+
+
+
+
+                                    <div
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                                    <div class=" GridLex-col-9_sm-8_xs-12">
+
+
+
+
+
+                                        <div class="col-sm-12 col-md-12">
+
+                                            <div class="form-group">
+                                                <div class="fs-0"  >image:</div>
+                                               {{ form_widget(form.imagefield,{attr: {class: 'form-control'}}) }} 
+                                            </div>
+
+                                        </div>
+
+                                        <div class="col-sm-12 col-md-12">
+
+                                            <div class="form-group">
+                                                <div class="fs-0"  >couverture</div>
+                                               {{ form_widget(form.coverfield,{attr: {class: 'form-control'}}) }} 
+                                            </div>
+
+                                        </div>
+
+
+                                    
+
+                                        <ul></ul>
+                                        <div class="text-center">
+                                            <button   class="btn btn-primary btn-lg rounded-pill ">Mettre à jour</button>
+                                            {{ form_end(form) }}
+                                        </div>
+
+                                    </div>
+
+                          
+
+
+             
+{% endblock %}

@@ -1,0 +1,293 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <title>{% block title %}Welcome!{% endblock %}</title>
+        <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 128 128%22><text y=%221.2em%22 font-size=%2296%22>⚫️</text></svg>">
+        {# Run `composer require symfony/webpack-encore-bundle` to start using Symfony UX #}
+        {% block stylesheets %}
+
+      
+            <!-- ===============================================-->
+            <!-- Stylesheets-->
+            <!-- ===============================================-->
+            <link rel="preconnect" href="https://fonts.gstatic.com">
+            <link href="//fonts.googleapis.com/css?family=Open+Sans:300,400,500,600,700%7cPoppins:300,400,500,600,700,800,900&amp;display=swap" rel="stylesheet">
+            <link rel="stylesheet" type="text/css" href="{{ asset('css/plugins.css') }}">
+            <link rel="stylesheet" type="text/css" href="{{ asset('css/style.css') }}">
+            <link rel="stylesheet" type="text/css" href="{{ asset('css/templete.css') }}">
+            <link href="{{ asset('vendors/overlayscrollbars/OverlayScrollbars.min.css') }}" rel="stylesheet">
+            <link href="{{ asset('assets/css/theme-rtl.min.css') }}" rel="stylesheet" id="style-rtl">
+            <link href="{{ asset('assets/css/theme.min.css') }}" rel="stylesheet" id="style-default">
+            <link href="{{ asset('assets/css/user-rtl.min.css') }}" rel="stylesheet" id="user-style-rtl">
+            <link href="{{ asset('assets/css/user.min.css') }}" rel="stylesheet" id="user-style-default">
+            <link href="{{ asset('vendors/choices/choices.min.css') }}" rel="stylesheet" />
+          
+        {% endblock %}
+
+        {% block javascripts %}
+            <script src="{{ asset('vendors/popper/popper.min.js') }}"></script>
+            <script src="{{ asset('vendors/bootstrap/bootstrap.min.js') }}"></script>
+            <script src="{{ asset('vendors/anchorjs/anchor.min.js') }}"></script>
+            <script src="{{ asset('vendors/is/is.min.js') }}"></script>
+            <script src="{{ asset('vendors/echarts/echarts.min.js') }}"></script>
+            <script src="{{ asset('vendors/fontawesome/all.min.js') }}"></script>
+            <script src="{{ asset('vendors/lodash/lodash.min.js') }}"></script>
+            <script src="{{ asset('assets/js/theme.js') }}"></script>
+            <script src="{{ asset('assets/js/theme.js') }}"></script>
+            <script src="{{ asset('vendors/tinymce/tinymce.min.js') }}"></script>
+            <script src="{{ asset('js/jquery.min.js') }}"></script>
+            <script src="{{ asset('vendors/magnific-popup/magnific-popup.js') }}"></script>
+            <script src="{{ asset('js/custom.js') }}"></script>
+            <script src="{{ asset('js/custom.js') }}"></script>
+            <script src="{{ asset('js/multiselect-dropdown.js') }}"></script>
+            <script src="{{ asset('vendors/choices/choices.min.js') }}"></script>
+
+        {% endblock %}
+    </head>
+    <body>
+    <header class="fixed-top  " data-navbar-darken-on-scroll="data-navbar-darken-on-scroll" >
+        <nav class=" d-lg-none  navbar navbar-light navbar-vertical navbar-expand-xl " >
+            <div class="d-flex align-items-center">
+                <div class="toggle-icon-wrapper">
+                    <button class="btn navbar-toggler-humburger-icon navbar-vertical-toggle" data-bs-toggle="tooltip" data-bs-placement="left" title="" data-bs-original-title="Toggle Navigation" aria-label="Toggle Navigation"><span class="navbar-toggle-icon"><span class="toggle-line"></span></span></button>
+                </div>
+                <a class="navbar-brand" href="../index.html">
+                    <div class="d-flex align-items-center py-3"><img class="me-2" src="{{ asset('assets/img/icons/spot-illustrations/falcon.png') }}" alt="" width="40"><span class="font-sans-serif">falcon</span></div>
+                </a>
+            </div>
+            <div class="collapse navbar-collapse scrollbar " id="navbarVerticalCollapse">
+                <div class="container " >
+                    <div class="container " >
+                        <div>
+                            <a href="./#services" >
+                           <span>
+                              <h6 class="fs-0 "><i aria-hidden="true"></i> Nos Services</h6>
+                           </span>
+                            </a>
+                        </div>
+                        <div>
+                            <a href="./#expertise">
+                           <span>
+                              <h6 class="fs-0"><i  aria-hidden="true"></i> Notre Expertise</h6>
+                           </span>
+                            </a>
+                        </div>
+                        <div>
+                            <a href="?a=Blockchain" >
+                           <span>
+                              <h6 class="fs-0"><i  aria-hidden="true"></i> Blockchain</h6>
+                           </span>
+                            </a>
+                        </div>
+                        <div>
+                            <a href="{{ path('offres')}}" >
+                           <span>
+                              <h6 class="fs-0 fw-bold"><i  aria-hidden="true"></i> Carrière</h6>
+                           </span>
+                            </a>
+                        </div>
+                        <div>
+                            <a href="?a=Contact">
+                           <span>
+                              <h6 class="fs-0"><i  aria-hidden="true"></i> Contact</h6>
+                           </span>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </nav>
+        <!-- Main Header -->
+        <div class="navbar-a  " data-navbar-darken-on-scroll="data-navbar-darken-on-scroll">
+            <nav  class="navbar navbar-light navbar navbar-top navbar-expand-lg " data-move-target="#navbarVerticalNav" data-navbar-top="combo" >
+                <div class="container">
+                    <div class="d-flex justify-content-start">
+                        <div class="logo-header mostion">
+                            <a href="./" class="logo"><img src="{{ asset('images/logo.png') }}" alt=""></a>
+                        </div>
+                    </div>
+                    <button class="btn navbar-toggler-humburger-icon  collapsed d-lg-none d-xl-none" type="button" data-bs-toggle="collapse" data-bs-target="#navbarVerticalCollapse" aria-controls="navbarVerticalCollapse" aria-expanded="false" aria-label="Toggle Navigation">
+                           <span class="navbar-toggle-icon">
+                           <span class="toggle-line"></span></span></button>
+                    <div class="d-none d-lg-block" id="navbarStandard">
+                        <div class="d-flex justify-content-center">
+                            <ul class="navbar-nav tecos-H text-dark col-lg-11" data-top-nav-dropdowns="data-top-nav-dropdowns ">
+                                <li class="nav-item dropdown">
+                                    <a class="nav-link dropdown-toggle tecos-H2 text-dark" href="./#services" role="button"  aria-haspopup="true" aria-expanded="false" id="dashboards">Nos services</a>
+                                    <div class="dropdown-menu dropdown-menu-card border-0 mt-0 " style="width:350px" aria-labelledby="apps">
+                                        <div class=" bg-200"><a class="dropdown-item link-600 fw-medium tecos-h text-dark b" href="./#services">Tierce Recette Applicative (TRA)</a><a class="dropdown-item link-600 fw-medium tecos-h" href="./#services">Tierce Maintenance Applicative (TMA)</a><a class="dropdown-item link-600 fw-medium tecos-h" href="./#services">Mode projet</a><a class="dropdown-item link-600 fw-medium tecos-h" href="./#services">Centre de Service</a></div>
+                                    </div>
+                                </li>
+                                <li class="nav-item dropdown">
+                                    <a class="nav-link dropdown-toggle tecos-H2 text-dark" href="./#expertise" role="button"  aria-haspopup="true" aria-expanded="false" id="dashboards">Notre expertise</a>
+                                    <div class="dropdown-menu dropdown-menu-card border-0 mt-0 " style="width:350px" aria-labelledby="apps">
+                                        <div class=" bg-200"><a class="dropdown-item link-600 fw-medium tecos-h text-dark" href="./#expertise">Data</a><a class="dropdown-item link-600 fw-medium tecos-h text-dark " href="./#expertise">Digital</a><a class="dropdown-item link-600 fw-medium tecos-h text-dark " href="./#expertise">QA & Testing</a><a class="dropdown-item link-600 fw-medium tecos-h text-dark " href="./#expertise">ERP & CRM</a></div>
+                                    </div>
+                                </li>
+                                <li class="nav-item dropdown"><a class="nav-link  tecos-H  text-dark" href="?a=Blockchain" >Blockchain</a>
+                                </li>
+                                <li class="nav-item dropdown"><a class="nav-link  tecos-H text-dark" href="{{ path('offres')}}" role="button" aria-haspopup="true" aria-expanded="false" >Carrière</a>
+                                </li>
+                                <li class="nav-item dropdown"><a class="nav-link  tecos-H text-dark" href="?a=Contact" role="button" >Contact</a>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                    <ul class="navbar-nav navbar-nav-icons  flex-row align-items-center">
+                        <li class="nav-item">
+                        </li>
+                        <li class="nav-item">
+                        </li>
+                        <li class="nav-item">
+                        </li>
+                        <li>
+                        </li>
+                    </ul>
+                    <div class="d-flex justify-content-center  " >
+                        <ul class="navbar-nav navbar-nav-icons  flex-row align-items-center">
+                            <li class="nav-item">
+                                <div class="theme-control-toggle fa-icon-wait px-2">
+                                    <input class="form-check-input ms-0 theme-control-toggle-input" id="themeControlToggle" type="checkbox" data-theme-control="theme" value="dark" checked="true">
+                                    <label class="mb-0 theme-control-toggle-label theme-control-toggle-light" for="themeControlToggle" data-bs-toggle="tooltip" data-bs-placement="left" title="" data-bs-original-title="Switch to light theme" aria-label="Switch to light theme">
+                                        <svg class="svg-inline--fa fa-sun fa-w-16 fs-0" aria-hidden="true" focusable="false" data-prefix="fas" data-icon="sun" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" data-fa-i2svg="">
+                                            <path fill="currentColor" d="M256 160c-52.9 0-96 43.1-96 96s43.1 96 96 96 96-43.1 96-96-43.1-96-96-96zm246.4 80.5l-94.7-47.3 33.5-100.4c4.5-13.6-8.4-26.5-21.9-21.9l-100.4 33.5-47.4-94.8c-6.4-12.8-24.6-12.8-31 0l-47.3 94.7L92.7 70.8c-13.6-4.5-26.5 8.4-21.9 21.9l33.5 100.4-94.7 47.4c-12.8 6.4-12.8 24.6 0 31l94.7 47.3-33.5 100.5c-4.5 13.6 8.4 26.5 21.9 21.9l100.4-33.5 47.3 94.7c6.4 12.8 24.6 12.8 31 0l47.3-94.7 100.4 33.5c13.6 4.5 26.5-8.4 21.9-21.9l-33.5-100.4 94.7-47.3c13-6.5 13-24.7.2-31.1zm-155.9 106c-49.9 49.9-131.1 49.9-181 0-49.9-49.9-49.9-131.1 0-181 49.9-49.9 131.1-49.9 181 0 49.9 49.9 49.9 131.1 0 181z"></path>
+                                        </svg>
+                                        <!-- <span class="fas fa-sun fs-0"></span> Font Awesome fontawesome.com -->
+                                    </label>
+                                    <label class="mb-0 theme-control-toggle-label theme-control-toggle-dark" for="themeControlToggle" data-bs-toggle="tooltip" data-bs-placement="left" title="" data-bs-original-title="Switch to dark theme" aria-label="Switch to dark theme">
+                                        <svg class="svg-inline--fa fa-moon fa-w-16 fs-0" aria-hidden="true" focusable="false" data-prefix="fas" data-icon="moon" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" data-fa-i2svg="">
+                                            <path fill="currentColor" d="M283.211 512c78.962 0 151.079-35.925 198.857-94.792 7.068-8.708-.639-21.43-11.562-19.35-124.203 23.654-238.262-71.576-238.262-196.954 0-72.222 38.662-138.635 101.498-174.394 9.686-5.512 7.25-20.197-3.756-22.23A258.156 258.156 0 0 0 283.211 0c-141.309 0-256 114.511-256 256 0 141.309 114.511 256 256 256z"></path>
+                                        </svg>
+                                        <!-- <span class="fas fa-moon fs-0"></span> Font Awesome fontawesome.com -->
+                                    </label>
+                                </div>
+                            </li>
+                        </ul>
+                    </div>
+
+                </div>
+            </nav>
+        </div>
+    </header>
+        {% block body %}{% endblock %}
+    <footer class="site-footer" style="display: block; height: 380px;">
+        <div class="footer-top ">
+            <div class="container">
+                <div class="row">
+                    <div class="col-xl-4 col-lg-4 col-md-12 col-sm-12">
+                        <div class="widget">
+                            <img src="{{ asset('images/logo-white.png')}}"  width="180" class="m-b15" alt="">
+                            <hr class="bg-secondary" style="height:2px">
+
+                            <div class="justify-content-center">
+                            </div>
+                            <div class="">
+                                <span class="float-start align-middle fl" style="height:10px">Suivez-nous :</span>
+                                <ul class="list-inline m-a0 float-end">
+                                    <li><a target="_blank" href="https://www.facebook.com/ITTecos" class="site-button white facebook circle "><i class="fab fa-facebook-f"></i></a></li>
+                                    <li><a target="_blank" href="https://www.google.com/search?q=tecos&oq=tecos&aqs=chrome..69i57j0i512j69i60l3j69i65j69i60l2.1333j0j4&sourceid=chrome&ie=UTF-8" class="site-button white google-plus circle "><i class="fab fa-google-plus-g"></i></a></li>
+                                    <li><a target="_blank" href="https://www.linkedin.com/company/it-tecos/?originalSubdomain=fr" class="site-button white linkedin circle "><i class="fab fa-linkedin-in"></i></a></li>
+                                    <li><a target="_blank" href="https://twitter.com/tecos_it" class="site-button white twitter circle "><i class="fab fa-twitter"></i></a></li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-xl-5 col-lg-5 col-md-8 col-sm-8 col-12">
+                        <div class="widget border-0">
+                            <div class="row">
+                                <ul class="col-lg-7 col-md-6 col-sm-6 col-xs-6 ">
+                                    <li>
+                                        <div class="tecos-h"href="./#services">
+                                            <h2 class="tecos-h  ">Nos Services</h2>
+                                        </div>
+                                    </li>
+                                    </br>
+                                    <li class="ftr text-white">
+                                        <a href="./#services">
+                                            <h2 class="ftr  ">Tierce Recette Applicative</h2>
+                                        </a>
+                                    </li>
+                                    <li class="ftr text-white text-justify">
+                                        <a href="./#services">
+                                            <h2 class="ftr  ">T.Maintencance Applicative</h2>
+                                        </a>
+                                    </li>
+                                    <li class="ftr text-white ">
+                                        <a href="./#services">
+                                            <h2 class="ftr  ">Centre de Service</h2>
+                                        </a>
+                                    </li>
+                                    <li class="ftr text-white">
+                                        <a href="./#services">
+                                            <h2 class="ftr  ">Mode Projet</h2>
+                                        </a>
+                                    </li>
+                                </ul>
+                                <ul class="col-lg-5 col-md-6 col-sm-6col-xs-6">
+                                    <li>
+                                        <a class="tecos-h"href="javascript:void(0);">
+                                            <h2 class="tecos-h  ">Lien utiles</h2>
+                                        </a>
+                                    </li>
+                                    </br>
+                                    <li class="ftr text-white">
+                                        <a href="./#expertise">
+                                            <h2 class="ftr  ">Notre expertise</h2>
+                                        </a>
+                                    </li>
+                                    <li class="ftr text-white">
+                                        <a href="{{ path('joblist')}}">
+                                            <h2 class="ftr  ">Carrière</h2>
+                                        </a>
+                                    </li>
+                                    <li class="ftr text-white">
+                                        <a href="?a=Blockchain">
+                                            <h2 class="ftr  ">Blockchain </h2>
+                                        </a>
+                                    </li>
+                                    <li class="ftr text-white">
+                                        <a href="?a=Contact">
+                                            <h2 class="ftr  ">Contact</h2>
+                                        </a>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="d-none d-lg-block col-xl-3 col-lg-3 col-md-4 col-sm-4 col-12">
+                        <div class="widget border-0">
+                            <ul class="">
+                                <li>
+                                    <div class="btn btn bg-300 btn-lg text-dark" style="width:200px" href="javascript:void(0);">+33  1 43 37 85 74</div>
+                                </li>
+                                </br>
+                                <li>
+                                    <div class="btn btn bg-300 btn-lg text-dark" href="javascript:void(0); " style="width:200px">contact@it-tecos.fr</div>
+                                </li>
+                                </br>
+                                <li class="fl2 text-center"  style="width:200px" ><a href="javascript:void(0);"><i class="fas fa-home"></i>  7 RUE DU LAOS 75015 PARIS, FRANCE</a></li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- footer bottom part -->
+        <div class="footer-bottom bg-100" >
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-12 text-dark text-center">
+                     <span>
+                        <i class="tecos-h"></i>
+                        <a class="text-dark tecos-h"  target="_blank"></a>
+                        <h2 class="tecos-H text-dark"> © Tous droits réservés TECOS Copyright © 2022</h2>
+                     </span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    </body>
+</html>
