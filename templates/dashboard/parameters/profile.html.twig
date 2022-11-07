@@ -5,7 +5,7 @@
 
                         <div class="job-bx job-profile  bg-white">
                             <div class="job-bx-title clearfix">
-                                <h5 class="font-weight-700 float-start  text-primary">Basic information</h5>
+                                <h5 class="font-weight-700 float-start  text-primary">Profil</h5>
 
 
                             </div>
@@ -19,47 +19,21 @@
                 {{ message }}
             </div>
         {% endfor %}
-                              {{ form_start(form) }}
-
-                           <div class="row">
-
-                                    <div class="col-lg-6 col-md-6">
-                                        <div class="form-group">
-                                            <div class="fs-0">Nom</div>
-                                             {{ form_widget(form.lname,{attr: {class: 'form-control'}}) }} 
-                                        </div>
-                                    </div>
-
-                                    <div class="col-lg-6 col-md-6">
-                                        <div class="form-group">
-                                            <div class="fs-0">Prénom</div>
-                                      {{ form_widget(form.fname,{attr: {class: 'form-control'}}) }}  </div>
-                                    </div>
-                                    <div class="clear"></div>
+                            
 
 
+                            
+                               <div class="m-tb0"><span  class=" text-dark  ">Nom complet :</span><a
+                                                   class="" >  {{app.user.fname}} {{app.user.lname}} </a> <span><button class="btn btn-link p-0" type="button" data-bs-toggle="modal" data-bs-target="#nom"><svg class="svg-inline--fa fa-edit fa-w-18 text-500" aria-hidden="true" focusable="false" data-prefix="fas" data-icon="edit" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 576 512" data-fa-i2svg=""><path fill="currentColor" d="M402.6 83.2l90.2 90.2c3.8 3.8 3.8 10 0 13.8L274.4 405.6l-92.8 10.3c-12.4 1.4-22.9-9.1-21.5-21.5l10.3-92.8L388.8 83.2c3.8-3.8 10-3.8 13.8 0zm162-22.9l-48.8-48.8c-15.2-15.2-39.9-15.2-55.2 0l-35.4 35.4c-3.8 3.8-3.8 10 0 13.8l90.2 90.2c3.8 3.8 10 3.8 13.8 0l35.4-35.4c15.2-15.3 15.2-40 0-55.2zM384 346.2V448H64V128h229.8c3.2 0 6.2-1.3 8.5-3.5l40-40c7.6-7.6 2.2-20.5-8.5-20.5H48C21.5 64 0 85.5 0 112v352c0 26.5 21.5 48 48 48h352c26.5 0 48-21.5 48-48V306.2c0-10.7-12.9-16-20.5-8.5l-40 40c-2.2 2.3-3.5 5.3-3.5 8.5z"></path></svg><!-- <span class="text-500 fas fa-edit"></span> Font Awesome fontawesome.com --></button></span></div>
 
+                         <hr>
+            <div class="m-tb0  "><span  class=" text-dark  ">Adresse électronique:</span><a
+                                                   class="" >  {{app.user.email}} </a><span><button class="btn btn-link p-0" type="button" data-bs-toggle="modal" data-bs-target="#e-mail""><svg class="svg-inline--fa fa-edit fa-w-18 text-500" aria-hidden="true" focusable="false" data-prefix="fas" data-icon="edit" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 576 512" data-fa-i2svg=""><path fill="currentColor" d="M402.6 83.2l90.2 90.2c3.8 3.8 3.8 10 0 13.8L274.4 405.6l-92.8 10.3c-12.4 1.4-22.9-9.1-21.5-21.5l10.3-92.8L388.8 83.2c3.8-3.8 10-3.8 13.8 0zm162-22.9l-48.8-48.8c-15.2-15.2-39.9-15.2-55.2 0l-35.4 35.4c-3.8 3.8-3.8 10 0 13.8l90.2 90.2c3.8 3.8 10 3.8 13.8 0l35.4-35.4c15.2-15.3 15.2-40 0-55.2zM384 346.2V448H64V128h229.8c3.2 0 6.2-1.3 8.5-3.5l40-40c7.6-7.6 2.2-20.5-8.5-20.5H48C21.5 64 0 85.5 0 112v352c0 26.5 21.5 48 48 48h352c26.5 0 48-21.5 48-48V306.2c0-10.7-12.9-16-20.5-8.5l-40 40c-2.2 2.3-3.5 5.3-3.5 8.5z"></path></svg><!-- <span class="text-500 fas fa-edit"></span> Font Awesome fontawesome.com --></button></span></div>
+                                              <hr>
+                                                    <div class="m-tb0  "><span  class=" text-dark  ">Mot de passe:</span><a
+                                                   class="" >   </a><span><button class="btn btn-link p-0" type="button" data-bs-toggle="modal" data-bs-target="#pass""><svg class="svg-inline--fa fa-edit fa-w-18 text-500" aria-hidden="true" focusable="false" data-prefix="fas" data-icon="edit" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 576 512" data-fa-i2svg=""><path fill="currentColor" d="M402.6 83.2l90.2 90.2c3.8 3.8 3.8 10 0 13.8L274.4 405.6l-92.8 10.3c-12.4 1.4-22.9-9.1-21.5-21.5l10.3-92.8L388.8 83.2c3.8-3.8 10-3.8 13.8 0zm162-22.9l-48.8-48.8c-15.2-15.2-39.9-15.2-55.2 0l-35.4 35.4c-3.8 3.8-3.8 10 0 13.8l90.2 90.2c3.8 3.8 10 3.8 13.8 0l35.4-35.4c15.2-15.3 15.2-40 0-55.2zM384 346.2V448H64V128h229.8c3.2 0 6.2-1.3 8.5-3.5l40-40c7.6-7.6 2.2-20.5-8.5-20.5H48C21.5 64 0 85.5 0 112v352c0 26.5 21.5 48 48 48h352c26.5 0 48-21.5 48-48V306.2c0-10.7-12.9-16-20.5-8.5l-40 40c-2.2 2.3-3.5 5.3-3.5 8.5z"></path></svg><!-- <span class="text-500 fas fa-edit"></span> Font Awesome fontawesome.com --></button></span></div>
 
-
-
-
-
-
-
-                                   <div class="col-lg-6 col-md-6">
-                                    <div class="form-group">
-                                        <div class="fs-0">Adresse e-mail:</div>
-                                   {{ form_widget(form.email,{attr: {class: 'form-control'}}) }}   </div>
-                                </div>
-
-
-
-
-
-
-
-
-                                </div>
+                         
 
 
 
@@ -79,13 +53,152 @@
 
 
 
-                                <div class="text-center" >
-
-                                    <button type="submit" class="btn btn-primary rounded-pill ">mettre à jour</button> </div>
+                               
                         
                         </div>
-                         {{ form_end(form) }}
+                       
 
             
+<div class="modal fade" id="nom" tabindex="-1" role="dialog" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered" role="document" style="max-width: 500px">
+    <div class="modal-content position-relative">
+      <div class="position-absolute top-0 end-0 mt-2 me-2 z-index-1">
+        <button class="btn-close btn btn-sm btn-circle d-flex flex-center transition-base" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body p-0">
+        <div class="rounded-top-lg py-3 ps-4 pe-6 bg-light">
+          <h4 class="" id="modalExampleDemoLabel">Nom Complet</h4>
+        </div>
+        <div class="p-4 pb-0">
+       
+  {{ form_start(form_nom) }}
+                                       <div class="row gap-20">
+                                          <div class="col-lg-6 col-md-6">
 
+                                        <div class="form-group">
+                                            <div class="fs-0" >Nom</div>
+                                              {{ form_widget(form_nom.lname,{attr: {class: 'form-control'}}) }} 
+                                        </div>
+
+                                    </div>
+                                        <div class="col-lg-6 col-md-6">
+                                        <div class="form-group">
+                                            <div class="fs-0" >Prénom</div>
+                                         {{ form_widget(form_nom.fname,{attr: {class: 'form-control'}}) }} 
+                                        </div>
+                                    </div>
+
+                                   
+
+                                  
+                                </div>
+                                 <div class="text-center m-b20" >
+
+                                    <button type="submit" class="btn btn-primary rounded-pill ">Mettre à jour</button> </div>
+                                       {{ form_end(form_nom) }}
+       
+        </div>
+      </div>
+   
+    </div>
+  </div>
+</div>
+
+
+
+
+
+
+
+<div class="modal fade" id="e-mail" tabindex="-1" role="dialog" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered" role="document" style="max-width: 500px">
+    <div class="modal-content position-relative">
+      <div class="position-absolute top-0 end-0 mt-2 me-2 z-index-1">
+        <button class="btn-close btn btn-sm btn-circle d-flex flex-center transition-base" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body p-0">
+        <div class="rounded-top-lg py-3 ps-4 pe-6 bg-light">
+          <h4 class="" id="modalExampleDemoLabel">Adresse électronique</h4>
+        </div>
+        <div class="p-4 pb-0">
+       
+  {{ form_start(form_email) }}
+                                    
+                                     
+
+                                   
+
+                                    <div class="col-lg-12 col-md-6">
+
+                                        <div class="form-group">
+                                   </div>
+
+                                    </div>
+                          
+                                 <div class="text-center m-b20" >
+
+                                    <button type="submit" class="btn btn-primary rounded-pill ">Mettre à jour</button> </div>
+                                       {{ form_end(form_email) }}
+       
+        </div>
+      </div>
+   
+    </div>
+  </div>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+<div class="modal fade" id="pass" tabindex="-1" role="dialog" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered" role="document" style="max-width: 500px">
+    <div class="modal-content position-relative">
+      <div class="position-absolute top-0 end-0 mt-2 me-2 z-index-1">
+        <button class="btn-close btn btn-sm btn-circle d-flex flex-center transition-base" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body p-0">
+        <div class="rounded-top-lg py-3 ps-4 pe-6 bg-light">
+          <h4 class="" id="modalExampleDemoLabel">Modifier Mot de passe</h4>
+        </div>
+        <div class="p-4 pb-0">
+       
+  {{ form_start(form_pass) }}
+                                       <div class="row gap-20">
+                                         
+
+                                        <div class="form-group">
+                                            <div class="fs-0" >Nouveau mot de passe</div>
+                                              {{ form_widget(form_pass.newpassword,{attr: {class: 'form-control'}}) }} 
+                                      
+
+                                    </div>
+                                       
+                                        <div class="form-group">
+                                            <div class="fs-0" >Confirmer Nouveau mot de passe</div>
+                                              {{ form_widget(form_pass.repeatedpassword,{attr: {class: 'form-control'}}) }} 
+                                      
+                                    </div>
+
+                                   
+
+                                  
+                                </div>
+                                 <div class="text-center m-b20" >
+
+                                    <button type="submit" class="btn btn-primary rounded-pill ">Mettre à jour</button> </div>
+                                       {{ form_end(form_pass) }}
+       
+        </div>
+      </div>
+   
+    </div>
+  </div>
+</div>
 {% endblock %}

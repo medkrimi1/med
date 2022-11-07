@@ -8,6 +8,13 @@ use App\Repository\UserRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\Form\Extension\Core\Type\HiddenType;
+use Symfony\Component\Form\Extension\Core\Type\EmailType;
+use Symfony\Component\PasswordHasher\Hasher\UserPasswordHasherInterface;
+use Symfony\Component\Form\Extension\Core\Type\TextType;
+use Symfony\Component\Form\Extension\Core\Type\PasswordType;
+use Symfony\Component\Form\Extension\Core\Type\RepeatedType;
+use Doctrine\ORM\EntityRepository;
 
 class ParametersController extends AbstractController
 {
@@ -16,45 +23,125 @@ class ParametersController extends AbstractController
     {
         $this->manager = $manager;
     }
-     /**
-     * @Route("/dashboard/parameters/profile/", name="dashboard_parameters_profile")
-     */
-    public function index(UserRepository $UserRepository){
-        $user=$this->getDoctrine()->getRepository(User::class)->findAll();
-        return $this->render('dashboard/parameters/profile.html.twig');
-    }
+
     /**
      * @Route("/dashboard/parameters/profile/{id}", name="dashboard_parameters")
      */
-    public function edit($id , request $request){
+    public function edit($id , request $request , UserPasswordHasherInterface $userPasswordHasher){
      
          $user=$this->getDoctrine()->getRepository(User::class)->find($id);
 
-        $form= $this->createForm(ProfileAdmin::class,$user);
-        $form->handleRequest($request) ;
+        $form_nom= $this->createFormBuilder($user)
+        ->add('fname')
+        ->add('lname')
+         ->getForm();
+        $form_nom->handleRequest($request) ;
          $em = $this->getDoctrine()->getManager();
-         $email=$form->get('email')->getData();
-         $fname=$form->get('fname')->getData();
-         $lname=$form->get('lname')->getData();
-         $check = $em->getRepository(User::class)->findBy(["email" => $email]);
-   if ($form->isSubmitted() && $form->isValid()) {
-    $user->setEmail($email);
-            $em->persist($user);
-        if($check) {
+         
+       
+         $fname=$form_nom->get('fname')->getData();
+         $lname=$form_nom->get('lname')->getData();
+   if ($form_nom->isSubmitted() && $form_nom->isValid()) {
+  
+           
+          $em->persist($user);
+          $em->flush();
+               $this->addFlash('success', 'le nom été modifié avec succès!');
+        
+             return $this->redirect($request->getUri());
+ }
+      $l=$user->getEmail();
+     $form_email= $this->createFormBuilder($user)
+        ->add('mail',TextType::class,[ 'mapped' => false,'attr' => ['value' => $l]])
+         ->add('fname',HiddenType::class)
+        ->add('lname',HiddenType::class)
+         ->getForm();
+        $form_email->handleRequest($request) ;
+             $users = $this->manager->getRepository(User::class)->findAll();
             
-            $em->flush();
+        foreach ($users as $userr){
+            $userArray[] = strtolower(str_replace(' ', '',$userr->getEmail()));
+            
+        }
+        $email=$form_email->get('mail')->getData();
+     
+       
+   if ($form_email->isSubmitted() && $form_email->isValid()) {
+    
+     if(in_array(strtolower(str_replace(' ', '',$form_email->get('mail')->getData())), $userArray)){
+                
+            
+          
                 $this->addFlash('error', 'Adresse existe déja');
 
            
             }
             else {
-          $em->persist($user);
+          $user->setEmail($email);
+         
           $em->flush();
-               $this->addFlash('success', 'test');
-           }
+               $this->addFlash('success', 'L\'adresse été modifié avec succès!');
+        }
              return $this->redirect($request->getUri());
  }
-        return $this->render('dashboard/parameters/profile.html.twig',['form' => $form-> createView()]);
+
+
+
+   $form_pass= $this->createFormBuilder($user)
+        ->add('newpassword',PasswordType::class, [ 
+                'mapped' => false,
+               
+            ])
+       ->add('repeatedpassword',PasswordType::class, [
+                'mapped' => false,
+               
+            ])
+
+        
+         ->add('fname',HiddenType::class)
+        ->add('lname',HiddenType::class)
+         ->add('email',HiddenType::class)
+       
+
+        
+         ->getForm();
+        $form_pass->handleRequest($request) ;
+        $newpassword=$form_pass->get('newpassword')->getData();
+        $repeatedpassword=$form_pass->get('repeatedpassword')->getData();
+       
+       
+       
+   
+   if ($form_pass->isSubmitted() && $form_pass->isValid()) {
+ 
+  
+  
+    if($newpassword==$repeatedpassword) {
+               $user->setPassword(
+            $userPasswordHasher->hashPassword(
+                    $user,
+                    $newpassword
+                )
+            );
+         
+          $em->flush();
+               $this->addFlash('success', 'Votre mot de passe été modifié avec succès!');
+           
+            }
+            else {
+                 $em->flush();
+                $this->addFlash('error', 'Les mots de passe ne correspondent pas');
+
+           
+               
+    }
+             return $this->redirect($request->getUri());
+ }
+
+
+
+
+        return $this->render('dashboard/parameters/profile.html.twig',['form_nom' => $form_nom-> createView(),'form_email' => $form_email-> createView(),'form_pass' => $form_pass-> createView()]);
     }
 
     

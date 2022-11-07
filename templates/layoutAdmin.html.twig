@@ -262,17 +262,12 @@
                                 </a>
                                 <ul class="nav collapse false" id="customization">
                                     <li class="nav-item">
-                                        <a class="nav-link" href="{{ path('dashboard_parameters_profile') }}" aria-expanded="false">
-                                            <div class="d-flex align-items-center"><span class="nav-link-text ps-1">Profile</span></div>
+                                        <a class="nav-link" href="{{ path('dashboard_parameters',{'id':app.user.id}) }}" aria-expanded="false">
+                                            <div class="d-flex align-items-center"><span class="nav-link-text ps-1">Profil</span></div>
                                         </a>
                                         <!-- more inner pages-->
                                     </li>
-                                    <li class="nav-item">
-                                        <a class="nav-link" href="{{ path('admin_pass')}}" aria-expanded="false">
-                                            <div class="d-flex align-items-center"><span class="nav-link-text ps-1">Changer Mot de passe</span></div>
-                                        </a>
-                                        <!-- more inner pages-->
-                                    </li>
+                                 
                                 </ul>
                                 <!-- parent pages-->
                             </li>
@@ -343,7 +338,7 @@
                                     <a class="dropdown-item fw-bold text-primary text fw-bold" href="#!"><span class="fas fa-user me-1"></span><span>{{app.user.fname}} {{app.user.lname}}</span></a>
                                     <div class="dropdown-divider"></div>
                                     <a class="dropdown-item" href="{{ path('dashboard_page') }}">Dashboard</a>
-                                    <a class="dropdown-item" href="{{ path('dashboard_parameters_profile') }}">Paramètres</a>
+                                    <a class="dropdown-item" href="{{ path('dashboard_parameters',{'id':app.user.id}) }}">Paramètres</a>
                                     <a class="dropdown-item" href="{{path('app_logout')}}">Déconnexion</a>
                                 </div>
                             </div>

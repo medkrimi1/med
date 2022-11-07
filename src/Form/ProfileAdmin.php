@@ -12,8 +12,8 @@ class ProfileAdmin extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options): void
     {
         $builder
-            ->add('email')
-     
+         
+          
             ->add('fname')
             ->add('lname')
         ;
