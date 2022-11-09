@@ -16,6 +16,7 @@ use Symfony\Component\HttpFoundation\Request;
 use App\Data\SearchData1;
 use App\Form\SearchForJob;
 use App\Form\Application;
+use Symfony\Component\PasswordHasher\Hasher\UserPasswordHasherInterface;
 
 
  
@@ -123,7 +124,7 @@ class IndexControlller extends AbstractController
     /**
      * @Route("/offre/{slug}/{id}", name="offre_get")
      */
-     public function new(Jobs $job, Request $request): Response
+     public function new(Jobs $job, Request $request, UserPasswordHasherInterface $userPasswordHasher): Response
     { 
         $em = $this->getDoctrine()->getManager();
         $candidate = new Candidates();
@@ -150,7 +151,13 @@ class IndexControlller extends AbstractController
         $user->setFname($fname);
         $user->setLname($lname);
         $user->setEmail($email);
-        $user->setPassword($password);
+
+        $user->setPassword(
+            $userPasswordHasher->hashPassword(
+                    $user,
+                    $password
+                )
+            );
         $user->setImage('default.jpg');
         $role[]="ROLE_Candidate";
         $user->setRoles($role);
