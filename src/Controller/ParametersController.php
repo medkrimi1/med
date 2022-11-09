@@ -14,6 +14,7 @@ use Symfony\Component\PasswordHasher\Hasher\UserPasswordHasherInterface;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\Extension\Core\Type\PasswordType;
 use Symfony\Component\Form\Extension\Core\Type\RepeatedType;
+use Symfony\Component\Form\Extension\Core\Type\FileType;
 use Doctrine\ORM\EntityRepository;
 
 class ParametersController extends AbstractController
@@ -52,7 +53,7 @@ class ParametersController extends AbstractController
  }
       $l=$user->getEmail();
      $form_email= $this->createFormBuilder($user)
-        ->add('mail',TextType::class,[ 'mapped' => false,'attr' => ['value' => $l]])
+        ->add('mail',EmailType::class,[ 'mapped' => false,'attr' => ['value' => $l]])
          ->add('fname',HiddenType::class)
         ->add('lname',HiddenType::class)
          ->getForm();
@@ -144,5 +145,87 @@ class ParametersController extends AbstractController
         return $this->render('dashboard/parameters/profile.html.twig',['form_nom' => $form_nom-> createView(),'form_email' => $form_email-> createView(),'form_pass' => $form_pass-> createView()]);
     }
 
+
+
+  /**
+     * @Route("/dashboard/parameters/profile/image/{id}", name="dashboard_image")
+     */
+    public function editimage($id , request $request ){
+     
+         $user=$this->getDoctrine()->getRepository(User::class)->find($id);
+
+        $form= $this->createFormBuilder($user)
+          ->add('imagefield', FileType::class, [
+                'mapped' => false,
+                'required'=>false,
+                  'attr' => [
+             'accept' => "image/*"
+
+         ]
+            ])
+                 ->add('image', HiddenType::class, [
+                
+            ])
+         ->getForm();
+        $form->handleRequest($request) ;
+         $em = $this->getDoctrine()->getManager();
+           if ($form->isSubmitted() && $form->isValid()) {
+            /** @var UploadedFile $uploadedFile */
+            $uploadedImage = $form['imagefield']->getData();
+
+           
+            $destination = $this->getParameter('kernel.project_dir').'/public/images/users';
+            if ($uploadedImage) {
+            $ImageName = uniqid().'.'.$uploadedImage->guessExtension();
+         
+                $newImageName = $ImageName;
+                $uploadedImage->move($destination,$newImageName);
+                $user->setImage($ImageName);
+               
+               
+               
+            }
+            
+             
+         $em->persist($user);
+            $em->flush();
+               return $this->redirect($request->getUri());
+            
+         }
+    
+  
+        return $this->render('dashboard/parameters/image.html.twig',['form' => $form-> createView()]);
+    }
+
+
+
+
+
+
+
+
+
+      /**
+     * @Route("/dashboard/parameters/profile/image/{id}/delete", name="dashboard_image_delete")
+     */
+    public function deleteAvatar($id , request $request ){
+     
+         $user=$this->getDoctrine()->getRepository(User::class)->find($id);
+
+        $form= $this->createFormBuilder($user)
+        ->getForm();
+        $id=$user->getId();
+        $form->handleRequest($request) ;
+         $em = $this->getDoctrine()->getManager();
+         $user->setImage('default.jpg');
+          $em->persist($user);
+            $em->flush();
+               return $this->redirect('./');
+            
+     
+    
+  
+        return $this->render('dashboard/parameters/image.html.twig',['form' => $form-> createView()]);
+    }
     
 }

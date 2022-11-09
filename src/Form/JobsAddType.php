@@ -66,8 +66,6 @@ class JobsAddType extends AbstractType
             'class' => Skills::class,
             'multiple' => true
 
-
-        
             
        ])
                 ->add('exp', EntityType::class, [
@@ -109,7 +107,11 @@ class JobsAddType extends AbstractType
 
                 ->add('imagefield', FileType::class, [
                 'mapped' => false,
-                'required'=>false
+                'required'=>false,
+                     'attr' => [
+             'accept' => "image/*"
+
+         ]
             ])
                  ->add('image', HiddenType::class, [
                 
@@ -118,6 +120,10 @@ class JobsAddType extends AbstractType
                  ->add('coverfield', FileType::class, [
                 'mapped' => false,
                 'required'=>false,
+                     'attr' => [
+             'accept' => "image/*"
+
+         ]
               
             ])
                  ->add('cover', HiddenType::class, [

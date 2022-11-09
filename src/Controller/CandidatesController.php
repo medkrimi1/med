@@ -40,7 +40,7 @@ class CandidatesController extends AbstractController
             { 
              $title=$offre->getJob()->getTitle();
             $str = [' ','é','è','\'','ç'];
-            $rplc =['','e','e','','c'];
+            $rplc =['-','e','e','','c'];
              $offres[]=[
              'id'=>$offre->getId() ,
              'jobid'=>$offre->getJob()->getId(),
@@ -93,17 +93,10 @@ class CandidatesController extends AbstractController
 
 
 
+    
 
 
 
-
-
-
-
-
-
-
-   
 
 
 

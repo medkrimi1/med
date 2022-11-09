@@ -3,6 +3,7 @@
 namespace App\Controller;
 
 use App\Entity\Jobs;
+use App\Entity\User;
 use App\Entity\Applications;
 use App\Entity\Candidates;
 use Doctrine\ORM\EntityManagerInterface;
@@ -126,10 +127,12 @@ class IndexControlller extends AbstractController
     { 
         $em = $this->getDoctrine()->getManager();
         $candidate = new Candidates();
-        $application = new Applications();  
+        $application = new Applications();
+        $user = new User();  
         $form = $this->createForm(Application::class,$candidate);
         $form->handleRequest($request);
          $email=$form->get('email')->getData();
+         $password=$form->get('newpassword')->getData();
         if($form->isSubmitted() && $form->isValid()) {
        $check = $em->getRepository(Candidates::class)->findBy(["email" => $email]);
              
@@ -144,6 +147,13 @@ class IndexControlller extends AbstractController
         $candidate->setFname($fname);
         $candidate->setLname($lname);
         $candidate->setFullname($fname.' '.$lname); 
+        $user->setFname($fname);
+        $user->setLname($lname);
+        $user->setEmail($email);
+        $user->setPassword($password);
+        $user->setImage('default.jpg');
+        $role[]="ROLE_Candidate";
+        $user->setRoles($role);
 
           
             $destination = $this->getParameter('kernel.project_dir').'/public/cv';
@@ -157,7 +167,7 @@ class IndexControlller extends AbstractController
         $application->setJob($job);
         $application->setCandidate($candidate);
 
-                
+        $em->persist($user);       
         $em->persist($candidate);
         $em->persist($application);
         $em->flush();
@@ -177,5 +187,41 @@ class IndexControlller extends AbstractController
        
      
         return $this->render('offres/offre.html.twig',['job'=>$job, 'form' => $form-> createView()]);
+    }
+
+       /**
+     * @Route("/offre/{candidate}/{id}", name="apply")
+     *  
+     * @param Candidates $candidate
+   
+     */
+    
+     public function apply(Jobs $job,$candidate, Request $request): Response
+    { 
+        $em = $this->getDoctrine()->getManager();
+        $application = new Applications();
+     
+    
+            
+        $application->setJob($job);
+        $application->setCandidate($candidate);
+         
+    
+        $em->persist($application);
+        $em->flush();
+
+  
+   $this->addFlash('successApply', 'Vous avez postulé avec succès');
+
+   
+
+
+
+  
+          
+          
+          
+       
+     
     }
 }

@@ -7,46 +7,128 @@
                 <div class="container">
                     <div class="row">
                         <div class="job-bx job-profile bg-white">
-                            <div class="job-bx-title clearfix">
-                                <h5 class="font-weight-700 float-start text-primary">Équipe RH (8)</h5>
-                            </div>
-                            <div
-                            <div
-                            <div class="d-flex">
+                           
+
+                             <div class="job-bx-title clearfix">
+                                <h5 class="font-weight-700 float-start text-primary">Équipe RH ({{RH|length}})
+                                </h5>
+                                  <div class="float-end">
+
                                 <a href="javascript:void(0);" data-bs-toggle="modal" data-bs-target="#create-RH" class="btn btn-primary rounded-pill add-btn btn-sm"><i class="fas fa-plus fa-sm "></i> Ajouter</a>
                             </div>
-                            <div class=" GridLex-col-9_sm-8_xs-12">
-                                <ul></ul>
-                                <div class="resume-list-wrapper">
-                                    <div class="resume-list-item">
-                                        <div class="row">
+                            </div>
+                                      {% for message in app.flashes('success') %}
+            <div class="text-center text-dark alert alert-success">
+                {{ message }}
+            </div>
+            {% endfor %}
+                {% for message in app.flashes('error') %}
+            <div class="text-center text-dark alert alert-warning">
+                {{ message }}
+            </div>
+        {% endfor %}
+                          <div class="row">
                                             <div class="">
-                                                <ul class=" post-job-bx browse-job-grid post-resume row">
-                                                    <li class="col-lg-12 col-md-6">
-                                                        <div class="post-bx bg-200 border border-dark">
+                                                 {% for user in RH %}
+                                                <ul class=" post-job-bx browse-job-grid post-resume row ">
+                                                    <li class="col-lg-12 col-md-6 ">
+                                                        <div class="post-bx bg-200 border border-dark m-b20">
                                                             <div class="">
                                                                 <div class="job-post-info">
-                                                                    <h5 class="tecos-h">Asma Tirari </a></h5>
+                                                                    <h5 class="tecos-h">{{user.fname}} {{user.lname}} <span class="text-secondary"> ({{user.email}})</span> </h5>
                                                                 </div>
                                                             </div>
-                                                            <a href="app/drop-RH.php?member_no=" onclick = "return confirm('Voulez-vous vraiment supprimer cet utilisateur ?')" class="job-links  btn btn-outline-danger add-btn  "><i class="fas fa-trash" ></i></a>
+                                                            <a href="{{path('RH_delete',{'id':user.id})}}" onclick = "return confirm('Voulez-vous vraiment supprimer cet utilisateur ?')" class="job-links  btn btn-outline-danger add-btn  "><i class="fas fa-trash" ></i></a>
                                                         </div>
                                                     </li>
-                                                    </li>
+                                                 
                                                 </ul>
+                                                  {% endfor %}
+
                                             </div>
                                         </div>
-                                    </div>
-                                    <ul></ul>
-                                    <div class="pager-wrapper">
-                                        <ul class="pager-list">
-                                        </ul>
-                                    </div>
-                                </div>
                             </div>
+
                         </div>
                     </div>
                 </div>
+            </div>
+        </div>
+    </div>
+ 
+
+ 
+
+
+
+
+
+
+
+
+
+
+
+
+
+      <!-- Modal -->
+    <div class="modal" id="create-RH" tabindex="-1" role="dialog" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered" role="document">
+            <div class="modal-content position-relative border border-dark">
+                <div class="d-flex flex-row-reverse">
+                    <button class="btn-close btn btn-sm btn-circle d-flex flex-center transition-base" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <div class="row gap-20">
+                        <div class="">
+                            <div class=" tab-content ">
+                         
+                                    <h4 class=" font-weight-700 text-center">Ajouter un nouvel utilisateur</h4>
+                                    <p class="font-weight-600"></p>
+                                    <div id="error3"></div>
+                                     {{ form_start(form) }}
+                                    <div class=" row gap-20 text-center">
+                                        <div class=" col-sm-6 col-md-6">
+                                            <div class="form-group ">
+                                                <label>Nom</label>
+                                                  {{ form_widget(form.lname,{attr: {class: 'form-control text-center',placeholder:'Entrez le nom',required:'true'}}) }} 
+                                             
+                                            </div>
+                                        </div>
+                                        <div class=" col-sm-6 col-md-6 ">
+                                            <div class="form-group ">
+                                                <label>Prénom</label>
+                                                  {{ form_widget(form.fname,{attr: {class: 'form-control text-center',placeholder:'Entrez le prénom',required:'true'}}) }} 
+                                          
+                                            </div>
+                                        </div>
+                                        <div class=" col-sm-6 col-md-6">
+                                            <div class="form-group">
+                                                <label>Adresse E-mail</label>
+                                                  {{ form_widget(form.mail,{attr: {class: 'form-control text-center',placeholder:"Entrer l'adresse E-mail"}}) }} 
+                                             
+                                            </div>
+                                        </div>
+                                        <div class=" col-sm-6 col-md-6">
+                                            <div class="form-group">
+                                                <label>Mot de passe</label>
+                                                  {{ form_widget(form.newpassword,{attr: {class: 'form-control text-center',placeholder:'Min 8 et Max 20 caractères',required:'true'}}) }} 
+                                              
+                                        </div>
+                                    </div>
+                                   
+                                    <div class="text-center mb-20">
+                                        <button  type="submit"  class="rounded-pill btn btn-primary">Ajouter</button>
+                                    </div>
+                                    
+                                     {{ form_end(form) }}
+                              
+                            </div>
+                        </div>
+                     
+                    </div>
+                </div>
+            
             </div>
         </div>
     </div>

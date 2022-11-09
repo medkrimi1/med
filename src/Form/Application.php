@@ -15,6 +15,8 @@ use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\Extension\Core\Type\HiddenType;
 use Symfony\Component\Form\Extension\Core\Type\FileType;
+use Symfony\Component\Form\Extension\Core\Type\PasswordType;
+use Symfony\Component\Form\Extension\Core\Type\RepeatedType;
 
 
 class Application extends AbstractType
@@ -45,35 +47,26 @@ class Application extends AbstractType
                 'placeholder' => 'Select',
              
             ])
-                 ->add('Experience', EntityType::class, [
-                'class' => Candidatexp::class,
-                'choice_label' => 'title',
-                 'required'=>true,
-                'placeholder' => 'Select',
-             
-            ])
-                   ->add('Country', EntityType::class, [
-                'class' => Country::class,
-                'choice_label' => 'Name',
-                'required'=>true,
-                'placeholder' => 'Select',
-             
-            ])
+                
+                  
                         ->add('cvfield', FileType::class, [
                 'mapped' => false,
-                'required'=>false
+                'required'=>false,     'attr' => [
+             'accept' => "application/pdf"
+
+         ]
             ])
                  ->add('cv', HiddenType::class, [
                 
             ])
-                    ->add('skill', EntityType::class , [
-            
-            'required' => true ,
-            'class' => Skills::class,
-            'multiple' => true
-
-            
-       ])
+              ->add('newpassword',PasswordType::class, [ 
+                'mapped' => false,
+               
+            ])
+       ->add('repeatedpassword',PasswordType::class, [
+                'mapped' => false,
+               
+            ])
           
         ;
     }

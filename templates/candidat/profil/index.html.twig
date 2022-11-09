@@ -22,7 +22,7 @@
                                        <div class="">
                                           <h4 class="m-b5">
                                              <a href="javascript:void(0);">
-                                                <h4 class="mt-2 text-dark">Med krimi</h4>
+                                                <h4 class="mt-2 text-dark">{{app.user.fname}} {{app.user.lname}}</h4>
                                              </a>
                                           </h4>
                                           <p class="m-b0">
@@ -90,13 +90,13 @@
                                  <div class="col-lg-6 col-md-6">
                                     <div class="form-group">
                                        <div class="fs-0">Nom</div>
-                                       <input name="lname"  required type="text"  class="form-control" value="med" placeholder="Enter your first name">
+                                       <input name="lname"  required type="text"  class="form-control" value="{{app.user.lname}}" placeholder="Enter your first name">
                                     </div>
                                  </div>
                                  <div class="col-lg-6 col-md-6">
                                     <div class=" form-group" >
                                        <div class="fs-0">Prénom</div>
-                                       <input name="fname"  type="text" required type="text" class="form-control" value="krimi" placeholder="Enter your last name">
+                                       <input name="fname"  type="text" required type="text" class="form-control" value="{{app.user.fname}}" placeholder="Enter your last name">
                                     </div>
                                  </div>
                                  <div class="clear"></div>
@@ -170,7 +170,7 @@
                                  <div class="col-lg-6 col-md-6">
                                     <div class="form-group">
                                        <div class="fs-0">Adresse E-mail</div>
-                                       <input type="email" name="email" required class="form-control" value="hamakrimi@gmail.com" placeholder="Enter your email address">
+                                       <input type="email" name="email" required class="form-control" value="{{app.user.email}}" placeholder="Enter your email address">
                                     </div>
                                  </div>
                                  <div class="col-lg-6 col-md-6">

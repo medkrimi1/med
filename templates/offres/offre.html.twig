@@ -32,7 +32,17 @@
                                         
                                 
                                 <div class="sticky-sidebar">
-                                        <div class="apply-job-wrapper"><a href="javascript:void(0);" title="READ MORE" rel="bookmark" data-bs-toggle="modal" data-bs-target="#jobapply" class="btn btn-primary rounded-pill btn-lg"> Postuler </a>
+                                        <div class="apply-job-wrapper">
+
+
+                                            {% if app.user %}
+
+                                            <a type="button" href="" class="btn btn-primary rounded-pill btn-lg"> Postuler </a>
+                                           {% else %}
+                                           <a href="javascript:void(0);" title="READ MORE" rel="bookmark" data-bs-toggle="modal" data-bs-target="#jobapply" class="btn btn-primary rounded-pill btn-lg"> Postuler </a>
+                                            {% endif %}
+
+
                         </div>
                                 </div>
                                     </div>
@@ -229,48 +239,39 @@
                                  <div class="fs-0">Adresse E-mail</div>
                               {{ form_widget(form.email, {'attr': {'pattern': '[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,63}$'}}) }}
                            </div>
-                           <div class=" col-sm-6 col-md-6">
-                             
-                                 <div class="fs-0">Mot de passe</div>
-                                 <input class="form-control" placeholder="Min 8 and Max 20 characters" name="password" id="password_signup"  type="password"> 
-                       
-                           </div>
-                            <div class=" col-sm-6 col-md-6">
+                             <div class=" col-sm-6 col-md-6">
                             
                                  <div class="fs-0">titre</div>
                                  {{ form_widget(form.titre,{attr: {class: 'js-choice'}}) }}
                          
                            </div>
-                            <div class=" col-sm-6 col-md-6">
+                              <div class=" col-sm-6 col-md-6 m-b10">
+                             
+                                 <div class="fs-0">Mot de passe</div>
+                                  {{ form_widget(form.newpassword,{attr: {class: 'form-control'}}) }} 
+                       
+                           </div>
+                           <div class=" col-sm-6 col-md-6 m-b10">
+                             
+                                 <div class="fs-0">Mot de passe</div>
+                                  {{ form_widget(form.repeatedpassword,{attr: {class: 'form-control'}}) }} 
+                       
+                           </div>
                           
-                                 <div class="fs-0">Pays</div>
-                                  {{ form_widget(form.Country,{attr: {class: 'js-choice'}}) }}
-                           </div>
-                             <div class=" col-sm-6 col-md-6">
-                          
-                                 <div class="fs-0">expérience</div>
-                                  {{ form_widget(form.Experience,{attr: {class: 'js-choice'}}) }}
+                           
+                           <div class="fs-0">cv</div>
+                             <div class=" ">
 
-                   
-                           </div>
-                             <div class=" col-sm-6 col-md-6">
-                      
-                                 <div class="fs-0">Votre CV</div>
-                                  {{ form_widget(form.cvfield,{attr: {class: ''}}) }}
-
-                   
-                           </div>
-                             <div class="col-lg-12 col-sm-6 col-md-6">
-                          
-                                 <div class="fs-0">compétences</div>
-                                  {{ form_widget(form.skill,{attr: {class: 'multiselect-dropdown'}}) }}
-
-                   
-                           </div>
+                                        
+                                
+                                    {{ form_widget(form.cvfield,{attr: {class: 'form-control'}}) }} 
+                                </div>
+                           
                         </div>
                       
                       
                       <div class="d-grid gap-2"><button class="btn btn-primary" type="submit">Postuler</button></div>
+
                           {{ form_end(form) }}
                         <hr class="hr-text bg-dark" data-content="AND">
                         <div class="text-center"> 

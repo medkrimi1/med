@@ -114,9 +114,6 @@
 
 
 
-
-
-
     <div class="modal" id="spontanee" tabindex="-1" role="dialog" aria-hidden="true">
    <div class="modal-dialog modal-dialog-centered" role="document">
       <div class="modal-content position-relative border border-dark">
@@ -160,37 +157,24 @@
                          
                            </div>
                         
-                             <div class=" col-sm-6 col-md-6">
-                          
-                                 <div class="fs-0">expérience</div>
-                                  {{ form_widget(form2.Experience,{attr: {class: 'js-choice'}}) }}
-
-                   
-                           </div>
-                            <div class=" col-sm-6 col-md-6">
-                          
-                                 <div class="fs-0">Pays</div>
-                                  {{ form_widget(form2.Country,{attr: {class: 'js-choice'}}) }}
-
-                   
-                           </div>
                             
-                             <div class="col-lg-12 col-sm-6 col-md-6">
-                          
-                                 <div class="fs-0">compétences</div>
-                                  {{ form_widget(form2.skill,{attr: {class: 'multiselect-dropdown'}}) }}
-
-                   
-                            </div>
-                             <div class=" col-lg-12 ">
+                           
                             
-                                 <div class="fs-0">Votre CV</div>
-                                  {{ form_widget(form2.cvfield,{attr: {class: 'form-control'}}) }}
-                                 </div>
+                            
+                            <div class="fs-0">cv</div>
+                             <div class=" ">
+
+                                        
+                                
+                                    {{ form_widget(form2.cvfield,{attr: {class: 'form-control'}}) }} 
+                                </div>
+
+
                    
                             
                         </div>
-                      
+                       {{ form_widget(form2.newpassword,{attr: {class: 'd-none'},required:false}) }} 
+                        {{ form_widget(form2.repeatedpassword,{attr: {class: 'd-none'},required:false}) }} 
                       
                       <div class="d-grid gap-2 "><button class="btn btn-primary" type="submit">Déposer CV</button></div>
                           {{ form_end(form2) }}

@@ -22,7 +22,7 @@
                                        <div class="">
                                           <h4 class="m-b5">
                                              <a href="javascript:void(0);">
-                                                <h4 class="mt-2 text-dark">Med krimi</h4>
+                                                <h4 class="mt-2 text-dark">{{app.user.fname}} {{app.user.lname}}</h4>
                                              </a>
                                           </h4>
                                           <p class="m-b0">
@@ -70,7 +70,7 @@
                                           </a>
                                        </li>
                                        <li>
-                                          <a href="./logout.php">
+                                          <a href="{{ path('app_logout')}}">
                                              <span>
                                                 <h6 class="fs-0"> <i class="fas fa-sign-out-alt" aria-hidden="true"></i> Déconnexion</h6>
                                              </span>
