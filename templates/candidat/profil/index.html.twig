@@ -13,11 +13,12 @@
                            <div class="sticky-top">
                               <div class="candidate-info bg-white radius-md">
                                  <div class="candidate-detail text-center ">
-                                    <a class="upload-link" href="?a=Candidate_Profile#avatar" title="update" data-bs-toggle="tooltip" data-placement="right">
+                                    <a class="upload-link" href="{{path('candidate_profile',{'id':app.user.id})}}#avatar" title="update" data-bs-toggle="tooltip" data-placement="right">
                                        <div class="canditate-des" >
-                                          <center><img class=" canditate-des-img" src="../images/default.jpg"  alt="image"  /></center>
+                                          <center><img class=" canditate-des-img" src="{{asset('images/users/' ~app.user.image)}}"  alt="image"  /></center>
                                        </div>
                                     </a>
+
                                     <div class=" candidate-title">
                                        <div class="">
                                           <h4 class="m-b5">
@@ -29,48 +30,48 @@
                                              <a href="javascript:void(0);">
                                           <h6 class="mt-1">title</h6></a></p>
                                        </div>
-                                       <a class="btn btn-outline-primary rounded-pill btn-sm" href="{{ path('candidat_profil')}}">Voir profil</a>
+                                       <a class="btn btn-outline-primary rounded-pill btn-sm" href="{{ path('candidat_profil',{'id':app.user.id})}}">Voir profil</a>
                                     </div>
                                  </div>
                                  <div class="row navbar-vertical-label-wrapper " >
                                     <ul class="">
                                        <li>
-                                          <a href="{{ path('candidate_profile')}}" class="active">
+                                          <a href="{{path('candidate_profile',{'id':app.user.id})}}" class="active">
                                              <span>
                                                 <h6 class="fs-0 text-white fw-bold"><i class=" far fa-user" aria-hidden="true"></i> Profil</h6>
                                              </span>
                                           </a>
                                        </li>
                                        <li>
-                                          <a href="{{ path('my_resume')}}">
+                                          <a href="{{ path('my_resume',{'id':app.user.id})}}">
                                              <span>
                                                 <h6 class="fs-0"><i class="far fa-file-alt" aria-hidden="true"></i> Ma carrière</h6>
                                              </span>
                                           </a>
                                        </li>
                                        <li>
-                                          <a href="{{ path('my_applications')}}">
+                                          <a href="{{ path('my_applications',{'id':app.user.id})}}">
                                              <span>
                                                 <h6 class="fs-0"><i class="fa fa-briefcase " aria-hidden="true"></i> Mes candidatures</h6>
                                              </span>
                                           </a>
                                        </li>
                                        <li>
-                                          <a href="{{ path('my_cv')}}">
+                                          <a href="{{ path('my_cv',{'id':app.user.id})}}">
                                              <span>
                                                 <h6 class="fs-0"><i class="far fa-id-card" aria-hidden="true"></i> Gérer CV</h6>
                                              </span>
                                           </a>
                                        </li>
                                        <li>
-                                          <a href="{{ path('candidate_password')}}">
+                                          <a href="{{ path('candidate_password',{'id':app.user.id})}}">
                                              <span>
                                                 <h6 class="fs-0"><i class="fa fa-key" aria-hidden="true"></i> Changer Mot de passe</h6>
                                              </span>
                                           </a>
                                        </li>
                                        <li>
-                                          <a href="./logout.php">
+                                          <a href="{{path('app_logout')}}">
                                              <span>
                                                 <h6 class="fs-0"> <i class="fas fa-sign-out-alt" aria-hidden="true"></i> Déconnexion</h6>
                                              </span>
@@ -86,63 +87,62 @@
                               <div class="job-bx-title clearfix">
                                  <h5 class="mb-0">Information basique</h5>
                               </div>
+                               {% for message in app.flashes('success') %}
+            <div class="text-center text-dark alert alert-success">
+                {{ message }}
+            </div>
+            {% endfor %}
+                {% for message in app.flashes('error') %}
+            <div class="text-center text-dark alert alert-warning">
+                {{ message }}
+            </div>
+        {% endfor %}
+                             {{form_start(form)}}
                               <div class="row m-b30">
                                  <div class="col-lg-6 col-md-6">
                                     <div class="form-group">
-                                       <div class="fs-0">Nom</div>
-                                       <input name="lname"  required type="text"  class="form-control" value="{{app.user.lname}}" placeholder="Enter your first name">
+                                  <div class="fs-0">Nom</div>
+                               {{ form_widget(form.lname,{attr: {class: 'form-control'}}) }} 
                                     </div>
                                  </div>
                                  <div class="col-lg-6 col-md-6">
                                     <div class=" form-group" >
                                        <div class="fs-0">Prénom</div>
-                                       <input name="fname"  type="text" required type="text" class="form-control" value="{{app.user.fname}}" placeholder="Enter your last name">
+                                     {{ form_widget(form.fname,{attr: {class: 'form-control'}}) }} 
                                     </div>
                                  </div>
                                  <div class="clear"></div>
-                                 <div class="col-lg-6 col-md-6">
-                                    <div class="form-group">
-                                       <div class="fs-0">Date de naissance</div>
-                                       <div class="row">
-                                          <div class="col-lg-4 col-md-3">
-                                             <select name="date" required class="form-select form-control" data-live-search="false">
-                                                <option disabled value="">day</option>
-                                                <option >12</option>
-                                             </select>
-                                          </div>
-                                          <div class="col-lg-4 col-md-3">
-                                             <select name="month" required class="form-select form-control" data-live-search="false">
-                                                <option >12</option>
-                                             </select>
-                                          </div>
-                                          <div class="col-lg-4 col-md-3">
-                                             <select name="year" class="form-select form-control" data-live-search="false">
-                                                <option >12</option>
-                                             </select>
-                                          </div>
-                                       </div>
-                                    </div>
-                                 </div>
+                                
                                  <div class="col-lg-6 col-md-6">
                                     <div class="form-group">
                                        <div class="fs-0">Profession</div>
-                                       <select name="title" required class="form-select show-tick form-control " data-live-search="true">
-                                          <option disabled value=""></option>
-                                       </select>
+                                       {{ form_widget(form.titre,{attr: {class: 'js-choice'}}) }} 
                                     </div>
                                  </div>
                                  <div class="col-lg-6 col-md-6">
                                     <div class="form-group">
                                        <div class="fs-0">Années d'expérience</div>
-                                       <select name="experience"  class="form-select show-tick form-control" data-live-search="false">
-                                          <option  value="">Select</option>
-                                       </select>
+                                    {{ form_widget(form.experience,{attr: {class: 'js-choice'}}) }} 
+                                    </div>
+                                 </div>
+                                  <div class="col-lg-6 col-md-6">
+                                    <div class="form-group">
+                                       <div class="fs-0">Date de naissance</div>
+                                       <div class="row">
+                                          <div class="col-lg-4 col-sm-4 col-md-3">
+                                            {{ form_widget(form.day,{attr: {class: 'form-control text-center'}}) }} 
+                                          </div>
+                                          <div class="col-lg-4 col-sm-4 col-md-3">
+                                       {{ form_widget(form.month,{attr: {class: 'form-control text-center'}}) }}  </div>
+                                          <div class="col-lg-4 col-sm-4 col-md-3">
+                                        {{ form_widget(form.year,{attr: {class: 'form-control text-center'}}) }}   </div>
+                                       </div>
                                     </div>
                                  </div>
                                  <div class="col-lg-12 col-md-12">
                                     <div class="form-group bootstrap-wysihtml5-wrapper">
                                        <div class="fs-0">À propos de moi</div>
-                                       <textarea name="about" class="bootstrap-wysihtml5 form-control" placeholder="Enter your short description ..." style="height: 200px;">description</textarea>
+                                        {{ form_widget(form.about,{attr: {class: 'form-control'}}) }} 
                                     </div>
                                  </div>
                               </div>
@@ -155,14 +155,10 @@
                                        <div class="fs-0">Numéro de téléphone</div>
                                        <div class="row">
                                           <div class="col-lg-4 col-md-3">
-                                             <select name="phonecode"  class="form-select form-control " >
-                                                <option disabled value="">Select</option>
-                                             </select>
+                                     {{ form_widget(form.pcode,{attr: {class: 'js-choice'}}) }} 
                                           </div>
                                           <div class="col-lg-8 col-md-9">
-                                             <div class="form-group">
-                                                <input  type="text" name="phone" pattern="[+,0-9]{5,15}" class="form-control" value="1210382">
-                                             </div>
+                                             {{ form_widget(form.phone,{attr: {class: 'form-control',pattern:'[+,0-9]{5,15}'}}) }} 
                                           </div>
                                        </div>
                                     </div>
@@ -170,38 +166,35 @@
                                  <div class="col-lg-6 col-md-6">
                                     <div class="form-group">
                                        <div class="fs-0">Adresse E-mail</div>
-                                       <input type="email" name="email" required class="form-control" value="{{app.user.email}}" placeholder="Enter your email address">
-                                    </div>
+                                       {{ form_widget(form.mail,{attr: {class: 'form-control'}}) }} 
+
+                                   </div>
                                  </div>
                                  <div class="col-lg-6 col-md-6">
                                     <div class="form-group">
                                        <div class="fs-0">Pays</div>
-                                       <select name="country" required class="form-select show-tick form-control " data-live-search="true">
-                                          <option value="select">Select</option>
-                                       </select>
+                                    {{ form_widget(form.Country,{attr: {class: 'js-choice'}}) }} 
                                     </div>
                                  </div>
                                  <div class="col-lg-6 col-md-6">
                                     <div class="form-group">
                                        <div class="fs-0">Code postal </div>
-                                       <input name="zip" type="text" class="form-control" value="12078">
+                                       {{ form_widget(form.zip,{attr: {class: 'form-control'}}) }} 
                                     </div>
                                  </div>
                                  <div class="col-lg-6 col-md-6">
                                     <div class="form-group">
                                        <div class="fs-0">Ville</div>
-                                       <input name="city" type="text" class="form-control" value="tunis">
-                                    </div>
+                                    {{ form_widget(form.city,{attr: {class: 'form-control'}}) }}   </div>
                                  </div>
                                  <div class="col-lg-6 col-md-6">
                                     <div class="form-group">
                                        <div class="fs-0">Adresse</div>
-                                       <input name="street"  type="text" class="form-control" value="omrane sup">
-                                    </div>
+                                    {{ form_widget(form.address,{attr: {class: 'form-control'}}) }} </div>
                                  </div>
                                  <div class="form-group">
                                     <div class="fs-0">Site web personnel</div>
-                                    <input  value="medkrimi.com" class="form-control" placeholder="Enter job title" type="text" name="pw" > 
+                                    {{ form_widget(form.site,{attr: {class: 'form-control'}}) }} 
                                  </div>
                                  <div class="job-bx-title clearfix">
                                     <h4 class=" mb-0">Profils sociaux</h4>
@@ -210,66 +203,65 @@
                                     <div class="col-lg-6 col-md-6">
                                        <div class="form-group">
                                           <div class="fs-0">Facebook</div>
-                                          <input value="" name="fb"  type="text" class="form-control" placeholder="https://www.facebook.com/">
-                                       </div>
+                                       {{ form_widget(form.fb,{attr: {class: 'form-control'}}) }} </div>
                                     </div>
                                     <div class="col-lg-6 col-md-6">
                                        <div class="form-group">
                                           <div class="fs-0">Twitter</div>
-                                          <input value="" name="tw"  type="text" class="form-control" placeholder="https://www.twitter.com/">
-                                       </div>
+                                      {{ form_widget(form.tw,{attr: {class: 'form-control'}}) }}    </div>
                                     </div>
                                     <div class="col-lg-6 col-md-6">
                                        <div class="form-group">
                                           <div class="fs-0">Google</div>
-                                          <input value="" name="gl"  type="text" class="form-control" placeholder="https://www.google.com/">
-                                       </div>
+                                      {{ form_widget(form.gl,{attr: {class: 'form-control'}}) }}  </div>
                                     </div>
                                     <div class="col-lg-6 col-md-6">
                                        <div class="form-group">
                                           <div class="fs-0">Linkedin</div>
-                                          <input value="" name="ln"  type="text" class="form-control" placeholder="https://www.linkedin.com/">
-                                       </div>
+                                      {{ form_widget(form.ln,{attr: {class: 'form-control'}}) }} </div>
                                     </div>
                                  </div>
                                  <ul> </ul>
                               </div>
-                              <div class="text-center" >
-                                 <button type="submit" class="btn btn-primary rounded-pill">Mettre à jour</button> 
+                            
+                               
+                             
+                          
+                              <div class="job-bx-title clearfix" id="avatar" >
+                                 <h4 class="mb-0">Photo de profil & couverture</h4>
                               </div>
-                              <ul></ul>
-                              <div class="job-bx-title clearfix">
-                                 <h4 class="mb-0">Photo de profile & couverture</h4>
-                              </div>
-                              <div class=" text-center col-lg-12 col-md-12">
+                              <div class="row m-b10">
+                              <div class=" text-center col-lg-6 col-md-12">
                                  <div class="form-group">
                                     <div class="fs-0"> Photo de profil </div>
-                                    <div class="custom-file border border-dark">
-                                       <p class="m-a0">
-                                          <i class="fa fa-upload "></i>
-                                          choisissez ou glissez ici 
-                                       </p>
-                                       <input onchange="validateSize(this)" accept="image/*" type="file" name="image" class="btn btn-primary rounded-pill form-control" >
-                                    </div>
+                                        <div class="custom-file border border-dark">
+
+                                         <i class="fas fa-upload"></i>
+                                    <label>choisissez ou glissez ici<i></i></label>
+                                    {{ form_widget(form.imagefield,{attr: {class: 'form-control'}}) }} 
+                                </div>
                                  </div>
-                                 <button  type="submit" class="btn btn-primary rounded-pill">Mettre à jour</button>
-                                 <a onclick = "return confirm('Voulez-vous vraiment supprimer votre photo de profil ?')" class="btn btn-outline-danger  rounded-pill" href="employee/app/drop-dp.php">Suprimer</a> 
+                                
+                       
                               </div>
-                              <div class=" text-center col-lg-12 col-md-12">
+                              <div class=" text-center col-lg-6 col-md-12">
                                  <div class="form-group">
                                     <div class="fs-0">Photo de couverture</div>
-                                    <div class="custom-file border border-dark">
-                                       <p class="m-a0">
-                                          <i class="fa fa-upload "></i>
-                                          choisissez ou glissez ici 
-                                       </p>
-                                       <input onchange="validateSize(this)" accept="image/*" type="file" name="image" class="btn btn-primary rounded-pill form-control" >
-                                    </div>
+                                   <div class="custom-file border border-dark">
+
+                                         <i class="fas fa-upload"></i>
+                                    <label>choisissez ou glissez ici<i></i></label>
+                                    {{ form_widget(form.coverfield,{attr: {class: 'form-control'}}) }} 
+                                </div>
                                  </div>
-                                 <button  type="submit" class="btn btn-primary rounded-pill">Mettre à jour</button>
-                                 <a onclick = "return confirm('Are you sure you want to delete your cover photo ?')" class="btn btn-outline-danger  rounded-pill " href="employee/app/drop-dp.php">suprimer</a>
+                               
+                                </div>  
                               </div>
+                              <div class="text-center">
+                                 <button type="submit" class="btn btn-primary rounded-pill btn-lg">Mettre à jour</button> 
+                                  {{form_end(form)}}
                            </div>
+                        </div>
                         </div>
                      </div>
                   </div>

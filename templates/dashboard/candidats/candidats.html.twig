@@ -1,6 +1,32 @@
 {% extends 'layoutAdmin.html.twig' %}
 
+ 
+    
+ 
 {% block body %}
+ 
+        <link rel="stylesheet" href="https://cdn.datatables.net/responsive/2.3.0/css/responsive.dataTables.min.css">
+      
+
+        <script src="/media/js/site.js?_=1d5abd169416a09a2b389885211721dd" data-domain="datatables.net" data-api="https://plausible.sprymedia.co.uk/api/event"></script>
+ 
+     
+        <script src="https://cdn.datatables.net/responsive/2.3.0/js/dataTables.responsive.min.js"></script>
+        <script>
+            
+    
+        $(document).ready( function () {
+            $('#example')
+            
+
+                .dataTable( {
+                    responsive: true,
+                
+                } );
+        } );
+    
+    
+        </script>
 
                         <div class="job-bx job-profile bg-white">
                         {{ form_start(form ,{attr: {class: ''}}) }}
@@ -8,6 +34,13 @@
                                  <div class="row justify-content-between m-b10">
                                     <h5 class="font-weight-700 col-lg-9  text-primary">Liste des candidats  ({{candidates|length}}) </h5>
                                
+
+
+
+
+
+
+
 
 
 
@@ -63,7 +96,7 @@
  
 <div class="row m-r10 bg-300  border border rounded-3">
      
- <div class="col-lg-4 col-md-6">
+ <div class="col-lg-4 col-md-6 d-none">
 
 
                                       
@@ -74,7 +107,7 @@
                                         
 
                                     </div>
-                                     <div class="col-lg-4 col-md-6 ">
+                                     <div class="col-lg-4 col-md-6 d-none ">
 
                                         <div class="">
                                             <div class="fs-0" >Email:</div>
@@ -119,7 +152,7 @@
                             </div>
                              
                                  
-                                     <div class="col-lg-4">
+                                     <div class="col-lg-12 m-b10">
                                      <div class="m-1b0" >
 
                                     
@@ -136,42 +169,50 @@
 
                                 </div>
                                 {{ form_end(form) }}
-                                <hr>
-                    <div class="GridLex-col-9_sm-8_xs-12">
-                        <div class="admin-content-wrapper">
-                            <div class="admin-section-title">
-                            </div>
-                            <div class="job-item-grid-wrapper">
-                                <div class="GridLex-gap-30">
-                                    <div class="GridLex-grid-noGutter-equalHeight">
-                                          {% if candidates is empty %}
-                           <div class="alert alert-warning text-center" role="alert">
-  0 candidat trouvé 
-</div>
-                              {% else %}
-                                  <div class="row">
-                                       {% for candidate in candidates %}
-                                    
-                            <div class="col-md-6 col-xl-4 col-xxl-3 pxp-candiadates-card-1-container m-b30">
-                        <div class="job-bx border border-5 bg-200   text-center">
-                            {% if candidate.seen==1 %}
-                             <button class="badge badge-soft bg-300  rounded-pill text-primary d-block" >  Lu  </button>
-                            {% else %}
-                           <button class="badge badge-soft bg-300  rounded-pill text-primary d-block" >Non Lu</button>
-                            {% endif %} 
-                            
-                            <div class="pxp-candiadates-card-1-top">
+                      
 
-                                <div class="pxp-candiadates-card-1-avatar pxp-cover" style="background-image: url(https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRuVsmsQZnenIKX-x181542ZNLakNQoqwjbhQ&usqp=CAU);"></div>
-                                <div class="tecos-h m-t10
-                                " ><a class="text-dark" href="{{path('candidatProfile',{'fname':candidate.fname,'lname':candidate.lname,'id':candidate.id})}}">{{candidate.fname}} {{candidate.lname}}</a>
-                               
-                                </div>
-                                <div class="pxp-candiadates-card-1-title"> {{candidate.titre}}</div>
-                              
-                                <div class="pxp-candiadates-card-1-title">  <a  data-bs-toggle="modal" data-bs-target="#candidate{{candidate.id}}" class="text-primary"><i ></i>Applications ({{candidate.applications|length}})</a></div>
 
-                                <div class="modal" id="candidate{{candidate.id}}" tabindex="-1" role="dialog" aria-hidden="true">
+                                <div id="" class="dataTables_wrapper dt-bootstrap5 "><div class="row"><div class="col-sm-12 col-md-6"></div><div class="col-sm-12 col-md-6"></div></div><div class="row "><div class="col-sm-12"><table id="example" class="display nowrap dataTable dtr-inline border border-200 border-2 rounded-3 bg-200 text-dark" style="width: 100%;" aria-describedby="example_info"><thead>
+    <tr >
+<th class="sorting sorting_asc text-dark text-center" tabindex="0" aria-controls="example" rowspan="1" colspan="1" style="width: 5px;" aria-label="Name: activate to sort column descending" aria-sort="ascending"></th>
+    <th class="sorting sorting_asc text-dark text-center" tabindex="0" aria-controls="example" rowspan="1" colspan="1" style="width: 150px;" aria-label="Name: activate to sort column descending" aria-sort="ascending">Candidat</th>
+     <th class="sorting sorting_asc text-dark d-none" tabindex="0" aria-controls="example" rowspan="1" colspan="1" style="width: 150px;" aria-label="Name: activate to sort column descending" aria-sort="ascending">email</th>
+    <th class="sorting text-dark text-center" tabindex="0" aria-controls="example" rowspan="1" colspan="1" style="width: 150px;" aria-label="Position: activate to sort column ascending">Titre</th>
+    <th class="sorting text-dark text-center" tabindex="0" aria-controls="example" rowspan="1" colspan="1" aria-label="Position: activate to sort column ascending" style="width: 20px;">Expérience</th>
+    <th class="sorting text-dark text-center" tabindex="0" aria-controls="example" rowspan="1" colspan="1" style="width: 80px;" aria-label="Office: activate to sort column ascending">Pays</th>
+    <th class="dt-body-right sorting text-dark text-center" tabindex="0" aria-controls="example" rowspan="1" colspan="1" style="width: 20px;" aria-label="Age: activate to sort column ascending">Candidatures</th>
+    <th class="dt-body-right sorting text-dark text-center" tabindex="0" aria-controls="example" rowspan="1" colspan="1" style="width: 0px;" aria-label="ed: activate to sort column ascending">Status</th>
+    </tr></thead><tbody>
+
+
+
+ {% for candidate in candidates %}
+    <tr class="even ">
+
+ <td class="border border-2 border-300 text-center">
+
+     {% if candidate.seen==1 %}
+    <span class="badge badge rounded-pill badge-soft-success">Lu</span></td>
+    {% else %}
+   <span class="badge badge rounded-pill badge-soft-warning">Non Lu</span></td>
+   {% endif %}
+
+    <td class="dtr-control sorting_1 border border-2 border-300 " tabindex="0">    <div class="pxp-candiadates-card-1-avatar pxp-cover avatar avatar-2xl" style="background-image: url(https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRuVsmsQZnenIKX-x181542ZNLakNQoqwjbhQ&usqp=CAU);"></div>
+                               <span class="py-2 tecos-h m-t10" > <a class="text-dark" href="{{path('candidatProfile',{'fname':candidate.fname,'lname':candidate.lname,'id':candidate.id})}}" target="_blank">{{candidate.fname}} {{candidate.lname}}</a>
+                               </span></td>
+
+    <td class="border border-2 border-300 d-none">{{candidate.email}}</td>
+    <td class="border border-2 border-300 text-center">{{candidate.titre}}</td>
+
+
+    <td class="border border-2 border-300 text-center">{{candidate.experience}}</td>
+
+    <td class="border border-2 border-300 text-center">{{candidate.country}}</td>
+
+
+
+    <td class="text-center border border-2 border-300">   <div class="pxp-candiadates-card-1-title">  <a  data-bs-toggle="modal" data-bs-target="#candidate{{candidate.id}}" class="text-primary"><i ></i> ({{candidate.applications|length}})</a></div>
+           <div class="modal" id="candidate{{candidate.id}}" tabindex="-1" role="dialog" aria-hidden="true">
         <div class="modal-dialog modal-dialog-centered" role="document">
             <div class="modal-content position-relative border border-dark">
                 <div class="d-flex flex-row-reverse">
@@ -185,7 +226,7 @@
                                      ({{candidate.applications|length}})</h4>
                                     <hr>
                                   
-                                    <div class="table-responsive scrollbar">
+                                  
                                     {% for applications in candidate.applications|slice(0, 5) %}
                                            
                                            <table class="table table-dashboard mb-0 table-borderless fs--1 border-200">
@@ -233,35 +274,42 @@
                   </div>
                    </div>
                     </div>
-                    
-                            </div>
+</td>
 
-                                    </div>
-                                    
-                                      
 
-                                </div>
+ <td class="border border-2 border-300 text-center">
 
-                                 
-                             {% endfor %}
-                             {% endif %}
-                               </ul>
+  {% if candidate.status=='Traité' %}
+    <span class="badge badge rounded-pill badge-soft-success">{{candidate.status}} <i class="fa fa-check"></i></span>
+  {% elseif candidate.status=='en cours de traitement' %}
+  <span class="badge badge rounded-pill badge-soft-primary">En cours <i class="fa fa-spinner"></i><h6 class="badge-soft-primary">de traitement</h6></span>
+    {% else %}
 
-                        </div>
-                        
-                    </div>
-                </div>
-                            </div>
-                         
-                        </div>
-                    </div>
-                           
-                                       
-                                      
-                                           </div>
-                                    </div>
-                                </div>
-                            </div>
+     <span class="badge badge rounded-pill badge-soft-warning">Non traité <i class="fa fa-false"></i></span>
+    
+    {% endif %}
+
+
+
+ </td>
+   
+
+
+
+    
+
+{% endfor %}
+
+
+
+
+
+
+
+
+
+</tfoot></table></div></div><div class="row"><div class="col-sm-12 col-md-5"></div></div></div>
+                   
                         </div>
 
 

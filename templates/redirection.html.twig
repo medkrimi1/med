@@ -8,7 +8,7 @@
 <meta http-equiv="refresh" content="1; url={{path('dashboard_page')}}">
 
 {% elseif role =='ROLE_Candidate' %}
-<meta http-equiv="refresh" content="1; url={{path('candidate_profile')}}">
+<meta http-equiv="refresh" content="1; url={{path('candidate_profile',{'id':app.user.id})}}">
 
 
 {% endif %}

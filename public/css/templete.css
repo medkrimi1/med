@@ -818,7 +818,7 @@
 	display: inline-block;
 	text-align: center;
 	transition: all 0.5s;
-	font-family: roboto;
+
 	text-transform: capitalize;
 }
 .job-time a:hover span{

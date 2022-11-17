@@ -119,6 +119,16 @@ class Jobs
      */
     private $status;
 
+    /**
+     * @ORM\Column(type="string", length=255, nullable=true)
+     */
+    private $slug;
+
+    /**
+     * @ORM\ManyToOne(targetEntity=User::class, inversedBy="jobs")
+     */
+    private $user;
+
  
    
    
@@ -130,7 +140,7 @@ class Jobs
         $this->appdate = new ArrayCollection();
         $this->applications = new ArrayCollection();
         $this->setCreatedAt(new \Datetime());
-        $this->setExpiredAt(new \Datetime());
+     
         $this->startdate=new \Datetime();
 
 
@@ -431,6 +441,30 @@ class Jobs
    public function setStatus(?string $status): self
    {
        $this->status = $status;
+
+       return $this;
+   }
+
+   public function getSlug(): ?string
+   {
+       return $this->slug;
+   }
+
+   public function setSlug(?string $slug): self
+   {
+       $this->slug = $slug;
+
+       return $this;
+   }
+
+   public function getUser(): ?User
+   {
+       return $this->user;
+   }
+
+   public function setUser(?User $user): self
+   {
+       $this->user = $user;
 
        return $this;
    }

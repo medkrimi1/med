@@ -1,0 +1,96 @@
+		
+
+
+
+ <div class="modal fade" id="formation" data-bs-keyboard="false" data-bs-backdrop="static" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+  <div class="modal-dialog modal-lg mt-6" role="document">
+    <div class="modal-content border-0">
+      <div class="position-absolute top-0 end-0 mt-1 me-3 z-index-1"><button class="btn-close btn btn-sm btn-circle d-flex flex-center  bg-300 transition-base float-end" data-bs-dismiss="modal" aria-label="Close"></button></div>
+      <div class="modal-body p-0">
+        <div class="bg-light rounded-top-lg py-3 ps-4 pe-6">
+          <h4 class="mb-3 text-center" id="staticBackdropLabel"></h4>
+        
+        </div>
+        <div class="modal-body bg-200 text-center ">
+          <div class="row">
+		   <div class=" tab-content ">
+         	{{form_start(form_formation,{attr: {class: 'bg-200'}})}}
+									
+							   <div class="row gap-20">
+									<div class="col-sm-12 col-md-12">
+												
+									
+													
+									</div>
+
+						
+						            <div class="col-sm-12 col-md-12">
+				
+							        <div class=" form-group"> 
+								    <div class="fs-0">Institution/Université<b style="color:#990000">*</b></div>
+								 {{ form_widget(form_formation.university,{attr: {class: 'form-control'}}) }}   </div>
+						
+						             </div>
+						
+						             <div class="col-sm-12 col-md-12">
+						
+							        <div class="form-group"> 
+									  <div class="fs-0">Titre du cours/diplôme<b style="color:#990000">*</b></div>
+								  
+								  {{ form_widget(form_formation.diploma,{attr: {class: 'form-control'}}) }}  </div>
+						
+						           </div>
+								   
+								      	<div class=" col-sm-6 col-md-6 align-items-center">
+						
+							       
+ <div class="row align-items-center">
+                                        <div class="fs-0">Date de debut<b style="color:#990000">*</b></div>
+										<div class="d-flex justify-content-center">
+                                          <div class="col-lg-3 col-sm-4 col-md-3 ">
+                                            {{ form_widget(form_formation.Bday,{attr: {class: 'text-center form-control text-primary'}}) }} 
+                                          </div>
+                                          <div class="col-lg-3 col-sm-4 col-md-3">
+                                       {{ form_widget(form_formation.Bmonth,{attr: {class: 'text-center form-control text-primary'}}) }}  </div>
+                                          <div class="col-lg-4 col-sm-4 col-md-3">
+                                        {{ form_widget(form_formation.Byear,{attr: {class: 'text-center form-control text-primary'}}) }}   </div>
+                                       </div></div>
+						           </div>
+								   	<div class=" col-sm-6 col-md-6">
+						              <div class="fs-0">Date de fin<b style="color:#990000">*</b></div>
+                                    <div class="d-flex justify-content-center">
+                                          <div class="col-lg-3 col-sm-4 col-md-3 ">
+                                            {{ form_widget(form_formation.Eday,{attr: {class: 'text-center form-control text-primary'}}) }} 
+                                          </div>
+                                          <div class="col-lg-3 col-sm-4 col-md-3">
+                                       {{ form_widget(form_formation.Emonth,{attr: {class: 'text-center form-control text-primary'}}) }}  </div>
+                                          <div class="col-lg-4 col-sm-4 col-md-3">
+                                        {{ form_widget(form_formation.Eyear,{attr: {class: 'text-center form-control text-primary '}}) }}   </div>
+                                       </div>
+						
+						           </div>
+								   <ul></ul>
+								   		
+						
+						          
+								       <div class="form-group bootstrap3-wysihtml5-wrapper">
+														<div class="fs-0">Description</div>
+												{{ form_widget(form_formation.description,{attr: {class: 'form-control'}}) }} 	</div>
+
+								{{ form_widget(form_formation.id,{attr: {class: 'form-control'},value:app.user.id}) }} 
+						
+	
+						           </div>
+								    <div class="text-center">
+								    <button type="submit" class="btn btn-primary rounded-pill text-center">Ajouter formation</button>
+								  </div> 	{{form_end(form_formation)}}
+      
+      
+      
+          </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

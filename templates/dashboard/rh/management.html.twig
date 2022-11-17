@@ -112,7 +112,7 @@
                                         <div class=" col-sm-6 col-md-6">
                                             <div class="form-group">
                                                 <label>Mot de passe</label>
-                                                  {{ form_widget(form.newpassword,{attr: {class: 'form-control text-center',placeholder:'Min 8 et Max 20 caractères',required:'true'}}) }} 
+                                                  {{ form_widget(form.newpassword,{attr: {class: 'form-control text-center',pattern:'.{8,20}',placeholder:'Min 8 et Max 20 caractères',required:'true'}}) }} 
                                               
                                         </div>
                                     </div>

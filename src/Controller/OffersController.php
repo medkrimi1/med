@@ -3,6 +3,7 @@
 namespace App\Controller;
 use App\Data\SearchData;
 use App\Entity\Jobs;
+use App\Entity\User;
 use App\Entity\Candidates;
 use App\Repository\CandidatesRepository;
 use App\Repository\JobsRepository;
@@ -72,10 +73,12 @@ class OffersController extends AbstractController
                 'presentation' => $job->getPresentation(),
                 'resp' => $job->getResp() ,
                 'req' => $job->getReq (),
+                'fname' => $job->getUser()->getFname(),
+                'lname' => $job->getUser()->getLname(),
                 'today'=>strtotime(date('Y/m/d')),
                'applications'=>$job->getApplications(),
                'applicant'=> $candidates,
-                 'slug'=> strtolower(str_replace($str,$rplc,$title)),
+                 'slug' => $job->getSlug(),
                 'expire'=>strtotime($expired),
                  'time'=>strtotime($bb),
                
@@ -96,17 +99,20 @@ class OffersController extends AbstractController
   
 
      /**
-     * @Route("/dashboard/offres/Ajouter", name="dashboard_offers_add")
+     * @Route("/dashboard/offres/Ajouter/{id}", name="dashboard_offers_add")
      * @param Request $request
      * @return Response
      * 
      */
-    public function new( Request $request, EntityManagerInterface $em)
+    public function new($id, Request $request, EntityManagerInterface $em)
     {
+        $user=$this->getDoctrine()->getRepository(User::class)->find($id);
         $jobs = new Jobs();
         $form = $this->createForm(JobsAddType::class, $jobs);
         $form->handleRequest($request);
-
+        $str = [' ','é','è','\'','ç'];
+        $rplc =['-','e','e','','c'];
+        $title = $form['title']->getData();
           if($form->isSubmitted() && $form->isValid()) {
             $em = $this->getDoctrine()->getManager();
 
@@ -139,7 +145,8 @@ class OffersController extends AbstractController
             else { $jobs->setCover('DefaultCover.png');}
             $jobs->setStatus('Actif');
         }
-          
+          $jobs->setSlug(strtolower(str_replace($str,$rplc,$title)));
+          $jobs->setUser($user);
          $em->persist($jobs);
             $em->flush();
              $this->addFlash('success', 'L\'offre d\'emploi a été Ajoutée avec succès!');
@@ -163,6 +170,9 @@ class OffersController extends AbstractController
         $jobs = new Jobs();
         $form = $this->createForm(JobsAddType::class, $job);
         $form->handleRequest($request);
+        $str = [' ','é','è','\'','ç'];
+        $rplc =['-','e','e','','c'];
+        $title = $form['title']->getData();
         if($form->isSubmitted() && $form->isValid()) {
             $em = $this->getDoctrine()->getManager();
 
@@ -195,6 +205,7 @@ class OffersController extends AbstractController
             }
 
         }
+        $job->setSlug(strtolower(str_replace($str,$rplc,$title)));
          $em->persist($job);
             $em->flush();
              $this->addFlash('success', 'L\'offre d\'emploi a été modifié avec succès!');

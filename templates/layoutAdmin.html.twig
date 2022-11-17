@@ -15,6 +15,7 @@
       <!-- FAVICONS ICON -->
       <script src="{{ asset('assets/js/config.js') }}"></script>
       <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.6.0/css/bootstrap-datepicker.css">
+  
       <script src="{{ asset('vendors/overlayscrollbars/OverlayScrollbars.min.js') }}"></script>
       <!-- ===============================================-->
       <!-- Stylesheets-->
@@ -33,6 +34,7 @@
       <script src="{{ asset('vendors/choices/choices.min.js') }}"></script>
       <script src="{{ asset('js/multiselect-dropdown.js') }}"></script>
       <link href="{{ asset('vendors/choices/choices.min.css') }}" rel="stylesheet" />
+       <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.13.1/css/jquery.dataTables.css">
       <script>
          var isRTL = JSON.parse(localStorage.getItem('isRTL'));
          if (isRTL) {
@@ -50,6 +52,10 @@
       </script>
       {% endblock %}
       {% block javascripts %}
+
+  
+<script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.13.1/js/jquery.dataTables.js"></script>
+       <script src="//cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.6.0/js/bootstrap-datepicker.min.js"></script>
       <script src="{{ asset('vendors/popper/popper.min.js') }}"></script>
       <script src="{{ asset('vendors/bootstrap/bootstrap.min.js') }}"></script>
       <script src="{{ asset('vendors/anchorjs/anchor.min.js') }}"></script>
@@ -112,7 +118,7 @@
                                  <div class="">
                                  <h4 class=""><a href="javascript:void(0);"><h4 class="mt-2  tecos-h nav-link m-r15">{{app.user.fname}} {{app.user.lname}}</h4></a></h4>
                                  </div>
-                                 <a href="{{ path('dashboard_offers_add') }}" class="btn btn-success btn-sm rounded-pill"> <i class="fas fa-plus fa-sm"></i> Ajouter offre</button> </a>
+                                 <a href="{{ path('dashboard_offers_add',{'id':app.user.id}) }}" class="btn btn-success btn-sm rounded-pill"> <i class="fas fa-plus fa-sm"></i> Ajouter offre</button> </a>
                                  </div>
                                  </div></span></div>
                                  </a><!-- more inner pages-->
@@ -133,7 +139,7 @@
                            <hr>
                            <ul class="nav collapse false" id="email">
                               <li class="nav-item">
-                                 <a class="nav-link" href="{{ path('dashboard_offers_add') }}" aria-expanded="false">
+                                 <a class="nav-link" href="{{ path('dashboard_offers_add',{'id':app.user.id}) }}" aria-expanded="false">
                                     <div class="d-flex align-items-center"><span class="nav-link-text ps-1">Nouvelle offre</span></div>
                                  </a>
                                  <hr>
@@ -417,6 +423,7 @@
          </div>
       </a>
    </body>
+  
 </html>
 {% else %}
 <meta http-equiv="refresh" content="1; url={{path('app_login')}}">

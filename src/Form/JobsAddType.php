@@ -94,15 +94,10 @@ class JobsAddType extends AbstractType
                 ]
                 
             ])
-                         ->add('ExpiredAt', dateType::class, [
-                "attr" => [
-                    "class" => "js-datepicker",
-                     'html5' => false,
-                   
-                   
-                ]
-
-            ])
+                          ->add('ExpiredAt', DateType::class, [ 
+        'widget' => 'single_text',
+                  'attr' => ['class' => 'js-datepicker'],  
+        ])
                        
 
                 ->add('imagefield', FileType::class, [

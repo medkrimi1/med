@@ -1,0 +1,152 @@
+{% extends 'layout.html.twig' %}
+
+{% block body %}
+
+ <div class="header-w bg-white" > </div>
+<div class="page-wraper-glass">
+
+    <div class="page-content">
+
+        <div class="content-block">
+      
+      <div class="section-full browse-job p-t50 p-b20">
+            <div class="container">
+               <div class="row">
+               
+                  <div class="d-none d-lg-block col-xl-3 col-lg-4 m-b30">
+                     <div class="sticky-top">
+                              <div class="candidate-info bg-white radius-md">
+                           <div class="candidate-detail text-center ">
+                           
+                              
+                           
+                           
+                           
+                           
+                                 <a class="upload-link" href="{{path('candidate_profile',{'id':app.user.id})}}#avatar" title="update" data-bs-toggle="tooltip" data-placement="right">
+                              <div class="canditate-des" >
+                                    
+                              <center><img class=" canditate-des-img" src="{{asset('images/users/' ~app.user.image)}}" title="'.$myfname.'" alt="image"  /></center>
+                           
+                              </div>
+                              
+                                    
+                                    
+                                 
+                                 
+                                 
+                              </a>
+                              <div class="candidate-title">
+                                 <div class="">
+                                    <h4 class="m-b5"><a href="javascript:void(0);"><h4 class="mt-2 text-dark">{{app.user.fname}} {{app.user.lname}}</h4></a></h4>
+                                    <p class="m-b0"><a href="javascript:void(0);"><h6 class="mt-1">title</h6></a></p>
+                                 </div>
+                                 <a class="btn btn-outline-primary rounded-pill btn-sm" href="{{path('candidate_profile',{'id':app.user.id})}}">Voir profil</a>
+                              </div>
+                           </div>
+                           <div class="row navbar-vertical-label-wrapper " >
+                           <ul class="">
+                              <li><a href="{{path('candidate_profile',{'id':app.user.id})}}" >
+                                 
+                                 <span><h6 class="fs-0 "><i class=" far fa-user" aria-hidden="true"></i> Profil</h6></span></a></li>
+                              <li><a href="{{ path('my_resume',{'id':app.user.id})}}">
+                                  
+                                 <span><h6 class="fs-0"><i class="far fa-file-alt" aria-hidden="true"></i> Ma carrière</h6></span></a></li>
+                           
+                              <li><a href="{{ path('my_applications',{'id':app.user.id})}}">
+                                  
+                                 <span><h6 class="fs-0"><i class="fa fa-briefcase " aria-hidden="true"></i> Mes candidatures</h6></span></a></li>
+                              
+                              <li><a href="{{ path('my_cv',{'id':app.user.id})}}">
+                           
+                                 <span><h6 class="fs-0"><i class="far fa-id-card" aria-hidden="true"></i> Gérer CV</h6></span></a></li>
+                              
+                              <li><a href="{{ path('candidate_password',{'id':app.user.id})}}" class="active">
+                           
+                                 <span><h6 class="fs-0 text-white fw-bold"><i class="fa fa-key" aria-hidden="true"></i> Changer Mot de passe</h6></span></a></li>
+                              
+                              
+                                 
+                              <li><a href="{{path('app_logout')}}">
+                                 
+                                 <span><h6 class="fs-0"> <i class="fas fa-sign-out-alt" aria-hidden="true"></i> Déconnexion</h6></span></a></li>
+                           </ul>
+                        </div>
+                        </div>
+                     </div>
+                  </div>
+                  <div  class="col-xl-9 col-lg-8 m-b30">
+                     <div class="job-bx job-profile  bg-white">
+                        <div class="job-bx-title clearfix">
+                                 <h5 class="font-weight-700 float-start text-primary"><a onclick="history.back()"><i class="far fa-arrow-alt-circle-left " ></a></i> Modifier Langue</h5>
+                     
+                           
+                        </div>
+                    
+					
+					{{form_start(form_language,{attr: {class: 'text-center'}})}}
+									
+							  <div class="row gap-20">
+						            <div class="col-sm-12 col-md-12">
+				
+							    
+											<div class="form-group">
+												<div class="fs-0">Langue</div>
+												 		  {{ form_widget(form_language.lname,{attr: {class: 'form-control text-center text-center text-primary '},disabled:'disabled'}) }} 
+							       
+											</div>
+										
+						
+						             </div>
+
+						
+						            <div class=" col-lg-4 col-sm-12 col-md-12">
+				
+							        <div  class="form-group"> 
+								    <div class="fs-0">Parlé</div>
+								   		  {{ form_widget(form_language.speak,{attr: {class: 'form-select '}}) }} 
+							       
+							        </div>
+						
+						             </div>
+						
+						            <div class="col-lg-4 col-sm-12 col-md-12">
+				
+							        <div class="form-group"> 
+								    <div class="fs-0">Lu</div>
+								  {{ form_widget(form_language.reading,{attr: {class: 'form-select'}}) }} 
+							       
+							        </div>
+						
+						             </div>
+
+						            <div class="col-lg-4 col-sm-12 col-md-12">
+				
+							        <div class="form-group"> 
+								    <div class="fs-0">Écrit</div>
+								  {{ form_widget(form_language.writing,{attr: {class: 'form-select'}}) }} 
+					
+					   </div>
+						
+						             </div>
+									    
+						
+					               </div>
+								   <button type="submit" class="btn btn-primary rounded-pill text-center">Ajouter langue</button>
+				                   </div>
+								   {{form_end(form_language)}}	
+					
+                     </div>
+                  </div>
+               </div>
+            </div>
+         </div>
+         
+      </div>
+    </div>
+   
+
+</div>
+
+
+{% endblock %}

@@ -13,9 +13,9 @@
                            <div class=" d-none d-lg-block sticky-top">
                               <div class="candidate-info  bg-white radius-md">
                                  <div class="candidate-detail text-center ">
-                                    <a class="upload-link" href="?a=Candidate_Profile#avatar" title="update" data-bs-toggle="tooltip" data-placement="right">
+                                    <a class="upload-link" href="{{path('candidate_profile',{'id':app.user.id})}}#avatar" title="update" data-bs-toggle="tooltip" data-placement="right">
                                        <div class="canditate-des" >
-                                          <center><img class=" canditate-des-img" src="../images/default.jpg"  alt="image"  /></center>
+                                          <center><img class=" canditate-des-img" src="{{asset('images/users/' ~app.user.image)}}"  alt="image"  /></center>
                                        </div>
                                     </a>
                                     <div class="candidate-title">
@@ -29,48 +29,48 @@
                                              <a href="javascript:void(0);">
                                           <h6 class="mt-1">title</h6></a></p>
                                        </div>
-                                       <a class="btn btn-outline-primary rounded-pill btn-sm" href="{{ path('candidat_profil')}}">Voir profil</a>
+                                       <a class="btn btn-outline-primary rounded-pill btn-sm" href="{{ path('candidat_profil',{'id':app.user.id})}}">Voir profil</a>
                                     </div>
                                  </div>
                                  <div class="row navbar-vertical-label-wrapper " >
                                     <ul class="">
                                        <li>
-                                          <a href="{{ path('candidate_profile')}}" >
+                                          <a href="{{path('candidate_profile',{'id':app.user.id})}}" >
                                              <span>
                                                 <h6 class="fs-0 "><i class=" far fa-user" aria-hidden="true"></i> Profil</h6>
                                              </span>
                                           </a>
                                        </li>
                                        <li>
-                                          <a href="{{ path('my_resume')}}" class="active">
+                                          <a href="{{ path('my_resume',{'id':app.user.id})}}" class="active">
                                              <span>
                                                 <h6 class="fs-0 text-white fw-bold"><i class="far fa-file-alt" aria-hidden="true"></i> Ma carrière</h6>
                                              </span>
                                           </a>
                                        </li>
                                        <li>
-                                          <a href="{{ path('my_applications')}}">
+                                          <a href="{{ path('my_applications',{'id':app.user.id})}}">
                                              <span>
                                                 <h6 class="fs-0"><i class="fa fa-briefcase " aria-hidden="true"></i> Mes candidatures</h6>
                                              </span>
                                           </a>
                                        </li>
                                        <li>
-                                          <a href="{{ path('my_cv')}}">
+                                          <a href="{{ path('my_cv',{'id':app.user.id})}}">
                                              <span>
                                                 <h6 class="fs-0"><i class="far fa-id-card" aria-hidden="true"></i> Gérer CV</h6>
                                              </span>
                                           </a>
                                        </li>
                                        <li>
-                                          <a href="{{ path('candidate_password')}}">
+                                          <a href="{{ path('candidate_password',{'id':app.user.id})}}">
                                              <span>
                                                 <h6 class="fs-0"><i class="fa fa-key" aria-hidden="true"></i> Changer Mot de passe</h6>
                                              </span>
                                           </a>
                                        </li>
                                        <li>
-                                          <a href="./logout.php">
+                                          <a href="{{path('app_logout')}}">
                                              <span>
                                                 <h6 class="fs-0"> <i class="fas fa-sign-out-alt" aria-hidden="true"></i> Déconnexion</h6>
                                              </span>
@@ -86,46 +86,62 @@
                               <div class="job-bx-title clearfix">
                                  <h5 class="font-weight-700 float-start text-primary">Ma carrière</h5>
                               </div>
-                              <h3 class="mb-0 text-dark">Compétences</h3>
-                              <div  
-                              <div 
-                              <div class="panel ">
-                                 <label for="organizerMultiple"></label>
-                                 <select class="form-select js-choice" required type="text" id="organizerMultiple" multiple="multiple" size="1" name="skills[]" data-options='{"removeItemButton":true,"placeholder":true}'>
-                                    <option  disabled value="">choisir vos compétences</option>
-                                 </select>
-                                 <button type="submit" class="  btn btn-outline-primary rounded-pill">   Ajouter    </button>
-                              </div>
+                                                 {% for message in app.flashes('success') %}
+            <div class="text-center text-dark alert alert-success">
+                {{ message }}
+            </div>
+        {% endfor %}
+           {% for message in app.flashes('warning') %}
+            <div class="text-center text-dark alert alert-warning">
+                {{ message }}
+            </div>
+        {% endfor %}
+
+                              {{form_start(form_skills)}}
+                                 
+                                         <h3 class="mb-0 text-dark">Compétences</h3> 
+
+                                                 {{ form_widget(form_skills.skill,{attr: {class: 'multiselect-dropdown'},required:false}) }} 
+
+                             <button type="submit" class="btn btn-outline-primary rounded-pill m-t20">Mettre à jour</button>
+
+                             {{form_end(form_skills)}}
+                          
+                              
+                           
                               <div class=" GridLex-col-9_sm-8_xs-12">
-                                 <div class="job-time m-t15 m-b10">
-                                    <span class="">
-                                       <h6 class="mt-1 text-primary">java<a href="employee/app/drop-skills.php?id="  class="cose font-weight-bold text-danger  ">     x</a>
-                                       </h6>
-                                    </span>
-                                 </div>
+                               
                                  <div class="job-bx-title clearfix"> 
                                  </div>
                               </div>
                               <h3 class="mb-0 text-dark">Formation</h3>
                               <ul></ul>
                               <a class="mb-4 d-block d-flex align-items-center" data-bs-toggle="modal" data-bs-target="#formation" aria-expanded="false" aria-controls="experience-form1"><span class="circle-dashed"><i class="fas fa-plus" aria-hidden="true"></i></span><span class="ms-3">Ajouter une nouvelle formation</span></a>
+                               {% include 'candidat/modals/FormationAdd.html.twig' %}
                               <div   class="GridLex-col-9_sm-8_xs-12">
                                  <div class="resume-list-wrapper">
                                     <div class="resume-list-item">
                                        <div class="row">
                                           <div class=" text-justify pxp-single-candidate-timeline">
+                                              {% for formation in formations %}
                                              <div class="pxp-single-candidate-timeline-item">
-                                                <div class="pxp-single-candidate-timeline-dot" ></div>
+                                              
+                                                <div class="pxp-single-candidate-timeline-dot " ></div>
                                                 <div class="pxp-single-candidate-timeline-info ms-3">
-                                                   <div class="pxp-single-candidate-timeline-time text-dark"><span class="bg-200  rounded-4 m-b0">12/12/12 12/12/12</span>  <a href="javascript:void(0);" data-bs-toggle="modal" data-bs-target="#formation" class="btn btn-outline-primary add-btn btn-sm"><i class="fas fa-pencil-alt m-r4"></i> </a>
-                                                      <a href="employee/app/drop-qualification.php?id=" onclick = "return confirm('Voulez-vous vraiment supprimer cette formation ?')" class=" btn btn-outline-danger add-btn btn-sm"><i class="fas fa-trash"></i></a>
+                                                   <div class="pxp-single-candidate-timeline-time text-dark"><span class="bg-200  rounded-4 m-b0">{{formation.startdate|date("d/m/y")}} {{formation.enddate|date("d/m/y")}}</span>  <a href="{{path('formation_edit',{'idc':app.user.id ,'id':formation.id})}}"  class="btn btn-outline-primary add-btn btn-sm"><i class="fas fa-pencil-alt m-r4"></i> </a>
+                                                      <a href="{{path('formation_delete',{'idc':app.user.id ,'id':formation.id})}}" onclick = "return confirm('Voulez-vous vraiment supprimer cette formation ?')" class=" btn btn-outline-danger add-btn btn-sm"><i class="fas fa-trash"></i></a>
                                                    </div>
-                                                   <div class="pxp-single-candidate-timeline-position text-primary fw-bold">title</div>
-                                                   <div class="pxp-single-candidate-timeline-company pxp-text-light">tecos</div>
-                                                   <p class="text-dark pb-4"> description</p>
+                                                   <div class="pxp-single-candidate-timeline-position text-primary fw-bold">{{formation.diploma}}</div>
+                                                   <div class="pxp-single-candidate-timeline-company pxp-text-light">{{formation.university}}</div>
+                                                   <p class="text-dark pb-4">{{formation.description}}</p>
+                                              
                                                 </div>
+                                                 
                                              </div>
+
+ {% endfor %}
                                           </div>
+                                         
                                           <div class="col-sm-12 col-md-2">
                                              <div class="resume-list-btn">
                                                 <div id="edit" class="modal fade login-box-wrapper" tabindex="-1" data-width="550" style="display: none;" data-backdrop="static" data-keyboard="false" data-replace="true">
@@ -144,23 +160,26 @@
                                  <h3 class="mb-0 text-dark">Expérience professionnelle</h3>
                                  <ul></ul>
                                  <a class="mb-4 d-block d-flex align-items-center" data-bs-toggle="modal" data-bs-target="#worksample"  aria-expanded="false" aria-controls="experience-form1"><span class="circle-dashed"><i class="fas fa-plus"></i></span><span class="ms-3">Ajouter une nouvelle expérience</span></a>
+                                  {% include 'candidat/modals/ExperienceAdd.html.twig' %}
                                  <!-- Modal -->
                                  <div id="ex" class="GridLex-col-9_sm-8_xs-12">
                                     <div class="resume-list-wrapper">
                                        <div class="resume-list-item">
                                           <div class="row">
                                              <div class="text-justify pxp-single-candidate-timeline">
+                                                 {% for work in works %}
                                                 <div class="pxp-single-candidate-timeline-item">
                                                    <div class="pxp-single-candidate-timeline-dot" ></div>
                                                    <div class="pxp-single-candidate-timeline-info ms-3">
-                                                      <div class="pxp-single-candidate-timeline-time text-dark  "><span class=" bg-200  rounded-4 m-b0">12/12/12 12/12/12</span>   <a href="javascript:void(0);" data-bs-toggle="modal" data-bs-target="#worksample" class="btn btn-outline-primary add-btn btn-sm"><i class="fas fa-pencil-alt m-r4"></i> </a>
-                                                         <a href="employee/app/drop-experience.php?id=" onclick = "Voulez-vous vraiment supprimer cette expérience ??')" class="btn btn-outline-danger  add-btn btn-sm"><i class="fas fa-trash-alt m-r4"></i></a>
+                                                      <div class="pxp-single-candidate-timeline-time text-dark  "><span class=" bg-200  rounded-4 m-b0">{{work.startdate|date("d/m/y")}} {{work.enddate|date("d/m/y")}}</span>   <a href="{{path('Experience_edit',{'idc':app.user.id ,'id':work.id})}}"  class="btn btn-outline-primary add-btn btn-sm"><i class="fas fa-pencil-alt m-r4"></i> </a>
+                                                         <a href="{{path('work_delete',{'idc':app.user.id ,'id':work.id})}}" onclick = "Voulez-vous vraiment supprimer cette expérience ??')" class="btn btn-outline-danger  add-btn btn-sm"><i class="fas fa-trash-alt m-r4"></i></a>
                                                       </div>
-                                                      <div class="pxp-single-candidate-timeline-position text-primary fw-bold">title</div>
-                                                      <div class="pxp-single-candidate-timeline-company pxp-text-light">isamm</div>
-                                                      <p class="text-dark pb-4">description</p>
+                                                      <div class="pxp-single-candidate-timeline-position text-primary fw-bold">{{work.title}}</div>
+                                                      <div class="pxp-single-candidate-timeline-company pxp-text-light">{{work.company}}</div>
+                                                      <p class="text-dark pb-4">{{work.duties}}</p>
                                                    </div>
                                                 </div>
+                                                 {% endfor %}
                                              </div>
                                              <div class="col-sm-12 col-md-2">
                                                 <div class="resume-list-btn">
@@ -182,20 +201,49 @@
                                  <ul></ul>
                                  <a class="mb-4 d-block d-flex align-items-center" data-bs-toggle="modal" data-bs-target="#certification" aria-expanded="false" aria-controls="experience-form1"><span class="circle-dashed"><i class="fas fa-plus"></i></span><span class="ms-3">Ajouter nouvelle certificat</span></a>
                                  <!-- Modal -->
+                                    {% include 'candidat/modals/CertificateAdd.html.twig' %}
+
                                  <div class="GridLex-col-9_sm-8_xs-12">
                                     <div class="resume-list-wrapper">
                                        <div class="resume-list-item">
                                           <div class="row">
                                              <div class="text-justify pxp-single-candidate-timeline">
+                                                {% for certificate in certificates %}
                                                 <div class="pxp-single-candidate-timeline-item">
                                                    <div class="pxp-single-candidate-timeline-dot" ></div>
                                                    <div class="pxp-single-candidate-timeline-info ms-3">
                                                       <div class="pxp-single-candidate-timeline-time text-dark">
-                                                         <span class="bg-200  rounded-4 m-b0">12/12/12 12/12/12</span>
-                                                         <div class="pxp-single-candidate-timeline-position mt-2"><a href="employee/view-attachment.php?id=" class="pxp-single-candidate-timeline-position ">title</a>        <a href="employee/app/drop-attachment.php?id=" onclick = "return confirm('Voulez-vous vraiment supprimer cette certification ?')" class="btn btn-outline-danger  add-btn btn-sm"><i class="fas fa-trash-alt m-r4"></i></a></div>
+                                                         <span class="bg-200  rounded-4 m-b0">{{certificate.startdate|date("d/m/y")}} {{certificate.enddate|date("d/m/y")}}</span>
+                                                         <div class="pxp-single-candidate-timeline-position mt-2"> <a data-bs-toggle="modal" data-bs-target="#modal{{certificate.id}}" class="text-primary fw-bold tecos-h " >{{certificate.title}}</a>  <a href="{{path('certif_delete',{'idc':app.user.id ,'id':certificate.id})}}" onclick = "return confirm('Voulez-vous vraiment supprimer cette certification ?')" class="btn btn-outline-danger  add-btn btn-sm"><i class="fas fa-trash-alt m-r4"></i></a></div>
                                                       </div>
                                                    </div>
                                                 </div>
+                                                 <div class="modal fade" id="modal{{certificate.id}}" data-bs-keyboard="false" data-bs-backdrop="static" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+  <div class="modal-dialog modal-lg mt-6" role="document">
+    <div class="modal-content border-0">
+      <div class="position-absolute top-0 end-0 mt-3 me-3 z-index-1"><button class="btn-close btn btn-sm btn-circle d-flex flex-center transition-base float-end" data-bs-dismiss="modal" aria-label="Close"></button></div>
+      <div class="modal-body p-0">
+        <div class="bg-light rounded-top-lg py-3 ps-4 pe-6">
+          <h4 class="mb-1 text-center" id="staticBackdropLabel">{{certificate.title}}</h4>
+        
+        </div>
+        <div class="">
+          <div class="row">
+          <iframe src="{{asset('cerificates/' ~certificate.attachment)}}"
+ 
+                
+                height="500">
+        </iframe>
+      
+      
+          
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+                                                {% endfor %}
                                              </div>
                                           </div>
                                        </div>
@@ -210,21 +258,87 @@
                                  <h3 class="mb-0 text-dark">Langues</h3>
                                  <ul></ul>
                                  <a class="mb-4 d-block d-flex align-items-center" data-bs-toggle="modal" data-bs-target="#lang"  aria-expanded="false" aria-controls="experience-form1"><span class="circle-dashed"><i class="fas fa-plus" ></i></span><span class="ms-3">Ajouter nouvelle langue</span></a>  
+                                  {% include 'candidat/modals/LanguageAdd.html.twig' %}
                                  <div id="Language" class="GridLex-col-9_sm-8_xs-12">
+                                    {% for language in languages %}
                                     <div class="resume-list-item">
                                        <div class="row">
                                           <div class="col-sm-12 col-md-10">
                                              <div class="">
                                                 <a >
-                                                   <h5>english</h5>
+                                                   <h5>{{language.lname}}</h5>
                                                    <div class="row">
                                                       <div class="col-sm-12 col-md-12">
-                                                         <i class="fa fa-user mr-5"></i> Parlé - <strong class="mr-10">bien</strong> <i class="fa fa-book mr-5"></i>    Lu - <strong class="mr-10">bien</strong> <i class="fas fa-pencil-alt m-r4 "></i>   Écrit - <strong class="mr-10">bien</strong>
+                                                         <i class="fa fa-user mr-5"></i> Parlé - <strong class="mr-10">{{language.speak}}</strong> <i class="fa fa-book mr-5"></i>    Lu - <strong class="mr-10">{{language.reading}}</strong> <i class="fas fa-pencil-alt m-r4 "></i>   Écrit - <strong class="mr-10">{{language.writing}}</strong>
                                                       </div>
                                                    </div>
                                                 </a>
+
+                                        {% if language.reading =='Débutant'   %} 
+                                           {%  set a='10'   %}
+                                        {% else %}
+                                        {%  set a='0' %}
+                                        {% endif %}
+
+                                         {% if  language.speak =='Débutant'  %}
+                                        {%  set b='10'   %}
+                                        {% else %}
+                                        {%  set b='0' %}
+                                        {% endif %}
+
+                                         {% if language.writing =='Débutant'  %}
+                                        {%  set c='10'   %}
+                                        {% else %}
+                                        {%  set c='0' %}
+                                        {% endif %}               
+                                    {% if language.reading =='Intermédiaire'   %}
+                                        {%  set d='20'   %}
+                                        {% else %}
+                                        {%  set d='0' %}
+                                        {% endif %}
+
+                                         {% if  language.speak =='Intermédiaire'  %}
+                                        {%  set e='20'   %}
+                                        {% else %}
+                                        {%  set e='0' %}
+                                        {% endif %}
+
+                                         {% if language.writing =='Intermédiaire'  %}
+                                        {%  set f='20'   %}
+                                        {% else %}
+                                        {%  set f='0' %}
+                                        {% endif %}
+
+                                      {% if language.reading =='Avancé'   %}
+                                        {%  set j='30'   %}
+                                        {% else %}
+                                        {%  set j='0' %}
+                                        {% endif %}
+
+                                         {% if  language.speak =='Avancé'  %}
+                                        {%  set k='30'   %}
+                                        {% else %}
+                                        {%  set k='0' %}
+                                        {% endif %}
+
+                                         {% if language.writing =='Avancé'  %}
+                                        {%  set h='30'   %}
+                                        {% else %}
+                                        {%  set h='0' %}
+                                        {% endif %}
+
+
+
+
+
+
+
+
+
+                                        {%  set progress=a+b+c+d+e+f+j+k+h %}
+                                       
                                                 <div class="progress">
-                                                   <div class="progress-bar bg-primary"  style="width: 70%"
+                                                   <div class="progress-bar bg-primary"  style="width: {{progress}}%"
                                                       role="progressbar"></div>
                                                 </div>
                                              </div>
@@ -233,14 +347,15 @@
                                           <div class="col-sm-12 col-md-2">
                                              <div class="resume-list-btn">
                                                 <h5 class="m-b15"></h5>
-                                                <a href="javascript:void(0);" data-bs-toggle="modal" data-bs-target="#lang" class="btn btn-outline-primary add-btn btn-sm"><i class="fas fa-pencil-alt m-r4"></i> </a>
-                                                <a href="employee/app/drop-language.php?id=" onclick = "return confirm('Voulez-vous vraiment supprimer cette langue ?')" class="btn btn-outline-danger  add-btn btn-sm"><i class="fas fa-trash-alt m-r4"></i></a>
+                                                <a href="{{path('Language_edit',{'idc':app.user.id ,'id':language.id})}}"  class="btn btn-outline-primary add-btn btn-sm"><i class="fas fa-pencil-alt m-r4"></i> </a>
+                                                <a href="{{path('language_delete',{'idc':app.user.id ,'id':language.id})}}" onclick = "return confirm('Voulez-vous vraiment supprimer cette langue ?')" class="btn btn-outline-danger  add-btn btn-sm"><i class="fas fa-trash-alt m-r4"></i></a>
                                                 <div id="edit" class="modal fade login-box-wrapper" tabindex="-1" data-width="550" style="display: none;" data-backdrop="static" data-keyboard="false" data-replace="true">
                                                 </div>
                                              </div>
                                           </div>
                                        </div>
                                     </div>
+                                    {% endfor %}
                                  </div>
                               </div>
                            </div>

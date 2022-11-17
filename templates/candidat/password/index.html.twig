@@ -23,10 +23,10 @@
                            
                            
                            
-                                 <a class="upload-link" href="?a=Candidate_Profile#avatar" title="update" data-bs-toggle="tooltip" data-placement="right">
+                                 <a class="upload-link" href="{{path('candidate_profile',{'id':app.user.id})}}#avatar" title="update" data-bs-toggle="tooltip" data-placement="right">
                               <div class="canditate-des" >
                                     
-                              <center><img class=" canditate-des-img" src="../images/default.jpg" title="'.$myfname.'" alt="image"  /></center>
+                              <center><img class=" canditate-des-img" src="{{asset('images/users/' ~app.user.image)}}" title="'.$myfname.'" alt="image"  /></center>
                            
                               </div>
                               
@@ -41,33 +41,33 @@
                                     <h4 class="m-b5"><a href="javascript:void(0);"><h4 class="mt-2 text-dark">{{app.user.fname}} {{app.user.lname}}</h4></a></h4>
                                     <p class="m-b0"><a href="javascript:void(0);"><h6 class="mt-1">title</h6></a></p>
                                  </div>
-                                 <a class="btn btn-outline-primary rounded-pill btn-sm" href="{{ path('candidat_profil')}}">Voir profil</a>
+                                 <a class="btn btn-outline-primary rounded-pill btn-sm" href="{{path('candidate_profile',{'id':app.user.id})}}">Voir profil</a>
                               </div>
                            </div>
                            <div class="row navbar-vertical-label-wrapper " >
                            <ul class="">
-                              <li><a href="{{ path('candidate_profile')}}" >
+                              <li><a href="{{path('candidate_profile',{'id':app.user.id})}}" >
                                  
                                  <span><h6 class="fs-0 "><i class=" far fa-user" aria-hidden="true"></i> Profil</h6></span></a></li>
-                              <li><a href="{{ path('my_resume')}}">
+                              <li><a href="{{ path('my_resume',{'id':app.user.id})}}">
                                   
                                  <span><h6 class="fs-0"><i class="far fa-file-alt" aria-hidden="true"></i> Ma carrière</h6></span></a></li>
                            
-                              <li><a href="{{ path('my_applications')}}">
+                              <li><a href="{{ path('my_applications',{'id':app.user.id})}}">
                                   
                                  <span><h6 class="fs-0"><i class="fa fa-briefcase " aria-hidden="true"></i> Mes candidatures</h6></span></a></li>
                               
-                              <li><a href="{{ path('my_cv')}}">
+                              <li><a href="{{ path('my_cv',{'id':app.user.id})}}">
                            
                                  <span><h6 class="fs-0"><i class="far fa-id-card" aria-hidden="true"></i> Gérer CV</h6></span></a></li>
                               
-                              <li><a href="{{ path('candidate_password')}}" class="active">
+                              <li><a href="{{ path('candidate_password',{'id':app.user.id})}}" class="active">
                            
                                  <span><h6 class="fs-0 text-white fw-bold"><i class="fa fa-key" aria-hidden="true"></i> Changer Mot de passe</h6></span></a></li>
                               
                               
                                  
-                              <li><a href="./logout.php">
+                              <li><a href="{{path('app_logout')}}">
                                  
                                  <span><h6 class="fs-0"> <i class="fas fa-sign-out-alt" aria-hidden="true"></i> Déconnexion</h6></span></a></li>
                            </ul>
@@ -82,36 +82,43 @@
                      
                            
                         </div>
-                        
-                        <form  name="frmChange" class="post-form-wrapper" action="" onSubmit="return validatePassword()" method="post">
+                           {% for message in app.flashes('success') %}
+            <div class="text-center text-dark alert alert-success">
+                {{ message }}
+            </div>
+            {% endfor %}
+                {% for message in app.flashes('error') %}
+            <div class="text-center text-dark alert alert-warning">
+                {{ message }}
+            </div>
+        {% endfor %}
+                        {{form_start(form_pass)}}
+
+                       
+
                            <div class="row">
                             
                              
-                              <div class="col-lg-6"> 
-            
-                                <div class="fs-0" >Mot de passe actuel</div>
-                                <input class="form-control" placeholder="Enter your password" name="currentPassword" id="currentPassword" required="" type="password"> 
-                                </div>
-                           <div class="col-lg-6"> 
-                              </div>
+                             
+                         
                               <div class="col-lg-6">
                                  <div class="form-group">
                                      <div class="fs-0" >Nouveau mot de passe</div>
-                                    <input type="password" class="form-control" name="new_Password" id="new_Password"  pattern=".{8,}" title="Min 8 and Max 20 characters" required placeholder="Enter your new password">
+                                    {{ form_widget(form_pass.newpassword,{attr: {class: 'form-control',pattern:'.{8,20}',placeholder:'Min 8 et Max 20 caractères'}}) }} 
                                  </div>
                               </div>
                                  <div class="col-lg-6">
                                  <div class="form-group">
                                      <div class="fs-0" >Confimer nouveau mot de passe</div>
-                                    <input type="password" class="form-control" name="confirmPassword" id="confirmPassword"  pattern=".{8,}" title="Min 8 and Max 20 characters" required placeholder="Enter your new password">
+                                    {{ form_widget(form_pass.repeatedpassword,{attr: {class: 'form-control',pattern:'.{8,20}',placeholder:'Min 8 et Max 20 caractères'}}) }} 
                                  </div>
                               </div>
                               
                               <div class="col-lg-12 m-b10 text-center">
-                                 <button type="submit" id="btnSubmit" name="submit" value="submit" onclick="return Validate()" class="btn btn-primary rounded-pill">Update</button>
+                                 <button type="submit" id="btnSubmit" name="submit"class="btn btn-primary rounded-pill">Mettre à jour</button>
                               </div>
                            </div>
-                        </form>
+                    {{form_end(form_pass)}}
                      </div>
                   </div>
                </div>

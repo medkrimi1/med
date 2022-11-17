@@ -71,24 +71,22 @@ class SearchForm extends AbstractType
 
             
        ])
-                ->add('startdate', DateType::class, [
-    
-    
-    'attr' => ['class' => 'js-datepicker'],
-    'label' => false ,
-     'format' => 'ddMMyyyy',
- 'required' => true ,
-    'input' => 'string',
-    'input_format' => 'Y-m-d' // ajouté en 4.3
-])
-                   ->add('enddate', DateType::class, [
+                ->add('startdate', DateType::class, [ 
+        'widget' => 'single_text',
+        'mapped'=>false,
+         'required'=>false,
+                  'attr' => ['class' => 'js-datepicker text-center text-primary'],  
+        ])
+                   ->add('enddate', DateType::class, [ 
+        'widget' => 'single_text',
+        'mapped'=>false,
+        'required'=>false,
+        'label' => false ,
     
    
-    'attr' => ['class' => 'js-datepicker'],
-    'label' => false ,
-    'format' => 'ddMMyyyy',
-    'required' => true ,
-    'input' => 'string'])
+    'input' => 'string',
+                  'attr' => ['class' => 'js-datepicker text-center text-primary'],  
+        ])
             ;
     }
 

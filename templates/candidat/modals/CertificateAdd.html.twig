@@ -1,0 +1,74 @@
+	
+								<!-- Modal -->
+								<div class=" modal fade modal-bx-info editor" id="certification" tabindex="-1" role="dialog" aria-labelledby="DesiredprofileModalLongTitle" aria-hidden="true">
+									<div class="modal-dialog" role="document">
+										<div class="modal-content border-0">
+										  <div class="position-absolute top-0 end-0 mt-1 me-3 z-index-1"><button class="btn-close btn btn-sm btn-circle d-flex flex-center  bg-300 transition-base float-end" data-bs-dismiss="modal" aria-label="Close"></button></div>
+      <div class="bg-light rounded-top-lg py-3 ps-4 pe-6">
+          <h4 class="mb-3 text-center" id="staticBackdropLabel"></h4>
+        
+        </div>
+										
+											<div class="modal-body bg-200  text-center">
+			
+								 <div class="text-center row gap-20">
+									 {{form_start(form_certif)}}
+									     <div class="col-lg-12 col-md-12">
+											<div class="form-group">
+												<div class="fs-0">Nom du certificat</div>
+														   		  {{ form_widget(form_certif.title,{attr: {class: 'form-control text-center'}}) }} 
+							      
+						
+											</div>
+										</div>
+						
+						             <div class="col-sm-12 col-md-12">
+						
+							        <li></li>
+						
+						           </div>
+								   <div class="row m-b20">
+								   <div class=" col-sm-6 col-md-6">
+						
+							       
+<div class="fs-0">Date de début<b style="color:#990000">*</b></div>
+ {{ form_widget(form_certif.startdate) }} 
+						
+						
+						           </div>
+								   	<div class=" col-sm-6 col-md-6">
+						              <div class="fs-0">Date de fin<b style="color:#990000">*</b></div>
+                                     {{ form_widget(form_certif.enddate) }} 
+						
+                                       
+						
+						           </div>
+								   </div>
+								  
+   
+								   	<div class="col-sm-12 col-md-12">
+						
+							        <div class="form-group"> 
+								    <div class="fs-0">Sélectionnez une pièce jointe<i></i></div>
+								   		  {{ form_widget(form_certif.attachmentField,{attr: {class: 'form-control'}}) }} 
+							      
+						 </div>
+						
+						           </div>
+						
+								      <li></li>
+								 
+									
+						
+						
+					               </div>
+								   <button type="submit" class="btn btn-primary rounded-pill text-center">Ajouter certificat</button>
+				                   </div>
+				
+                            	 {{form_end(form_certif)}}
+											</div>
+											
+										</div>
+									</div>
+							
+								<!-- Modal End -->

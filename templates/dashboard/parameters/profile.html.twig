@@ -177,14 +177,14 @@
 
                                         <div class="form-group">
                                             <div class="fs-0" >Nouveau mot de passe</div>
-                                              {{ form_widget(form_pass.newpassword,{attr: {class: 'form-control'}}) }} 
+                                              {{ form_widget(form_pass.newpassword,{attr: {class: 'form-control',pattern:'.{8,20}',placeholder:'Min 8 et Max 20 caractères'}}) }} 
                                       
 
                                     </div>
                                        
                                         <div class="form-group">
                                             <div class="fs-0" >Confirmer Nouveau mot de passe</div>
-                                              {{ form_widget(form_pass.repeatedpassword,{attr: {class: 'form-control'}}) }} 
+                                              {{ form_widget(form_pass.repeatedpassword,{attr: {class: 'form-control',pattern:'.{8,20}',placeholder:'Min 8 et Max 20 caractères'}}) }} 
                                       
                                     </div>
 

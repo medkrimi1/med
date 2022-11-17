@@ -55,7 +55,7 @@ class SpontaneeController extends AbstractController
               'fname'=>$candidate->getFname(),
               'lname'=>$candidate->getLname(),
               'seen'=>$candidate->getSeen(),
-              'titre' => $candidate->getTitre()->getTitle(),
+              'titre' => $candidate->getTitre(),
                'applications'=> $offres,
               
  

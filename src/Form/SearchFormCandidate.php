@@ -99,6 +99,7 @@ class SearchFormCandidate extends AbstractType
      'format' => 'ddMMyyyy',
  'required' => true ,
     'input' => 'string',
+    
     'input_format' => 'Y-m-d' // ajouté en 4.3
 ])
                    ->add('enddate', DateType::class, [

@@ -18,7 +18,15 @@
                   </div>
 
                   <div class="pxp-single-candidate-hero-name">
-                     <h1>{{candidate.fname}} {{candidate.lname}}</h1>
+                     <h1>{{candidate.fname}} {{candidate.lname}}  <a class="btn btn-primary dropdown-toggle" href="#" role="button"  id="status" data-bs-toggle="dropdown" aria-expanded="false">
+                  {{candidate.status}}</a>
+                  <ul class="dropdown-menu bg-200 border border-dark " aria-labelledby="status">
+                      {{form_start(form)}}
+                  <a class="" type="submit">
+                   {{ form_widget(form.status,{attr: {class: 'form-select'}}) }} </a>
+                  <button class="btn btn-primary" type="submit"><i class="fa fa-save"></i></button>
+                  {{form_end(form)}}
+                  </ul></h1>
 
                   </div>
                </div>
@@ -26,6 +34,7 @@
          </div>
       </div>
    </div>
+
    <div class="">
       <ul></ul>
       <div class="row">
@@ -38,10 +47,12 @@
                </div>
                <div class="card mb-3">
                   <div class="card-header card-title bg-300">
-                     <h5 class="explore-des text-dark">À propos de title</h5>
+                     <h5 class="explore-des text-dark">À propos de {{candidate.fname}}</h5>
                   </div>
+                 
+
                   <div class="card-body">
-                     <p class="text-dark"> test about</p>
+                     <p class="text-dark">{{candidate.about}}</p>
                   </div>
                </div>
                <div class="card mb-3">
@@ -141,18 +152,24 @@
             </div>
          </div>
          <div class=" col-lg-5 col-xl-4 col-xxl-3 text-center ">
-            <div class="">
+             <div class="">
                <div class="text-center">
                   <a class="btn btn-primary dropdown-toggle" href="#" role="button"  id="dropdownMenuLink" data-bs-toggle="dropdown" aria-expanded="false">
                   Voir cv</a>
                   <ul class="dropdown-menu" aria-labelledby="dropdownMenuLink">
-                     <li><a class="text-primary" type="button" data-bs-toggle="modal" data-bs-target="#cvpdf">CV (#  )</a>
+                     {% for cv in candidate.cv %}
+                     <li><a class="text-primary" type="button" data-bs-toggle="modal" data-bs-target="#modal{{cv.id}}"> {{cv.cv}} </a>
                      </li>
-                  </ul>
-                  <div class="modal fade" id="cvpdf" data-bs-keyboard="false" data-bs-backdrop="static" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+               
+                 
+                   
+{% endfor %}
+ </ul>
+{% for modal in candidate.cv %}
+     <div class="modal fade" id="modal{{modal.id}}" data-bs-keyboard="false" data-bs-backdrop="static" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
   <div class="modal-dialog modal-lg mt-6" role="document">
     <div class="modal-content border-0">
-      <div class="position-absolute top-0 end-0 mt-3 me-3 z-index-1"><button class="btn-close btn btn-sm btn-circle d-flex flex-center transition-base" data-bs-dismiss="modal" aria-label="Close"></button></div>
+      <div class="position-absolute top-0 end-0 mt-3 me-3 z-index-1"><button class="btn-close btn btn-sm btn-circle d-flex flex-center transition-base float-end" data-bs-dismiss="modal" aria-label="Close"></button></div>
       <div class="modal-body p-0">
         <div class="bg-light rounded-top-lg py-3 ps-4 pe-6">
           <h4 class="mb-1" id="staticBackdropLabel">Cv de {{candidate.fname}}</h4>
@@ -160,7 +177,7 @@
         </div>
         <div class="">
           <div class="row">
-          <iframe src="{{asset('cv/' ~candidate.cv)}}"
+          <iframe src="{{asset('cv/' ~modal.cv)}}"
  
                 
                 height="500">
@@ -174,7 +191,16 @@
     </div>
   </div>
 </div>
-                  <button type="submit" id="btnSubmit" name="submit" value="submit" onclick="return Validate()" class="btn btn-primary bg-success">CV Tecos</button>
+{% endfor %}
+
+
+
+
+                 
+                 
+
+                    <button type="submit" id="btnSubmit" name="submit" value="submit" onclick="return Validate()" class="btn btn-primary bg-success">CV Tecos</button>
+                
                </div>
             </div>
             <ul></ul>
@@ -233,22 +259,22 @@
                   </div>
                </div>
             </div>
-            <div class="card mb-3 ">
+             <div class="card mb-3 ">
                <div class="card-header card-title bg-300">
                   <h5 class="card-title text-dark text-center">Contact Med</h5>
                </div>
                <div class="card-body">
                   <div class="pxp-single-candidate-side-info-label ">Personal website</div>
-                  <a class="pxp-single-candidate-side-info-data" href=" '.$pw.'">medkrimi.com</a>
+                  <a class="pxp-single-candidate-side-info-data" href="{{candidate.site}}">{{candidate.site}}</a>
                   <div class="explore-des-2c text-dark ">Adresse E-mail</div>
                   <div class="explore-des-3c text-primary">{{candidate.email}}</div>
                   <div class="mt-4">
-                     <div class="explore-des-2c text-dark fw-bold">Adresse</div>
-                     <div class="explore-des-3c text-primary" >{{candidate.country}}</div>
+                     <div class="explore-des-2c text-dark fw-bold">{{candidate.address}}</div>
+                     <div class="explore-des-3c text-primary" >{{candidate.city}},{{candidate.country}}</div>
                   </div>
                   <div class="mt-4">
                      <div class="explore-des-2c text-dark fw-bold ">Téléphone</div>
-                     <div class="explore-des-3c text-primary" >+XXX XXXXXXXX</div>
+                     <div class="explore-des-3c text-primary" >{{candidate.phone}}</div>
                   </div>
                </div>
             </div>

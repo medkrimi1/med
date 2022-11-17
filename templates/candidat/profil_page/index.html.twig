@@ -8,16 +8,16 @@
    <div class="header-w bg-white" > </div>
      <div class="page-content">
    <div class="container dez-bnr-inr overlay-black-middle" style="background-image">
-      <img class="dez-bnr-inr overlay-black-middle bg-500" style="background-image " >
+      <img class="dez-bnr-inr overlay-black-middle bg-500" src="{{asset('images/users/' ~candidate.cover)}}" style="background-image " >
       <div class="">
          <div class="pxp-single-candidate-hero-caption">
             <div class="pxp-container">
                <div class="pxp-single-candidate-hero-content">
                   <div class="" style="background-image">
-                     <img class="pxp-single-candidate-hero-avatar " src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRuVsmsQZnenIKX-x181542ZNLakNQoqwjbhQ&usqp=CAU"  alt="image"  >
+                     <img class="pxp-single-candidate-hero-avatar " src="{{asset('images/users/' ~candidate.image)}}"  alt="image"  >
                   </div>
                   <div class="pxp-single-candidate-hero-name">
-                     <h1>{{candidate.fname}} {{candidate.lname}}</h1>
+                     <h1>{{candidate.fname|capitalize}} {{candidate.lname|capitalize}}</h1>
                   </div>
                </div>
             </div>
@@ -36,10 +36,10 @@
                </div>
                <div class="card mb-3">
                   <div class="card-header card-title bg-300">
-                     <h5 class="explore-des text-dark">À propos de title</h5>
+                     <h5 class="explore-des text-dark">À propos de {{candidate.fname}}</h5>
                   </div>
                   <div class="card-body">
-                     <p class="text-dark"> test about</p>
+                     <p class="text-dark">{{candidate.about}}</p>
                   </div>
                </div>
                <div class="card mb-3">
@@ -50,17 +50,42 @@
                      <div class="resume-list-wrapper">
                         <div class="resume-list-item">
                            <div class="row">
-                              <div class="text-justify pxp-single-candidate-timeline">
+                             {% for certificate in candidate.certificates %}
+                                                 <div class="pxp-single-candidate-timeline">
                                  <div class="pxp-single-candidate-timeline-item">
                                     <div class="pxp-single-candidate-timeline-dot" ></div>
                                     <div class="pxp-single-candidate-timeline-info ms-3">
-                                       <div class="pxp-single-candidate-timeline-time text-dark">
-                                          <span class="bg-200">12/12/12</span>
-                                          <div class="pxp-single-candidate-timeline-position mt-2"><a href="employee/view-attachment.php?id=" class="fs-0 mb-0 text-primary">title</a></div>
-                                       </div>
-                                    </div>
-                                 </div>
-                              </div>
+                                                        <div class=" pxp-single-candidate-timeline-time text-dark"><span class="bg-200">{{certificate.startdate|date("d/m/y")}} {{certificate.enddate|date("d/m/y")}}</span></div>
+                                                         <div class="pxp-single-candidate-timeline-position"> <a data-bs-toggle="modal" data-bs-target="#modal{{certificate.id}}" class="text-primary fw-bold tecos-h " >{{certificate.title}}</a></div>
+                                                      </div>
+                                                   </div>
+                                                </div>
+                                                 <div class="modal fade" id="modal{{certificate.id}}" data-bs-keyboard="false" data-bs-backdrop="static" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+  <div class="modal-dialog modal-lg mt-6" role="document">
+    <div class="modal-content border-0">
+      <div class="position-absolute top-0 end-0 mt-3 me-3 z-index-1"><button class="btn-close btn btn-sm btn-circle d-flex flex-center transition-base float-end" data-bs-dismiss="modal" aria-label="Close"></button></div>
+      <div class="modal-body p-0">
+        <div class="bg-light rounded-top-lg py-3 ps-4 pe-6">
+          <h4 class="mb-1 text-center" id="staticBackdropLabel">{{certificate.title}}</h4>
+        
+        </div>
+        <div class="">
+          <div class="row">
+          <iframe src="{{asset('cerificates/' ~certificate.attachment)}}"
+ 
+                
+                height="500">
+        </iframe>
+      
+      
+          
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+                                                {% endfor %}
                               <div class="col-sm-12 col-md-2">
                               </div>
                            </div>
@@ -76,22 +101,24 @@
                      <div class="resume-list-wrapper">
                         <div class="resume-list-item">
                            <div class="row">
+                              {% for work in candidate.workexperiences %}
                               <div class="pxp-single-candidate-timeline">
                                  <div class="pxp-single-candidate-timeline-item">
                                     <div class="pxp-single-candidate-timeline-dot" ></div>
                                     <div class="pxp-single-candidate-timeline-info ms-3">
-                                       <div class=" pxp-single-candidate-timeline-time text-dark"><span class="bg-200">12/12/12 12/12/12</span></div>
-                                       </br>
+                                       <div class=" pxp-single-candidate-timeline-time text-dark"><span class="bg-200">{{work.startdate|date("d/m/y")}} {{work.enddate|date("d/m/y")}}</span></div>
+                                      
                                        <div class="">
-                                          <h6 class="fs-0 mb-0 text-primary">title</h6>
+                                          <h6 class="fs-0 mb-0 text-primary">{{work.title}}</h6>
                                        </div>
                                        <div class=" pxp-text-light">
-                                          <h6 class="fs-0 mb-0">tecos</h6>
+                                          <h6 class="fs-0 mb-0">{{work.company}}</h6>
                                        </div>
-                                       <p class="text-dark pb-4">description</p>
+                                       <p class="text-dark pb-4">{{work.duties}}</p>
                                     </div>
                                  </div>
                               </div>
+                              {% endfor %}
                               <div class="col-sm-12 col-md-2">
                               </div>
                            </div>
@@ -107,22 +134,24 @@
                      <div class="resume-list-wrapper">
                         <div class="resume-list-item">
                            <div class="row">
+                              {% for formation in candidate.formations %}
                               <div class="pxp-single-candidate-timeline">
                                  <div class="pxp-single-candidate-timeline-item">
                                     <div class="pxp-single-candidate-timeline-dot" ></div>
                                     <div class="pxp-single-candidate-timeline-info ms-3">
-                                       <div class=" pxp-single-candidate-timeline-time text-dark"><span class="bg-200">12/12/12 12/12/12</span></div>
-                                       </br>
+                                       <div class=" pxp-single-candidate-timeline-time text-dark"><span class="bg-200">{{formation.startdate|date("d/m/y")}} {{formation.enddate|date("d/m/y")}}</span></div>
+                                      
                                        <div class=" ">
-                                          <h6 class="fs-0 mb-0 text-primary">title</h6>
+                                          <h6 class="fs-0 mb-0 text-primary">{{formation.diploma}}</h6>
                                        </div>
                                        <div class="pxp-text-light">
-                                          <h6 class="fs-0 mb-0">isamm</h6>
+                                          <h6 class="fs-0 mb-0">{{formation.university}}</h6>
                                        </div>
-                                       <div class="text-dark pb-4">description</div>
+                                       <div class="text-dark pb-4">{{formation.description}}</div>
                                     </div>
                                  </div>
                               </div>
+                              {% endfor %}
                               <div class="col-sm-12 col-md-2">
                                  <div class="resume-list-btn">
                                  </div>
@@ -139,24 +168,63 @@
             </div>
          </div>
          <div class=" col-lg-5 col-xl-4 col-xxl-3 text-center ">
-            <div class="sticky-sidebar">
+            <div class="">
                <div class="text-center">
                   <a class="btn btn-primary dropdown-toggle" href="#" role="button"  id="dropdownMenuLink" data-bs-toggle="dropdown" aria-expanded="false">
                   Voir cv</a>
                   <ul class="dropdown-menu" aria-labelledby="dropdownMenuLink">
-                     <li><a href="employee/view-cv.php?id=<?php echo $row['id']; ?>">CV (#  )</a>
+                     {% for cv in candidate.cv %}
+                     <li><a class="text-primary" type="button" data-bs-toggle="modal" data-bs-target="#modal{{cv.id}}"> {{cv.cv}} </a>
                      </li>
-                  </ul>
-                  <button type="submit" id="btnSubmit" name="submit" value="submit" onclick="return Validate()" class="btn btn-primary bg-success">CV Tecos</button>
+               
+                 
+                   
+{% endfor %}
+ </ul>
+{% for modal in candidate.cv %}
+     <div class="modal fade" id="modal{{modal.id}}" data-bs-keyboard="false" data-bs-backdrop="static" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+  <div class="modal-dialog modal-lg mt-6" role="document">
+    <div class="modal-content border-0">
+      <div class="position-absolute top-0 end-0 mt-3 me-3 z-index-1"><button class="btn-close btn btn-sm btn-circle d-flex flex-center transition-base float-end" data-bs-dismiss="modal" aria-label="Close"></button></div>
+      <div class="modal-body p-0">
+        <div class="bg-light rounded-top-lg py-3 ps-4 pe-6">
+          <h4 class="mb-1" id="staticBackdropLabel">Cv de {{candidate.fname}}</h4>
+        
+        </div>
+        <div class="">
+          <div class="row">
+          <iframe src="{{asset('cv/' ~modal.cv)}}"
+ 
+                
+                height="500">
+        </iframe>
+      
+      
+          
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+{% endfor %}
+
+
+
+
+                 
+                 
+
+                  
                </div>
             </div>
             <ul></ul>
             <div class="card mb-3 card-body  ">
                <ul class="list-inline m-a0">
-                  <li><a target="_blank" href="'.$fb.'" class="site-button  facebook circle "><i class="fab fa-facebook-f"></i></a></li>
-                  <li><a target="_blank" href="'.$gl.'" class="site-button  google-plus circle "><i class="fab fa-google-plus-g"></i></a></li>
-                  <li><a target="_blank" href="'.$ln.'" class="site-button  linkedin circle "><i class="fab fa-linkedin-in"></i></a></li>
-                  <li><a target="_blank" href="'.$tw.'" class="site-button  twitter circle "><i class="fab fa-twitter"></i></a></li>
+                  <li><a target="_blank" href="{{candidate.site}}" class="site-button  facebook circle "><i class="fab fa-facebook-f"></i></a></li>
+                  <li><a target="_blank" href="{{candidate.site}}" class="site-button  google-plus circle "><i class="fab fa-google-plus-g"></i></a></li>
+                  <li><a target="_blank" href="'{{candidate.site}}" class="site-button  linkedin circle "><i class="fab fa-linkedin-in"></i></a></li>
+                  <li><a target="_blank" href="{{candidate.site}}" class="site-button  twitter circle "><i class="fab fa-twitter"></i></a></li>
                </ul>
             </div>
             <div class="card mb-3" >
@@ -183,16 +251,75 @@
                   <div class="card-body">
                      <div class="resume-list-item">
                         <div class="row">
-                           <div class="">
+                           {% for language in candidate.languages %}
+                           <div class="m-b20">
                               <a >
-                                 <h5 class="explore-des-2c text-dark">english</h5>
+                                 <h5 class="explore-des-2c text-dark">{{language.lname}}</h5>
                               </a>
+                                      {% if language.reading =='Débutant'   %} 
+                                        {%  set a='10'   %} 
+                                        {% else %}
+                                        {%  set a='0' %}
+                                        {% endif %}
+
+                                         {% if  language.speak =='Débutant'  %}
+                                        {%  set b='10'   %}
+                                        {% else %}
+                                        {%  set b='0' %}
+                                        {% endif %}
+
+                                         {% if language.writing =='Débutant'  %}
+                                        {%  set c='10'   %}
+                                        {% else %}
+                                        {%  set c='0' %}
+                                        {% endif %}               
+                                    {% if language.reading =='Intermédiaire'   %}
+                                        {%  set d='20'   %}
+                                        {% else %}
+                                        {%  set d='0' %}
+                                        {% endif %}
+
+                                         {% if  language.speak =='Intermédiaire'  %}
+                                        {%  set e='20'   %}
+                                        {% else %}
+                                        {%  set e='0' %}
+                                        {% endif %}
+
+                                         {% if language.writing =='Intermédiaire'  %}
+                                        {%  set f='20'   %}
+                                        {% else %}
+                                        {%  set f='0' %}
+                                        {% endif %}
+
+                                      {% if language.reading =='Avancé'   %}
+                                        {%  set j='30'   %}
+                                        {% else %}
+                                        {%  set j='0' %}
+                                        {% endif %}
+
+                                         {% if  language.speak =='Avancé'  %}
+                                        {%  set k='30'   %}
+                                        {% else %}
+                                        {%  set k='0' %}
+                                        {% endif %}
+
+                                         {% if language.writing =='Avancé'  %}
+                                        {%  set h='30'   %}
+                                        {% else %}
+                                        {%  set h='0' %}
+                                        {% endif %}
+
+
+                                        {%  set progress=a+b+c+d+e+f+j+k+h %}
                               <div class=" progress "style="height:10px">
-                                 <div class="progress-bar  bg-primary"  style="width: 70%"
+                                 <div class="progress-bar  bg-primary"  style="width: {{progress}}%"
                                     role="progressbar"></div>
                               </div>
                            </div>
-                           <ul></ul>
+                              <hr>
+                           {% endfor %}
+
+                           
                            <div class="col-sm-12 col-md-2">
                               <div class="resume-list-btn">
                               </div>
@@ -206,44 +333,28 @@
                   </div>
                </div>
             </div>
+
             <div class="card mb-3 ">
                <div class="card-header card-title bg-300">
-                  <h5 class="card-title text-dark text-center">Contact Med</h5>
+                  <h5 class="card-title text-dark text-center">Contact {{candidate.fname|capitalize}}</h5>
                </div>
                <div class="card-body">
                   <div class="pxp-single-candidate-side-info-label ">Personal website</div>
-                  <a class="pxp-single-candidate-side-info-data" href=" '.$pw.'">medkrimi.com</a>
+                  <a class="pxp-single-candidate-side-info-data" href="{{candidate.site}}">{{candidate.site}}</a>
                   <div class="explore-des-2c text-dark ">Adresse E-mail</div>
-                  <div class="explore-des-3c text-primary">hamakrimi@gmail.com</div>
+                  <div class="explore-des-3c text-primary">{{candidate.email}}</div>
                   <div class="mt-4">
-                     <div class="explore-des-2c text-dark fw-bold">Adresse</div>
-                     <div class="explore-des-3c text-primary" >tunis,tunisie</div>
+                     <div class="explore-des-2c text-dark fw-bold">{{candidate.address}}</div>
+                     <div class="explore-des-3c text-primary" >{{candidate.city}},{{candidate.country}}</div>
                   </div>
                   <div class="mt-4">
                      <div class="explore-des-2c text-dark fw-bold ">Téléphone</div>
-                     <div class="explore-des-3c text-primary" >+216 50701398</div>
+                     <div class="explore-des-3c text-primary" > {{candidate.phone}} </div>
+
                   </div>
                </div>
             </div>
-            <div class="card mb-3   ">
-               <div class="card-body">
-                  <form >
-                     <div class="mb-3">
-                        <div class="explore-des-2c text-dark fw-bold">Nom</div>
-                        <input type="text" value="krimi" class="form-control text-center" id="contact-candidate-name" placeholder="Enter your name">
-                     </div>
-                     <div class="mb-3">
-                        <div class="explore-des-2c text-dark fw-bold" class="form-label">Adressse e-mail</div>
-                        <input type="text" value="$myemail " class="form-control text-center" id="contact-candidate-email" placeholder="Enter your email address">
-                     </div>
-                     <div class="mb-3">
-                        <div class="explore-des-2c text-dark fw-bold" class="form-label ">Message</div>
-                        <textarea class="form-control" id="contact-candidate-message" placeholder="Type your message here..."></textarea>
-                     </div>
-                     <a href="#" class="btn btn-primary rounded-pill pxp-section-cta d-block">Envoyer</a>
-                  </form>
-               </div>
-            </div>
+           
          </div>
       </div>
    </div>

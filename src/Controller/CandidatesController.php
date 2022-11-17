@@ -39,25 +39,27 @@ class CandidatesController extends AbstractController
             foreach($candidate->getApplications() as $offre)
             { 
              $title=$offre->getJob()->getTitle();
-            $str = [' ','é','è','\'','ç'];
-            $rplc =['-','e','e','','c'];
              $offres[]=[
              'id'=>$offre->getId() ,
              'jobid'=>$offre->getJob()->getId(),
              'title'=>$offre->getJob()->getTitle(),
-              'slug'=> strtolower(str_replace($str,$rplc,$title)),
+             'slug'=>$offre->getJob()->getSlug(),
              'appdate'=>$offre->getAppdate(),
 
              ] ;
 
             }
-
+            
             $candidatesArray[] = [
                'id'=>$candidate->getId(),
               'fname'=>$candidate->getFname(),
               'lname'=>$candidate->getLname(),
+              'email'=>$candidate->getEmail(),
               'seen'=>$candidate->getSeen(),
-              'titre' => $candidate->getTitre()->getTitle(),
+              'status'=>$candidate->getStatus(),
+               'country'=>$candidate->getCountry(),
+              'titre' => $candidate->getTitre(),
+              'experience' => $candidate->getExperience(),
                'applications'=> $offres,
               
  

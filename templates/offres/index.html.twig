@@ -7,7 +7,7 @@
             <div class="container searchbar ">
                 <div class="dez-bnr-inr-entry align-m ">
                     <div class="dezPlaceAni">
-                        <div class=" carriere-title  ">Bienvenue sur votre espace carrière</div>
+                        <div class=" carriere-title  fw-bold ms-1" >B<span class="typed-text" data-typed-text='["ienvenue sur votre espace carrière"] '></span></div>
                         <div class="container form-control bg-white d-flex   d-flex justify-content-center rounded-pill col-lg-9"  >
                             <div class="   d-flex  col-lg-12 " >
                                 <div class=" col-lg-9 m-r20 m-l10 py-0 m-t10 ">
@@ -29,6 +29,7 @@
                 </div>
             </div>
         </div>
+        
         <div class="section-full  content-inner-2">
             <div class="container">
                 <div class="d-flex job-title-bx section-head">
@@ -59,8 +60,8 @@
                                         <div class="job-post-info ">
                                             <h5 class="job-title text-dark"><a href="{{path('offre_get',{'slug':job.slug,'id':job.id})}}">{{ job.title }}</a></h5>
                                             <ul>
-                                                <li class="job-info "><i class="fas fa-map-marker-alt "></i> {{  job.country }} ,{{  job.city }} |</li>
-                                                <li class="job-info"><i class="far fa-bookmark"></i> {{ job.type }} |</li>
+                                                <li class="job-info "><i class="fas fa-map-marker-alt "></i> {{  job.country|capitalize }} ,{{  job.city|capitalize }} |</li>
+                                                <li class="job-info"><i class="far fa-bookmark"></i> {{ job.type|capitalize }} |</li>
                                                 <li class="job-info"><i class="far fa-clock"></i> {{ job.beginAt|date("m/d/Y") }}</li>
                                             </ul>
                                         </div>
@@ -130,9 +131,7 @@
                          {{ form_start(form2 ,{attr: {class: ''}}) }}  
                         <div id="error3"></div>
                         <div class=" row gap-20 m-b30 ">
-                        
-                       
-                           <div class=" col-sm-6 col-md-6 ">
+                                                 <div class=" col-sm-6 col-md-6 ">
                              
                                  <div class="fs-0">Nom</div>
                                 {{ form_widget(form2.lname,{attr: {class: 'form-control'}}) }}
@@ -149,44 +148,22 @@
                                  <div class="fs-0">Adresse E-mail</div>
                               {{ form_widget(form2.email, {'attr': {'pattern': '[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,63}$'}}) }}
                            </div>
-                         
-                            <div class=" col-sm-6 col-md-6">
-                            
-                                 <div class="fs-0">titre</div>
-                                 {{ form_widget(form2.titre,{attr: {class: 'js-choice'}}) }}
-                         
-                           </div>
-                        
-                            
-                           
-                            
-                            
+                                
                             <div class="fs-0">cv</div>
                              <div class=" ">
-
-                                        
-                                
+     
                                     {{ form_widget(form2.cvfield,{attr: {class: 'form-control'}}) }} 
                                 </div>
-
-
-                   
-                            
-                        </div>
+                                </div>
                        {{ form_widget(form2.newpassword,{attr: {class: 'd-none'},required:false}) }} 
-                        {{ form_widget(form2.repeatedpassword,{attr: {class: 'd-none'},required:false}) }} 
+                       
                       
                       <div class="d-grid gap-2 "><button class="btn btn-primary" type="submit">Déposer CV</button></div>
                           {{ form_end(form2) }}
                        
                      </div>
-                     </div>
-                 
-                   
-                  </div>
-               </div>
-            </div>
-         </div>
+                     </div>             </div>
+               </div>    </div>   </div>
       </div>
    </div>
 </div>

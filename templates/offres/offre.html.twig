@@ -37,7 +37,7 @@
 
                                             {% if app.user %}
 
-                                            <a type="button" href="" class="btn btn-primary rounded-pill btn-lg"> Postuler </a>
+                                            <a type="button" href="{{path('apply',{'id':job.id,'idc':app.user.id})}}" class="btn btn-primary rounded-pill btn-lg"> Postuler </a>
                                            {% else %}
                                            <a href="javascript:void(0);" title="READ MORE" rel="bookmark" data-bs-toggle="modal" data-bs-target="#jobapply" class="btn btn-primary rounded-pill btn-lg"> Postuler </a>
                                             {% endif %}
@@ -98,28 +98,28 @@
                         <div>
                             <div class="">
                                 <div class="sticky-sidebar">
-                                    <div class="card mb-3">
+                                    <div class="card mb-3 ">
                                         </br>
-                                        <h6 class="explore-des-2 text-dark">lieu de travail</h6>
-                                        <h5 class="explore-des-3 text-primary"><i class=" fas fa-map-marker-alt"></i> {{  job.country|lower }},{{  job.city }}</h5>
+                                        <h6 class="explore-des-2 text-dark fw-bold">lieu de travail</h6>
+                                        <h5 class="explore-des-3 text-primary"><i class=" fas fa-map-marker-alt"></i> {{  job.country|capitalize }},{{  job.city|capitalize }}</h5>
                                         <div class="job-bx-title clearfix">
                                         </div>
-                                        <h6 class="explore-des-2 text-dark">Experience</h6>
-                                        <h5 class="explore-des-3 text-primary">{{ job.exp.title}}</h5>
+                                        <h6 class="explore-des-2 text-dark fw-bold">Experience</h6>
+                                        <h5 class="explore-des-3 text-primary">{{ job.exp.title|capitalize}}</h5>
                                         <div class="job-bx-title clearfix">
                                         </div>
-                                        <h6 class="explore-des-2 text-dark">Type d'emploi</h6>
-                                        <h5 class="explore-des-3 text-primary">{{ job.typeid.title}}</h5>
+                                        <h6 class="explore-des-2 text-dark fw-bold">Type d'emploi</h6>
+                                        <h5 class="explore-des-3 text-primary">{{ job.typeid.title|capitalize}}</h5>
                                         <div class="job-bx-title clearfix">
                                         </div>
-                                        <h6 class="explore-des-2 text-dark">Compétences</h6>
+                                        <h6 class="explore-des-2 text-dark fw-bold">Compétences</h6>
                                         <div class="pxp-single-job-side-info-data"></div>
 
-                                        <div class="job-time  m-t15 m-b10">
+                                        <div class="job-time   m-t15 m-b10">
                                             
                                  {% for skill in job.skills %}    
-                                 <span class="">
-                                 <h6 class="mt-1 text-primary">{{ skill.title}}</h6>
+                                 <span class="rounded-pill bg-primary tecos-h text-white">
+                             {{ skill.title|capitalize}}
                                         
                                          </span>
                                         {% endfor %}
@@ -127,7 +127,7 @@
                                         <div class="job-bx-title clearfix">
                                         </div>
                                         <div class="">
-                                            <h6 class="explore-des-2 text-dark">Date limite </h6>
+                                            <h6 class="explore-des-2 text-dark fw-bold">Date limite </h6>
                                             <h5 class="explore-des-3 text-primary">{{ job.expiredAt|date("m/d/Y")}}</h5>
                                         </div>
                                         <ul></ul>
@@ -137,17 +137,17 @@
                         </div>
                         <div class="card mb-3">
                             <div class="card-header bg-300" >
-                                <h2 class="explore-des text-dark">Contact</h2>
+                                <h2 class="explore-des text-dark fw-bold">Contact</h2>
                             </div>
                             <div class="card-body explore-des-3 text-primary">
-                                <div class="explore-des-2 text-dark">Téléphone</div>
+                                <div class="explore-des-2 text-dark fw-bold">Téléphone</div>
                                 <div class="explore-des-3 text-primary">+33 1 43 37 85 74</div>
                                 <div class="mt-4">
-                                    <div class="explore-des-2 text-dark">Email</div>
+                                    <div class="explore-des-2 text-dark fw-bold">Email</div>
                                     <div class="explore-des-3 text-primary">contact@it-tecos.fr</div>
                                 </div>
                                 <div class="mt-4">
-                                    <div class="explore-des-2 text-dark">Lieu</div>
+                                    <div class="explore-des-2 text-dark fw-bold">Lieu</div>
                                     <div class="explore-des-3 text-primary">Paris, France</div>
                                 </div>
                                 <div class="job-bx-title clearfix">
@@ -157,10 +157,10 @@
                                 </div>
                                 <ul></ul>
                                 <ul class="list-inline m-a0">
-                                    <li><a target="_blank" href="'.$fb.'" class="site-button  facebook circle "><i class="fab fa-facebook-f"></i></a></li>
-                                    <li><a target="_blank" href="'.$gl.'" class="site-button  google-plus circle "><i class="fab fa-google-plus-g"></i></a></li>
-                                    <li><a target="_blank" href="'.$ln.'" class="site-button  linkedin circle "><i class="fab fa-linkedin-in"></i></a></li>
-                                    <li><a target="_blank" href="'.$tw.'" class="site-button  twitter circle "><i class="fab fa-twitter"></i></a></li>
+                                    <li><a target="_blank" href="https://www.facebook.com/ITTecos" class="site-button  facebook circle "><i class="fab fa-facebook-f"></i></a></li>
+                                    <li><a target="_blank" href="https://www.google.com/search?q=tecos&oq=tecos&aqs=chrome..69i57j0i512j69i60l3j69i65j69i60l2.1333j0j4&sourceid=chrome&ie=UTF-8" class="site-button  google-plus circle "><i class="fab fa-google-plus-g"></i></a></li>
+                                    <li><a target="_blank" href="https://www.linkedin.com/company/it-tecos/?originalSubdomain=fr" class="site-button  linkedin circle "><i class="fab fa-linkedin-in"></i></a></li>
+                                    <li><a target="_blank" href="https://twitter.com/tecos_it" class="site-button  twitter circle "><i class="fab fa-twitter"></i></a></li>
                                 </ul>
                             </div>
                         </div>
@@ -215,8 +215,8 @@
                <div class="">
                   <div class=" tab-content ">
                      <div id="signup_apply" class="tab-pane active  col-12 p-a0 "  >
-                        <h4 class=" popup-title text-center text-dark">S'inscrire</h4>
-                        <p class="text-center">Créez maintenant votre compte</p>
+                        <h4 class=" popup-title text-center text-dark">S'inscrire et Postuler</h4>
+                         <p class="text-center">Si vous avez déjà un compte,<span><a class="text-primary" target="_blank" href="{{path('app_login')}}">identifiez-vous </a></span></p>
                          {{ form_start(form ,{attr: {class: ''}}) }}  
                         <div id="error3"></div>
                         <div class=" row gap-20 m-b20">
@@ -239,24 +239,14 @@
                                  <div class="fs-0">Adresse E-mail</div>
                               {{ form_widget(form.email, {'attr': {'pattern': '[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,63}$'}}) }}
                            </div>
-                             <div class=" col-sm-6 col-md-6">
-                            
-                                 <div class="fs-0">titre</div>
-                                 {{ form_widget(form.titre,{attr: {class: 'js-choice'}}) }}
-                         
-                           </div>
+                           
                               <div class=" col-sm-6 col-md-6 m-b10">
                              
                                  <div class="fs-0">Mot de passe</div>
                                   {{ form_widget(form.newpassword,{attr: {class: 'form-control'}}) }} 
                        
                            </div>
-                           <div class=" col-sm-6 col-md-6 m-b10">
-                             
-                                 <div class="fs-0">Mot de passe</div>
-                                  {{ form_widget(form.repeatedpassword,{attr: {class: 'form-control'}}) }} 
-                       
-                           </div>
+                          
                           
                            
                            <div class="fs-0">cv</div>
@@ -275,28 +265,52 @@
                           {{ form_end(form) }}
                         <hr class="hr-text bg-dark" data-content="AND">
                         <div class="text-center"> 
-                           <a class="btn btn-outline-secondary rounded-pill " data-bs-toggle="tab" href="#login_apply">Se connecter</a>
+                           <a class="btn btn-outline-secondary rounded-pill " data-bs-toggle="tab" href="#login_apply">Postulter sans compte</a>
                         </div>
                      </div>
                      <div id="login_apply"  class="tab-pane fade col-12 p-a0 " name="frm"  method="POST" autocomplete="off " >
-                        <h4 class=" popup-title text-center text-dark">Se connecter</h4>
-                        <p class="text-center">Si vous avez un compte chez nous, veuillez vous identifier.</p>
-                        <div id="error2"></div>
-                        <div class="form-group">
-                           <div class="fs-0">Adresse E-mail</div>
-                           <input class="form-control" placeholder="Enter your email address" name="email" id="Email" required type="email"> 
+                        <h4 class=" popup-title text-center text-dark">Postuler</h4>
+                        <p class="text-center">Si vous avez déjà un compte,<span><a class="text-primary" target="_blank" href="{{path('app_login')}}">identifiez-vous </a></span></p>
+                         {{ form_start(form_guest ,{attr: {class: ''}}) }}  
+                        <div id="error3"></div>
+                        <div class=" row gap-20 m-b20">
+                        
+                       
+                           <div class=" col-sm-6 col-md-6 ">
+                             
+                                 <div class="fs-0">Nom</div>
+                                {{ form_widget(form_guest.lname,{attr: {class: 'form-control'}}) }}
+                              
+                           </div>
+                           <div class=" col-sm-6 col-md-6">
+                             
+                                 <div class="fs-0">Prénom</div>
+                                {{ form_widget(form_guest.fname,{attr: {class: 'form-control'}}) }}
+                             
+                           </div>
+                           <div class=" col-sm-6 col-md-6">
+                            
+                                 <div class="fs-0">Adresse E-mail</div>
+                              {{ form_widget(form_guest.email, {'attr': {'pattern': '[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,63}$'}}) }}
+                           </div>
+                           
+                            
+                          
+                          
+                           
+                           <div class="fs-0">cv</div>
+                             <div class=" ">
+
+                                        
+                                
+                                    {{ form_widget(form_guest.cvfield,{attr: {class: 'form-control'}}) }} 
+                                </div>
+                           
                         </div>
-                        <div class="form-group">
-                           <div class="fs-0">Mot de passe</div>
-                           <input class="form-control" placeholder="Enter your password" name="password" id="Password" required type="password"> 
-                        </div>
-                        <div class="text-center">
-                           <input type="button" name="login_job" id="login_job" class="btn btn-primary rounded-pill" value="Login" />
-                        </div>
+                          <div class="d-grid gap-2"><button class="btn btn-primary" type="submit">Postuler</button></div>
+                       {{ form_end(form_guest) }}
                         <ul></ul>
-                        <div class="text-center" >
-                           <a data-bs-toggle="tab" href="#forgot-password-apply" class=""><i class="fa fa-unlock-alt"></i> Mot de passe oublié ?</a>
-                        </div>
+                       
                         <hr class="hr-text bg-dark" data-content="AND">
                         <div class="text-center" >
                            <a class="btn btn-outline-success rounded-pill" data-bs-toggle="tab" href="#signup_apply">S'inscrire</a>

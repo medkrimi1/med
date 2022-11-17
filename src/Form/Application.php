@@ -26,7 +26,7 @@ class Application extends AbstractType
         $builder
            ->add('fname', TextType::class, [
                 "attr" => [ 'required'=>true,
-                    "class" => "form-control"
+                    
                 ]
             ])
             ->add('lname', TextType::class, [
@@ -40,33 +40,25 @@ class Application extends AbstractType
                     "class" => "form-control"
                 ]
             ])
-                ->add('titre', EntityType::class, [
-                'class' => Professions::class,
-                'choice_label' => 'title',
-                 'required'=>true,
-                'placeholder' => 'Select',
-             
-            ])
+               
                 
                   
                         ->add('cvfield', FileType::class, [
                 'mapped' => false,
-                'required'=>false,     'attr' => [
+                'required'=>true,     'attr' => [
              'accept' => "application/pdf"
 
          ]
             ])
                  ->add('cv', HiddenType::class, [
+                    'mapped'=>false
                 
             ])
               ->add('newpassword',PasswordType::class, [ 
                 'mapped' => false,
                
             ])
-       ->add('repeatedpassword',PasswordType::class, [
-                'mapped' => false,
-               
-            ])
+     
           
         ;
     }
