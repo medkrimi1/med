@@ -33,7 +33,7 @@ class Certificate
     private $startdate;
 
     /**
-      * @ORM\Column(type="datetime" , nullable=true)
+      * @ORM\Column(type="datetime" )
      */
     private $enddate;
 	/**

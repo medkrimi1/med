@@ -46,6 +46,7 @@ class CandidateResumeController extends AbstractController
        $newWork = new WorkExperience();
        $newCertif = new Certificate();
        $newlanguage = new Language();
+
         $form_skills= $this->createFormBuilder($candidate)
          ->add('skill', EntityType::class , [
             
@@ -70,12 +71,40 @@ class CandidateResumeController extends AbstractController
 
 
           }
+           $choices=['Débutant'=>'Débutant','Intermédiaire'=>'Intermédiaire','Avancé'=>'Avancé'  ];
+           $form_language= $this->createFormBuilder($newlanguage)
+           
+        ->add('lname', ChoiceType::class, ['choices'=>['français'=>'français','anglais'=>'anglais','espagnol'=>'espagnol','russe'=>'russe','Arabe'=>'Arabe','portugais'=>'portugais' ,'Allemand'=>'Allemand' ] ])
+      ->add('reading', ChoiceType::class, ['choices'=>$choices ])
+       ->add('speak', ChoiceType::class, ['choices'=>$choices ])
+        ->add('writing', ChoiceType::class, ['choices'=>$choices  ])
+          
+
+       
+         ->getForm();
+        $form_language->handleRequest($request) ;
+          
+          
+   
+          if ($form_language->isSubmitted() && $form_language->isValid()) {
+
+          
+    
          
+          $newlanguage->setCandidate($candidate);
+         $em->persist($newlanguage);
+          $em->flush();
+               
+         $this->addFlash('success', 'La langue a été Ajoutée avec succès!');
+             return $this->redirect($request->getUri());
+
+          }
        $form_formation= $this->createFormBuilder($newformation)
         ->add('university')
         ->add('diploma')
            ->add('startdate', DateType::class, [ 
         'widget' => 'single_text',
+         'required'=>true,
        
                   'attr' => ['class' => 'js-datepicker text-center text-primary'],  
         ])
@@ -157,6 +186,7 @@ class CandidateResumeController extends AbstractController
 ->add('attachment', HiddenType::class, [    ])
            ->add('startdate', DateType::class, [ 
         'widget' => 'single_text',
+         'required'=>true,
        
                   'attr' => ['class' => 'js-datepicker text-center text-primary'],  
         ])
@@ -193,33 +223,7 @@ $newCertif->setAttachment($AttachmentName);
 
           }
 
-         $choices=['Débutant'=>'Débutant','Intermédiaire'=>'Intermédiaire','Avancé'=>'Avancé'  ];
-           $form_language= $this->createFormBuilder($newlanguage)
-           
-        ->add('lname', ChoiceType::class, ['choices'=>['français'=>'français','anglais'=>'anglais','espagnol'=>'espagnol','russe'=>'russe','Arabe'=>'Arabe','portugais'=>'portugais' ,'Allemand'=>'Allemand' ] ])
-      ->add('reading', ChoiceType::class, ['choices'=>$choices ])
-       ->add('speak', ChoiceType::class, ['choices'=>$choices ])
-        ->add('writing', ChoiceType::class, ['choices'=>$choices  ])
-          
-
        
-         ->getForm();
-        $form_language->handleRequest($request) ;
-          
-          
-   
-          if ($form_language->isSubmitted() && $form_language->isValid()) {
-           
-    
-         
-          $newlanguage->setCandidate($candidate);
-         $em->persist($newlanguage);
-          $em->flush();
-               
-         $this->addFlash('success', 'La langue a été Ajoutée avec succès!');
-             return $this->redirect($request->getUri());
-
-          }
 
 
 
@@ -244,6 +248,7 @@ $newCertif->setAttachment($AttachmentName);
         ->add('diploma')
            ->add('startdate', DateType::class, [ 
         'widget' => 'single_text',
+         'required'=>true,
         
                   'attr' => ['class' => 'js-datepicker text-center text-primary'],  
         ])
@@ -293,6 +298,7 @@ $newCertif->setAttachment($AttachmentName);
         ->add('company', TextType::class)
            ->add('startdate', DateType::class, [ 
         'widget' => 'single_text',
+         'required'=>true,
       
                   'attr' => ['class' => 'js-datepicker text-center text-primary'],  
         ])
