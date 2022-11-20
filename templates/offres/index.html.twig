@@ -1,5 +1,6 @@
 {% extends 'layout.html.twig' %}
 {% block body %}
+ <div class="header-w bg-white" > </div>
 <div class="page-content-glass">
    <!-- Section Banner -->
    <div class="dez-bnr-inr dez-bnr-inr-md   text-white text-center bg-img-fix" style="background-image: url({{ asset('images/carriere.jpg') }});">
@@ -7,23 +8,29 @@
          <div class="dez-bnr-inr-entry align-m ">
             <div class="dezPlaceAni">
                <div class=" carriere-title  fw-bold ms-1" >Bienvenue sur votre espace carrière</div>
-               <div class="container form-control bg-white d-flex   d-flex justify-content-center rounded-pill col-lg-9"  >
-                  <div class="   d-flex  col-lg-12 " >
-                     <div class=" col-lg-9 m-r20 m-l10 py-0 m-t10 ">
-                        {{ form_start(form ,{attr: {class: ''}}) }}  
-                        <div class="float-start col-lg-7 m-l20 m-t2">
-                           {{ form_widget(form.Name,{attr: {class: 'form-control text-center'}}) }}
+             
+               <div class="pxp-hero-form pxp-hero-form-round pxp-large  ">
+                  {{ form_start(form ,{attr: {class: 'row  align-items-center d-flex justify-content-center'}}) }} 
+                 
+                        <div class="col-12 col-lg">
+                            <div class="input-group mb-3 mb-lg-0">
+                         
+                              {{ form_widget(form.Name,{attr: {class: 'form-control bg-200 text-center text-dark fw-bold'}}) }}
+                            </div>
                         </div>
-                        <div class="col-lg-4 float-end m-r10">
-                           {{ form_widget(form.TypeJobs,{attr: {class: 'form-control text-center text-primary'}}) }} 
+                     
+                        <div class="col-12 col-lg pxp-has-left-border">
+                            <div class="input-group mb-3 mb-lg-0">
+                              
+                               {{ form_widget(form.TypeJobs,{attr: {class: 'form-select bg-200 text-center text-primary fw-bold'}}) }} 
+                            </div>
                         </div>
-                     </div>
-                     <div class="col-lg-3 m-t10">
-                        <button type="submit" class="rounded-pill btn btn-primary btn-lg card-title ">Rechercher</button>
-                     </div>
-                     {{ form_end(form) }}
-                  </div>
-               </div>
+                        <div class="col-12 col-lg-auto">
+                           <button type="submit" class="rounded-pill btn btn-primary btn-lg card-title bg-primary " style="height:40px;">Rechercher</button>
+                        </div>
+                 
+                      {{ form_end(form) }} 
+                </div>
             </div>
          </div>
       </div>
