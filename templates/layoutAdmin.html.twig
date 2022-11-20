@@ -1,6 +1,3 @@
-  
-               
-
 {% if is_granted('ROLE_USER') %}
 <!DOCTYPE html>
 <html>
@@ -15,7 +12,6 @@
       <!-- FAVICONS ICON -->
       <script src="{{ asset('assets/js/config.js') }}"></script>
       <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.6.0/css/bootstrap-datepicker.css">
-  
       <script src="{{ asset('vendors/overlayscrollbars/OverlayScrollbars.min.js') }}"></script>
       <!-- ===============================================-->
       <!-- Stylesheets-->
@@ -27,14 +23,11 @@
       <link rel="stylesheet" type="text/css" href="{{ asset('css/templete.css') }}">
       <link rel="stylesheet" type="text/css" src="{{asset('vendors/datatables.net-bs5/dataTables.bootstrap5.min.css')}}">
       <link href="{{ asset('vendors/overlayscrollbars/OverlayScrollbars.min.css') }}" rel="stylesheet">
-      <link href="{{ asset('assets/css/theme-rtl.min.css') }}" rel="stylesheet" id="style-rtl">
       <link href="{{ asset('assets/css/theme.min.css') }}" rel="stylesheet" id="style-default">
-      <link href="{{ asset('assets/css/user.min.css') }}" rel="stylesheet" id="user-style-default">
-      <link href="{{ asset('assets/css/user.min.css') }}" rel="stylesheet" id="user-style-default">
       <script src="{{ asset('vendors/choices/choices.min.js') }}"></script>
       <script src="{{ asset('js/multiselect-dropdown.js') }}"></script>
       <link href="{{ asset('vendors/choices/choices.min.css') }}" rel="stylesheet" />
-       <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.13.1/css/jquery.dataTables.css">
+      <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.13.1/css/jquery.dataTables.css">
       <script>
          var isRTL = JSON.parse(localStorage.getItem('isRTL'));
          if (isRTL) {
@@ -52,10 +45,8 @@
       </script>
       {% endblock %}
       {% block javascripts %}
-
-  
-<script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.13.1/js/jquery.dataTables.js"></script>
-       <script src="//cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.6.0/js/bootstrap-datepicker.min.js"></script>
+      <script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.13.1/js/jquery.dataTables.js"></script>
+      <script src="//cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.6.0/js/bootstrap-datepicker.min.js"></script>
       <script src="{{ asset('vendors/popper/popper.min.js') }}"></script>
       <script src="{{ asset('vendors/bootstrap/bootstrap.min.js') }}"></script>
       <script src="{{ asset('vendors/anchorjs/anchor.min.js') }}"></script>
@@ -181,22 +172,13 @@
                               </li>
                            </ul>
                            </a><!-- parent pages-->
-                         
-                        
-                   
-                      
-                       
-
-                      
-                         {% for role in app.user.roles %}
-                          {% if role =='ROLE_ADMIN' %}
+                           {% for role in app.user.roles %}
+                           {% if role =='ROLE_ADMIN' %}
                            <a class="nav-link dropdown-indicator" href="#social" role="button" data-bs-toggle="collapse" aria-expanded="false" aria-controls="social">
                               <div class="d-flex align-items-center"><span class="nav-link-icon"><span class="fas fa-network-wired"></span></span><span class="nav-link-text ps-1">Équipe RH</span></div>
                            </a>
                            <hr>
                            <ul class="nav collapse false" id="social">
-                            
-                             
                               <li class="nav-item">
                                  <a class="nav-link" href="{{ path('dashboard_management') }}" aria-expanded="false">
                                     <div class="d-flex align-items-center"><span class="nav-link-text ps-1">Gérer</span></div>
@@ -237,11 +219,8 @@
                               <div class="d-flex align-items-center"><span class="nav-link-icon"><span class="fas fa-list"></span></span><span class="nav-link-text ps-1">Types</span></div>
                            </a>
                            <hr>
-
                            {% endif %}
-                            {% endfor %}
-                           
-                       
+                           {% endfor %}
                         <li class="nav-item">
                            <!-- label-->
                            <div class="row navbar-vertical-label-wrapper mt-3 mb-2">
@@ -423,11 +402,7 @@
          </div>
       </a>
    </body>
-  
 </html>
 {% else %}
 <meta http-equiv="refresh" content="1; url={{path('app_login')}}">
 {% endif %}
-
-
-                

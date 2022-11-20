@@ -1,121 +1,108 @@
 {% extends 'layout.html.twig' %}
-
 {% block body %}
-    <div class="page-content-glass">
-        <!-- Section Banner -->
-        <div class="dez-bnr-inr dez-bnr-inr-md   text-white text-center bg-img-fix" style="background-image: url({{ asset('images/carriere.jpg') }});">
-            <div class="container searchbar ">
-                <div class="dez-bnr-inr-entry align-m ">
-                    <div class="dezPlaceAni">
-                        <div class=" carriere-title  fw-bold ms-1" >B<span class="typed-text" data-typed-text='["ienvenue sur votre espace carrière"] '></span></div>
-                        <div class="container form-control bg-white d-flex   d-flex justify-content-center rounded-pill col-lg-9"  >
-                            <div class="   d-flex  col-lg-12 " >
-                                <div class=" col-lg-9 m-r20 m-l10 py-0 m-t10 ">
-                                      {{ form_start(form ,{attr: {class: ''}}) }}  
-                                    <div class="float-start col-lg-7 m-l20 m-t2">
-                                        {{ form_widget(form.Name,{attr: {class: 'form-control text-center'}}) }}
-                                    </div><div class="col-lg-4 float-end m-r10">
-                                     {{ form_widget(form.TypeJobs,{attr: {class: 'form-control text-center text-primary'}}) }} 
-                                </div> </div>
-                                
-                              
-                                <div class="col-lg-3 m-t10">
-                                    <button type="submit" class="rounded-pill btn btn-primary btn-lg card-title ">Rechercher</button>
-                                </div>
-                                  {{ form_end(form) }}
-                            </div>
+<div class="page-content-glass">
+   <!-- Section Banner -->
+   <div class="dez-bnr-inr dez-bnr-inr-md   text-white text-center bg-img-fix" style="background-image: url({{ asset('images/carriere.jpg') }});">
+      <div class="container searchbar ">
+         <div class="dez-bnr-inr-entry align-m ">
+            <div class="dezPlaceAni">
+               <div class=" carriere-title  fw-bold ms-1" >Bienvenue sur votre espace carrière</div>
+               <div class="container form-control bg-white d-flex   d-flex justify-content-center rounded-pill col-lg-9"  >
+                  <div class="   d-flex  col-lg-12 " >
+                     <div class=" col-lg-9 m-r20 m-l10 py-0 m-t10 ">
+                        {{ form_start(form ,{attr: {class: ''}}) }}  
+                        <div class="float-start col-lg-7 m-l20 m-t2">
+                           {{ form_widget(form.Name,{attr: {class: 'form-control text-center'}}) }}
                         </div>
-                    </div>
-                </div>
+                        <div class="col-lg-4 float-end m-r10">
+                           {{ form_widget(form.TypeJobs,{attr: {class: 'form-control text-center text-primary'}}) }} 
+                        </div>
+                     </div>
+                     <div class="col-lg-3 m-t10">
+                        <button type="submit" class="rounded-pill btn btn-primary btn-lg card-title ">Rechercher</button>
+                     </div>
+                     {{ form_end(form) }}
+                  </div>
+               </div>
             </div>
-        </div>
-        
-        <div class="section-full  content-inner-2">
-            <div class="container">
-                <div class="d-flex job-title-bx section-head">
-                    <div class="me-auto">
-                        <h2 class="slice__title text-dark">Offres d'emploi récentes</h2>   {% if jobs is empty %}
-                           <div class="alert alert-warning text-center" role="alert">
-  0 offre trouvé 
+         </div>
+      </div>
+   </div>
+   <div class="section-full  content-inner-2">
+      <div class="container">
+         <div class="d-flex job-title-bx section-head">
+            <div class="me-auto">
+               <h2 class="slice__title text-dark">Offres d'emploi récentes</h2>
+               {% if jobs is empty %}
+               <div class="alert alert-warning text-center" role="alert">
+                  0 offre trouvé 
+               </div>
+               {% else %}
+               <h6 class="w-d2 text-center">{{jobs|length}} offres trouvés</h6>
+            </div>
+         </div>
+         <div class="row " id="|" >
+            <div class="col-lg-9">
+               <ul class="post-job-bx text-dark ">
+                  {% for job in jobs %}
+                  <li>
+                     <div class="post-bx bg-200 border-3 border-dark bg-white">
+                        <div class="d-flex m-b10">
+                           <div class="">
+                              <span> <img class="job-post-company d-none d-lg-block" style="background-image " src="
+                                 {{asset('images/jobs/' ~job.image)}}" alt="Image" >
+                              </span>
+                           </div>
+                           <div class="job-post-info ">
+                              <h5 class="job-title text-dark"><a href="{{path('offre_get',{'slug':job.slug,'id':job.id})}}">{{ job.title }}</a></h5>
+                              <ul>
+                                 <li class="job-info "><i class="fas fa-map-marker-alt "></i> {{  job.country|capitalize }} ,{{  job.city|capitalize }} |</li>
+                                 <li class="job-info"><i class="far fa-bookmark"></i> {{ job.type|capitalize }} |</li>
+                                 <li class="job-info"><i class="far fa-clock"></i> {{ job.beginAt|date("m/d/Y") }}</li>
+                              </ul>
+                           </div>
+                        </div>
+                        <div class="row">
+                           <div class="container ">
+                           </div>
+                           <div class="d-flex justify-content-end" >
+                              <div class="">
+                                 <a href="{{path('offre_get',{'slug':job.slug,'id':job.id})}}"class="btn btn-primary rounded-pill "><i></i> Postuler</a>
+                              </div>
+                           </div>
+                        </div>
+                     </div>
+                  </li>
+                  </a>
+                  {% endfor %}
+                  {% endif %}
+               </ul>
+            </div>
+            <div class="col-lg-3">
+               <div class="sticky-top">
+                  <div class="candidates-are-sys m-b30 bg-white ">
+                     <div class="candidates-bx ">
+                        <div class="testimonial-pic radius "><img src="{{ asset('images/fondateur.jpg') }}" alt="" width="100" height="100"></div>
+                        <div class="testimonial-text  ">
+                           <p class=" text-dark">Nous sommes un centre spécialisé dans la transformation digitale notre priorité c’est de vous apporter un service IT de qualité auprès de nos clients et de notre société.</p>
+                        </div>
+                        <div class="testimonial-detail"> <strong class="fn text-primary">Firas Makni</strong> <span class="fn2">Fondateur,Tecos</span> </div>
+                     </div>
+                  </div>
+                  <div class="quote-bx bg-white">
+                     <div class="quote-info">
+                        <h4 class="w-d text-dark ">Faites la différence avec votre CV en ligne !</h4>
+                        <p class="w-d2 text-dark">Votre CV en quelques minutes avec l'assistant de CV Tecos est prêt !</p>
+                        <a data-bs-toggle="modal" data-bs-target="#spontanee"  class="btn btn-primary rounded-pill" >Déposer CV</a>
+                     </div>
+                  </div>
+               </div>
+            </div>
+         </div>
+      </div>
+   </div>
 </div>
-                              {% else %}
-                        <h6 class="w-d2 text-center">{{jobs|length}} offres trouvés</h6>
-                    </div>
-                </div>
-                <div class="row " id="|" >
-                    <div class="col-lg-9">
-                        
-                        <ul class="post-job-bx text-dark ">
-                                 
-                           {% for job in jobs %}
-                            
-                            <li>
-                                <div class="post-bx bg-200 border-3 border-dark bg-white">
-                                    <div class="d-flex m-b10">
-                                        <div class="">
-                                    <span> <img class="job-post-company" style="background-image " src="
-                              {{asset('images/jobs/' ~job.image)}}" alt="Image" >
-                                    </span>
-                                        </div>
-                                        <div class="job-post-info ">
-                                            <h5 class="job-title text-dark"><a href="{{path('offre_get',{'slug':job.slug,'id':job.id})}}">{{ job.title }}</a></h5>
-                                            <ul>
-                                                <li class="job-info "><i class="fas fa-map-marker-alt "></i> {{  job.country|capitalize }} ,{{  job.city|capitalize }} |</li>
-                                                <li class="job-info"><i class="far fa-bookmark"></i> {{ job.type|capitalize }} |</li>
-                                                <li class="job-info"><i class="far fa-clock"></i> {{ job.beginAt|date("m/d/Y") }}</li>
-                                            </ul>
-                                        </div>
-                                    </div>
-                                    <div class="row">
-                                        <div class="container ">
-                                        </div>
-                                        <div class="d-flex justify-content-end" >
-                                            <div class="">
-         <a href="{{path('offre_get',{'slug':job.slug,'id':job.id})}}"class="btn btn-primary rounded-pill "><i></i> Postuler</a>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </li>
-                             </a>
-                            {% endfor %}
-                            {% endif %}
-                       
-                        </ul>
-                       
-                    </div>
-                    <div class="col-lg-3">
-                        <div class="sticky-top">
-                            <div class="candidates-are-sys m-b30 bg-white ">
-                                <div class="candidates-bx ">
-                                    <div class="testimonial-pic radius "><img src="{{ asset('images/fondateur.jpg') }}" alt="" width="100" height="100"></div>
-                                    <div class="testimonial-text  ">
-                                        <p class=" text-dark">Nous sommes un centre spécialisé dans la transformation digitale notre priorité c’est de vous apporter un service IT de qualité auprès de nos clients et de notre société.</p>
-                                    </div>
-                                    <div class="testimonial-detail"> <strong class="fn text-primary">Firas Makni</strong> <span class="fn2">Fondateur,Tecos</span> </div>
-                                </div>
-                            </div>
-                            <div class="quote-bx bg-white">
-                                <div class="quote-info">
-                                    <h4 class="w-d text-dark ">Faites la différence avec votre CV en ligne !</h4>
-                                    <p class="w-d2 text-dark">Votre CV en quelques minutes avec l'assistant de CV Tecos est prêt !</p>
-                                    <a data-bs-toggle="modal" data-bs-target="#spontanee"  class="btn btn-primary rounded-pill" >Déposer CV</a>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-
-
-
-
-
-
-
-    <div class="modal" id="spontanee" tabindex="-1" role="dialog" aria-hidden="true">
+<div class="modal" id="spontanee" tabindex="-1" role="dialog" aria-hidden="true">
    <div class="modal-dialog modal-dialog-centered" role="document">
       <div class="modal-content position-relative border border-dark">
          <div class="d-flex flex-row-reverse">
@@ -128,43 +115,36 @@
                      <div id="signup_apply" class="tab-pane active  col-12 p-a0 "  >
                         <h4 class=" popup-title text-center text-dark">Candidature Spontanée </h4>
                         <p class="text-center">Déposez votre candidature maintenant</p>
-                         {{ form_start(form2 ,{attr: {class: ''}}) }}  
+                        {{ form_start(form2 ,{attr: {class: ''}}) }}  
                         <div id="error3"></div>
                         <div class=" row gap-20 m-b30 ">
-                                                 <div class=" col-sm-6 col-md-6 ">
-                             
-                                 <div class="fs-0">Nom</div>
-                                {{ form_widget(form2.lname,{attr: {class: 'form-control'}}) }}
-                              
+                           <div class=" ">
+                              <div class="fs-0">Nom</div>
+                              {{ form_widget(form2.lname,{attr: {class: 'form-control'}}) }}
                            </div>
-                           <div class=" col-sm-6 col-md-6">
-                             
-                                 <div class="fs-0">Prénom</div>
-                                {{ form_widget(form2.fname,{attr: {class: 'form-control'}}) }}
-                             
+                           <div class=" ">
+                              <div class="fs-0">Prénom</div>
+                              {{ form_widget(form2.fname,{attr: {class: 'form-control'}}) }}
                            </div>
-                           <div class=" col-sm-6 col-md-6">
-                            
-                                 <div class="fs-0">Adresse E-mail</div>
+                           <div class=" ">
+                              <div class="fs-0">Adresse E-mail</div>
                               {{ form_widget(form2.email, {'attr': {'pattern': '[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,63}$'}}) }}
                            </div>
-                                
-                            <div class="fs-0">cv</div>
-                             <div class=" ">
-     
-                                    {{ form_widget(form2.cvfield,{attr: {class: 'form-control'}}) }} 
-                                </div>
-                                </div>
-                       {{ form_widget(form2.newpassword,{attr: {class: 'd-none'},required:false}) }} 
-                       
-                      
-                      <div class="d-grid gap-2 "><button class="btn btn-primary" type="submit">Déposer CV</button></div>
-                          {{ form_end(form2) }}
-                       
+                           <div class="">
+                              <div class="fs-0">cv</div>
+                              {{ form_widget(form2.cvfield,{attr: {class: 'form-control '}}) }} 
+                           </div>
+                        </div>
+                        {{ form_widget(form2.newpassword,{attr: {class: 'd-none'},required:false}) }} 
+                        <div class="d-grid gap-2 "><button class="btn btn-primary" type="submit">Déposer CV</button></div>
+                        {{ form_end(form2) }}
                      </div>
-                     </div>             </div>
-               </div>    </div>   </div>
+                  </div>
+               </div>
+            </div>
+         </div>
       </div>
    </div>
+</div>
 </div>
 {% endblock %}

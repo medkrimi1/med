@@ -1,210 +1,166 @@
 {% extends 'layout.html.twig' %}
-
 {% block body %}
-    <div class="header-w bg-white" > </div>
-
-    <div class="dez-bnr-inr overlay-black-middle" >
-        <img class="dez-bnr-inr overlay-black-middle" style="background-image " alt="image"   src="{{asset('images/jobs/' ~job.cover)}}">
-        <div class="pxp-hero-opacity "    >
-            
-        </div>
-        <div class="pxp-single-candidate-hero-caption" >
-            <div class="container">
-                <img class="pxp-single-job-cover-logo" style="background-image " alt=""   src="{{asset('images/jobs/' ~job.image)}}"  >
-
-             
+<div class="header-w bg-white" > </div>
+<div class="dez-bnr-inr overlay-black-middle" >
+   <img class="dez-bnr-inr overlay-black-middle" style="background-image " alt="image"   src="{{asset('images/jobs/' ~job.cover)}}">
+   <div class="pxp-hero-opacity "    >
+   </div>
+   <div class="pxp-single-candidate-hero-caption" >
+      <div class="container">
+         <img class="pxp-single-job-cover-logo" style="background-image " alt=""   src="{{asset('images/jobs/' ~job.image)}}"  >
+      </div>
+   </div>
+</div>
+<div class="container">
+   <div class="pxp-single-job-content mt-4 mt-lg-5">
+      <div class="row">
+         <div class=" col-lg-7 col-xl-8 col-xxl-9">
+            <div class="row justify-content-between align-items-center">
+               <div class=" col-xl-8 col-xxl-6">
+                  <ul></ul>
+                  <div class="job-title  text-dark display-4 ">{{job.title}}</div>
+               </div>
+               <div class="col-auto">
+                  <div class="pxp-single-job-options mt-4 col-xl-0">
+                     <div class="sticky-sidebar">
+                        <div class="apply-job-wrapper">
+                           {% if app.user %}
+                           {% for role in app.user.roles %}
+                           <a type="button" class="btn btn-primary rounded-pill btn-lg 
+                           {% if role =='ROLE_Candidate' %}            
+                           " href="{{path('apply',{'id':job.id,'idc':app.user.id})}}"
+                           {% else %}
+                           disabled btn-hidden"
+                           {% endif %}  
+                           {% endfor %}  
+                           > Postuler</a> 
+                           {% else %}
+                           <a href="javascript:void(0);" title="READ MORE" rel="bookmark" data-bs-toggle="modal" data-bs-target="#jobapply" class="btn btn-primary rounded-pill btn-lg"> Postuler </a>
+                           {% endif %}
+                        </div>
+                     </div>
+                  </div>
+               </div>
             </div>
-        </div>
-    </div>
-    <div class="container">
-        <div class="pxp-single-job-content mt-4 mt-lg-5">
-            <div class="row">
-                <div class=" col-lg-7 col-xl-8 col-xxl-9">
-                    <div class="row justify-content-between align-items-center">
-                        <div class=" col-xl-8 col-xxl-6">
-                            <ul></ul>
-                            <div class="job-title  text-dark display-4 ">{{job.title}}</div>
-                        </div>
-                  
-                        
-                      <div class="col-auto">
-                                    <div class="pxp-single-job-options mt-4 col-xl-0">
-                                        
-                                
-                                <div class="sticky-sidebar">
-                                        <div class="apply-job-wrapper">
-
-
-                                            {% if app.user %}
-
-                                            <a type="button" href="{{path('apply',{'id':job.id,'idc':app.user.id})}}" class="btn btn-primary rounded-pill btn-lg"> Postuler </a>
-                                           {% else %}
-                                           <a href="javascript:void(0);" title="READ MORE" rel="bookmark" data-bs-toggle="modal" data-bs-target="#jobapply" class="btn btn-primary rounded-pill btn-lg"> Postuler </a>
-                                            {% endif %}
-
-
-                        </div>
-                                </div>
-                                    </div>
-                                </div>
-                    </div>
-                    <p id="data"></p>
-                    <div class="row mt-4 justify-content-between align-items-center">
-                        <div class="col-6">
-                        </div>
-                        <div class="col-auto">
-                            <div class="pxp-single-job-date pxp-text-light">publié :{{ job.CreatedAt|date("m/d/Y") }}</div>
-                        </div>
-                    </div>
-                            {% for message in app.flashes('successApply') %}
+            <p id="data"></p>
+            <div class="row mt-4 justify-content-between align-items-center">
+               <div class="col-6">
+               </div>
+               <div class="col-auto">
+                  <div class="pxp-single-job-date pxp-text-light">publié :{{ job.CreatedAt|date("m/d/Y") }}</div>
+               </div>
+            </div>
+            {% for message in app.flashes('successApply') %}
             <div class="text-center text-dark alert alert-success">
-                {{ message }}
+               {{ message }}
             </div>
             {% endfor %}
-                {% for message in app.flashes('error') %}
+            {% for message in app.flashes('error') %}
             <div class="text-center text-dark alert alert-warning">
-                {{ message }}
+               {{ message }}
             </div>
-        {% endfor %}
-                    <div class="job-bx-title clearfix">
-                    </div>
-                    <div class="card mb-3">
-                        <div class="card-header bg-300">
-                            <h2 class="explore-des text-dark">Presentation</h2>
-                        </div>
-                        <div class="card-body">
-                            <p class="text-dark"> {{ job.presentation}}</p>
-                        </div>
-                    </div>
-                    <div class="card mb-3">
-                        <div class="card-header bg-300">
-                            <h5 class="explore-des text-dark">Description du poste</h5>
-                        </div>
-                        <div class="card-body">
-                            <p class="text-dark"> {{ job.resp }}</p>
-                        </div>
-                    </div>
-                    <div class="card mb-3">
-                        <div class="card-header bg-300">
-                            <h5 class="explore-des text-dark">Profil recherché</h5>
-                        </div>
-                        <div class="card-body">
-                            <p class="text-dark">{{ job.req }}</p>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-lg-5 col-xl-4 col-xxl-3 text-center">
-                    <div class="">
-                        <div>
-                            <div class="">
-                                <div class="sticky-sidebar">
-                                    <div class="card mb-3 ">
-                                        </br>
-                                        <h6 class="explore-des-2 text-dark fw-bold">lieu de travail</h6>
-                                        <h5 class="explore-des-3 text-primary"><i class=" fas fa-map-marker-alt"></i> {{  job.country|capitalize }},{{  job.city|capitalize }}</h5>
-                                        <div class="job-bx-title clearfix">
-                                        </div>
-                                        <h6 class="explore-des-2 text-dark fw-bold">Experience</h6>
-                                        <h5 class="explore-des-3 text-primary">{{ job.exp.title|capitalize}}</h5>
-                                        <div class="job-bx-title clearfix">
-                                        </div>
-                                        <h6 class="explore-des-2 text-dark fw-bold">Type d'emploi</h6>
-                                        <h5 class="explore-des-3 text-primary">{{ job.typeid.title|capitalize}}</h5>
-                                        <div class="job-bx-title clearfix">
-                                        </div>
-                                        <h6 class="explore-des-2 text-dark fw-bold">Compétences</h6>
-                                        <div class="pxp-single-job-side-info-data"></div>
-
-                                        <div class="job-time   m-t15 m-b10">
-                                            
-                                 {% for skill in job.skills %}    
-                                 <span class="rounded-pill bg-primary tecos-h text-white">
-                             {{ skill.title|capitalize}}
-                                        
-                                         </span>
-                                        {% endfor %}
-                                       </div>
-                                        <div class="job-bx-title clearfix">
-                                        </div>
-                                        <div class="">
-                                            <h6 class="explore-des-2 text-dark fw-bold">Date limite </h6>
-                                            <h5 class="explore-des-3 text-primary">{{ job.expiredAt|date("m/d/Y")}}</h5>
-                                        </div>
-                                        <ul></ul>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="card mb-3">
-                            <div class="card-header bg-300" >
-                                <h2 class="explore-des text-dark fw-bold">Contact</h2>
-                            </div>
-                            <div class="card-body explore-des-3 text-primary">
-                                <div class="explore-des-2 text-dark fw-bold">Téléphone</div>
-                                <div class="explore-des-3 text-primary">+33 1 43 37 85 74</div>
-                                <div class="mt-4">
-                                    <div class="explore-des-2 text-dark fw-bold">Email</div>
-                                    <div class="explore-des-3 text-primary">contact@it-tecos.fr</div>
-                                </div>
-                                <div class="mt-4">
-                                    <div class="explore-des-2 text-dark fw-bold">Lieu</div>
-                                    <div class="explore-des-3 text-primary">Paris, France</div>
-                                </div>
-                                <div class="job-bx-title clearfix">
-                                </div>
-                                <div class="mt-4">
-                                    <div class="explore-des-2 text-secondary">Suivez-nous</div>
-                                </div>
-                                <ul></ul>
-                                <ul class="list-inline m-a0">
-                                    <li><a target="_blank" href="https://www.facebook.com/ITTecos" class="site-button  facebook circle "><i class="fab fa-facebook-f"></i></a></li>
-                                    <li><a target="_blank" href="https://www.google.com/search?q=tecos&oq=tecos&aqs=chrome..69i57j0i512j69i60l3j69i65j69i60l2.1333j0j4&sourceid=chrome&ie=UTF-8" class="site-button  google-plus circle "><i class="fab fa-google-plus-g"></i></a></li>
-                                    <li><a target="_blank" href="https://www.linkedin.com/company/it-tecos/?originalSubdomain=fr" class="site-button  linkedin circle "><i class="fab fa-linkedin-in"></i></a></li>
-                                    <li><a target="_blank" href="https://twitter.com/tecos_it" class="site-button  twitter circle "><i class="fab fa-twitter"></i></a></li>
-                                </ul>
-                            </div>
-                        </div>
-                    </div>
-                </div>
+            {% endfor %}
+            <div class="job-bx-title clearfix">
             </div>
-        </div>
-    </div>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-    <div class="modal" id="jobapply" tabindex="-1" role="dialog" aria-hidden="true">
+            <div class="card mb-3">
+               <div class="card-header bg-300">
+                  <h2 class="explore-des text-dark">Presentation</h2>
+               </div>
+               <div class="card-body">
+                  <p class="text-dark"> {{ job.presentation}}</p>
+               </div>
+            </div>
+            <div class="card mb-3">
+               <div class="card-header bg-300">
+                  <h5 class="explore-des text-dark">Description du poste</h5>
+               </div>
+               <div class="card-body">
+                  <p class="text-dark"> {{ job.resp }}</p>
+               </div>
+            </div>
+            <div class="card mb-3">
+               <div class="card-header bg-300">
+                  <h5 class="explore-des text-dark">Profil recherché</h5>
+               </div>
+               <div class="card-body">
+                  <p class="text-dark">{{ job.req }}</p>
+               </div>
+            </div>
+         </div>
+         <div class="col-lg-5 col-xl-4 col-xxl-3 text-center">
+            <div class="">
+               <div>
+                  <div class="card mb-3">
+                     <div class="sticky-sidebar">
+                        <div class="card-body text-left-not-lg">
+                           </br>
+                           <h6 class="explore-des-2 text-dark fw-bold">lieu de travail</h6>
+                           <h5 class="explore-des-3 text-primary"><i class=" fas fa-map-marker-alt"></i> {{  job.country|capitalize }},{{  job.city|capitalize }}</h5>
+                           <div class="job-bx-title clearfix">
+                           </div>
+                           <h6 class="explore-des-2 text-dark fw-bold">Experience</h6>
+                           <h5 class="explore-des-3 text-primary">{{ job.exp.title|capitalize}}</h5>
+                           <div class="job-bx-title clearfix">
+                           </div>
+                           <h6 class="explore-des-2 text-dark fw-bold">Type d'emploi</h6>
+                           <h5 class="explore-des-3 text-primary">{{ job.typeid.title|capitalize}}</h5>
+                           <div class="job-bx-title clearfix">
+                           </div>
+                           <h6 class="explore-des-2 text-dark fw-bold">Compétences</h6>
+                           <div class="pxp-single-job-side-info-data"></div>
+                           <div class="job-time   m-t15 m-b10">
+                              {% for skill in job.skills %}    
+                              <span class="rounded-pill bg-primary tecos-h text-white">
+                              {{ skill.title|capitalize}}
+                              </span>
+                              {% endfor %}
+                           </div>
+                           <div class="job-bx-title clearfix">
+                           </div>
+                           <div class="">
+                              <h6 class="explore-des-2 text-dark fw-bold">Date limite </h6>
+                              <h5 class="explore-des-3 text-primary">{{ job.expiredAt|date("m/d/Y")}}</h5>
+                           </div>
+                           <ul></ul>
+                        </div>
+                     </div>
+                  </div>
+               </div>
+               <div class="card mb-3">
+                  <div class="card-header bg-300" >
+                     <h2 class="explore-des text-dark fw-bold text-left-not-lg">Contact</h2>
+                  </div>
+                  <div class="card-body explore-des-3 text-primary text-left-not-lg">
+                     <div class="explore-des-2 text-dark fw-bold ">Téléphone</div>
+                     <div class="explore-des-3 text-primary">+33 1 43 37 85 74</div>
+                     <div class="mt-4">
+                        <div class="explore-des-2 text-dark fw-bold">Email</div>
+                        <div class="explore-des-3 text-primary">contact@it-tecos.fr</div>
+                     </div>
+                     <div class="mt-4">
+                        <div class="explore-des-2 text-dark fw-bold">Lieu</div>
+                        <div class="explore-des-3 text-primary">Paris, France</div>
+                     </div>
+                     <div class="job-bx-title clearfix">
+                     </div>
+                     <div class="mt-4">
+                        <div class="explore-des-2 text-secondary">Suivez-nous</div>
+                     </div>
+                     <ul></ul>
+                     <ul class="list-inline m-a0">
+                        <li><a target="_blank" href="https://www.facebook.com/ITTecos" class="site-button  facebook circle "><i class="fab fa-facebook-f"></i></a></li>
+                        <li><a target="_blank" href="https://www.google.com/search?q=tecos&oq=tecos&aqs=chrome..69i57j0i512j69i60l3j69i65j69i60l2.1333j0j4&sourceid=chrome&ie=UTF-8" class="site-button  google-plus circle "><i class="fab fa-google-plus-g"></i></a></li>
+                        <li><a target="_blank" href="https://www.linkedin.com/company/it-tecos/?originalSubdomain=fr" class="site-button  linkedin circle "><i class="fab fa-linkedin-in"></i></a></li>
+                        <li><a target="_blank" href="https://twitter.com/tecos_it" class="site-button  twitter circle "><i class="fab fa-twitter"></i></a></li>
+                     </ul>
+                  </div>
+               </div>
+            </div>
+         </div>
+      </div>
+   </div>
+</div>
+<div class="modal" id="jobapply" tabindex="-1" role="dialog" aria-hidden="true">
    <div class="modal-dialog modal-dialog-centered" role="document">
       <div class="modal-content position-relative border border-dark">
          <div class="d-flex flex-row-reverse">
@@ -216,53 +172,33 @@
                   <div class=" tab-content ">
                      <div id="signup_apply" class="tab-pane active  col-12 p-a0 "  >
                         <h4 class=" popup-title text-center text-dark">S'inscrire et Postuler</h4>
-                         <p class="text-center">Si vous avez déjà un compte,<span><a class="text-primary" target="_blank" href="{{path('app_login')}}">identifiez-vous </a></span></p>
-                         {{ form_start(form ,{attr: {class: ''}}) }}  
+                        <p class="text-center">Si vous avez déjà un compte,<span><a class="text-primary" target="_blank" href="{{path('app_login')}}">identifiez-vous </a></span></p>
+                        {{ form_start(form ,{attr: {class: ''}}) }}  
                         <div id="error3"></div>
                         <div class=" row gap-20 m-b20">
-                        
-                       
-                           <div class=" col-sm-6 col-md-6 ">
-                             
-                                 <div class="fs-0">Nom</div>
-                                {{ form_widget(form.lname,{attr: {class: 'form-control'}}) }}
-                              
+                           <div class="  ">
+                              <div class="fs-0">Nom</div>
+                              {{ form_widget(form.lname,{attr: {class: 'form-control'}}) }}
                            </div>
-                           <div class=" col-sm-6 col-md-6">
-                             
-                                 <div class="fs-0">Prénom</div>
-                                {{ form_widget(form.fname,{attr: {class: 'form-control'}}) }}
-                             
+                           <div class=" ">
+                              <div class="fs-0">Prénom</div>
+                              {{ form_widget(form.fname,{attr: {class: 'form-control'}}) }}
                            </div>
-                           <div class=" col-sm-6 col-md-6">
-                            
-                                 <div class="fs-0">Adresse E-mail</div>
+                           <div class=" ">
+                              <div class="fs-0">Adresse E-mail</div>
                               {{ form_widget(form.email, {'attr': {'pattern': '[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,63}$'}}) }}
                            </div>
-                           
-                              <div class=" col-sm-6 col-md-6 m-b10">
-                             
-                                 <div class="fs-0">Mot de passe</div>
-                                  {{ form_widget(form.newpassword,{attr: {class: 'form-control'}}) }} 
-                       
+                           <div class=" m-b10">
+                              <div class="fs-0">Mot de passe</div>
+                              {{ form_widget(form.newpassword,{attr: {class: 'form-control'}}) }} 
                            </div>
-                          
-                          
-                           
                            <div class="fs-0">cv</div>
-                             <div class=" ">
-
-                                        
-                                
-                                    {{ form_widget(form.cvfield,{attr: {class: 'form-control'}}) }} 
-                                </div>
-                           
+                           <div class=" ">
+                              {{ form_widget(form.cvfield,{attr: {class: 'form-control'}}) }} 
+                           </div>
                         </div>
-                      
-                      
-                      <div class="d-grid gap-2"><button class="btn btn-primary" type="submit">Postuler</button></div>
-
-                          {{ form_end(form) }}
+                        <div class="d-grid gap-2"><button class="btn btn-primary" type="submit">Postuler</button></div>
+                        {{ form_end(form) }}
                         <hr class="hr-text bg-dark" data-content="AND">
                         <div class="text-center"> 
                            <a class="btn btn-outline-secondary rounded-pill " data-bs-toggle="tab" href="#login_apply">Postulter sans compte</a>
@@ -271,46 +207,29 @@
                      <div id="login_apply"  class="tab-pane fade col-12 p-a0 " name="frm"  method="POST" autocomplete="off " >
                         <h4 class=" popup-title text-center text-dark">Postuler</h4>
                         <p class="text-center">Si vous avez déjà un compte,<span><a class="text-primary" target="_blank" href="{{path('app_login')}}">identifiez-vous </a></span></p>
-                         {{ form_start(form_guest ,{attr: {class: ''}}) }}  
+                        {{ form_start(form_guest ,{attr: {class: ''}}) }}  
                         <div id="error3"></div>
                         <div class=" row gap-20 m-b20">
-                        
-                       
-                           <div class=" col-sm-6 col-md-6 ">
-                             
-                                 <div class="fs-0">Nom</div>
-                                {{ form_widget(form_guest.lname,{attr: {class: 'form-control'}}) }}
-                              
+                           <div class="  ">
+                              <div class="fs-0">Nom</div>
+                              {{ form_widget(form_guest.lname,{attr: {class: 'form-control'}}) }}
                            </div>
-                           <div class=" col-sm-6 col-md-6">
-                             
-                                 <div class="fs-0">Prénom</div>
-                                {{ form_widget(form_guest.fname,{attr: {class: 'form-control'}}) }}
-                             
+                           <div class=" ">
+                              <div class="fs-0">Prénom</div>
+                              {{ form_widget(form_guest.fname,{attr: {class: 'form-control'}}) }}
                            </div>
-                           <div class=" col-sm-6 col-md-6">
-                            
-                                 <div class="fs-0">Adresse E-mail</div>
+                           <div class=" ">
+                              <div class="fs-0">Adresse E-mail</div>
                               {{ form_widget(form_guest.email, {'attr': {'pattern': '[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,63}$'}}) }}
                            </div>
-                           
-                            
-                          
-                          
-                           
                            <div class="fs-0">cv</div>
-                             <div class=" ">
-
-                                        
-                                
-                                    {{ form_widget(form_guest.cvfield,{attr: {class: 'form-control'}}) }} 
-                                </div>
-                           
+                           <div class=" ">
+                              {{ form_widget(form_guest.cvfield,{attr: {class: 'form-control'}}) }} 
+                           </div>
                         </div>
-                          <div class="d-grid gap-2"><button class="btn btn-primary" type="submit">Postuler</button></div>
-                       {{ form_end(form_guest) }}
+                        <div class="d-grid gap-2"><button class="btn btn-primary" type="submit">Postuler</button></div>
+                        {{ form_end(form_guest) }}
                         <ul></ul>
-                       
                         <hr class="hr-text bg-dark" data-content="AND">
                         <div class="text-center" >
                            <a class="btn btn-outline-success rounded-pill" data-bs-toggle="tab" href="#signup_apply">S'inscrire</a>

@@ -18,7 +18,7 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
 {
     /**
      * @ORM\Id
-     *
+     
      * @ORM\Column(type="integer")
      */
     private $id;
