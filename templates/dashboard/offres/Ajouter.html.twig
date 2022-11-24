@@ -25,7 +25,7 @@
 
                                         <div class="form-group">
                                             <div class="fs-0" >Titre de l'emploi</div>
-                                          {{ form_widget(form.title) }}  
+                                          {{ form_widget(form.title,{attr: {class: 'bg-200 form-control'}}) }}  
                                         </div>
 
                                     </div>
@@ -36,7 +36,7 @@
 
                                         <div class="form-group">
                                             <div class="fs-0" >Ville</div>
-                                         {{ form_widget(form.city) }} 
+                                         {{ form_widget(form.city,{attr: {class: 'bg-200 form-control'}}) }} 
                                         </div>
 
                                     </div>
@@ -45,7 +45,7 @@
 
                                         <div class="form-group">
                                             <div class="fs-0" >Pays</div>
-                                              {{ form_widget(form.country,{attr: {class: 'js-choice'}}) }} 
+                                              {{ form_widget(form.country,{attr: {class: 'form-control bg-200'}}) }} 
                                         </div>
 
                                     </div>
@@ -54,7 +54,7 @@
 
                                         <div class="form-group mb-20" data-live-search="true">
                                             <div class="fs-0" >Experience:</div>
-                                            {{ form_widget(form.exp,{attr: {class: 'js-choice'}}) }} 
+                                            {{ form_widget(form.exp,{attr: {class: 'form-control bg-200'}}) }} 
                                         </div>
                                          </div>
                                         <div class="col-lg-6 col-md-6">
@@ -62,7 +62,7 @@
                                          <div class="form-group mb-20">
                                             <div class="fs-0" >Type:</div>
                                           
-                                            {{ form_widget(form.typeid,{attr: {class: 'js-choice'}}) }} 
+                                            {{ form_widget(form.typeid,{attr: {class: 'form-control bg-200'}}) }} 
                                         </div>
 
 
@@ -74,7 +74,7 @@
                                             <div class="fs-0" >Compétences</div>
                                          
 
-                                                 {{ form_widget(form.Skills,{attr: {class: 'multiselect-dropdown'}}) }} 
+                                                 {{ form_widget(form.Skills,{attr: {class: 'multiselect-dropdown  bg-200'}}) }} 
 
                                             
 
@@ -88,7 +88,7 @@
 
                                         <div class="form-group bootstrap3-wysihtml5-wrapper">
                                             <div class="fs-0" >Presentation</div>
-                                            {{ form_widget(form.presentation) }} 
+                                            {{ form_widget(form.presentation,{attr: {class: 'bg-200 form-control'}}) }} 
                                         </div>
 
                                     </div>
@@ -99,7 +99,7 @@
 
                                         <div class="form-group bootstrap3-wysihtml5-wrapper">
                                             <div class="fs-0" >Description du poste</div>
-                                           {{ form_widget(form.resp) }} 
+                                           {{ form_widget(form.resp,{attr: {class: 'bg-200 form-control'}}) }} 
                                         </div>
 
                                     </div>
@@ -110,7 +110,7 @@
 
                                         <div class="form-group bootstrap3-wysihtml5-wrapper">
                                             <div class="fs-0" >Profil recherché</div>
-                                            {{ form_widget(form.req) }} 
+                                            {{ form_widget(form.req,{attr: {class: 'bg-200 form-control'}}) }} 
                                         </div>
 
                                     </div>

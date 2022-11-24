@@ -1,0 +1,107 @@
+
+ 
+{% block body %}
+ 
+      
+    
+
+                     
+                               
+                         
+   
+ 
+<div class="bg-200 ">
+     
+ <div class="col-lg-4 col-md-6 d-none">
+
+
+                                      
+                                            <div class="fs-0" >Nom:</div>
+                                             {{ form_widget(form.s,{attr: {class: 'form-control'}}) }}
+  
+                                        
+                                        
+
+                                    </div>
+                                     <div class="col-lg-4 col-md-6 d-none ">
+
+                                        <div class="">
+                                            <div class="fs-0" >Email:</div>
+                                             {{ form_widget(form.mail,{attr: {class: 'form-control'}}) }}
+                                        </div>
+                                     
+
+                                    </div>
+                                       <div class="col-lg-4  d-none">
+                                     <div class="fs-0" >Offre:</div>
+                                              {{ form_widget(form.Jobs,{attr: {class: 'js-choice'}}) }}
+
+                                       
+                                      
+
+                                  
+                                </div>
+                                     
+                                    
+                                   
+                                        <div class=" col-lg-2  ">
+                                          
+                                 
+                                       
+										    {{ form_widget(form.status,{attr: {class: 'form-select  ' },placeholder:'status'}) }}
+                            
+                                          
+                                      
+
+                                  
+                                </div>
+                                       <div class="col-lg-4  d-none">
+                                       
+
+                                        
+                                            <div class="fs-0" >Expérience:</div>
+                                          {{ form_widget(form.Experience,{attr: {class: ' multiselect-dropdown' }}) }}
+                                       
+
+                                   
+                                
+                            </div>
+                             
+                                 
+                                     <div class="col-lg-6 m-b10  d-none">
+                                     <div class="m-1b0" >
+
+                                    
+                                            <div class="fs-0" >Compétences:</div>
+                                         
+                                          {{ form_row(form.Skills,{attr: {class: 'multiselect-dropdown'}}) }}
+                                      
+                                       </div>
+                                    </div>
+									 <div class="col-lg-6 m-b10  d-none">
+                                            <div class="m-b10">
+                                 
+                                         <div class="fs-0" >Pays</div>
+                                          {{ form_row(form.Country,{attr: {class: 'multiselect-dropdown'}}) }}
+                                      </div>
+                                          
+                                      
+
+                                  
+                                </div>
+
+
+
+                                     
+
+                                </div>
+                                {{ form_end(form) }}
+                      
+
+                   
+              
+
+
+
+           
+{% endblock %}

@@ -13,6 +13,11 @@ class SearchDataCandidate
 
 
   
+ /**
+ * @var string
+ */
+    public $status='' ;
+
 
 
 

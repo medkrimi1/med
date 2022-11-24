@@ -28,35 +28,30 @@
       <ul></ul>
       <div class="row">
          <ul></ul>
-         <div class="col-lg-7 col-xl-8 col-xxl-9">
-            <ul></ul>
+           <div class="col-lg-7 col-xl-8 col-xxl-9 ">
+           
             <div class=" text-justify ">
                <ul></ul>
                <div class="card-header">
                </div>
+           
                <div class="card mb-3">
-                  <div class="card-header card-title bg-300">
-                     <h5 class="explore-des text-dark">À propos de {{candidate.fname}}</h5>
-                  </div>
+               
                   <div class="card-body">
-                     <p class="text-dark">{{candidate.about}}</p>
-                  </div>
-               </div>
-               <div class="card mb-3">
-                  <div class="card-header card-title bg-300">
-                     <h5 class="explore-des text-dark">Certificats</h5>
-                  </div>
-                  <div class="card-body">
-                     <div class="resume-list-wrapper">
+                        <h3 class="mb-0 text-dark">À propos</h3>
+  <p class="text-dark " >{{candidate.about|capitalize}}</p>
+                        <hr>
+                       <div class="mb-0 text-dark m-b20">Certificats</div>
+                     <div class="resume-list-wrapper ">
                         <div class="resume-list-item">
                            <div class="row">
-                             {% for certificate in candidate.certificates %}
+                                  {% for certificate in candidate.certificates %}
                                                  <div class="pxp-single-candidate-timeline">
                                  <div class="pxp-single-candidate-timeline-item">
                                     <div class="pxp-single-candidate-timeline-dot" ></div>
                                     <div class="pxp-single-candidate-timeline-info ms-3">
                                                         <div class=" pxp-single-candidate-timeline-time text-dark"><span class="bg-200">{{certificate.startdate|date("d/m/y")}} {{certificate.enddate|date("d/m/y")}}</span></div>
-                                                         <div class="pxp-single-candidate-timeline-position"> <a data-bs-toggle="modal" data-bs-target="#modal{{certificate.id}}" class="text-primary fw-bold tecos-h " >{{certificate.title}}</a></div>
+                                                         <div class="pxp-single-candidate-timeline-position"> <a data-bs-toggle="modal" data-bs-target="#modal{{certificate.id}}" class="text-primary fw-bold tecos-h " >{{certificate.title|capitalize}}</a></div>
                                                       </div>
                                                    </div>
                                                 </div>
@@ -66,12 +61,12 @@
       <div class="position-absolute top-0 end-0 mt-3 me-3 z-index-1"><button class="btn-close btn btn-sm btn-circle d-flex flex-center transition-base float-end" data-bs-dismiss="modal" aria-label="Close"></button></div>
       <div class="modal-body p-0">
         <div class="bg-light rounded-top-lg py-3 ps-4 pe-6">
-          <h4 class="mb-1 text-center" id="staticBackdropLabel">{{certificate.title}}</h4>
+          <h4 class="mb-1 text-center" id="staticBackdropLabel">{{certificate.title|capitalize}}</h4>
         
         </div>
         <div class="">
           <div class="row">
-          <iframe src="{{asset('cerificates/' ~certificate.attachment)}}"
+          <iframe src="{{asset('certificates/' ~certificate.attachment)}}"
  
                 
                 height="500">
@@ -86,22 +81,15 @@
   </div>
 </div>
                                                 {% endfor %}
-                              <div class="col-sm-12 col-md-2">
-                              </div>
                            </div>
                         </div>
                      </div>
-                  </div>
-               </div>
-               <div class="card mb-3">
-                  <div class="card-header card-title bg-300">
-                     <h5 class="explore-des text-dark">Expérience professionnelle</h5>
-                  </div>
-                  <div class="card-body">
-                     <div class="resume-list-wrapper">
+                    <hr>
+                       <h3 class="mb-0 text-dark">Expérience professionnelle</h3>
+                        <div class="resume-list-wrapper">
                         <div class="resume-list-item">
                            <div class="row">
-                              {% for work in candidate.workexperiences %}
+                             {% for work in candidate.workexperiences %}
                               <div class="pxp-single-candidate-timeline">
                                  <div class="pxp-single-candidate-timeline-item">
                                     <div class="pxp-single-candidate-timeline-dot" ></div>
@@ -109,12 +97,12 @@
                                        <div class=" pxp-single-candidate-timeline-time text-dark"><span class="bg-200">{{work.startdate|date("d/m/y")}} {{work.enddate|date("d/m/y")}}</span></div>
                                       
                                        <div class="">
-                                          <h6 class="fs-0 mb-0 text-primary">{{work.title}}</h6>
+                                          <h6 class="fs-0 mb-0 text-primary">{{work.title|capitalize}}</h6>
                                        </div>
                                        <div class=" pxp-text-light">
-                                          <h6 class="fs-0 mb-0">{{work.company}}</h6>
+                                          <h6 class="fs-0 mb-0">{{work.company|capitalize}}</h6>
                                        </div>
-                                       <p class="text-dark pb-4">{{work.duties}}</p>
+                                       <p class="text-dark pb-4">{{work.duties|capitalize}}</p>
                                     </div>
                                  </div>
                               </div>
@@ -124,17 +112,13 @@
                            </div>
                         </div>
                      </div>
-                  </div>
-               </div>
-               <div class="card mb-3">
-                  <div class="card-header card-title bg-300">
-                     <h5 class="explore-des text-dark">Formation</h5>
-                  </div>
-                  <div class="card-body">
-                     <div class="resume-list-wrapper">
+
+                       <hr>
+                        <h3 class="mb-0 text-dark">Formation</h3>
+                           <div class="resume-list-wrapper">
                         <div class="resume-list-item">
                            <div class="row">
-                              {% for formation in candidate.formations %}
+                                {% for formation in candidate.formations %}
                               <div class="pxp-single-candidate-timeline">
                                  <div class="pxp-single-candidate-timeline-item">
                                     <div class="pxp-single-candidate-timeline-dot" ></div>
@@ -142,12 +126,12 @@
                                        <div class=" pxp-single-candidate-timeline-time text-dark"><span class="bg-200">{{formation.startdate|date("d/m/y")}} {{formation.enddate|date("d/m/y")}}</span></div>
                                       
                                        <div class=" ">
-                                          <h6 class="fs-0 mb-0 text-primary">{{formation.diploma}}</h6>
+                                          <h6 class="fs-0 mb-0 text-primary">{{formation.diploma|capitalize}}</h6>
                                        </div>
                                        <div class="pxp-text-light">
-                                          <h6 class="fs-0 mb-0">{{formation.university}}</h6>
+                                          <h6 class="fs-0 mb-0">{{formation.university|capitalize}}</h6>
                                        </div>
-                                       <div class="text-dark pb-4">{{formation.description}}</div>
+                                       <div class="text-dark pb-4">{{formation.description|capitalize}}</div>
                                     </div>
                                  </div>
                               </div>
@@ -163,63 +147,18 @@
                            </ul>
                         </div>
                      </div>
+
+
+
                   </div>
                </div>
+            
+            
             </div>
          </div>
          <div class=" col-lg-5 col-xl-4 col-xxl-3 text-center ">
-            <div class="">
-               <div class="text-center">
-                  <a class="btn btn-primary dropdown-toggle" href="#" role="button"  id="dropdownMenuLink" data-bs-toggle="dropdown" aria-expanded="false">
-                  Voir cv</a>
-                  <ul class="dropdown-menu" aria-labelledby="dropdownMenuLink">
-                     {% for cv in candidate.cv %}
-                     <li><a class="text-primary" type="button" data-bs-toggle="modal" data-bs-target="#modal{{cv.id}}"> {{cv.cv}} </a>
-                     </li>
-               
-                 
-                   
-{% endfor %}
- </ul>
-{% for modal in candidate.cv %}
-     <div class="modal fade" id="modal{{modal.id}}" data-bs-keyboard="false" data-bs-backdrop="static" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
-  <div class="modal-dialog modal-lg mt-6" role="document">
-    <div class="modal-content border-0">
-      <div class="position-absolute top-0 end-0 mt-3 me-3 z-index-1"><button class="btn-close btn btn-sm btn-circle d-flex flex-center transition-base float-end" data-bs-dismiss="modal" aria-label="Close"></button></div>
-      <div class="modal-body p-0">
-        <div class="bg-light rounded-top-lg py-3 ps-4 pe-6">
-          <h4 class="mb-1" id="staticBackdropLabel">Cv de {{candidate.fname}}</h4>
-        
-        </div>
-        <div class="">
-          <div class="row">
-          <iframe src="{{asset('cv/' ~modal.cv)}}"
- 
-                
-                height="500">
-        </iframe>
-      
-      
           
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-</div>
-{% endfor %}
-
-
-
-
-                 
-                 
-
-                  
-               </div>
-            </div>
-            <ul></ul>
-            <div class="card mb-3 card-body  ">
+            <div class="card mb-3 card-body m-t20 ">
                <ul class="list-inline m-a0">
                   <li><a target="_blank" href="{{candidate.site}}" class="site-button  facebook circle "><i class="fab fa-facebook-f"></i></a></li>
                   <li><a target="_blank" href="{{candidate.site}}" class="site-button  google-plus circle "><i class="fab fa-google-plus-g"></i></a></li>
@@ -234,12 +173,11 @@
                <div class="card-body">
                   
                   <div class="job-time m-t15 m-b10">
-                     {% for skill in candidate.skill %}
-                     <span class="">
-                        <h6 class="mt-1 text-primary">{{skill.title}}</h6>
-                       
-                     </span>
-                      {% endfor %}
+                       {% for skill in candidate.skill %}    
+                              <span class="rounded-pill bg-primary tecos-h text-white">
+                              {{ skill.title|capitalize}}
+                              </span>
+                              {% endfor %}
                   </div>
                </div>
             </div>
@@ -254,7 +192,7 @@
                            {% for language in candidate.languages %}
                            <div class="m-b20">
                               <a >
-                                 <h5 class="explore-des-2c text-dark">{{language.lname}}</h5>
+                                 <h5 class="explore-des-2c text-dark">{{language.lname|capitalize}}</h5>
                               </a>
                                       {% if language.reading =='Débutant'   %} 
                                         {%  set a='10'   %} 
@@ -344,7 +282,7 @@
                   <div class="explore-des-2c text-dark ">Adresse E-mail</div>
                   <div class="explore-des-3c text-primary">{{candidate.email}}</div>
                   <div class="mt-4">
-                     <div class="explore-des-2c text-dark fw-bold">{{candidate.address}}</div>
+                     <div class="explore-des-2c text-dark fw-bold">{{candidate.address|capitalize}}</div>
                      <div class="explore-des-3c text-primary" >{{candidate.city}},{{candidate.country}}</div>
                   </div>
                   <div class="mt-4">

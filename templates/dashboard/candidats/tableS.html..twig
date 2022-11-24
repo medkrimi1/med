@@ -1,0 +1,173 @@
+
+ 
+{% block body %}
+ 
+      
+        <script>
+            
+    
+        $(document).ready( function () {
+            $('#example')
+            
+
+                .dataTable( {
+                    responsive: true,
+                
+                } );
+        } );
+    
+    
+        </script>
+
+                     
+                 
+                  
+                      
+
+
+                                <div id="" class="dataTables_wrapper dt-bootstrap5 "><div class="row"><div class="col-sm-12 col-md-6"></div><div class="col-sm-12 col-md-6"></div></div><div class="row "><div class="col-sm-12"><table id="example" class="display nowrap dataTable dtr-inline border border-400 border-2 rounded-3 bg-200 text-dark" style="width: 100%;" aria-describedby="example_info"><thead>
+    <tr >
+<th class="sorting sorting_asc text-dark text-center" tabindex="0" aria-controls="example" rowspan="1" colspan="1" style="width: 5px;" aria-label="Name: activate to sort column descending" aria-sort="ascending"></th>
+    <th class="sorting sorting_asc text-dark text-center" tabindex="0" aria-controls="example" rowspan="1" colspan="1" style="width: 150px;" aria-label="Name: activate to sort column descending" aria-sort="ascending">Candidat</th>
+     <th class="sorting sorting_asc text-dark d-none" tabindex="0" aria-controls="example" rowspan="1" colspan="1" style="width: 150px;" aria-label="Name: activate to sort column descending" aria-sort="ascending">email</th>
+
+    <th class="sorting text-dark text-center" tabindex="0" aria-controls="example" rowspan="1" colspan="1" aria-label="Position: activate to sort column ascending" style="width: 20px;">Expérience</th>
+
+    <th class="dt-body-right sorting text-dark text-center" tabindex="0" aria-controls="example" rowspan="1" colspan="1" style="width: 20px;" aria-label="Age: activate to sort column ascending">Candidatures</th>
+     <th class="dt-body-right sorting text-dark text-center" tabindex="0" aria-controls="example" rowspan="1" colspan="1" style="width: 20px;" aria-label="Age: activate to sort column ascending">Date</th>
+    <th class="dt-body-right sorting text-dark text-center" tabindex="0" aria-controls="example" rowspan="1" colspan="1" style="width: 0px;" aria-label="ed: activate to sort column ascending">Status</th>
+    </tr></thead><tbody>
+
+
+
+ {% for candidate in candidates %}
+    <tr class="even ">
+
+ <td class="border border-2 border-300 text-center">
+
+     {% if candidate.seen==1 %}
+    <span class="badge badge rounded-pill badge-soft-success">Lu</span></td>
+    {% else %}
+   <span class="badge badge rounded-pill badge-soft-warning">Non Lu</span></td>
+   {% endif %}
+
+    <td class="dtr-control sorting_1 border border-2 border-300 " tabindex="0">    <div class="pxp-single-candidate-hero-avatar avatar avatar-2xl " style="background-image"  > <img class="pxp-single-candidate-hero-avatar  avatar avatar-2xl border-
+	 border
+	 " src="{{asset('images/users/' ~candidate.image)}}" alt="image" ></div>
+                               <span class="py-2 fs-0 mb-0 m-t10" > <a class="text-dark" href="{{path('candidatProfile',{'fname':candidate.fname,'lname':candidate.lname,'id':candidate.id})}}" target="_blank">{{candidate.fname|capitalize}} {{candidate.lname|capitalize}}</a>
+                               </span></td>
+
+    <td class="border border-2 border-300 d-none">{{candidate.email}}</td>
+ 
+
+
+    <td class="border border-2 border-300 text-center">{{candidate.experience}}</td>
+
+
+
+    <td class="text-center border border-2 border-300">   <div class="pxp-candiadates-card-1-title">  <a  data-bs-toggle="modal" data-bs-target="#candidate{{candidate.id}}" class="text-primary"><i ></i> ({{candidate.applications|length}})</a></div>
+           <div class="modal" id="candidate{{candidate.id}}" tabindex="-1" role="dialog" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered" role="document">
+            <div class="modal-content position-relative border border-dark">
+                <div class="d-flex flex-row-reverse">
+                    <button class="btn-close btn btn-sm btn-circle d-flex flex-center transition-base" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <div class="row ">
+                      
+                            <div class=" tab-content ">
+                                    <h4 class=" font-weight-700 text-center">Candidatures  
+                                     ({{candidate.applications|length}})</h4>
+                                    <hr>
+                                  
+                                  
+                                    {% for applications in candidate.applications|reverse|slice(0, 5) %}
+                                           
+                                           <table class="table table-dashboard mb-0 table-borderless fs--1 border-200">
+                                    <thead class="bg-light">
+                                    </thead>
+                                    <tbody>
+                                       <tr class="border-bottom border-400">
+                                          <td>
+                                             <div class="d-flex align-items-center position-relative">
+                                               {% if applications.title != 609679 %} 
+                                                <div class="posted-info clearfix  ">
+                                                   <div class="m-tb0  float-start "><span  class=" text-dark  ">Nouvelle candidature pour:</span><a
+                                                   class="" href="{{path('offre_get',{'slug':applications.slug,'id':applications.jobid})}}" > {{applications.title|capitalize}} </a></div>
+                                                </div>
+                                                {% else %}
+                                                 <div class="posted-info clearfix  ">
+                                                   <p class="m-tb0  float-start  "><span class=" text-dark  ">Nouvelle </span><span class="text-primary">candidature spontanée </span><a href=""></p>
+                                                </div>
+                                                {% endif %}
+
+                                             </div>
+                                             <div class="m-tb0 float-start text-secondary  ">{{applications.appdate|date("d/m/Y g:ia")}}</div>
+                                          </td>
+                                       </tr>
+
+                                    </tbody>
+
+                                 </table>
+                             
+                                 </a></p>
+                                 
+                                                    {% endfor %}
+                                                </div>
+                                    <div class=" row gap-20 text-center">
+                                   {% if candidate.applications|length >5 %}
+                                    <a class=" btn btn-outline-primary" href="{{path('applications',{'id':candidate.id})}}"
+                                    >Voir Plus >></a> 
+                                    {% endif %}
+                            </div>
+                        </div>
+                     
+                   
+                </div>
+                 </div>
+                  </div>
+                   </div>
+                    </div>
+</td>
+ <td class="border border-2 border-300 text-center">  {% for applications in candidate.applications|reverse|slice(0, 1) %}{{applications.appdate|date("d/m/Y")}} {% endfor %}</td>
+
+
+ <td class="border border-2 border-300 text-center">
+
+  {% if candidate.status=='Traité' %}
+    <span class="badge badge rounded-pill badge-soft-success">{{candidate.status}} <i class="fa fa-check"></i></span>
+  {% elseif candidate.status=='en cours de traitement' %}
+  <span class="badge badge rounded-pill badge-soft-primary">En cours <i class="fa fa-spinner"></i><h6 class="badge-soft-primary">de traitement</h6></span>
+    {% else %}
+
+     <span class="badge badge rounded-pill badge-soft-warning">Non traité <i class="fa fa-false"></i></span>
+    
+    {% endif %}
+
+
+
+ </td>
+   
+
+
+
+    
+
+{% endfor %}
+
+
+
+
+
+
+
+
+
+</tfoot></table></div></div>
+                   
+              
+
+
+
+           
+{% endblock %}

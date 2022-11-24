@@ -47,36 +47,7 @@ class IndexControlller extends AbstractController
         $form->handleRequest($request) ;
         $jobs=$this->manager->getRepository(Jobs::class)->SearchForJob($data);
         $spontane=$this->getDoctrine()->getRepository(Jobs::class)->find(609679);
-        foreach ($jobs as $job){
-             $title=$job->getTitle();
-            $str = [' ','é','è','\'','ç'];
-            $rplc =['-','e','e','','c'];
-              $skills=[];
-            foreach($job->getSkills() as $skill)
-            {
-             $skills[]=[
-             'id'=>$skill->getId() ,
-             'title'=>$skill->getTitle()
-             ] ;
-
-            }
-            $jobsArray[] = [
-                'id' => $job->getId(),
-                'title' => $job->getTitle(),
-                 'country' => strtolower($job->getCountry()->getName()),
-                'image'=>$job->getImage(),
-                'city' => $job->getCity(),
-                'beginAt' => $job->getCreatedAt(),
-                'expireAt' => $job->getExpiredAt(),
-                'type' => $job->getTypeid()->getTitle(),
-                'exp' => $job->getExp()->getTitle() ,
-                'presentation' => $job->getPresentation(),
-                'resp' => $job->getResp() ,
-                'req' => $job->getReq (),
-                'slug'=> strtolower(str_replace($str,$rplc,$title))
-             
-            ];
-        }
+       
            $t=time();
         $Userid=$t;
          $em = $this->getDoctrine()->getManager();
@@ -123,7 +94,7 @@ class IndexControlller extends AbstractController
           if(empty($jobsArray)){$jobsArray=[];}
 
         return $this->render('offres/index.html.twig', [
-            'jobs' => $jobsArray ,'form' => $form-> createView(),'form2' => $form2-> createView()
+            'jobs' => $jobs ,'form' => $form-> createView(),'form2' => $form2-> createView()
         ]);
     }
 

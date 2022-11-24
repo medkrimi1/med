@@ -54,6 +54,8 @@ class CandidatesController extends AbstractController
                'id'=>$candidate->getId(),
               'fname'=>$candidate->getFname(),
               'lname'=>$candidate->getLname(),
+              'image'=>$candidate->getImage(),
+
               'email'=>$candidate->getEmail(),
               'seen'=>$candidate->getSeen(),
               'status'=>$candidate->getStatus(),

@@ -33,39 +33,11 @@ class SpontaneeController extends AbstractController
         $candidates=$this->manager->getRepository(Candidates::class)->findSearchspontanee($data);
 
        
-        foreach ($candidates as $candidate){
 
-             $offres=[];
-            foreach($candidate->getApplications() as $offre)
-            { 
-             $title=$offre->getJob()->getTitle();
-             $offres[]=[
-             'id'=>$offre->getId() ,
-             'jobid'=>$offre->getJob()->getId(),
-             'title'=>$offre->getJob()->getTitle(),
-             'slug'=> strtolower(str_replace(' ', '-',$title)),
-             'appdate'=>$offre->getAppdate(),
-
-             ] ;
-
-            }
-
-            $candidatesArray[] = [
-               'id'=>$candidate->getId(),
-              'fname'=>$candidate->getFname(),
-              'lname'=>$candidate->getLname(),
-              'seen'=>$candidate->getSeen(),
-              'titre' => $candidate->getTitre(),
-               'applications'=> $offres,
-              
- 
-            ];
-        }
-         
        if(empty($candidatesArray)){$candidatesArray=[];}
      
    return $this->render('dashboard/candidats/candidature-spontanee.html.twig', [
-            'candidates' => $candidatesArray , 'form' => $form-> createView()
+            'candidates' => $candidates , 'form' => $form-> createView()
         ]);
     }
 

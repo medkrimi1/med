@@ -25,9 +25,7 @@
                                                 <h4 class="mt-2 text-dark">{{app.user.fname}} {{app.user.lname}}</h4>
                                              </a>
                                           </h4>
-                                          <p class="m-b0">
-                                             <a href="javascript:void(0);">
-                                          <h6 class="mt-1">title</h6></a></p>
+                                     
                                        </div>
                                        <a class="btn btn-outline-primary rounded-pill btn-sm" href="{{ path('candidat_profil',{'id':app.user.id})}}">Voir profil</a>
                                     </div>
@@ -101,10 +99,10 @@
                                  <li>
                                     <div class="post-bx bg-200 border border-dark m-b20">
                                        <div class="job-post-info m-a0">
-                                          <h5 class="mt-1 fw-bold"><a href="{{path('offre_get',{'slug':application.job.slug,'id':application.job.id})}}">{{application.job.title}}</a></h5>
+                                          <h5 class="mt-1 fw-bold"><a href="{{path('offre_get',{'slug':application.job.slug,'id':application.job.id})}}">{{application.job.title|capitalize}}</a></h5>
                                           <ul>
-                                             <li ><i class="fas fa-map-marker-alt"></i> {{application.job.city}},
-                                          {{application.job.country}}</li>
+                                             <li ><i class="fas fa-map-marker-alt"></i> {{application.job.city|capitalize}},
+                                          {{application.job.country|capitalize}}</li>
                                           </ul>
                                           <div class="posted-info clearfix bg-300 " >
                                              <p class="m-tb0  float-start  "><span class=" text-dark fw-bold ">Date de candidature :</span> <span class="text-dark" >{{application.appdate|date()}}</span></p>

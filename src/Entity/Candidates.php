@@ -83,7 +83,7 @@ class Candidates
   
 
     /**
-     * @ORM\Column(type="string", length=255, nullable=true)
+     * @ORM\Column(type="string", length=2000, nullable=true)
      */
     private $about;
 

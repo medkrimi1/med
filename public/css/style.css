@@ -4057,7 +4057,7 @@ blockquote:before {
     height: 450px;
 }
 .dez-bnr-inr {
-    height: 400px;
+    height: 250px;
     background-size: cover;
     background-position: center center;
     display: table;
@@ -17335,8 +17335,8 @@ a:hover {
     left: 30px;
 }
 .pxp-single-candidate-hero-avatar {
-    width: 200px;
-    height: 200px;
+    width: 150px;
+    height: 150px;
     border-radius: 100px;
 	    border: 5px solid #ffffff;
     background-position: center center;

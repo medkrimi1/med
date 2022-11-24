@@ -22,7 +22,7 @@ class SearchForJob extends AbstractType
             'label' => false ,
             'required' => false ,
             'attr' => [
-                'placeholder' =>'Rechercher' ,
+                'placeholder' =>'Nom d\'offre' ,
              'csrf_protection' => false
 
 

@@ -109,7 +109,7 @@
 
                             <ul class=" post-job-bx ">
                                 {% for job in jobs %}
-                                <div class="post-bx bg-100 border border-2  m-b30">
+                                <div class="post-bx bg-200 border-3 bg-white  m-b30">
                                      
                                     <div class="d-flex m-b20 ">
                                         <a href="javascript:void(0);" data-bs-toggle="modal" data-bs-target="#changeimg"><span>
@@ -119,7 +119,7 @@
                                         <div class="job-post-info">
                                             <ul>
                                           <li>  <a  href="{{path('offre_get',{'slug':job.slug,'id':job.id})}}"  class=" text-bold">
-                                                <h4 class="mt-1 fw-bold text-dark">{{ job.title  }} </h4>
+                                                <h4 class="mt-1 fw-bold text-dark">{{ job.title|capitalize  }} </h4>
                                                </li>
                                                 <li>
                                         
@@ -147,17 +147,17 @@
                                                 <li>
                                                     <i class="fas fa-map-marker-alt text-primary"></i>
                                                     <h class="explore-des-1 fw-bold text-secondary">
-                                                   {{  job.country }},{{  job.city }} </h>
+                                                   {{  job.country|capitalize }},{{  job.city|capitalize }} </h>
                                                 </li>
                                                 <li><i class=" far fa-bookmark text-primary"></i>
-                                                  <h class="explore-des-1 fw-bold text-secondary" >{{job.type}}</h> </li>
+                                                  <h class="explore-des-1 fw-bold text-secondary" >{{job.type|capitalize}}</h> </li>
                                                 <li><i class="far fa-clock text-primary"></i>
                                                  <h class="explore-des-1 fw-bold text-secondary" > Publié :</h>{{ job.beginAt|date("m/d/Y") }}</li>
 
                                                  
                                             </ul>
                                           <i class="far fa-user text-primary"></i>
-                                                 <h class="explore-des-1 text-primary" >{{job.fname}} {{job.lname}}</h></li>
+                                                 <h class="explore-des-1 text-primary" >{{job.fname|capitalize}} {{job.lname|capitalize}}</h></li>
                                         </div>
                                     </div>
 
@@ -188,9 +188,9 @@
                               </span></a></div>
                                           
                                             <div class="m-l20 job-post-info m-t10">
-                                                <h6><a href="{{path('candidatProfile',{'fname':applications.candidate.fname,'lname':applications.candidate.lname,'id':applications.candidate.id})}}">{{applications.candidate.fname}} {{applications.candidate.lname}}</a></h6>
+                                                <h6><a href="{{path('candidatProfile',{'fname':applications.candidate.fname,'lname':applications.candidate.lname,'id':applications.candidate.id})}}">{{applications.candidate.fname|capitalize}} {{applications.candidate.lname|capitalize}}</a></h6>
                                         
-                                                    <h6>{{applications.candidate.titre}}</h6>
+                                                    <h6>{{applications.candidate.titre|capitalize}}</h6>
                                                     
                                                
                                             </div>

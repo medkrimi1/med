@@ -17,6 +17,7 @@ use Symfony\Component\Form\Extension\Core\Type\RepeatedType;
 use Symfony\Component\Validator\Constraints\NotBlank;
 use Symfony\Component\Validator\Constraints\Length;
 
+
 class RhController extends AbstractController
 {
        public function __construct(UserRepository $UserRepository , EntityManagerInterface $manager)
@@ -56,6 +57,8 @@ class RhController extends AbstractController
          $em = $this->getDoctrine()->getManager();
         $email=$form->get('mail')->getData();
          $newpassword=$form->get('newpassword')->getData();
+         $t=time();
+        $Userid=$t;
          $users = $this->manager->getRepository(User::class)->findAll();
             
         foreach ($users as $userr){
@@ -82,6 +85,7 @@ class RhController extends AbstractController
             );
             $user->setImage('default.jpg');
             $role[]="ROLE_RH";
+            $user->setId($Userid);
             $user->setRoles($role);
            $em->persist($user);
             $em->flush();

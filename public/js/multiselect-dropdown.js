@@ -13,6 +13,7 @@ style.innerHTML = `
   background-position: right .75rem center;
   background-size: 16px 12px;
   width:100%;
+  height:2.30em;
 }
 .multiselect-dropdown span.optext, .multiselect-dropdown span.placeholder{
   margin-right:0.5em; 
@@ -20,6 +21,7 @@ style.innerHTML = `
   padding:1px 0; 
   border-radius: 4px; 
   display:inline-block;
+   height:1.9em;
  
 }
 .multiselect-dropdown span.optext{
@@ -34,10 +36,7 @@ style.innerHTML = `
   cursor: pointer;
   color: #666;
 }
-.multiselect-dropdown span.optext .optdel:hover { color: #c66;}
-.multiselect-dropdown span.placeholder{
-  color:#ced4da;
-}
+
 .multiselect-dropdown-list-wrapper{
   box-shadow: gray 0 3px 8px;
   z-index: 100;
@@ -90,8 +89,8 @@ document.head.appendChild(style);
 function MultiselectDropdown(options){
   var config={
     search:true,
-    height:'15rem',
-    placeholder:'select',
+    height:'20rem',
+  
     txtSelected:'selected',
     txtAll:'All',
     txtRemove: 'Remove',

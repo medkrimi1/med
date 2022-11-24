@@ -18,6 +18,7 @@ use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\Extension\Core\Type\DateType;
 use Symfony\Component\Form\Extension\Core\Type\HiddenType;
 use Symfony\Component\Form\Extension\Core\Type\CheckboxType;
+use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 
 
 class SearchFormCandidate extends AbstractType
@@ -61,7 +62,8 @@ class SearchFormCandidate extends AbstractType
             'label' => false ,
             'required' => false ,
             'class' => Candidatexp::class,
-            'multiple' => true
+            'multiple' => true,
+
 
 
         
@@ -73,6 +75,12 @@ class SearchFormCandidate extends AbstractType
             'required' => false ,
             'class' => Skills::class,
             'multiple' => true,
+             'attr' => [
+                'placeholder' =>'Rechercher' ,
+             'csrf_protection' => false
+
+
+            ]
           
 
             
@@ -86,6 +94,15 @@ class SearchFormCandidate extends AbstractType
 
             
        ])
+               ->add('status',ChoiceType::class, [
+        'choices'=>['Traité'=>'Traité','en cours de traitement'=>'en cours de traitement','Non traité'=>'Non traité'],
+ 'label' => false ,
+            'required' => false ,
+            'attr' => [
+                'placeholder' =>'Rechercher' ,
+             'csrf_protection' => false ]
+
+        ])
 
                 ->add('dfiltre', CheckboxType::class, [
                 'label' => 'Activer/Désactiver ',

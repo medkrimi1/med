@@ -18,7 +18,7 @@
             <div class="row justify-content-between align-items-center">
                <div class=" col-xl-8 col-xxl-6">
                   <ul></ul>
-                  <div class="job-title  text-dark display-4 ">{{job.title}}</div>
+                  <div class="job-title mb-0 text-dark display-5 ">{{job.title}}</div>
                </div>
                <div class="col-auto">
                   <div class="pxp-single-job-options mt-4 col-xl-0">
@@ -60,32 +60,23 @@
                {{ message }}
             </div>
             {% endfor %}
-            <div class="job-bx-title clearfix">
-            </div>
-            <div class="card mb-3">
-               <div class="card-header bg-300">
-                  <h2 class="explore-des text-dark">Presentation</h2>
-               </div>
-               <div class="card-body">
+           
+            <div class="card mb-3 m-t10">
+              
+               <div class="card-body ">
+                 <h3 class="mb-0 text-dark">Presentation</h3>
                   <p class="text-dark"> {{ job.presentation}}</p>
+                  <hr>
+                  <h3 class="mb-0 text-dark">Description du poste</h3>
+                   <p class="text-dark"> {{ job.resp }}</p>
+                   <hr>
+                   <h3 class="mb-0 text-dark">Profil recherché</h3>
+                    <p class="text-dark">{{ job.req }}</p>
                </div>
+
             </div>
-            <div class="card mb-3">
-               <div class="card-header bg-300">
-                  <h5 class="explore-des text-dark">Description du poste</h5>
-               </div>
-               <div class="card-body">
-                  <p class="text-dark"> {{ job.resp }}</p>
-               </div>
-            </div>
-            <div class="card mb-3">
-               <div class="card-header bg-300">
-                  <h5 class="explore-des text-dark">Profil recherché</h5>
-               </div>
-               <div class="card-body">
-                  <p class="text-dark">{{ job.req }}</p>
-               </div>
-            </div>
+         
+           
          </div>
          <div class="col-lg-5 col-xl-4 col-xxl-3 text-center">
             <div class="">
@@ -94,7 +85,7 @@
                      <div class="sticky-sidebar">
                         <div class="card-body text-left-not-lg">
                            </br>
-                           <h6 class="explore-des-2 text-dark fw-bold">lieu de travail</h6>
+                           <h6 class="explore-des-2 text-dark fw-bold">Lieu de travail</h6>
                            <h5 class="explore-des-3 text-primary"><i class=" fas fa-map-marker-alt"></i> {{  job.country|capitalize }},{{  job.city|capitalize }}</h5>
                            <div class="job-bx-title clearfix">
                            </div>
@@ -126,35 +117,7 @@
                      </div>
                   </div>
                </div>
-               <div class="card mb-3">
-                  <div class="card-header bg-300" >
-                     <h2 class="explore-des text-dark fw-bold text-left-not-lg">Contact</h2>
-                  </div>
-                  <div class="card-body explore-des-3 text-primary text-left-not-lg">
-                     <div class="explore-des-2 text-dark fw-bold ">Téléphone</div>
-                     <div class="explore-des-3 text-primary">+33 1 43 37 85 74</div>
-                     <div class="mt-4">
-                        <div class="explore-des-2 text-dark fw-bold">Email</div>
-                        <div class="explore-des-3 text-primary">contact@it-tecos.fr</div>
-                     </div>
-                     <div class="mt-4">
-                        <div class="explore-des-2 text-dark fw-bold">Lieu</div>
-                        <div class="explore-des-3 text-primary">Paris, France</div>
-                     </div>
-                     <div class="job-bx-title clearfix">
-                     </div>
-                     <div class="mt-4">
-                        <div class="explore-des-2 text-secondary">Suivez-nous</div>
-                     </div>
-                     <ul></ul>
-                     <ul class="list-inline m-a0">
-                        <li><a target="_blank" href="https://www.facebook.com/ITTecos" class="site-button  facebook circle "><i class="fab fa-facebook-f"></i></a></li>
-                        <li><a target="_blank" href="https://www.google.com/search?q=tecos&oq=tecos&aqs=chrome..69i57j0i512j69i60l3j69i65j69i60l2.1333j0j4&sourceid=chrome&ie=UTF-8" class="site-button  google-plus circle "><i class="fab fa-google-plus-g"></i></a></li>
-                        <li><a target="_blank" href="https://www.linkedin.com/company/it-tecos/?originalSubdomain=fr" class="site-button  linkedin circle "><i class="fab fa-linkedin-in"></i></a></li>
-                        <li><a target="_blank" href="https://twitter.com/tecos_it" class="site-button  twitter circle "><i class="fab fa-twitter"></i></a></li>
-                     </ul>
-                  </div>
-               </div>
+         
             </div>
          </div>
       </div>

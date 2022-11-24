@@ -102,6 +102,13 @@ class CandidatesRepository extends ServiceEntityRepository
                 ->setParameter('startdate', $search->startdate)
                 ->setParameter('enddate', $search->enddate);
         }
+         if (!empty($search->status)) {
+             
+            $query = $query
+                ->andWhere('p.status LIKE :status
+                   ') 
+                ->setParameter('status', $search->status);
+        }
         if ((!empty($search->Jobs)) ) {
             $query = $query
                 ->andWhere('j.job IN(:Jobs)')
@@ -163,12 +170,12 @@ class CandidatesRepository extends ServiceEntityRepository
 
                }
 
- if ((!empty($search->dfiltre))) {
+
               $query = $query
                 ->select('a', 'p')
               ->join('p.applications', 'a');
            
-          }
+         
 
          
 
@@ -177,6 +184,14 @@ class CandidatesRepository extends ServiceEntityRepository
                 ->select('j', 'p')
               ->join('p.applications', 'j');
           }
+
+           if (!empty($search->status)) {
+             
+            $query = $query
+                ->andWhere('p.status LIKE :status
+                   ') 
+                ->setParameter('status', $search->status);
+        }
        
        
 
@@ -188,7 +203,7 @@ class CandidatesRepository extends ServiceEntityRepository
                    ') 
                 ->setParameter('s', "%{$search->s}%");
         }
- if ((!empty($search->dfiltre)) ) {
+ if ((!empty($search->startdate)) ) {
             $query = $query
                 ->andWhere('a.appdate BETWEEN (:startdate) AND (:enddate)')
             
@@ -273,12 +288,12 @@ class CandidatesRepository extends ServiceEntityRepository
 
                }
 
- if ((!empty($search->dfiltre))) {
+
               $query = $query
                 ->select('a', 'p')
               ->join('p.applications', 'a');
            
-          }
+          
 
          
 
@@ -298,7 +313,9 @@ class CandidatesRepository extends ServiceEntityRepository
                    ') 
                 ->setParameter('s', "%{$search->s}%");
         }
- if ((!empty($search->dfiltre)) ) {
+
+       
+ if ((!empty($search->startdate)) ) {
             $query = $query
                 ->andWhere('a.appdate BETWEEN (:startdate) AND (:enddate)')
             
@@ -328,6 +345,8 @@ class CandidatesRepository extends ServiceEntityRepository
                 ->andWhere('p.experience IN (:Experience)')
                 ->setParameter('Experience', $search->Experience);
         }
+
+
 
 
   if (!empty($search->Country)) {

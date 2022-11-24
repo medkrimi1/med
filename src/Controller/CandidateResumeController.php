@@ -351,7 +351,7 @@ $newCertif->setAttachment($AttachmentName);
              $form_language= $this->createFormBuilder($language)
           
            
-        ->add('lname', ChoiceType::class, ['choices'=>['français'=>'français','anglais'=>'anglais','espagnol'=>'espagnol','russe'=>'russe','Arabe'=>'Arabe','portugais'=>'portugais' ,'Allemand'=>'Allemand' ] ])
+        ->add('lname', ChoiceType::class, ['choices'=>['français'=>'français','anglais'=>'anglais','espagnol'=>'espagnol','russe'=>'russe','Arabe'=>'Arabe','portugais'=>'portugais' ,'Allemand'=>'Allemand' ],'mapped'=>false ])
       ->add('reading', ChoiceType::class, ['choices'=>$choices ])
        ->add('speak', ChoiceType::class, ['choices'=>$choices ])
         ->add('writing', ChoiceType::class, ['choices'=>$choices  ])
@@ -362,12 +362,15 @@ $newCertif->setAttachment($AttachmentName);
          ->getForm();
         $form_language->handleRequest($request) ;
          $em = $this->getDoctrine()->getManager();
+           $llname=$language->getLname();
+        
           
 
           if ($form_language->isSubmitted() && $form_language->isValid()) {
  
-          
-          $language->setCandidate($candidate);
+         
+        
+          $language->setLname($llname);
          $em->persist($language);
           $em->flush();
                
@@ -377,7 +380,7 @@ $newCertif->setAttachment($AttachmentName);
 
         }
         return $this->render('candidat/carrière/update/Language.html.twig', [
-            "form_language" => $form_language->createView()
+            "form_language" => $form_language->createView(),'language'=>$language
         ]);
     }
 

@@ -32,13 +32,11 @@ class ApplicantsController extends AbstractController
         $form->handleRequest($request) ;
         $candidates=$this->manager->getRepository(Candidates::class)->findSearchApplicant($data);
 
-       
-        foreach ($candidates as $candidate){
+         foreach ($candidates as $candidate){
 
              $offres=[];
             foreach($candidate->getApplications() as $offre)
             { 
-          
              $title=$offre->getJob()->getTitle();
              $offres[]=[
              'id'=>$offre->getId() ,
@@ -50,18 +48,24 @@ class ApplicantsController extends AbstractController
              ] ;
 
             }
-
+            
             $candidatesArray[] = [
                'id'=>$candidate->getId(),
               'fname'=>$candidate->getFname(),
               'lname'=>$candidate->getLname(),
+               'image'=>$candidate->getImage(),
+              'email'=>$candidate->getEmail(),
               'seen'=>$candidate->getSeen(),
+              'status'=>$candidate->getStatus(),
+               'country'=>$candidate->getCountry(),
               'titre' => $candidate->getTitre(),
+              'experience' => $candidate->getExperience(),
                'applications'=> $offres,
               
  
             ];
         }
+         
          
        if(empty($candidatesArray)){$candidatesArray=[];}
      
