@@ -62,6 +62,7 @@ class JobsRepository extends ServiceEntityRepository
              ->setParameter('test', 609679)
              ->Where('p.status != :test')
              ->setParameter('test', 'nonActif')
+           
             ->join('p.skills', 'c');
 
         if (!empty($search->Name)) {
@@ -108,6 +109,69 @@ class JobsRepository extends ServiceEntityRepository
     return $query->getQuery()->getResult();
     }
 
+
+
+
+/** 
+     * 
+     * @return jobs[]
+     */
+    public function findSearchArchive(SearchData $search): array
+    { 
+         $query = $this
+            ->createQueryBuilder('p')
+            ->select('c', 'p')
+             ->orderBy('p.id', 'DESC')
+             ->Where('p.title != :test')
+             ->setParameter('test', 609679)
+             ->Where('p.status = :test')
+             ->setParameter('test', 'nonActif')
+           
+            ->join('p.skills', 'c');
+
+        if (!empty($search->Name)) {
+            $query = $query
+                ->andWhere('p.title LIKE :Name')
+                ->setParameter('Name', "%{$search->Name}%");
+        }
+        if (!empty($search->Title)) {
+            $query = $query
+                ->andWhere('p.id IN (:Title)')
+                ->setParameter('Title', $search->Title);
+        }
+        if ((!empty($search->startdate))AND(!empty($search->enddate)) ) {
+            $query = $query
+                ->andWhere('p.CreatedAt BETWEEN (:startdate) AND (:enddate)')
+                ->setParameter('startdate', $search->startdate)
+                ->setParameter('enddate', $search->enddate);
+        }
+         if (!empty($search->TypeJobs)) {
+            $query = $query
+                ->andWhere('p.typeid IN (:TypeJobs)')
+                ->setParameter('TypeJobs', $search->TypeJobs);
+        }
+        if (!empty($search->Experience)) {
+            $query = $query
+                ->andWhere('p.exp IN (:Experience)')
+                ->setParameter('Experience', $search->Experience);
+
+        }
+         if (!empty($search->Country)) {
+            $query = $query
+                ->andWhere('p.country IN (:Country)')
+                ->setParameter('Country', $search->Country);
+
+        }
+
+          if (!empty($search->Skills)) {
+            $query = $query
+                ->andWhere('c.id IN (:Skills)')
+                ->setParameter('Skills', $search->Skills);
+        }
+         
+   
+    return $query->getQuery()->getResult();
+    }
       /** 
      * 
      * @return jobs[]
@@ -122,12 +186,23 @@ class JobsRepository extends ServiceEntityRepository
              ->setParameter('test', 609679)
              ->Where('p.status != :test')
              ->setParameter('test', 'nonActif')
-            ->join('p.skills', 'c');
+            ->andWhere('p.ExpiredAt > :date')
+            ->setParameter('date', new \DateTime())
+            ->join('p.skills', 'c')
+            ->andWhere('p.ExpiredAt > :date')
+            ->setParameter('date', new \DateTime());
 
         if (!empty($search->Name)) {
             $query = $query
                 ->andWhere('p.title LIKE :Name')
-                ->setParameter('Name', "%{$search->Name}%");
+                ->setParameter('Name', "%{$search->Name}%")
+                   ->ORWhere('c.title Like :Skills')
+                ->setParameter('Skills', "%{$search->Name}%")
+                 ->andWhere('p.ExpiredAt > :date')
+            ->setParameter('date', new \DateTime());
+
+
+                ;
         }
           if (!empty($search->TypeJobs)) {
             $query = $query

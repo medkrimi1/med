@@ -2,6 +2,7 @@
 {% block body %}
 <div class="header-w bg-white" > </div>
 <div class="dez-bnr-inr overlay-black-middle" >
+    {% for job in job %}
    <img class="dez-bnr-inr overlay-black-middle" style="background-image " alt="image"   src="{{asset('images/jobs/' ~job.cover)}}">
    <div class="pxp-hero-opacity "    >
    </div>
@@ -24,6 +25,9 @@
                   <div class="pxp-single-job-options mt-4 col-xl-0">
                      <div class="sticky-sidebar">
                         <div class="apply-job-wrapper">
+                     {% if job.today > job.expire   %}
+              <a type="button" class="btn btn-primary rounded-pill btn-lg disabled btn-hidden">Offre expiré</a>
+                            {% else %}
                            {% if app.user %}
                            {% for role in app.user.roles %}
                            <a type="button" class="btn btn-primary rounded-pill btn-lg 
@@ -37,6 +41,7 @@
                            {% else %}
                            <a href="javascript:void(0);" title="READ MORE" rel="bookmark" data-bs-toggle="modal" data-bs-target="#jobapply" class="btn btn-primary rounded-pill btn-lg"> Postuler </a>
                            {% endif %}
+                             {% endif %}
                         </div>
                      </div>
                   </div>
@@ -47,7 +52,7 @@
                <div class="col-6">
                </div>
                <div class="col-auto">
-                  <div class="pxp-single-job-date pxp-text-light">publié :{{ job.CreatedAt|date("m/d/Y") }}</div>
+                  <div class="pxp-single-job-date pxp-text-light">publié :{{ job.beginAt|date("m/d/Y") }}</div>
                </div>
             </div>
             {% for message in app.flashes('successApply') %}
@@ -60,6 +65,7 @@
                {{ message }}
             </div>
             {% endfor %}
+          
            
             <div class="card mb-3 m-t10">
               
@@ -90,11 +96,11 @@
                            <div class="job-bx-title clearfix">
                            </div>
                            <h6 class="explore-des-2 text-dark fw-bold">Experience</h6>
-                           <h5 class="explore-des-3 text-primary">{{ job.exp.title|capitalize}}</h5>
+                           <h5 class="explore-des-3 text-primary">{{ job.exp|capitalize}}</h5>
                            <div class="job-bx-title clearfix">
                            </div>
                            <h6 class="explore-des-2 text-dark fw-bold">Type d'emploi</h6>
-                           <h5 class="explore-des-3 text-primary">{{ job.typeid.title|capitalize}}</h5>
+                           <h5 class="explore-des-3 text-primary">{{ job.type|capitalize}}</h5>
                            <div class="job-bx-title clearfix">
                            </div>
                            <h6 class="explore-des-2 text-dark fw-bold">Compétences</h6>
@@ -110,7 +116,7 @@
                            </div>
                            <div class="">
                               <h6 class="explore-des-2 text-dark fw-bold">Date limite </h6>
-                              <h5 class="explore-des-3 text-primary">{{ job.expiredAt|date("m/d/Y")}}</h5>
+                              <h5 class="explore-des-3 text-primary">{{ job.expireAt|date("m/d/Y")}}</h5>
                            </div>
                            <ul></ul>
                         </div>
@@ -218,4 +224,5 @@
    </div>
 </div>
 </div>
+{% endfor %}
 {% endblock %}

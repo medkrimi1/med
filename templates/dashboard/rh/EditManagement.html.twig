@@ -1,0 +1,94 @@
+{% extends 'layoutAdmin.html.twig' %}
+
+{% block body %}
+   
+                        <div class="job-bx job-profile bg-white">
+                           
+
+                             <div class="job-bx-title clearfix">
+                                <h5 class="font-weight-700 float-start text-primary"><a onclick="history.back()"><i class="far fa-arrow-alt-circle-left " ></a></i> Modifier utilisateur
+                                </h5>
+                                
+                            </div>
+                                      {% for message in app.flashes('success') %}
+            <div class="text-center text-dark alert alert-success">
+                {{ message }}
+            </div>
+            {% endfor %}
+                {% for message in app.flashes('error') %}
+            <div class="text-center text-dark alert alert-warning">
+                {{ message }}
+            </div>
+        {% endfor %}
+                         
+                            {{form_start(form)}}
+                                    <div class="row gap-20">
+
+                           <div class="col-lg-6 col-md-6">
+
+                                        <div class="form-group">
+                                            <div class="fs-0" >Nom</div>
+                                         {{ form_widget(form.lname,{attr: {class: 'bg-200 form-control'}}) }} 
+                                        </div>
+
+                                    </div>
+
+                                    <div class="col-lg-6 col-md-6">
+
+                                        <div class="form-group">
+                                            <div class="fs-0" >Prénom</div>
+                                              {{ form_widget(form.fname,{attr: {class: 'form-control bg-200'}}) }} 
+                                        </div>
+
+                                    </div>
+                                       <div class="col-lg-6 col-md-6">
+
+                                        <div class="form-group">
+                                            <div class="fs-0" >Email</div>
+                                         {{ form_widget(form.mail,{attr: {class: 'bg-200 form-control'}}) }} 
+                                        </div>
+
+                                    </div>
+
+                                    <div class="col-lg-6 col-md-6">
+
+                                        <div class="form-group">
+                                            <div class="fs-0" >Mot de passe</div>
+                                              {{ form_widget(form.newpassword,{attr: {class: 'form-control bg-200'}}) }} 
+                                        </div>
+
+                                    </div>
+
+                            <div class="text-center">
+                                            <button   class="btn btn-primary rounded-pill ">Mettre à jour</button></div>
+
+                            {{form_end(form)}}
+                                        </div>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+ 
+
+ 
+
+
+
+
+
+
+
+
+
+
+
+
+
+      
+                     
+         
+{% endblock %}

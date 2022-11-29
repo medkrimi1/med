@@ -99,6 +99,100 @@ class RhController extends AbstractController
         return $this->render('dashboard/rh/management.html.twig',['RH'=>$RH,'form'=>$form->createView()]);
     }
 
+
+
+
+       /**
+     * @Route("/dashboard/management/{id}", name="dashboard_managementEdit")
+     */
+    public function Edit( $id , UserRepository $repository , Request $request, EntityManagerInterface $em, UserPasswordHasherInterface $userPasswordHasher){
+      
+        $user=$this->getDoctrine()->getRepository(User::class)->find($id);
+          $l=$user->getEmail();
+          $pass=$user->getPassword();
+          $password=$user->getPassword();
+          $form= $this->createFormBuilder($user)
+        ->add('fname')
+        ->add('lname')
+        ->add('mail',EmailType::class,[ 'mapped' => false,'attr' => ['value' => $l]])
+          ->add('newpassword',PasswordType::class, [ 
+                'mapped' => false,'required'=>false,
+                ])
+
+         ->getForm();
+        $form->handleRequest($request) ;
+         $em = $this->getDoctrine()->getManager();
+        $email=$form->get('mail')->getData();
+         $newpassword=$form->get('newpassword')->getData();
+    
+       
+         $users = $this->manager->getRepository(User::class)->findAll();
+            
+        foreach ($users as $userr){
+            $userArray[] = strtolower(str_replace(' ', '',$userr->getEmail()));
+            
+        }
+
+          if ($form->isSubmitted() && $form->isValid()) {
+             
+         
+             if($email!=$l){ 
+     if(in_array(strtolower(str_replace(' ', '',$form->get('mail')->getData())), $userArray)){
+                
+            
+                $this->addFlash('error', 'Adresse existe déja');
+            
+           
+            }
+            else {
+          $user->setEmail($email);
+          
+          
+        
+          $em->flush();
+        
+               $this->addFlash('success', 'L\'adresse été modifié avec succès!');
+               
+        }
+        return $this->redirectToRoute("dashboard_management");
+           
+          }
+
+          else{  if($newpassword){
+            $user->setPassword(
+            $userPasswordHasher->hashPassword(
+                    $user,
+                    $newpassword
+                )
+            );
+        }
+        else {$user->setPassword($pass); }
+           
+            $role[]="ROLE_RH";
+          
+            $user->setRoles($role);
+           $em->persist($user);
+            $em->flush();
+            $this->addFlash('success', 'L\'utilisateur a été modifié avec succès!');
+          return $this->redirectToRoute("dashboard_management");
+
+        }
+
+
+
+             
+        }
+
+
+    
+        return $this->render('dashboard/rh/EditManagement.html.twig',['form'=>$form->createView()]);
+    }
+
+
+
+
+
+
     /**
      * @Route("dashboard/management/{id}/delete", name="RH_delete")
      * @param User $user

@@ -95,6 +95,81 @@ class OffersController extends AbstractController
             'jobs' => $jobsArray  ,'form' => $form-> createView()
         ]);
     }
+
+
+
+
+
+
+     /**
+     * @Route("/dashboard/offres/Archives", name="dashboard_offers_old")
+     */
+     public function indexArchive(JobsRepository $repository , Request $request ){ 
+        $data=new SearchData();
+         $data->page = $request->query->getInt('page', 1);
+        $form= $this->createForm(SearchForm::class, $data);
+        $form->handleRequest($request) ;
+        $jobs = $repository->findSearchArchive($data);
+     
+       
+   foreach ($jobs as $job){
+       $bb=$job->getCreatedAt()->format('Y-m-d');
+        $expired=$job->getExpiredAt()->format('Y-m-d');
+           $datexpire= $job->getExpiredAt();
+           $ccc= $job->getCreatedAt();
+           $title=$job->getTitle();
+            $str = [' ','é','è','\'','ç'];
+            $rplc =['-','e','e','','c'];
+             $candidates=[];
+            foreach($job->getApplications() as $candidate)
+            {
+             $candidates[]=[
+             'id'=>$candidate->getId() ,
+             'applicant'=>$candidate->getCandidate()->getfname(),
+             
+
+             ] ;
+
+            }
+
+            $jobsArray[] = [
+
+                   'id' => $job->getId(),
+                'title' => $job->getTitle(),
+                'image' => $job->getImage(),
+                'cover' => $job->getCover(),
+              'country' => strtolower($job->getCountry()->getName()),
+                'city' => $job->getCity(),
+                'beginAt'=>$job->getCreatedAt(),
+                'expireAt' => $job->getExpiredAt(),
+                'type' => $job->getTypeid()->getTitle(),
+                'exp' => $job->getExp()->getTitle() ,
+                'presentation' => $job->getPresentation(),
+                'resp' => $job->getResp() ,
+                'req' => $job->getReq (),
+                'fname' => $job->getUser()->getFname(),
+                'lname' => $job->getUser()->getLname(),
+                'today'=>strtotime(date('Y/m/d')),
+               'applications'=>$job->getApplications(),
+               'applicant'=> $candidates,
+                 'slug' => $job->getSlug(),
+                'expire'=>strtotime($expired),
+                 'time'=>strtotime($bb),
+               
+
+ 
+            ];
+        }
+     
+         
+         if(empty($jobsArray)){$jobsArray=[];}
+      
+   
+        return $this->render('dashboard/offres/offersOld.html.twig', [
+            'jobs' => $jobsArray  ,'form' => $form-> createView()
+        ]);
+    }
+ 
  
   
 
@@ -190,18 +265,14 @@ class OffersController extends AbstractController
                 $newImageName = $ImageName;
                 $uploadedImage->move($destination,$newImageName);
                 $job->setImage($ImageName);
-               
-               
-               
-            }
+                    }
              if ($uploadedCover) {
              $CoverName = uniqid().'.'.$uploadedCover->guessExtension();
               
                 $newCoverName = $CoverName;
                 $uploadedCover->move($destination,$newCoverName);
                 $job->setCover($CoverName);
-               
-               
+                            
             }
 
         }
@@ -209,7 +280,7 @@ class OffersController extends AbstractController
          $em->persist($job);
             $em->flush();
              $this->addFlash('success', 'L\'offre d\'emploi a été modifié avec succès!');
-            return $this->redirectToRoute('dashboard_offers');
+         return $this->redirect($request->getUri());
 
         }
         return $this->render('dashboard/offres/modifier.html.twig', [
@@ -235,6 +306,41 @@ class OffersController extends AbstractController
         return $this->redirectToRoute("dashboard_offers");
     }
 
+
+
+    /**
+     * @Route("/dashboard/offres/reset{id}", name="offre_reset")
+     * @param Jobs $jobs
+     * @return RedirectResponse
+     */
+    public function reset(Jobs $jobs): RedirectResponse
+    {
+       
+   
+            $em = $this->getDoctrine()->getManager();
+          $jobs->setStatus('Actif');
+          $em->persist($jobs);
+          $em->flush();
+        
+        return $this->redirectToRoute("dashboard_offers");
+    }
+
+
+  /**
+     * @Route("/dashboard/offres/Suprimer{id}", name="offre_remove")
+     * @param Jobs $jobs
+     * @return RedirectResponse
+     */
+    public function remove(Jobs $jobs): RedirectResponse
+    {
+       
+   
+            $em = $this->getDoctrine()->getManager();
+          $em->remove($jobs);
+          $em->flush();
+        
+        return $this->redirectToRoute("dashboard_offers_old");
+    }
 
      /**
      * @Route("dashboard/offres/{id}", name="postulants")

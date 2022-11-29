@@ -258,11 +258,47 @@ $form_guest->handleRequest($request) ;
 
   
           
-          
-          
+            $expired=$job->getExpiredAt()->format('Y-m-d');
+
+             $skills=[];
+            foreach($job->getSkills() as $skill)
+            { 
+            
+             $skills[]=[
+             'title'=>$skill->getTitle() ,
+            
+
+             ] ;
+
+            }
+           $jobsArray[] = [
+
+                   'id' => $job->getId(),
+                'title' => $job->getTitle(),
+                'image' => $job->getImage(),
+                'cover' => $job->getCover(),
+              'country' => strtolower($job->getCountry()->getName()),
+                'city' => $job->getCity(),
+                'beginAt'=>$job->getCreatedAt(),
+                'expireAt' => $job->getExpiredAt(),
+                'type' => $job->getTypeid()->getTitle(),
+                'exp' => $job->getExp()->getTitle() ,
+                'presentation' => $job->getPresentation(),
+                'resp' => $job->getResp() ,
+                'req' => $job->getReq (),
+                'fname' => $job->getUser()->getFname(),
+                'lname' => $job->getUser()->getLname(),
+                'today'=>strtotime(date('Y/m/d')),
+                'skills'=>$skills,
+                'expire'=>strtotime($expired),
+               
+               
+
+ 
+            ];
        
      
-        return $this->render('offres/offre.html.twig',['job'=>$job, 'form' => $form-> createView(), 'form_guest' => $form_guest-> createView()]);
+        return $this->render('offres/offre.html.twig',['job'=>$jobsArray, 'form' => $form-> createView(), 'form_guest' => $form_guest-> createView()]);
     }
 
        /**

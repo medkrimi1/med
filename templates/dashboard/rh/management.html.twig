@@ -33,8 +33,8 @@
                                                                 <div class="job-post-info">
                                                                     <h5 class="tecos-h">{{user.fname}} {{user.lname}} <span class="text-secondary"> ({{user.email}})</span> </h5>
                                                                 </div>
-                                                            </div>
-                                                            <a href="{{path('RH_delete',{'id':user.id})}}" onclick = "return confirm('Voulez-vous vraiment supprimer cet utilisateur ?')" class="job-links  btn btn-outline-danger add-btn  "><i class="fas fa-trash" ></i></a>
+                                                            </div> <label class="like-btn"><a href="{{path('dashboard_managementEdit',{'id':user.id})}}" class=" btn btn-outline-primary add-btn btn-sm"><i class="fas fa-pencil-alt m-r4"></i> </a><span> <a href="{{path('RH_delete',{'id':user.id})}}" onclick = "return confirm('Voulez-vous vraiment supprimer cet utilisateur ?')" class="  btn btn-outline-danger add-btn  btn-sm"><i class="fas fa-trash" ></i></a></span>
+                                                         
                                                         </div>
                                                     </li>
                                                  
