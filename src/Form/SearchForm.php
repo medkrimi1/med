@@ -90,8 +90,21 @@ class SearchForm extends AbstractType
     'format' => 'ddMMyyyy',
     'required' => true ,
     'input' => 'string'])
+
+        ->add('status',ChoiceType::class, [
+        'choices'=>['Actif'=>'Actif','Expiré'=>'Expiré'],
+ 
+            'required' => false ,
+            'attr' => [
+                'placeholder' =>'Rechercher' ,
+             'csrf_protection' => false ]
+
+        ])             
             ;
     }
+
+
+
 
 
 

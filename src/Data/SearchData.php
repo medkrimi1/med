@@ -69,6 +69,13 @@ public $TypeJobs =[] ;
 
 public $Name='' ;
 
+/**
+ * @var string
+ */
+
+public $status='' ;
+
+
 
 
 

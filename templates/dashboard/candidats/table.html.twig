@@ -35,7 +35,9 @@
     <th class="sorting text-dark text-center" tabindex="0" aria-controls="example" rowspan="1" colspan="1" style="width: 80px;" aria-label="Office: activate to sort column ascending">Pays</th>
     <th class="dt-body-right sorting text-dark text-center" tabindex="0" aria-controls="example" rowspan="1" colspan="1" style="width: 20px;" aria-label="Age: activate to sort column ascending">Candidatures</th>
      <th class="dt-body-right sorting text-dark text-center" tabindex="0" aria-controls="example" rowspan="1" colspan="1" style="width: 20px;" aria-label="Age: activate to sort column ascending">Date</th>
-    <th class="dt-body-right sorting text-dark text-center" tabindex="0" aria-controls="example" rowspan="1" colspan="1" style="width: 0px;" aria-label="ed: activate to sort column ascending">Status</th>
+     <th class="dt-body-right sorting text-dark text-center" tabindex="0" aria-controls="example" rowspan="1" colspan="1" style="width: 0px;" aria-label="ed: activate to sort column ascending">cv</th>
+    <th class="dt-body-right sorting text-dark text-center" tabindex="0" aria-controls="example" rowspan="1" colspan="1" style="width: 0px;" aria-label="ed: activate to sort column ascending">Statut</th>
+
     </tr></thead><tbody>
 
 
@@ -92,10 +94,10 @@
                                        <tr class="border-bottom border-400">
                                           <td>
                                              <div class="d-flex align-items-center position-relative">
-                                               {% if applications.title != 609679 %} 
+                                               {% if applications.job.title != 609679 %} 
                                                 <div class="posted-info clearfix  ">
                                                    <div class="m-tb0  float-start "><span  class=" text-dark  ">Nouvelle candidature pour:</span><a
-                                                   class="" href="{{path('offre_get',{'slug':applications.slug,'id':applications.jobid})}}" > {{applications.title|capitalize}} </a></div>
+                                                   class="" href="{{path('offre_get',{'slug':applications.job.slug,'id':applications.job.id})}}" > {{applications.job.title|capitalize}} </a></div>
                                                 </div>
                                                 {% else %}
                                                  <div class="posted-info clearfix  ">
@@ -131,9 +133,39 @@
                    </div>
                     </div>
 </td>
+
  <td class="border border-2 border-300 text-center">  {% for applications in candidate.applications|reverse|slice(0, 1) %}{{applications.appdate|date("d/m/Y")}} {% endfor %}</td>
 
-
+ 
+    <td class="border border-2 border-300 text-center"><a class="text-primary" type="button" data-bs-toggle="modal" data-bs-target="#modal{{candidate.id}}"><i class="fas fa-file"></i> </a></td>
+   
+    {% for modal in candidate.cv|reverse %}
+     <div class="modal fade" id="modal{{candidate.id}}" data-bs-keyboard="false" data-bs-backdrop="static" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+  <div class="modal-dialog modal-lg mt-6" role="document">
+    <div class="modal-content border-0">
+      <div class="position-absolute top-0 end-0 mt-3 me-3 z-index-1"><button class="btn-close btn btn-sm btn-circle d-flex flex-center transition-base float-end" data-bs-dismiss="modal" aria-label="Close"></button></div>
+      <div class="modal-body p-0">
+        <div class="bg-light rounded-top-lg py-3 ps-4 pe-6">
+          <h5 class="mb-1" id="staticBackdropLabel">Cv de {{candidate.fname|capitalize}}</h5>
+        
+        </div>
+        <div class="">
+          <div class="row">
+          <iframe src="{{asset('cv/' ~modal.cv)}}"
+ 
+                
+                height="500">
+        </iframe>
+      
+      
+          
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+{% endfor %} 
  <td class="border border-2 border-300 text-center">
 
   {% if candidate.status=='Traité' %}

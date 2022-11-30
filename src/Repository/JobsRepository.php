@@ -59,11 +59,27 @@ class JobsRepository extends ServiceEntityRepository
             ->select('c', 'p')
              ->orderBy('p.id', 'DESC')
              ->Where('p.title != :test')
+
              ->setParameter('test', 609679)
              ->Where('p.status != :test')
              ->setParameter('test', 'nonActif')
            
-            ->join('p.skills', 'c');
+            ->join('p.skills', 'c')
+            ;
+               if ($search->status=="Actif") {
+            $query = $query
+              ->andWhere('p.ExpiredAt > :date')
+            ->setParameter('date', new \DateTime());
+       
+        }
+
+          if ($search->status=="Expiré") {
+            $query = $query
+              ->andWhere('p.ExpiredAt < :date')
+            ->setParameter('date', new \DateTime());
+       
+        }
+        
 
         if (!empty($search->Name)) {
             $query = $query
@@ -92,6 +108,7 @@ class JobsRepository extends ServiceEntityRepository
                 ->setParameter('Experience', $search->Experience);
 
         }
+         
          if (!empty($search->Country)) {
             $query = $query
                 ->andWhere('p.country IN (:Country)')
@@ -128,6 +145,19 @@ class JobsRepository extends ServiceEntityRepository
              ->setParameter('test', 'nonActif')
            
             ->join('p.skills', 'c');
+              if ($search->status=="Actif") {
+            $query = $query
+              ->andWhere('p.ExpiredAt > :date')
+            ->setParameter('date', new \DateTime());
+       
+        }
+
+          if ($search->status=="Expiré") {
+            $query = $query
+              ->andWhere('p.ExpiredAt < :date')
+            ->setParameter('date', new \DateTime());
+       
+        }
 
         if (!empty($search->Name)) {
             $query = $query
@@ -145,6 +175,7 @@ class JobsRepository extends ServiceEntityRepository
                 ->setParameter('startdate', $search->startdate)
                 ->setParameter('enddate', $search->enddate);
         }
+         
          if (!empty($search->TypeJobs)) {
             $query = $query
                 ->andWhere('p.typeid IN (:TypeJobs)')
