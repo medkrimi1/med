@@ -25,7 +25,9 @@
       <link href="{{ asset('vendors/overlayscrollbars/OverlayScrollbars.min.css') }}" rel="stylesheet">
       <link href="{{ asset('assets/css/theme.min.css') }}" rel="stylesheet" id="style-default">
       <script src="{{ asset('vendors/choices/choices.min.js') }}"></script>
-      <script src="{{ asset('js/multiselect-dropdown.js') }}"></script>
+         <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
+
+    
       <link href="{{ asset('vendors/choices/choices.min.css') }}" rel="stylesheet" />
       <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.13.1/css/jquery.dataTables.css">
       <script>
@@ -60,7 +62,12 @@
       <script src="{{ asset('js/jquery.min.js') }}"></script>
       <script src="{{asset('vendors/datatables.net/jquery.dataTables.min.js')}}"></script>
       <script src="{{asset('vendors/datatables.net-bs5/dataTables.bootstrap5.min.js')}}"></script>
-      <script src="{{asset('vendors/datatables.net-fixedColumns/dataTables.fixedColumns.min.js')}}"></script>     
+      <script src="{{asset('vendors/datatables.net-fixedColumns/dataTables.fixedColumns.min.js')}}"></script> 
+      <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
+        <script> 
+$(document).ready(function() {
+    $('.multiselect-dropdown').select2();
+});</script>
       {% endblock %}
    </head>
    <body>
@@ -109,7 +116,7 @@
                                  <div class="">
                                  <h4 class=""><a href="javascript:void(0);"><h4 class="mt-2  tecos-h nav-link m-r15">{{app.user.fname}} {{app.user.lname}}</h4></a></h4>
                                  </div>
-                                 <a href="{{ path('dashboard_offers_add',{'id':app.user.id}) }}" class="btn btn-success btn-sm rounded-pill"> <i class="fas fa-plus fa-sm"></i> Ajouter offre</button> </a>
+                                 <a href="{{ path('dashboard_offers_add',{'id':app.user.id}) }}" class="btn btn-success btn-sm rounded-pill"> <i class="fas fa-plus fa-sm"></i> AAjouter offre</button> </a>
                                  </div>
                                  </div></span></div>
                                  </a><!-- more inner pages-->
