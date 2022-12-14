@@ -7,6 +7,7 @@ use App\Data\SearchData;
 use App\Entity\Skills;
 use App\Entity\Jobs;
 use App\Entity\Country;
+use App\Entity\User;
 use App\Repository\JobsRepository;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\AbstractType;
@@ -63,6 +64,18 @@ class SearchForm extends AbstractType
 
             
        ])
+                ->add('employer', EntityType::class, [
+               'class' => User::class,
+                      'choice_label' => 'fname',
+               'required'=> false,'placeholder' =>'Tous' ,
+                  'query_builder' => function (EntityRepository $er) {
+              return $er->createQueryBuilder('u')
+             ->Where('u.roles != :roles')
+              ->setParameter('roles', '["ROLE_Candidate"]')
+             ;
+    },
+         
+            ])
            ->add('Skills', EntityType::class , [
             'label' => false ,
             'required' => false ,
@@ -93,11 +106,9 @@ class SearchForm extends AbstractType
 
         ->add('status',ChoiceType::class, [
         'choices'=>['Actif'=>'Actif','Expiré'=>'Expiré'],
- 
+ 'placeholder' =>'Tous' ,
             'required' => false ,
-            'attr' => [
-                'placeholder' =>'Rechercher' ,
-             'csrf_protection' => false ]
+           
 
         ])             
             ;

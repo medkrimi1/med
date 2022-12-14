@@ -46,6 +46,11 @@ public $Skills=[];
 public $Title=null;
 
 
+ /**
+  * @var string
+  */
+public $employer=null;
+
 
 
 /**

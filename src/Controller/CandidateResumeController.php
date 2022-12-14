@@ -39,6 +39,7 @@ class CandidateResumeController extends AbstractController
     public function index($id,Request $request){
        $candidate=$this->getDoctrine()->getRepository(Candidates::class)->find($id);
        $formations=$this->getDoctrine()->getRepository(Formation::class)->findBy(["candidate" => $candidate]);
+
        $works=$this->getDoctrine()->getRepository(WorkExperience::class)->findBy(["candidate" => $candidate]);
        $certificates=$this->getDoctrine()->getRepository(Certificate::class)->findBy(["candidate" => $candidate]);
        $languages=$this->getDoctrine()->getRepository(Language::class)->findBy(["candidate" => $candidate]);
@@ -47,30 +48,7 @@ class CandidateResumeController extends AbstractController
        $newCertif = new Certificate();
        $newlanguage = new Language();
 
-        $form_skills= $this->createFormBuilder($candidate)
-         ->add('skill', EntityType::class , [
-            
-            'required' => true ,
-            'class' => Skills::class,
-            'multiple' => true
-
-            
-       ])
-      
-         ->getForm();
-        $form_skills->handleRequest($request) ;
-         $em = $this->getDoctrine()->getManager();
-
-          if ($form_skills->isSubmitted() && $form_skills->isValid()) {
-
-         $em->persist($candidate);
-          $em->flush();
-               
-        
-             return $this->redirect($request->getUri());
-
-
-          }
+           $em = $this->getDoctrine()->getManager();
            $choices=['Débutant'=>'Débutant','Intermédiaire'=>'Intermédiaire','Avancé'=>'Avancé'  ];
            $form_language= $this->createFormBuilder($newlanguage)
            
@@ -226,11 +204,74 @@ $newCertif->setAttachment($AttachmentName);
        
 
 
+ $form_skills= $this->createFormBuilder($candidate)
+         ->add('skill', EntityType::class , [
+            
+            'required' => true ,
+            'class' => Skills::class,
+            'multiple' => true
 
+            
+       ])
+      
+         ->getForm();
+        $form_skills->handleRequest($request) ;
+         $em = $this->getDoctrine()->getManager();
+
+          if ($form_skills->isSubmitted() && $form_skills->isValid()) {
+
+         $em->persist($candidate);
+          $em->flush();
+               
+        
+             return $this->redirect($request->getUri());
+
+
+          }
          
 
 
-        return $this->render('candidat/carrière/index.html.twig',['formations'=>$formations,'works'=>$works,'certificates'=>$certificates,'languages'=>$languages, 'form_skills'=>$form_skills->createView(),'form_formation'=>$form_formation->createView(),'form_work'=>$form_work->createView(),'form_certif'=>$form_certif->createView(),'form_language'=>$form_language->createView()]);
+        return $this->render('candidat/carrière/index.html.twig',['candidate'=>$candidate,'formations'=>$formations,'works'=>$works,'certificates'=>$certificates,'languages'=>$languages,'form_formation'=>$form_formation->createView(),'form_work'=>$form_work->createView(),'form_certif'=>$form_certif->createView(),'form_language'=>$form_language->createView()]);
+    }
+
+
+
+
+     /**
+     * @Route("/candidat/carrière/compétences/{id}", name="Edit_Skills_Candidate")
+     */
+    public function skills($id,Request $request){
+       $candidate=$this->getDoctrine()->getRepository(Candidates::class)->find($id);
+     
+
+      
+        $form_skills= $this->createFormBuilder($candidate)
+         ->add('skill', EntityType::class , [
+            
+            'required' => true ,
+            'class' => Skills::class,
+            'multiple' => true
+
+            
+       ])
+      
+         ->getForm();
+        $form_skills->handleRequest($request) ;
+         $em = $this->getDoctrine()->getManager();
+
+          if ($form_skills->isSubmitted() && $form_skills->isValid()) {
+
+         $em->persist($candidate);
+          $em->flush();
+               
+        
+              return $this->redirectToRoute("my_resume",["id"=>$id]);
+
+
+          }
+
+
+            return $this->render('candidat/carrière/update/skills.html.twig',['form_skills'=>$form_skills->createView()]);
     }
 
 
@@ -240,7 +281,8 @@ $newCertif->setAttachment($AttachmentName);
      * @return Response
      */
     public function editFormation(Formation $formation,$idc ,Request $request): Response
-    {
+    {   
+
        
             $candidate=$this->getDoctrine()->getRepository(Candidates::class)->find($idc);
        $form_formation= $this->createFormBuilder($formation)

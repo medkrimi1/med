@@ -42,7 +42,7 @@
                                        <li>
                                           <a href="{{ path('my_resume',{'id':app.user.id})}}" class="active">
                                              <span>
-                                                <h6 class="fs-0 text-white fw-bold"><i class="far fa-file-alt" aria-hidden="true"></i> Ma carrière</h6>
+                                                <h6 class="fs-0 text-white fw-bold"><i class="far fa-file-alt" aria-hidden="true"></i> Mon CV En Ligne</h6>
                                              </span>
                                           </a>
                                        </li>
@@ -95,15 +95,21 @@
             </div>
         {% endfor %}
 
-                              {{form_start(form_skills)}}
-                                 
-                                         <h3 class="mb-0 text-dark">Compétences</h3> 
+       
+                       <h3 class=" mb-0 text-dark">Compétences<span> <a href="{{path('Edit_Skills_Candidate',{'id':app.user.id })}}" class="btn btn-primary rounded-pill add-btn btn-sm"><i class="fas fa-pen fa-sm "></i></a></span></h3> 
+                          <div class="float-end">
+                       
+                     </div>
 
-                                                 {{ form_widget(form_skills.skill,{attr: {class: 'multiselect-dropdown'},required:false}) }} 
-
-                             <button type="submit" class="btn btn-outline-primary rounded-pill m-t20">Mettre à jour</button>
-
-                             {{form_end(form_skills)}}
+                  
+                              <div class="job-time m-t15 m-b10 ">
+                       {% for skill in candidate.skill %}    
+                              <span class="rounded-pill bg-primary tecos-h text-white">
+                              {{ skill.title|capitalize}}
+                              </span>
+                              {% endfor %}
+                  </div>
+                   
                           
                               
                            
@@ -121,12 +127,12 @@
                                     <div class="resume-list-item">
                                        <div class="row">
                                           <div class=" text-justify pxp-single-candidate-timeline">
-                                              {% for formation in formations %}
+                                              {% for formation in formations|reverse %}
                                              <div class="pxp-single-candidate-timeline-item">
                                               
                                                 <div class="pxp-single-candidate-timeline-dot " ></div>
                                                 <div class="pxp-single-candidate-timeline-info ms-3">
-                                                   <div class="pxp-single-candidate-timeline-time text-dark"><span class="bg-200  rounded-4 m-b0">{{formation.startdate|date("d/m/y")}} {{formation.enddate|date("d/m/y")}}</span>  <a href="{{path('formation_edit',{'idc':app.user.id ,'id':formation.id})}}"  class="btn btn-outline-primary add-btn btn-sm"><i class="fas fa-pencil-alt m-r4"></i> </a>
+                                                   <div class="pxp-single-candidate-timeline-time text-dark"><span class="bg-200  rounded-4 m-b0">{{formation.enddate|date("d/m/y")}} {{formation.startdate|date("d/m/y")}} </span>  <a href="{{path('formation_edit',{'idc':app.user.id ,'id':formation.id})}}"  class="btn btn-outline-primary add-btn btn-sm"><i class="fas fa-pencil-alt m-r4"></i> </a>
                                                       <a href="{{path('formation_delete',{'idc':app.user.id ,'id':formation.id})}}" onclick = "return confirm('Voulez-vous vraiment supprimer cette formation ?')" class=" btn btn-outline-danger add-btn btn-sm"><i class="fas fa-trash"></i></a>
                                                    </div>
                                                    <div class="pxp-single-candidate-timeline-position text-primary fw-bold">{{formation.diploma|capitalize}}</div>
@@ -165,11 +171,11 @@
                                        <div class="resume-list-item">
                                           <div class="row">
                                              <div class="text-justify pxp-single-candidate-timeline">
-                                                 {% for work in works %}
+                                                 {% for work in works|reverse %}
                                                 <div class="pxp-single-candidate-timeline-item">
                                                    <div class="pxp-single-candidate-timeline-dot" ></div>
                                                    <div class="pxp-single-candidate-timeline-info ms-3">
-                                                      <div class="pxp-single-candidate-timeline-time text-dark  "><span class=" bg-200  rounded-4 m-b0">{{work.startdate|date("d/m/y")}} {{work.enddate|date("d/m/y")}}</span>   <a href="{{path('Experience_edit',{'idc':app.user.id ,'id':work.id})}}"  class="btn btn-outline-primary add-btn btn-sm"><i class="fas fa-pencil-alt m-r4"></i> </a>
+                                                      <div class="pxp-single-candidate-timeline-time text-dark  "><span class=" bg-200  rounded-4 m-b0">{{work.enddate|date("d/m/y")}} {{work.startdate|date("d/m/y")}} </span>   <a href="{{path('Experience_edit',{'idc':app.user.id ,'id':work.id})}}"  class="btn btn-outline-primary add-btn btn-sm"><i class="fas fa-pencil-alt m-r4"></i> </a>
                                                          <a href="{{path('work_delete',{'idc':app.user.id ,'id':work.id})}}" onclick = "Voulez-vous vraiment supprimer cette expérience ??')" class="btn btn-outline-danger  add-btn btn-sm"><i class="fas fa-trash-alt m-r4"></i></a>
                                                       </div>
                                                       <div class="pxp-single-candidate-timeline-position text-primary fw-bold">{{work.title|capitalize}}</div>
@@ -206,7 +212,7 @@
                                        <div class="resume-list-item">
                                           <div class="row">
                                              <div class="text-justify pxp-single-candidate-timeline">
-                                                {% for certificate in certificates %}
+                                                {% for certificate in certificates|reverse %}
                                                 <div class="pxp-single-candidate-timeline-item">
                                                    <div class="pxp-single-candidate-timeline-dot" ></div>
                                                    <div class="pxp-single-candidate-timeline-info ms-3">
@@ -370,4 +376,25 @@
 
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+            
+               
+                     
+                     
+
+                           
+                     
+                    
 {% endblock %}

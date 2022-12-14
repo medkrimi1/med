@@ -47,7 +47,7 @@ class ParametersController extends AbstractController
            
           $em->persist($user);
           $em->flush();
-               $this->addFlash('success', 'le nom été modifié avec succès!');
+              // $this->addFlash('success', 'le nom été modifié avec succès!');
         
              return $this->redirect($request->getUri());
  }

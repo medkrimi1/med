@@ -102,6 +102,11 @@ class JobsRepository extends ServiceEntityRepository
                 ->andWhere('p.typeid IN (:TypeJobs)')
                 ->setParameter('TypeJobs', $search->TypeJobs);
         }
+         if (!empty($search->employer)) {
+            $query = $query
+                ->andWhere('p.user IN (:employer)')
+                ->setParameter('employer', $search->employer);
+        }
         if (!empty($search->Experience)) {
             $query = $query
                 ->andWhere('p.exp IN (:Experience)')
@@ -180,6 +185,11 @@ class JobsRepository extends ServiceEntityRepository
             $query = $query
                 ->andWhere('p.typeid IN (:TypeJobs)')
                 ->setParameter('TypeJobs', $search->TypeJobs);
+        }
+         if (!empty($search->employer)) {
+            $query = $query
+                ->andWhere('p.user IN (:employer)')
+                ->setParameter('employer', $search->employer);
         }
         if (!empty($search->Experience)) {
             $query = $query

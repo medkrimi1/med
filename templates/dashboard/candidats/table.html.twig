@@ -25,13 +25,15 @@
                       
 
 
-                                <div id="" class="dataTables_wrapper dt-bootstrap5 "><div class="row"><div class="col-sm-12 col-md-6"></div><div class="col-sm-12 col-md-6"></div></div><div class="row "><div class="col-sm-12"><table id="example" class="display nowrap dataTable dtr-inline border border-400 border-2 rounded-3 bg-200 text-dark" style="width: 100%;" aria-describedby="example_info"><thead>
+                                <div id="" class="dataTables_wrapper dt-bootstrap5 "><div class="row"><div class="col-sm-12 col-md-6"></div><div class="col-sm-12 col-md-6"></div></div><div class="row "><div class="col-sm-12"><table id="example" class=" dataTable dtr-inline border border-400 border-2 rounded-3 bg-200 text-dark" style="width: 100%;" aria-describedby="example_info"><thead>
     <tr >
 <th class="sorting sorting_asc text-dark text-center" tabindex="0" aria-controls="example" rowspan="1" colspan="1" style="width: 5px;" aria-label="Name: activate to sort column descending" aria-sort="ascending"></th>
-    <th class="sorting sorting_asc text-dark text-center" tabindex="0" aria-controls="example" rowspan="1" colspan="1" style="width: 150px;" aria-label="Name: activate to sort column descending" aria-sort="ascending">Candidat</th>
+    <th class="sorting sorting_asc text-dark text-center" tabindex="0" aria-controls="example" rowspan="1" colspan="1" style="width: 350px;" aria-label="Name: activate to sort column descending" aria-sort="ascending">Candidat</th>
+    <th class="sorting sorting_asc text-dark text-center" tabindex="0" aria-controls="example" rowspan="1" colspan="1" aria-label="Name: activate to sort column descending" aria-sort="ascending">Age</th>
      <th class="sorting sorting_asc text-dark d-none" tabindex="0" aria-controls="example" rowspan="1" colspan="1" style="width: 150px;" aria-label="Name: activate to sort column descending" aria-sort="ascending">email</th>
     <th class="sorting text-dark text-center" tabindex="0" aria-controls="example" rowspan="1" colspan="1" style="width: 150px;" aria-label="Position: activate to sort column ascending">Titre</th>
-    <th class="sorting text-dark text-center" tabindex="0" aria-controls="example" rowspan="1" colspan="1" aria-label="Position: activate to sort column ascending" style="width: 20px;">Expérience</th>
+   
+      <th class="sorting text-dark text-center" tabindex="0" aria-controls="example" rowspan="1" colspan="1" aria-label="Position: activate to sort column ascending" >Expérience</th>
     <th class="sorting text-dark text-center" tabindex="0" aria-controls="example" rowspan="1" colspan="1" style="width: 80px;" aria-label="Office: activate to sort column ascending">Pays</th>
     <th class="dt-body-right sorting text-dark text-center" tabindex="0" aria-controls="example" rowspan="1" colspan="1" style="width: 20px;" aria-label="Age: activate to sort column ascending">Candidatures</th>
      <th class="dt-body-right sorting text-dark text-center" tabindex="0" aria-controls="example" rowspan="1" colspan="1" style="width: 20px;" aria-label="Age: activate to sort column ascending">Date</th>
@@ -53,19 +55,21 @@
    <span class="badge badge rounded-pill badge-soft-warning">Non Lu</span></td>
    {% endif %}
 
-    <td class="dtr-control sorting_1 border border-2 border-300 " tabindex="0">    <div class="pxp-single-candidate-hero-avatar avatar avatar-2xl " style="background-image"  > <img class="pxp-single-candidate-hero-avatar  avatar avatar-2xl border-
-	 border
+    <td class="dtr-control sorting_1 border border-2 border-300 " tabindex="0">    <div class=" avatar avatar-2xl  " style="background-image"  > <img class="pxp-single-candidate-hero-avatar
 	 " src="{{asset('images/users/' ~candidate.image)}}" alt="image" ></div>
                                <span class="py-2 fs-0 mb-0 m-t10" > <a class="text-dark" href="{{path('candidatProfile',{'fname':candidate.fname,'lname':candidate.lname,'id':candidate.id})}}" target="_blank">{{candidate.fname|capitalize}} {{candidate.lname|capitalize}}</a>
                                </span></td>
-
+     <td class="border border-2 border-300 text-center"> {% if candidate.bdate !='' %}{% if (("now"|date("m")) == candidate.bdate|date("m") or ("now"|date("m")) < candidate.bdate|date("m")) and ("now"|date("d")) == candidate.bdate|date("d") or ("now"|date("d")) < candidate.bdate|date("d")  %} {% set x = 0 %} {% else %}  {% set x = 1 %}{% endif %}
+        {{ ("now"|date("Y")) - candidate.bdate|date("Y") - x }}  {% endif %} </td>
     <td class="border border-2 border-300 d-none">{{candidate.email}}</td>
     <td class="border border-2 border-300 text-center">{{candidate.titre|capitalize}}</td>
 
 
-    <td class="border border-2 border-300 text-center">{{candidate.experience}}</td>
+    
 
+    <td class="border border-2 border-300 text-center">{{candidate.experience|capitalize}}</td>
     <td class="border border-2 border-300 text-center">{{candidate.country|capitalize}}</td>
+
 
 
 

@@ -62,9 +62,13 @@
   
  
   {{ form_widget(form.Title,{attr: {class: 'js-choice'}}) }}
+
+<div class="fs-0">Publié par
+    </div>
+  {{ form_widget(form.employer,{attr: {class: 'js-choice'}}) }}
  <div class="fs-0">statut
     </div>
-   {{ form_widget(form.status,{attr: {class: 'form-select'}}) }}
+   {{ form_widget(form.status,{attr: {class: 'form-select m-b10'}}) }}
 
 
  
@@ -75,12 +79,12 @@
    
     <div class="fs-0" >Experience
     </div>
-       {{ form_row(form.Experience,{attr: {class: 'multiselect-native-select'}}) }}
+       {{ form_widget(form.Experience,{attr: {class: 'multiselect-dropdown'}}) }}
     <div class="fs-0">Pays
     </div>
        {{ form_widget(form.Country,{attr: {class: 'multiselect-dropdown'}}) }}
        
-       <div class="fs-0">Compétence
+       <div class="fs-0">Compétences
     </div>
        {{ form_widget(form.Skills,{attr: {class: 'multiselect-dropdown'}}) }}
      

@@ -280,7 +280,62 @@ class OffersController extends AbstractController
          $em->persist($job);
             $em->flush();
              $this->addFlash('success', 'L\'offre d\'emploi a été modifié avec succès!');
-         return $this->redirect($request->getUri());
+          return $this->redirectToRoute('dashboard_offers');
+
+        }
+        return $this->render('dashboard/offres/modifier.html.twig', [
+            "form" => $form->createView()
+        ]);
+    }
+
+
+
+       /**
+     * @Route("/dashboard/offres/archives/modifier/{id}", name="offers_archives_edit")
+     * @param Request $request
+     * @return Response
+     */
+    public function editArchive(Jobs $job, Request $request): Response
+    {
+        $jobs = new Jobs();
+        $form = $this->createForm(JobsAddType::class, $job);
+        $form->handleRequest($request);
+        $str = [' ','é','è','\'','ç'];
+        $rplc =['-','e','e','','c'];
+        $title = $form['title']->getData();
+        if($form->isSubmitted() && $form->isValid()) {
+            $em = $this->getDoctrine()->getManager();
+
+           
+    if ($form->isSubmitted() && $form->isValid()) {
+            /** @var UploadedFile $uploadedFile */
+            $uploadedImage = $form['imagefield']->getData();
+            $uploadedCover = $form['coverfield']->getData();
+
+           
+            $destination = $this->getParameter('kernel.project_dir').'/public/images/jobs';
+            if ($uploadedImage) {
+            $ImageName = uniqid().'.'.$uploadedImage->guessExtension();
+         
+                $newImageName = $ImageName;
+                $uploadedImage->move($destination,$newImageName);
+                $job->setImage($ImageName);
+                    }
+             if ($uploadedCover) {
+             $CoverName = uniqid().'.'.$uploadedCover->guessExtension();
+              
+                $newCoverName = $CoverName;
+                $uploadedCover->move($destination,$newCoverName);
+                $job->setCover($CoverName);
+                            
+            }
+
+        }
+        $job->setSlug(strtolower(str_replace($str,$rplc,$title)));
+         $em->persist($job);
+            $em->flush();
+             $this->addFlash('success', 'L\'offre d\'emploi a été modifié avec succès!');
+          return $this->redirectToRoute('dashboard_offers_old');
 
         }
         return $this->render('dashboard/offres/modifier.html.twig', [

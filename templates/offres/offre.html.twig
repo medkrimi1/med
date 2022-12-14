@@ -1,6 +1,6 @@
 {% extends 'layout.html.twig' %}
 {% block body %}
-<div class="header-w bg-white" > </div>
+<div class="header-w bg-white border-bottom border-2" > </div>
 <div class="dez-bnr-inr overlay-black-middle" >
     {% for job in job %}
    <img class="dez-bnr-inr overlay-black-middle" style="background-image " alt="image"   src="{{asset('images/jobs/' ~job.cover)}}">

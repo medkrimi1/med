@@ -60,15 +60,21 @@
 </div>
   </div>
   
- 
-  {{ form_widget(form.Title,{attr: {class: 'js-choice'}}) }}
-   <div class="fs-0">statut
+ {{ form_widget(form.Title,{attr: {class: 'js-choice'}}) }}
+
+<div class="fs-0">Publié par
     </div>
-   {{ form_widget(form.status,{attr: {class: 'form-select'}}) }}
-
+  {{ form_widget(form.employer,{attr: {class: 'js-choice'}}) }}
+ <div class="fs-0">statut
+    </div>
+   {{ form_widget(form.status,{attr: {class: 'form-select m-b10'}}) }}
 
 
  
+
+  <div class="fs-0">Compétence
+    </div>
+       {{ form_widget(form.Skills,{attr: {class: 'multiselect-dropdown'}}) }}
 
     <div class="fs-0">Type
     </div>
@@ -76,14 +82,12 @@
    
     <div class="fs-0" >Experience
     </div>
-       {{ form_row(form.Experience,{attr: {class: 'multiselect-native-select'}}) }}
+       {{ form_row(form.Experience,{attr: {class: 'multiselect-dropdown'}}) }}
     <div class="fs-0">Pays
     </div>
        {{ form_widget(form.Country,{attr: {class: 'multiselect-dropdown'}}) }}
        
-       <div class="fs-0">Compétence
-    </div>
-       {{ form_widget(form.Skills,{attr: {class: 'multiselect-dropdown'}}) }}
+      
      
       
    
@@ -126,24 +130,7 @@
                                           <li>  <a  href="{{path('offre_get',{'slug':job.slug,'id':job.id})}}"  class=" text-bold">
                                                 <h4 class="mt-1 fw-bold text-dark">{{ job.title|capitalize  }} </h4>
                                                </li>
-                                                <li>
-                                        
-  {% if job.today > job.expire   %}
-   <button class="badge badge rounded-pill d-block  bg-danger" type="button">Expiré</button>
-
-
-    {% else %}
-
- <button class="badge badge rounded-pill   bg-success" type="button">Actif</button>
-{% endif %}
-
-                                    
-
-
-
-
-                                     
-                                              </li>
+                                          
                                                </ul>
 
 
@@ -229,12 +216,12 @@
 
                                     </div>
                                     <label class="like-btn">
-                                        <a href="{{path('offers_edit',{'id':job.id})}}"  class="btn btn-outline-primary add-btn btn-sm"><i class="fas fa-pencil-alt m-r4"></i> </a>
+                                        <a href="{{path('offers_archives_edit',{'id':job.id})}}"  class="btn btn-outline-primary add-btn btn-sm"><i class="fas fa-pencil-alt m-r4"></i> </a>
                               
                                          <a onclick = "return confirm('Voulez-vous vraiment réactiver cette offre ?')" href="{{path('offre_reset',{'id':job.id})}}" class=" btn btn-outline-secondary add-btn btn-sm"><i class="fas fa-undo m-r4"></i></a>
                                           {% for role in app.user.roles %}
                            {% if role =='ROLE_ADMIN' %}
-                                        <a onclick = "return confirm('Voulez-vous vraiment supprimer cette offre ?')" href="{{path('offre_remove',{'id':job.id})}}" class=" btn btn-outline-danger add-btn btn-sm"><i class="fas fa-trash m-r4"></i></a>
+                                        <a onclick = "return confirm('Voulez-vous vraiment supprimer cette offre ? les candidatures pour cette offre sera supprimé !')" href="{{path('offre_remove',{'id':job.id})}}" class=" btn btn-outline-danger add-btn btn-sm"><i class="fas fa-trash m-r4"></i></a>
                                         {% endif %}
                                         {% endfor %}
 

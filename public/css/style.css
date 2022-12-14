@@ -2081,7 +2081,7 @@ label {
     margin-bottom: 25px;
 }
 .form-control {
-    border-color: #e1e6eb;
+    border-color: #000000;
     box-shadow: none;
     font-size: 14px;
     line-height: 20px;
@@ -19522,7 +19522,7 @@ body {
 
 
 .fs-0 {
-    font-weight: 700;
+  
     font-size: 1.2rem;
     line-height: 1.8;
     letter-spacing: .5px;

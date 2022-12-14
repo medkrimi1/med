@@ -25,10 +25,10 @@
       <link href="{{ asset('vendors/overlayscrollbars/OverlayScrollbars.min.css') }}" rel="stylesheet">
       <link href="{{ asset('assets/css/theme.min.css') }}" rel="stylesheet" id="style-default">
       <script src="{{ asset('vendors/choices/choices.min.js') }}"></script>
-         <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
+         <link href="{{ asset('assets/css/select2.min.css')}}" rel="stylesheet" >
 
     
-      <link href="{{ asset('vendors/choices/choices.min.css') }}" rel="stylesheet" />
+      <link href="{{ asset('vendors/choices/choices.min.css') }}" rel="stylesheet" >
       <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.13.1/css/jquery.dataTables.css">
       <script>
          var isRTL = JSON.parse(localStorage.getItem('isRTL'));
@@ -63,7 +63,7 @@
       <script src="{{asset('vendors/datatables.net/jquery.dataTables.min.js')}}"></script>
       <script src="{{asset('vendors/datatables.net-bs5/dataTables.bootstrap5.min.js')}}"></script>
       <script src="{{asset('vendors/datatables.net-fixedColumns/dataTables.fixedColumns.min.js')}}"></script> 
-      <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
+      <script src="{{ asset('js/select2.min.js')}}"></script>
         <script> 
 $(document).ready(function() {
     $('.multiselect-dropdown').select2();
@@ -72,16 +72,9 @@ $(document).ready(function() {
    </head>
    <body>
       <main class="main" id="top">
-         <div class="container" data-layout="container">
-            <script>
-               var isFluid = JSON.parse(localStorage.getItem('isFluid'));
-               if (isFluid) {
-                   var container = document.querySelector('[data-layout]');
-                   container.classList.remove('container');
-                   container.classList.add('container-fluid');
-               }
-            </script>
-            <nav class="navbar navbar-light navbar-vertical navbar-expand-xl" style="display: none;">
+         <div class="container-fluid" data-layout="container-fluid">
+           
+            <nav class="navbar navbar-light navbar-vertical navbar-expand-xl " style="display: none;">
                <script>
                   var navbarStyle = localStorage.getItem("navbarStyle");
                   if (navbarStyle && navbarStyle !== 'transparent') {
@@ -90,14 +83,14 @@ $(document).ready(function() {
                </script>
                <div class="d-flex align-items-center">
                   <div class="toggle-icon-wrapper">
-                     <button class="btn navbar-toggler-humburger-icon navbar-vertical-toggle" data-bs-toggle="tooltip" data-bs-placement="left" title="Toggle Navigation"><span class="navbar-toggle-icon"><span class="toggle-line"></span></span></button>
+                     <button class="btn navbar-toggler-humburger-icon navbar-vertical-toggle " data-bs-toggle="tooltip" data-bs-placement="left" title="Toggle Navigation"><span class="navbar-toggle-icon"><span class="toggle-line"></span></span></button>
                   </div>
                   <a class="navbar-brand" href="{{path('dashboard_page')}}">
                      <div class="d-flex align-items-center py-3"><img class="me-9" src="{{ asset('images/logo.png') }}" alt="" width="700" /></div>
                   </a>
                </div>
                <hr class="d-lg-none d-lg-block">
-               <div class="collapse navbar-collapse" id="navbarVerticalCollapse">
+               <div class="collapse navbar-collapse row border-1 rounded-3" id="navbarVerticalCollapse">
                   <div class="navbar-vertical-content scrollbar">
                      <ul class="navbar-nav flex-column mb-3" id="navbarVerticalNav">
                         <li class="nav-item">
@@ -114,9 +107,9 @@ $(document).ready(function() {
                                  </a>
                                  <div class=" candidate-title">
                                  <div class="">
-                                 <h4 class=""><a href="javascript:void(0);"><h4 class="mt-2  tecos-h nav-link m-r15">{{app.user.fname}} {{app.user.lname}}</h4></a></h4>
+                                 <h4 class=""><a href="javascript:void(0);"><h6 class="mt-2 nav-link ps-1 ">{{app.user.fname}} {{app.user.lname}}</h6></a></h4>
                                  </div>
-                                 <a href="{{ path('dashboard_offers_add',{'id':app.user.id}) }}" class="btn btn-success btn-sm rounded-pill"> <i class="fas fa-plus fa-sm"></i> AAjouter offre</button> </a>
+                                 <a href="{{ path('dashboard_offers_add',{'id':app.user.id}) }}" class="btn btn-success btn-sm rounded-pill"> <i class="fas fa-plus fa-sm"></i> Ajouter offre</button> </a>
                                  </div>
                                  </div></span></div>
                                  </a><!-- more inner pages-->
@@ -372,19 +365,7 @@ $(document).ready(function() {
                </div>
             </div>
             <hr />
-            <hr />
-            <div class="d-flex justify-content-between">
-               <div class="d-flex align-items-start">
-                  <img class="me-2" src="{{asset('../assets/img/icons/arrows-h.svg')}}" width="20" alt="" />
-                  <div class="flex-1">
-                     <h5 class="fs-0">Disposition fluide </h5>
-                     <p class="fs--1 mb-2">Basculer le système de mise en page du conteneur </p>
-                  </div>
-               </div>
-               <div class="form-check form-switch"><input class="form-check-input ms-0" id="mode-fluid" type="checkbox" data-theme-control="isFluid" /></div>
-            </div>
-            <hr />
-            <hr />
+            
             <h5 class="fs-0 d-flex align-items-center">Style de la barre de navigation verticale</h5>
             <p class="fs--1 mb-2">Basculer entre les styles pour votre barre de navigation verticale</p>
             <div class="btn-group d-block w-100 btn-group-navbar-style">

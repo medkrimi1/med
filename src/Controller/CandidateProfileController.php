@@ -162,7 +162,7 @@ class CandidateProfileController extends AbstractController
           $candidate->setCover($cover);
 
             }
-     $candidate->setBdate($Day.'/'.$Month.'/'.$Year);
+     $candidate->setBdate($Month.'/'.$Day.'/'.$Year);
      $em->persist($candidate);
      $user->setFname($fname);
      $user->setLname($lname);
