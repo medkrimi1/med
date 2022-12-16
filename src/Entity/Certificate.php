@@ -33,7 +33,7 @@ class Certificate
     private $startdate;
 
     /**
-      * @ORM\Column(type="datetime" )
+      * @ORM\Column(type="string", length=255, nullable=true)
      */
     private $enddate;
 	/**
@@ -82,12 +82,12 @@ class Certificate
         return $this;
     }
 
-    public function getEnddate(): ?\DateTimeInterface
+    public function getEnddate(): ?string 
     {
         return $this->enddate;
     }
 
-    public function setEnddate(\DateTimeInterface $enddate): self
+    public function setEnddate(?string  $enddate): self
     {
         $this->enddate = $enddate;
 

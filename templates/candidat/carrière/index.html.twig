@@ -63,7 +63,7 @@
                                        <li>
                                           <a href="{{ path('candidate_password',{'id':app.user.id})}}">
                                              <span>
-                                                <h6 class="fs-0"><i class="fa fa-key" aria-hidden="true"></i> Changer Mot de passe</h6>
+                                                <h6 class="fs-0"><i class="fa fa-cog" aria-hidden="true"></i> Paramètres</h6>
                                              </span>
                                           </a>
                                        </li>
@@ -132,7 +132,7 @@
                                               
                                                 <div class="pxp-single-candidate-timeline-dot " ></div>
                                                 <div class="pxp-single-candidate-timeline-info ms-3">
-                                                   <div class="pxp-single-candidate-timeline-time text-dark"><span class="bg-200  rounded-4 m-b0">{{formation.enddate|date("d/m/y")}} {{formation.startdate|date("d/m/y")}} </span>  <a href="{{path('formation_edit',{'idc':app.user.id ,'id':formation.id})}}"  class="btn btn-outline-primary add-btn btn-sm"><i class="fas fa-pencil-alt m-r4"></i> </a>
+                                                   <div class="pxp-single-candidate-timeline-time text-dark"><span class="bg-200  rounded-4 m-b0">{% if formation.enddate==null %}Présent{% else %}{{formation.enddate|date("d/m/y")}}{% endif %} {{formation.startdate|date("d/m/y")}} </span>  <a href="{{path('formation_edit',{'idc':app.user.id ,'id':formation.id})}}"  class="btn btn-outline-primary add-btn btn-sm"><i class="fas fa-pencil-alt m-r4"></i> </a>
                                                       <a href="{{path('formation_delete',{'idc':app.user.id ,'id':formation.id})}}" onclick = "return confirm('Voulez-vous vraiment supprimer cette formation ?')" class=" btn btn-outline-danger add-btn btn-sm"><i class="fas fa-trash"></i></a>
                                                    </div>
                                                    <div class="pxp-single-candidate-timeline-position text-primary fw-bold">{{formation.diploma|capitalize}}</div>
@@ -175,7 +175,7 @@
                                                 <div class="pxp-single-candidate-timeline-item">
                                                    <div class="pxp-single-candidate-timeline-dot" ></div>
                                                    <div class="pxp-single-candidate-timeline-info ms-3">
-                                                      <div class="pxp-single-candidate-timeline-time text-dark  "><span class=" bg-200  rounded-4 m-b0">{{work.enddate|date("d/m/y")}} {{work.startdate|date("d/m/y")}} </span>   <a href="{{path('Experience_edit',{'idc':app.user.id ,'id':work.id})}}"  class="btn btn-outline-primary add-btn btn-sm"><i class="fas fa-pencil-alt m-r4"></i> </a>
+                                                      <div class="pxp-single-candidate-timeline-time text-dark  "><span class=" bg-200  rounded-4 m-b0">{% if work.enddate==null %}Présent{% else %}{{work.enddate|date("d/m/y")}}{% endif %}  {{work.startdate|date("d/m/y")}} </span>   <a href="{{path('Experience_edit',{'idc':app.user.id ,'id':work.id})}}"  class="btn btn-outline-primary add-btn btn-sm"><i class="fas fa-pencil-alt m-r4"></i> </a>
                                                          <a href="{{path('work_delete',{'idc':app.user.id ,'id':work.id})}}" onclick = "Voulez-vous vraiment supprimer cette expérience ??')" class="btn btn-outline-danger  add-btn btn-sm"><i class="fas fa-trash-alt m-r4"></i></a>
                                                       </div>
                                                       <div class="pxp-single-candidate-timeline-position text-primary fw-bold">{{work.title|capitalize}}</div>
@@ -217,7 +217,7 @@
                                                    <div class="pxp-single-candidate-timeline-dot" ></div>
                                                    <div class="pxp-single-candidate-timeline-info ms-3">
                                                       <div class="pxp-single-candidate-timeline-time text-dark">
-                                                         <span class="bg-200  rounded-4 m-b0">{{certificate.startdate|date("d/m/y")}} {{certificate.enddate|date("d/m/y")}}</span>
+                                                         <span class="bg-200  rounded-4 m-b0">{% if certificate.enddate==null %}{% else %}{{certificate.enddate|date("d/m/y")}}{% endif %}  {{certificate.startdate|date("d/m/y")}} </span>
                                                          <div class="pxp-single-candidate-timeline-position mt-2"> <a data-bs-toggle="modal" data-bs-target="#modal{{certificate.id}}" class="text-primary fw-bold tecos-h " >{{certificate.title|capitalize}}</a>  <a href="{{path('certif_delete',{'idc':app.user.id ,'id':certificate.id})}}" onclick = "return confirm('Voulez-vous vraiment supprimer cette certification ?')" class="btn btn-outline-danger  add-btn btn-sm"><i class="fas fa-trash-alt m-r4"></i></a></div>
                                                       </div>
                                                    </div>

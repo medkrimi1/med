@@ -62,7 +62,7 @@
                               
                               <li><a href="{{ path('candidate_password',{'id':app.user.id})}}">
                            
-                                 <span><h6 class="fs-0 "><i class="fa fa-key" aria-hidden="true"></i> Changer Mot de passe</h6></span></a></li>
+                                 <span><h6 class="fs-0 "><i class="fa fa-cog" aria-hidden="true"></i> Paramètres</h6></span></a></li>
                               
                               
                                  
@@ -110,7 +110,7 @@
 						
 						           </div>
 								   	<div class="col-lg-6 col-sm-6 col-md-6">
-						              <div class="fs-0">Date de fin<b style="color:#990000">*</b></div>
+						              <div class="fs-0">Date de fin</div>
                                       		  {{ form_widget(form_work.enddate) }}  
 						
 						
@@ -129,7 +129,7 @@
 				
 							      <div class="form-group"> 
 								    <div class="fs-0">Tâches et responsabilités</div>
-								   		  {{ form_widget(form_work.duties,{attr: {class: 'form-control text-justify'}}) }} 
+								   		  {{ form_widget(form_work.duties,{attr: {class: 'form-control text-center'}}) }} 
 							        </div>
 									
 						     <div class="text-center">

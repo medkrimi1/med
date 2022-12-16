@@ -27,7 +27,7 @@ class CandidatePasswordController extends AbstractController
     }
 
     /**
-     * @Route("/candidat/password/{id}", name="candidate_password")
+     * @Route("/candidat/paramètres/{id}", name="candidate_password")
      */
     public function index($id,Request $request, UserPasswordHasherInterface $userPasswordHasher){
          $user=$this->getDoctrine()->getRepository(User::class)->find($id);
@@ -80,6 +80,30 @@ class CandidatePasswordController extends AbstractController
     }
              return $this->redirect($request->getUri());
  }
+
+
+    
+
+          
+
+        
+        
         return $this->render('candidat/password/index.html.twig',['form_pass'=>$form_pass->createView()]);
+    }
+
+     /**
+     * @Route("/candidat/paramètres/supprimer/{id}", name="candidate_delete")
+     * @param User $user
+     * @return RedirectResponse
+     */
+    public function delete(User $user)
+    {  
+        $em = $this->getDoctrine()->getManager();
+        $em->remove($user);
+        $em->flush();
+        return $this->redirectToRoute("app_logout");
+
+
+     
     }
 }

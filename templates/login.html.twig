@@ -17,50 +17,74 @@
             <div class="row justify-content-center g-0">
               <div class="col-lg-9 col-xl-8 col-xxl-6">
                 <div class="card">
+                    <div class="card-header bg-circle-shape bg-shape text-center p-2"><a class="font-sans-serif fw-bolder fs-3 z-index-1 position-relative link-light light" >Se connecter</a></div>
                  
                   <div class="card-body">
                    
               <form  method="POST" >  
                                     
-                                    <h1 class=" popup-title text-center text-dark">Se connecter</h1> 
-                                <p class="text-center">Si vous avez un compte chez nous, veuillez vous identifier</p>
-                                 <div id="error"></div>
+                                
+                                <p class="text-center">Vous n’avez pas encore de compte ?,<span><a class="text-primary" href="{{path('signUp')}}"> Nous rejoindre </a></span></p>
+
+                         {% for message in app.flashes('success') %}
+            <div class="text-center text-dark alert alert-success">
+                {{ message }}
+            </div>
+            {% endfor %}
+               
+                                 <div  id="error"></div>
 
                                     <div class="form-group"> 
-                                <div class="fs-0">Adresse e-mail</div>
-                                 <input type="email" value="{{ last_username }}" name="email" id="inputEmail" class="form-control" autocomplete="email" required autofocus>
+                               
+                                 <input type="email" value="{{ last_username }}" name="email" placeholder="Adresse électronique" id="inputEmail" class="form-control" autocomplete="email" required autofocus>
    
                                 </div>
                                  <div class="form-group"> 
-                                <div class="fs-0">Mot de passe</div>
-                                 <input type="password" name="password" id="inputPassword" class="form-control" autocomplete="current-password" required>
+                              
+                                 <input type="password" name="password" id="inputPassword" placeholder="Mot de passe" class="form-control" autocomplete="current-password" required>
  </div>
      <input type="hidden" name="_csrf_token"
            value="{{ csrf_token('authenticate') }}"
     >
-   <div class="form-check">Remember Me<input class="form-check-input" id="flexCheckIndeterminate" type="checkbox" /><label class="form-check-label" for="flexCheckIndeterminate" name="_remember_me"></label></div>
+  
+
+
+
+
+
+
+
+
+   <div class="row flex-between-center">
+                        <div class="col-auto">
+                           <div class="form-check">Remember Me<input class="form-check-input" id="flexCheckIndeterminate" type="checkbox" /><label class="form-check-label" for="flexCheckIndeterminate" name="_remember_me"></label></div>
+                        </div>
+                        <div class="col-auto"><a class="fs--1" >Forgot Password?</a></div>
+                      </div>
          {% if error %}
         <div class="text-danger text-center m-b10">E-mail ou Mot de passe incorrect</div>
     {% endif %}
                                 <div class="text-center">
                                 
-                                    <button type="submit" " class="btn btn-primary rounded-pill">Se connecter
+                                    <button type="submit" " class="btn btn-primary rounded-pill w-100  m-t10">Se connecter
                                     </button>
-                                    <ul></ul>
-                                    <div class="text-center" >
-                                    <a data-bs-toggle="tab" href="#forgot-password" class=""><i class="fa fa-unlock-alt"></i> Mot de passe oublié ?</a>
-                                </div>
+
+                                  
+                                   
                          
                                 
                             </form>
+
                  
               
                   </div>
                 </div>
+
               </div>
             </div>
           </div>
         </div>
+
  {% endif %}
 {% endblock %}
 

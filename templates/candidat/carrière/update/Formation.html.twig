@@ -62,7 +62,7 @@
                               
                               <li><a href="{{ path('candidate_password',{'id':app.user.id})}}" >
                            
-                                 <span><h6 class="fs-0"><i class="fa fa-key" aria-hidden="true"></i> Changer Mot de passe</h6></span></a></li>
+                                 <span><h6 class="fs-0"><i class="fa fa-cog" aria-hidden="true"></i> Paramètres</h6></span></a></li>
                               
                               
                                  
@@ -118,7 +118,7 @@
 										{{ form_widget(form_formation.startdate) }}
 						           </div>
 								   	<div class=" col-sm-6 col-md-6">
-						              <div class="fs-0">Date de fin<b style="color:#990000">*</b></div>
+						              <div class="fs-0">Date de fin</div>
                                    {{ form_widget(form_formation.enddate) }}
 						
 						           </div>
@@ -128,7 +128,7 @@
 						          
 								       <div class="form-group bootstrap3-wysihtml5-wrapper">
 														<div class="fs-0">Description</div>
-												{{ form_widget(form_formation.description,{attr: {class: 'form-control'}}) }} 	</div>
+											{{ form_widget(form_formation.description,{attr: {class: 'form-control text-center'},required:false}) }} 	</div>
 
 	
 						           </div>

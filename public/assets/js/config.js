@@ -6,11 +6,11 @@
 
 /* -------------------------------------------------------------------------- */
 var CONFIG = {
-  isNavbarVerticalCollapsed: false,
+  isNavbarVerticalCollapsed: true,
   theme: 'light',
   isRTL: false,
   isFluid: false,
-  navbarStyle: 'transparent',
+  navbarStyle: 'navbar-vibrant',
   navbarPosition: 'vertical'
 };
 Object.keys(CONFIG).forEach(function (key) {

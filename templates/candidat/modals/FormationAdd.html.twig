@@ -28,7 +28,7 @@
 				
 							        <div class=" form-group"> 
 								    <div class="fs-0">Institution/Université<b style="color:#990000">*</b></div>
-								 {{ form_widget(form_formation.university,{attr: {class: 'form-control'}}) }}   </div>
+								 {{ form_widget(form_formation.university,{attr: {class: 'form-control text-center'}}) }}   </div>
 						
 						             </div>
 						
@@ -37,7 +37,7 @@
 							        <div class="form-group"> 
 									  <div class="fs-0">Titre du cours/diplôme<b style="color:#990000">*</b></div>
 								  
-								  {{ form_widget(form_formation.diploma,{attr: {class: 'form-control'}}) }}  </div>
+								  {{ form_widget(form_formation.diploma,{attr: {class: 'form-control text-center'}}) }}  </div>
 						
 						           </div>
 								   
@@ -49,7 +49,7 @@
 										{{ form_widget(form_formation.startdate) }}
 						           </div>
 								   	<div class=" col-sm-6 col-md-6">
-						              <div class="fs-0">Date de fin<b style="color:#990000">*</b></div>
+						              <div class="fs-0">Date de fin</div>
                                    {{ form_widget(form_formation.enddate) }}
 						
 						           </div>
@@ -59,7 +59,7 @@
 						          
 								       <div class="form-group bootstrap3-wysihtml5-wrapper">
 														<div class="fs-0">Description</div>
-												{{ form_widget(form_formation.description,{attr: {class: 'form-control'}}) }} 	</div>
+												{{ form_widget(form_formation.description,{attr: {class: 'form-control text-center'},required:false}) }} 	</div>
 
 	
 						           </div>

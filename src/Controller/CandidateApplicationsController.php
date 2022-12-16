@@ -27,4 +27,21 @@ class CandidateApplicationsController extends AbstractController
 
         return $this->render('candidat/candidatures/index.html.twig',compact('applications'));
     }
+
+    /**
+     * @Route("/candidat/candidatures/supprimer/{idc}/{id}", name="Application_delete")
+     * @param Applications $application
+     * @return RedirectResponse
+     */
+    public function delete(Applications $application,$idc)
+    {  
+        $em = $this->getDoctrine()->getManager();
+        $em->remove($application);
+        $em->flush();
+         $this->addFlash('success', 'Votre candidature a été annulé avec succès!');
+        return $this->redirectToRoute("my_applications",["id"=>$idc]);
+
+
+     
+    }
 }

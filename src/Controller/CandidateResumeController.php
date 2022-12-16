@@ -23,6 +23,7 @@ use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\Extension\Core\Type\DateType;
 use Symfony\Component\Form\Extension\Core\Type\HiddenType;
 use Symfony\Component\Form\Extension\Core\Type\FileType;
+use Symfony\Component\Validator\Constraints\DateTime;
 
 
 class CandidateResumeController extends AbstractController
@@ -62,10 +63,18 @@ class CandidateResumeController extends AbstractController
          ->getForm();
         $form_language->handleRequest($request) ;
           
-          
+           $lname=$form_language->get('lname')->getData();
    
           if ($form_language->isSubmitted() && $form_language->isValid()) {
+         
+    
 
+         $check=$this->getDoctrine()->getRepository(language::class)->findBy(array('candidate' => $candidate,'lname' => $lname)); 
+
+         if($check){ $this->addFlash('warning', 'Langue existe déja');
+       return $this->redirect($request->getUri());}
+          
+            else {
           
     
          
@@ -77,6 +86,7 @@ class CandidateResumeController extends AbstractController
              return $this->redirect($request->getUri());
 
           }
+      }
        $form_formation= $this->createFormBuilder($newformation)
         ->add('university')
         ->add('diploma')
@@ -88,6 +98,7 @@ class CandidateResumeController extends AbstractController
         ])
                ->add('enddate', DateType::class, [ 
         'widget' => 'single_text',
+        'required'=>false,'mapped'=>false,
        
                   'attr' => ['class' => 'js-datepicker text-center text-primary'],  
         ])
@@ -95,12 +106,19 @@ class CandidateResumeController extends AbstractController
        
          ->getForm();
         $form_formation->handleRequest($request) ;
-          
+           
+
           
 
           if ($form_formation->isSubmitted() && $form_formation->isValid()) {
-
-          
+          $enddate=$form_formation->get('enddate')->getData();
+          if($enddate!=null){
+          $Enddate=$enddate->format("d-m-y") ; 
+          $newformation->setEnddate($Enddate);}
+          else {
+            $newformation->setEnddate(null); 
+          }
+       
           $newformation->setCandidate($candidate);
          $em->persist($newformation);
           $em->flush();
@@ -125,7 +143,8 @@ class CandidateResumeController extends AbstractController
         ])
                ->add('enddate', DateType::class, [ 
         'widget' => 'single_text',
-          'required'=>true,
+          'required'=>false,
+          'mapped'=>false,
                   'attr' => ['class' => 'js-datepicker text-center text-primary'],  
         ])
          ->add('project', TextType::class)
@@ -138,7 +157,10 @@ class CandidateResumeController extends AbstractController
           
 
           if ($form_work->isSubmitted() && $form_work->isValid()) {
-
+           $enddate=$form_work->get('enddate')->getData();
+          if($enddate!=null){
+          $Enddate=$enddate->format("d-m-y") ; 
+          $newWork->setEnddate($Enddate);}
           $newWork->setCandidate($candidate);
          $em->persist($newWork);
           $em->flush();
@@ -169,9 +191,9 @@ class CandidateResumeController extends AbstractController
                   'attr' => ['class' => 'js-datepicker text-center text-primary'],  
         ])
                ->add('enddate', DateType::class, [ 
-        'widget' => 'single_text',
+        'widget' => 'single_text','mapped'=>false,
        
-        'required'=>true,
+        'required'=>false,
                   'attr' => ['class' => 'js-datepicker text-center text-primary'],  
         ])
 
@@ -182,6 +204,10 @@ class CandidateResumeController extends AbstractController
           
    $attachment = $form_certif['attachmentField']->getData();
           if ($form_certif->isSubmitted() && $form_certif->isValid()) {
+              $enddate=$form_certif->get('enddate')->getData();
+          if($enddate!=null){
+          $Enddate=$enddate->format("d-m-y") ; 
+          $newCertif->setEnddate($Enddate);}
             if ($attachment) {
 $AttachmentName = 'certif'.uniqid().'.'.$attachment->guessExtension();
 $destination = $this->getParameter('kernel.project_dir').'/public/certificates';
@@ -282,8 +308,11 @@ $newCertif->setAttachment($AttachmentName);
      */
     public function editFormation(Formation $formation,$idc ,Request $request): Response
     {   
-
-       
+          $old=$formation->getEnddate();
+         if($old){
+         $date = new \DateTime($old);
+           }
+           else{$date=null;}
             $candidate=$this->getDoctrine()->getRepository(Candidates::class)->find($idc);
        $form_formation= $this->createFormBuilder($formation)
         ->add('university')
@@ -296,6 +325,10 @@ $newCertif->setAttachment($AttachmentName);
         ])
                ->add('enddate', DateType::class, [ 
         'widget' => 'single_text',
+        'required'=>false,
+        'mapped'=>false,
+
+        'data'=>$date,
         
 
                   'attr' => ['class' => 'js-datepicker text-center text-primary'],  
@@ -308,7 +341,14 @@ $newCertif->setAttachment($AttachmentName);
           
 
           if ($form_formation->isSubmitted() && $form_formation->isValid()) {
- 
+            $enddate=$form_formation->get('enddate')->getData();
+          if($enddate!=null){
+          $Enddate=$enddate->format("d-m-y") ; 
+          $formation->setEnddate($Enddate);}
+          else {
+            $formation->setEnddate(null); 
+          }
+       
           
           $formation->setCandidate($candidate);
          $em->persist($formation);
@@ -333,19 +373,26 @@ $newCertif->setAttachment($AttachmentName);
      */
     public function editWork(WorkExperience $experience,$idc ,Request $request): Response
     {
-       
+        $old=$experience->getEnddate();
+         if($old){
+         $date = new \DateTime($old);
+           }
+           else{$date=null;}
             $candidate=$this->getDoctrine()->getRepository(Candidates::class)->find($idc);
        $form_work= $this->createFormBuilder($experience)
         ->add('title', TextType::class)
         ->add('company', TextType::class)
            ->add('startdate', DateType::class, [ 
         'widget' => 'single_text',
-         'required'=>true,
+         
       
                   'attr' => ['class' => 'js-datepicker text-center text-primary'],  
         ])
                ->add('enddate', DateType::class, [ 
         'widget' => 'single_text',
+         'data'=>$date,
+         'mapped'=>false,
+         'required'=>false,
       
                   'attr' => ['class' => 'js-datepicker text-center text-primary'],  
         ])
@@ -359,7 +406,13 @@ $newCertif->setAttachment($AttachmentName);
           
 
           if ($form_work->isSubmitted() && $form_work->isValid()) {
- 
+                $enddate=$form_work->get('enddate')->getData();
+          if($enddate!=null){
+          $Enddate=$enddate->format("d-m-y") ; 
+          $experience->setEnddate($Enddate);}
+          else {
+            $experience->setEnddate(null); 
+          }
           
           $experience->setCandidate($candidate);
          $em->persist($experience);

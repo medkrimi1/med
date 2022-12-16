@@ -1,0 +1,81 @@
+{% extends 'layout.html.twig' %}
+
+
+
+      
+{% block body %}
+
+ {% if app.user %}
+      <meta http-equiv="refresh" content="1; url={{path('dashboard_page')}}">
+        </div>
+    {% else %}
+    <div class="header-w bg-white" > </div>
+
+<div class="row min-vh-100 bg-200">
+          
+          <div class="col-sm-10 col-md-6 px-sm-0 align-self-center mx-auto py-5">
+            <div class="row justify-content-center g-0">
+              <div class="col-lg-9 col-xl-8 col-xxl-6">
+                <div class="card">
+                    <div class="card-header bg-circle-shape bg-shape text-center p-2"><a class="font-sans-serif fw-bolder fs-3 z-index-1 position-relative link-light light" >Inscription</a></div>
+                 
+                  <div class="card-body">
+                   
+          
+                                    
+                                
+                                <p class="text-center">Si vous avez déjà un compte,<span><a class="text-primary" href="{{path('app_login')}}">identifiez-vous </a></span></p>
+                       {{ form_start(form ,{attr: {class: ''}}) }}  
+                         {% for message in app.flashes('success') %}
+            <div class="text-center text-dark alert alert-success">
+                {{ message }}
+            </div>
+            {% endfor %}
+                {% for message in app.flashes('error') %}
+            <div class="text-center text-dark alert alert-warning">
+                {{ message }}
+            </div>
+        {% endfor %}
+                        <div class=" row gap-20 m-b20">
+                           <div class="  ">
+                            
+                              {{ form_widget(form.lname,{attr: {class: 'form-control m-b20'}}) }}
+                           </div>
+                           <div class=" ">
+                           
+                              {{ form_widget(form.fname,{attr: {class: 'form-control m-b20'}}) }}
+                           </div>
+                           <div class=" ">
+                            
+                              {{ form_widget(form.email, {'attr': {class:'form-control m-b20','pattern': '[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,63}$'}}) }}
+                           </div>
+                           <div class=" m-b10">
+                            
+                               {{ form_widget(form.newpassword,{attr: {class: 'form-control ',pattern:'.{8,20}',placeholder:'Mot de passe : Min 8 et Max 20 caractères',required:'true'}}) }} 
+                           </div>
+                           <div class="fs-0">cv</div>
+                           <div class=" ">
+                              {{ form_widget(form.cvfield,{attr: {class: 'form-control'},required:false}) }} 
+                           </div>
+                        </div>
+                        <div class="d-grid gap-2"><button class="btn btn-primary rounded-pill w-100  m-t10" type="submit">S'inscrire</button></div>
+                        {{ form_end(form) }}
+
+
+
+
+
+
+
+        
+                         
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+ {% endif %}
+{% endblock %}
+
+
+

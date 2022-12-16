@@ -36,10 +36,9 @@
                                     </div>
                                        <div class="col-lg-4">
                                      <div class="fs-0" >Offre:</div>
-                                              {{ form_widget(form.Jobs,{attr: {class: 'multiselect-dropdown'}}) }}
+                                     <div class="card">
+                                              {{ form_widget(form.Jobs,{attr: {class: 'multiselect-dropdown  '}}) }} </div>
 
-                                       
-                                      
 
                                   
                                 </div>
@@ -63,7 +62,9 @@
 
                                         
                                             <div class="fs-0" >Expérience:</div>
+                                             <div class="card">
                                           {{ form_widget(form.Experience,{attr: {class: ' multiselect-dropdown' }}) }}
+                                      </div>
                                        
 
                                    
@@ -76,17 +77,18 @@
 
                                     
                                             <div class="fs-0" >Compétences:</div>
-                                         
+                                          <div class="card">
                                           {{ form_row(form.Skills,{attr: {class: 'multiselect-dropdown'}}) }}
-                                      
+                                      </div>
                                        </div>
                                     </div>
 									 <div class="col-lg-6 m-b10 ">
                                             <div class="m-b10">
                                  
                                          <div class="fs-0" >Pays</div>
+                                          <div class="card">
                                           {{ form_row(form.Country,{attr: {class: 'multiselect-dropdown'}}) }}
-                                      </div>
+                                      </div></div>
                                           
                                       
 

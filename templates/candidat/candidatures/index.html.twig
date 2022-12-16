@@ -63,7 +63,7 @@
                                        <li>
                                           <a href="{{ path('candidate_password',{'id':app.user.id})}}">
                                              <span>
-                                                <h6 class="fs-0"><i class="fa fa-key" aria-hidden="true"></i> Changer Mot de passe</h6>
+                                                <h6 class="fs-0"><i class="fa fa-cog" aria-hidden="true"></i> Paramètres</h6>
                                              </span>
                                           </a>
                                        </li>
@@ -88,10 +88,21 @@
                               <h5 class="font-weight-700 float-start text-primary">Mes candidatures ({{applications|length}})</h5>
                               <div class="job-bx-title clearfix">
                               </div>
+                               {% for message in app.flashes('success') %}
+            <div class="text-center text-dark alert alert-success">
+                {{ message }}
+            </div>
+            {% endfor %}
+                {% for message in app.flashes('error') %}
+            <div class="text-center text-dark alert alert-warning">
+                {{ message }}
+            </div>
+        {% endfor %}
                               {% if applications|length ==0 %}
          <div class="alert alert-warning text-center" role="alert">
   0 Candidature trouvé 
 </div>
+
                               {% endif %}
                                {% for application in applications %}
                               
@@ -104,11 +115,14 @@
                                              <li ><i class="fas fa-map-marker-alt"></i> {{application.job.city|capitalize}},
                                           {{application.job.country|capitalize}}</li>
                                           </ul>
-                                          <div class="posted-info clearfix bg-300 " >
+                                          <div class="posted-info clearfix bg-300 m-b10" >
                                              <p class="m-tb0  float-start  "><span class=" text-dark fw-bold ">Date de candidature :</span> <span class="text-dark" >{{application.appdate|date()}}</span></p>
                                              <a href="{{path('offre_get',{'slug':application.job.slug,'id':application.job.id})}}" class="btn btn-primary btn-sm float-end rounded-pill">Voir offre</a>
                                           </div>
                                        </div>
+
+                     <a href="{{path('Application_delete',{'id':application.id,'idc':app.user.id})}}" class="text-danger" onclick = "return confirm('Êtes-vous sûr de vouloir annulé votre candidature?')">Annuler candidature</a>
+                
                                     </div>
                                  </li>
                               </div>

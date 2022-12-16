@@ -1,6 +1,6 @@
 {% extends 'layout.html.twig' %}
 {% block body %}
-<div class="header-w bg-white border-bottom border-2" > </div>
+<div class="header-w bg-white" > </div>
 <div class="dez-bnr-inr overlay-black-middle" >
     {% for job in job %}
    <img class="dez-bnr-inr overlay-black-middle" style="background-image " alt="image"   src="{{asset('images/jobs/' ~job.cover)}}">
@@ -132,16 +132,29 @@
 <div class="modal" id="jobapply" tabindex="-1" role="dialog" aria-hidden="true">
    <div class="modal-dialog modal-dialog-centered" role="document">
       <div class="modal-content position-relative border border-dark">
-         <div class="d-flex flex-row-reverse">
-            <button class="btn-close btn btn-sm btn-circle d-flex flex-center transition-base" data-bs-dismiss="modal" aria-label="Close"></button>
-         </div>
-         <div class="modal-body">
+        
+        
+
+
+
+
+
+         <div class="offcanvas-header settings-panel-header bg-shape  rounded-top bg-primary"  >
+        <div class="z-index-1 py-1 light">
+          <div class="">
+            <h5 class="text-white mb-0 me-2">Postuler</h5>
+          </div>
+        
+           <p class="mb-0 fs--1 text-white opacity-75">Si vous avez déjà un compte,<span><a class="text-white opacity-100" target="_blank" href="{{path('app_login')}}"> identifiez-vous </a></span></p>
+        </div><button class=" z-index-1  btn-close btn btn-sm btn-circle" type="button" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+         <div class="modal-body card">
             <div class="row gap-20">
                <div class="">
                   <div class=" tab-content ">
                      <div id="signup_apply" class="tab-pane active  col-12 p-a0 "  >
-                        <h4 class=" popup-title text-center text-dark">S'inscrire et Postuler</h4>
-                        <p class="text-center">Si vous avez déjà un compte,<span><a class="text-primary" target="_blank" href="{{path('app_login')}}">identifiez-vous </a></span></p>
+                       
+                       
                         {{ form_start(form ,{attr: {class: ''}}) }}  
                         <div id="error3"></div>
                         <div class=" row gap-20 m-b20">
@@ -174,8 +187,7 @@
                         </div>
                      </div>
                      <div id="login_apply"  class="tab-pane fade col-12 p-a0 " name="frm"  method="POST" autocomplete="off " >
-                        <h4 class=" popup-title text-center text-dark">Postuler</h4>
-                        <p class="text-center">Si vous avez déjà un compte,<span><a class="text-primary" target="_blank" href="{{path('app_login')}}">identifiez-vous </a></span></p>
+                    
                         {{ form_start(form_guest ,{attr: {class: ''}}) }}  
                         <div id="error3"></div>
                         <div class=" row gap-20 m-b20">
