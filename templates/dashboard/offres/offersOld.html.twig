@@ -71,23 +71,28 @@
 
 
  
-
-  <div class="fs-0">Compétence
+<div class="fs-0">Type
     </div>
-       {{ form_widget(form.Skills,{attr: {class: 'multiselect-dropdown'}}) }}
-
-    <div class="fs-0">Type
-    </div>
+     <div class="card">
        {{ form_widget(form.TypeJobs,{attr: {class: 'multiselect-dropdown'}}) }}
-   
+   </div>
     <div class="fs-0" >Experience
     </div>
-       {{ form_row(form.Experience,{attr: {class: 'multiselect-dropdown'}}) }}
+     <div class="card">
+       {{ form_widget(form.Experience,{attr: {class: 'multiselect-dropdown'}}) }}
+   </div>
     <div class="fs-0">Pays
     </div>
+     <div class="card">
        {{ form_widget(form.Country,{attr: {class: 'multiselect-dropdown'}}) }}
+   </div>
        
-      
+       <div class="fs-0">Compétences
+    </div>
+     <div class="card">
+       {{ form_widget(form.Skills,{attr: {class: 'multiselect-dropdown'}}) }}
+   </div>
+     
      
       
    

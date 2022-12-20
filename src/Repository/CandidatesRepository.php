@@ -70,12 +70,7 @@ class CandidatesRepository extends ServiceEntityRepository
 
                }
 
- if ((!empty($search->dfiltre))) {
-              $query = $query
-                ->select('a', 'p')
-              ->join('p.applications', 'a');
-           
-          }
+
 
          
 
@@ -83,6 +78,21 @@ class CandidatesRepository extends ServiceEntityRepository
               $query = $query
                 ->select('j', 'p')
               ->join('p.applications', 'j');
+          }
+
+
+           if ((!empty($search->dfiltre))) {
+              $query = $query
+                ->select('a', 'p')
+              ->join('p.applications', 'a');
+           
+          }
+
+           if ((!empty($search->status))) {
+              $query = $query
+                ->select('a', 'p')
+              ->join('p.applications', 'a');
+           
           }
        
        
@@ -105,7 +115,7 @@ class CandidatesRepository extends ServiceEntityRepository
          if (!empty($search->status)) {
              
             $query = $query
-                ->andWhere('p.status LIKE :status
+                ->andWhere('a.status LIKE :status
                    ') 
                 ->setParameter('status', $search->status);
         }
@@ -159,8 +169,8 @@ class CandidatesRepository extends ServiceEntityRepository
               ->join('p.applications', 'k');
 
                 $query = $query
-           ->Where('k.job != :spontanee')
-              ->setParameter('spontanee', '609679');
+           ->Where('k.job is not null');
+            
            
              if (!empty($search->Skills)) {
                  $query = $query
@@ -188,7 +198,7 @@ class CandidatesRepository extends ServiceEntityRepository
            if (!empty($search->status)) {
              
             $query = $query
-                ->andWhere('p.status LIKE :status
+                ->andWhere('a.status LIKE :status
                    ') 
                 ->setParameter('status', $search->status);
         }
@@ -261,8 +271,8 @@ class CandidatesRepository extends ServiceEntityRepository
               ->join('p.applications', 'k');
 
                 $query = $query
-           ->Where('k.job != :spontanee')
-              ->setParameter('spontanee', '609679');
+           ->Where('k.job is not null');
+             
      
    
      return $query->getQuery()->getResult();
@@ -277,8 +287,9 @@ class CandidatesRepository extends ServiceEntityRepository
               ->join('p.applications', 'k');
 
                 $query = $query
-           ->Where('k.job = :spontanee')
-              ->setParameter('spontanee', '609679');
+
+           ->Where('k.job is null');
+            
            
              if (!empty($search->Skills)) {
                  $query = $query
@@ -292,7 +303,15 @@ class CandidatesRepository extends ServiceEntityRepository
               $query = $query
                 ->select('a', 'p')
               ->join('p.applications', 'a');
-           
+            if (!empty($search->status)) {
+             
+            $query = $query
+                ->andWhere('a.status LIKE :status
+                   ') 
+                ->setParameter('status', $search->status);
+        }
+       
+       
           
 
          
@@ -376,8 +395,8 @@ class CandidatesRepository extends ServiceEntityRepository
               ->join('p.applications', 'k');
 
                 $query = $query
-           ->Where('k.job = :spontanee')
-              ->setParameter('spontanee', '609679');
+           ->Where('k.job is null');
+             
      
    
      return $query->getQuery()->getResult();

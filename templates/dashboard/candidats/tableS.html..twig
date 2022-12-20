@@ -134,15 +134,17 @@
 
  <td class="border border-2 border-300 text-center">
 
-  {% if candidate.status=='Traité' %}
-    <span class="badge badge rounded-pill badge-soft-success">{{candidate.status}} <i class="fa fa-check"></i></span>
-  {% elseif candidate.status=='en cours de traitement' %}
-  <span class="badge badge rounded-pill badge-soft-primary">En cours <i class="fa fa-spinner"></i><h6 class="badge-soft-primary">de traitement</h6></span>
+  {% for application in candidate.applications|slice(0,1) %}
+  {% if application.status=='Traité' %}
+    <span class="badge badge rounded-pill badge-soft-success">{{application.status}} <i class="fa fa-check"></i></span>
+  {% elseif application.status=='En cours de Traitement' %}
+  <span class="badge badge rounded-pill badge-soft-primary">En cours <i class="fa fa-spinner"></i><h6 class="badge-soft-primary">de Traitement</h6></span>
     {% else %}
 
-     <span class="badge badge rounded-pill badge-soft-warning">Non traité <i class="fa fa-false"></i></span>
+     <span class="badge badge rounded-pill badge-soft-warning">Non Traité <i class="fa fa-false"></i></span>
     
     {% endif %}
+    {% endfor %}
 
 
 

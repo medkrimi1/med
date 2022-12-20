@@ -1,380 +1,355 @@
 {% extends 'layoutAdmin.html.twig' %}
-
 {% block body %}
-
-
-
-
-   
-     
-   <div class="dez-bnr-inr overlay-black-middle" style="background-image">
-      <img class="dez-bnr-inr overlay-black-middle bg-700" src="{{asset('images/coverr.png')}}" style="background-image " >
-      <div class="">
-         <div class="pxp-single-candidate-hero-caption">
-            <div class="pxp-container">
-               <div class="pxp-single-candidate-hero-content ">
-                  <div class="" style="background-image">
-                    <img class="pxp-single-candidate-hero-avatar " src="{{asset('images/users/' ~candidate.image)}}"  alt="image"  >
-                  </div>
-
-                  <div class="pxp-single-candidate-hero-name">
-                       <div class="m-t20 ">
-          
-        <h1 > {{candidate.fname|capitalize}} {{candidate.lname|capitalize}}   
-                <a class="btn btn-primary btn-sm" href="#" role="button"  id="dropdownMenuLink" data-bs-toggle="dropdown"  aria-expanded="false">
-                  <i class="fas fa-file"></i></a>    <ul class="dropdown-menu" aria-labelledby="dropdownMenuLink">
-                     {% for cv in candidate.cv %}
-                     <li><a class="text-primary" type="button" data-bs-toggle="modal" data-bs-target="#modal{{cv.id}}"> {{cv.cv}} </a>
-                     </li>
-               
-                 
-                   
-{% endfor %}
- </ul>
-<a class="btn btn-success btn-sm" href="#" role="button"   aria-expanded="false">
-                  <i class="fas fa-file"></i></a> <a class="btn btn-secondary btn-sm" href="#" role="button"  id="status" data-bs-toggle="dropdown" aria-expanded="false">
-                  <i class="fas fa-pencil-alt"></i></a>
-                  <ul class="dropdown-menu bg-200 border border-dark " aria-labelledby="status">
-                      {{form_start(form)}}
-                  <a class="" type="submit">
-                   {{ form_widget(form.status,{attr: {class: 'form-select'}}) }} </a>
-                  <button class="btn btn-primary" type="submit"><i class="fa fa-save"></i></button>
-                  {{form_end(form)}}
-                  </ul> </h1> </div>
-                 
-
-                  </div>
-                   
+<div class="dez-bnr-inr overlay-black-middle" style="background-image">
+   <img class="dez-bnr-inr overlay-black-middle bg-700" src="{{asset('images/coverr.png')}}" style="background-image " >
+   <div class="">
+      <div class="pxp-single-candidate-hero-caption">
+         <div class="pxp-container">
+            <div class="pxp-single-candidate-hero-content ">
+               <div class="" style="background-image">
+                  <img class="pxp-single-candidate-hero-avatar " src="{{asset('images/users/' ~candidate.image)}}"  alt="image"  >
                </div>
-
+               <div class="pxp-single-candidate-hero-name">
+                  <div class="m-t20 ">
+                     <h1 >
+                     {{candidate.fname|capitalize}} {{candidate.lname|capitalize}}   
+                     <a class="btn btn-primary btn-sm" href="#" role="button"  id="dropdownMenuLink" data-bs-toggle="dropdown"  aria-expanded="false">
+                     <i class="fas fa-file"></i></a>    
+                     <ul class="dropdown-menu" aria-labelledby="dropdownMenuLink">
+                        {% if candidate.cv is not empty %}
+                        {% for cv in candidate.cv %}
+                        <li>    
+                           <a class="text-primary" type="button" data-bs-toggle="modal" data-bs-target="#modal{{cv.id}}"> {{cv.cv}} </a>
+                        </li>
+                        {% endfor %}
+                        {% else %}
+                        <div class="text-danger text-center">vide</div>
+                        {% endif %}
+                     </ul>
+                     <a class="btn btn-success btn-sm" href="#" role="button"   aria-expanded="false">
+                     <i class="fas fa-file"></i></a>
+                  </div>
+               </div>
             </div>
-           
          </div>
-
       </div>
-
    </div>
+</div>
 {% for modal in candidate.cv %}
-     <div class="modal fade" id="modal{{modal.id}}" data-bs-keyboard="false" data-bs-backdrop="static" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
-  <div class="modal-dialog modal-lg mt-6" role="document">
-    <div class="modal-content border-0">
-      <div class="position-absolute top-0 end-0 mt-3 me-3 z-index-1"><button class="btn-close btn btn-sm btn-circle d-flex flex-center transition-base float-end" data-bs-dismiss="modal" aria-label="Close"></button></div>
-      <div class="modal-body p-0">
-        <div class="bg-light rounded-top-lg py-3 ps-4 pe-6">
-          <h5 class="mb-1" id="staticBackdropLabel">Cv de {{candidate.fname|capitalize}}</h5>
-        
-        </div>
-        <div class="">
-          <div class="row">
-          <iframe src="{{asset('cv/' ~modal.cv)}}"
- 
-                
-                height="500">
-        </iframe>
-      
-      
-          
-          </div>
-        </div>
+<div class="modal fade" id="modal{{modal.id}}" data-bs-keyboard="false" data-bs-backdrop="static" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+   <div class="modal-dialog modal-lg mt-6" role="document">
+      <div class="modal-content border-0">
+         <div class="position-absolute top-0 end-0 mt-3 me-3 z-index-1"><button class="btn-close btn btn-sm btn-circle d-flex flex-center transition-base float-end" data-bs-dismiss="modal" aria-label="Close"></button></div>
+         <div class="modal-body p-0">
+            <div class="bg-light rounded-top-lg py-3 ps-4 pe-6">
+               <h5 class="mb-1" id="staticBackdropLabel">Cv de {{candidate.fname|capitalize}}</h5>
+            </div>
+            <div class="">
+               <div class="row">
+                  <iframe src="{{asset('cv/' ~modal.cv)}}"
+                     height="500">
+                  </iframe>
+               </div>
+            </div>
+         </div>
       </div>
-    </div>
-  </div>
+   </div>
 </div>
 {% endfor %} 
-   <div class="m-t20">
-     
-      <div class="row">
-      
-         <div class="col-lg-7 col-xl-8 col-xxl-9 ">
-           
-            <div class=" text-justify ">
-               <ul></ul>
-               <div class="card-header">
-               </div>
-           
-               <div class="card mb-3">
-               
-                  <div class="card-body">
-                        <h3 class="mb-0 text-dark">À propos</h3>
-  <p class="text-dark " >{{candidate.about|capitalize}}</p>
-                        <hr>
-                       <div class="mb-0 text-dark m-b20">Certificats</div>
-                     <div class="resume-list-wrapper ">
-                        <div class="resume-list-item">
-                           <div class="row">
-                                  {% for certificate in candidate.certificates %}
-                                                 <div class="pxp-single-candidate-timeline">
-                                 <div class="pxp-single-candidate-timeline-item">
-                                    <div class="pxp-single-candidate-timeline-dot" ></div>
-                                    <div class="pxp-single-candidate-timeline-info ms-3">
-                                                        <div class=" pxp-single-candidate-timeline-time text-dark"><span class="bg-200">{{certificate.startdate|date("d/m/y")}} {{certificate.enddate|date("d/m/y")}}</span></div>
-                                                         <div class="pxp-single-candidate-timeline-position"> <a data-bs-toggle="modal" data-bs-target="#modal{{certificate.id}}" class="text-primary fw-bold tecos-h " >{{certificate.title|capitalize}}</a></div>
-                                                      </div>
-                                                   </div>
-                                                </div>
-                                                 <div class="modal fade" id="modal{{certificate.id}}" data-bs-keyboard="false" data-bs-backdrop="static" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
-  <div class="modal-dialog modal-lg mt-6" role="document">
-    <div class="modal-content border-0">
-      <div class="position-absolute top-0 end-0 mt-3 me-3 z-index-1"><button class="btn-close btn btn-sm btn-circle d-flex flex-center transition-base float-end" data-bs-dismiss="modal" aria-label="Close"></button></div>
-      <div class="modal-body p-0">
-        <div class="bg-light rounded-top-lg py-3 ps-4 pe-6">
-          <h4 class="mb-1 text-center" id="staticBackdropLabel">{{certificate.title|capitalize}}</h4>
-        
-        </div>
-        <div class="">
-          <div class="row">
-          <iframe src="{{asset('certificates/' ~certificate.attachment)}}"
- 
-                
-                height="500">
-        </iframe>
-      
-      
-          
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-</div>
-                                                {% endfor %}
-                           </div>
-                        </div>
-                     </div>
-                    <hr>
-                       <h3 class="mb-0 text-dark">Expérience professionnelle</h3>
-                        <div class="resume-list-wrapper">
-                        <div class="resume-list-item">
-                           <div class="row">
-                             {% for work in candidate.workexperiences %}
-                              <div class="pxp-single-candidate-timeline">
-                                 <div class="pxp-single-candidate-timeline-item">
-                                    <div class="pxp-single-candidate-timeline-dot" ></div>
-                                    <div class="pxp-single-candidate-timeline-info ms-3">
-                                       <div class=" pxp-single-candidate-timeline-time text-dark"><span class="bg-200">{{work.startdate|date("d/m/y")}} {{work.enddate|date("d/m/y")}}</span></div>
-                                      
-                                       <div class="">
-                                          <h6 class="fs-0 mb-0 text-primary">{{work.title|capitalize}}</h6>
-                                       </div>
-                                       <div class=" pxp-text-light">
-                                          <h6 class="fs-0 mb-0">{{work.company|capitalize}}</h6>
-                                       </div>
-                                       <p class="text-dark pb-4">{{work.duties|capitalize}}</p>
-                                    </div>
-                                 </div>
-                              </div>
-                              {% endfor %}
-                              <div class="col-sm-12 col-md-2">
-                              </div>
-                           </div>
-                        </div>
-                     </div>
-
-                       <hr>
-                        <h3 class="mb-0 text-dark">Formation</h3>
-                           <div class="resume-list-wrapper">
-                        <div class="resume-list-item">
-                           <div class="row">
-                                {% for formation in candidate.formations %}
-                              <div class="pxp-single-candidate-timeline">
-                                 <div class="pxp-single-candidate-timeline-item">
-                                    <div class="pxp-single-candidate-timeline-dot" ></div>
-                                    <div class="pxp-single-candidate-timeline-info ms-3">
-                                       <div class=" pxp-single-candidate-timeline-time text-dark"><span class="bg-200">{{formation.startdate|date("d/m/y")}} {{formation.enddate|date("d/m/y")}}</span></div>
-                                      
-                                       <div class=" ">
-                                          <h6 class="fs-0 mb-0 text-primary">{{formation.diploma|capitalize}}</h6>
-                                       </div>
-                                       <div class="pxp-text-light">
-                                          <h6 class="fs-0 mb-0">{{formation.university|capitalize}}</h6>
-                                       </div>
-                                       <div class="text-dark pb-4">{{formation.description|capitalize}}</div>
-                                    </div>
-                                 </div>
-                              </div>
-                              {% endfor %}
-                              <div class="col-sm-12 col-md-2">
-                                 <div class="resume-list-btn">
-                                 </div>
-                              </div>
-                           </div>
-                        </div>
-                        <div class="pager-wrapper">
-                           <ul class="pager-list">
-                           </ul>
-                        </div>
-                     </div>
-
-
-
-                  </div>
-               </div>
-            
-            
-            </div>
-         </div>
-         <div class=" col-lg-5 col-xl-4 col-xxl-3 text-center ">
-             
-            <div class="card mb-3 card-body m-t20  ">
-                   <ul class="list-inline m-a0">
-                  <li><a target="_blank" href="{{candidate.site}}" class="site-button  facebook circle "><i class="fab fa-facebook-f"></i></a></li>
-                  <li><a target="_blank" href="{{candidate.site}}" class="site-button  google-plus circle "><i class="fab fa-google-plus-g"></i></a></li>
-                  <li><a target="_blank" href="'{{candidate.site}}" class="site-button  linkedin circle "><i class="fab fa-linkedin-in"></i></a></li>
-                  <li><a target="_blank" href="{{candidate.site}}" class="site-button  twitter circle "><i class="fab fa-twitter"></i></a></li>
-               </ul>
-            </div>
-            <div class="card mb-3" >
-               <div class="card-header card-title bg-300">
-                  <h5 class="explore-des text-dark  text-left-not-lg">Compétences</h5>
-               </div>
-               <div class="card-body">
-                  
-                  <div class="job-time m-t15 m-b10">
-                      {% for skill in candidate.skill %}    
-                              <span class="rounded-pill bg-primary tecos-h text-white">
-                              {{ skill.title|capitalize}}
-                              </span>
-                              {% endfor %}
-                  </div>
-               </div>
-            </div>
+<div class="m-t60">
+   <div class="row">
+      <div class="col-lg-7 col-xl-8 col-xxl-9 ">
+         <div class=" text-justify ">
             <div class="card mb-3">
-               <div class="resume-list-wrapper">
-                  <div class="card-header card-title bg-300">
-                     <h5 class="explore-des text-dark text-left-not-lg">Langues</h5>
+               <div class="card-body">
+                  <h3 class="mb-0 text-dark m-b10">Candidatures</h3>
+                  {% if candidate.applications is not empty %}
+                  <div class="card m-b20">
+                     <table class="dataTable dtr-inline border border-dark border-2   rounded-3 text-dark">
+                        <thead> 
+                        </thead>
+                        <tbody>
+                           {% for application in candidate.applications %}
+                           <tr class="table-primary border-1">
+                              <td class="border border-1 border-300 fs--0 fw-bold ">{% if application.job !=null %} 
+                                 {{application.job.title}} 
+                                 {% else %}
+                                 candidature spontanée
                   </div>
-                  <div class="card-body text-left-not-lg">
-                     <div class="resume-list-item">
-                        <div class="row">
-                             {% for language in candidate.languages %}
-                           <div class="m-b20">
-                              <a >
-                                 <h5 class="explore-des-2c text-dark">{{language.lname|capitalize}}</h5>
-                              </a>
-                                      {% if language.reading =='Débutant'   %} 
-                                        {%  set a='10'   %} 
-                                        {% else %}
-                                        {%  set a='0' %}
-                                        {% endif %}
-
-                                         {% if  language.speak =='Débutant'  %}
-                                        {%  set b='10'   %}
-                                        {% else %}
-                                        {%  set b='0' %}
-                                        {% endif %}
-
-                                         {% if language.writing =='Débutant'  %}
-                                        {%  set c='10'   %}
-                                        {% else %}
-                                        {%  set c='0' %}
-                                        {% endif %}               
-                                    {% if language.reading =='Intermédiaire'   %}
-                                        {%  set d='20'   %}
-                                        {% else %}
-                                        {%  set d='0' %}
-                                        {% endif %}
-
-                                         {% if  language.speak =='Intermédiaire'  %}
-                                        {%  set e='20'   %}
-                                        {% else %}
-                                        {%  set e='0' %}
-                                        {% endif %}
-
-                                         {% if language.writing =='Intermédiaire'  %}
-                                        {%  set f='20'   %}
-                                        {% else %}
-                                        {%  set f='0' %}
-                                        {% endif %}
-
-                                      {% if language.reading =='Avancé'   %}
-                                        {%  set j='30'   %}
-                                        {% else %}
-                                        {%  set j='0' %}
-                                        {% endif %}
-
-                                         {% if  language.speak =='Avancé'  %}
-                                        {%  set k='30'   %}
-                                        {% else %}
-                                        {%  set k='0' %}
-                                        {% endif %}
-
-                                         {% if language.writing =='Avancé'  %}
-                                        {%  set h='30'   %}
-                                        {% else %}
-                                        {%  set h='0' %}
-                                        {% endif %}
-
-
-                                        {%  set progress=a+b+c+d+e+f+j+k+h %}
-                              <div class=" progress "style="height:10px">
-                                 <div class="progress-bar  bg-primary"  style="width: {{progress}}%"
-                                    role="progressbar"></div>
-                              </div>
-                           </div>
-                              <hr>
-                           {% endfor %}
-
-                           
-                           <div class="col-sm-12 col-md-2">
-                              <div class="resume-list-btn">
-                              </div>
-                           </div>
-                           <ul></ul>
-                           <div class="col-sm-12 col-md-2">
-                              <div class="resume-list-btn">
+                  {% endif %} </td>
+                  <td class="border border-1 border-300 fs--0 text-center" style="width:15rem">    
+                  <select class="form-select badge badge {% if application.status=='Traité' %} badge-soft-success  {% elseif application.status=='En cours de Traitement' %}badge-soft-primary {% else %} badge-soft-warning {% endif %}" onchange="location = this.value;" style="border-radius: 500px;width: auto;" >
+                  <option {% if application.status=='En cours de Traitement' %} selected {% endif %} value="{{path('Traité',{'idc':candidate.id ,'id':application.id,'status':'En cours de Traitement'})}}" > En cours de Traitement</option>
+                  <option {% if application.status=='Non Traité' %} selected {% endif %} value="{{path('Traité',{'idc':candidate.id ,'id':application.id,'status':'Non Traité'})}}">Non Traité</option>
+                  <option {% if application.status=='Traité' %} selected{% endif %} value="{{path('Traité',{'idc':candidate.id ,'id':application.id,'status':'Traité'})}}">Traité</option>
+                  </select>  
+                  </td>
+                  </tr>
+                  {% endfor %}
+                  </tbody>
+                  </table>
+               </div>
+               {% else %}
+               <div class="text-left  text-dark alert alert-warning">
+                  aucune candidature trouvée
+               </div>
+               {% endif %}
+               {% if candidate.about is not empty %}
+               <h3 class="mb-0 text-dark">À propos</h3>
+               <p class="text-dark  " >{{candidate.about|capitalize}}</p>
+               <hr>
+               {% endif %}
+               {% if candidate.certificates is not empty %}
+               <div class="mb-0 text-dark m-b20">Certificats</div>
+               <div class="resume-list-wrapper ">
+                  <div class="resume-list-item">
+                     <div class="row">
+                        {% for certificate in candidate.certificates %}
+                        <div class="pxp-single-candidate-timeline">
+                           <div class="pxp-single-candidate-timeline-item">
+                              <div class="pxp-single-candidate-timeline-dot" ></div>
+                              <div class="pxp-single-candidate-timeline-info ms-3">
+                                 <div class=" pxp-single-candidate-timeline-time text-dark"><span class="bg-200">{{certificate.startdate|date("d/m/y")}} {{certificate.enddate|date("d/m/y")}}</span></div>
+                                 <div class="pxp-single-candidate-timeline-position"> <a data-bs-toggle="modal" data-bs-target="#modal{{certificate.id}}" class="text-primary fw-bold tecos-h " >{{certificate.title|capitalize}}</a></div>
                               </div>
                            </div>
                         </div>
-                     </div>
-                     <div class="pager-wrapper">
-                        <ul class="pager-list">
-                        </ul>
+                        <div class="modal fade" id="modal{{certificate.id}}" data-bs-keyboard="false" data-bs-backdrop="static" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+                           <div class="modal-dialog modal-lg mt-6" role="document">
+                              <div class="modal-content border-0">
+                                 <div class="position-absolute top-0 end-0 mt-3 me-3 z-index-1"><button class="btn-close btn btn-sm btn-circle d-flex flex-center transition-base float-end" data-bs-dismiss="modal" aria-label="Close"></button></div>
+                                 <div class="modal-body p-0">
+                                    <div class="bg-light rounded-top-lg py-3 ps-4 pe-6">
+                                       <h4 class="mb-1 text-center" id="staticBackdropLabel">{{certificate.title|capitalize}}</h4>
+                                    </div>
+                                    <div class="">
+                                       <div class="row">
+                                          <iframe src="{{asset('certificates/' ~certificate.attachment)}}"
+                                             height="500">
+                                          </iframe>
+                                       </div>
+                                    </div>
+                                 </div>
+                              </div>
+                           </div>
+                        </div>
+                        {% endfor %}
                      </div>
                   </div>
                </div>
-            </div>
-             <div class="card mb-3 ">
-               <div class="card-header card-title bg-300 ">
-                  <h5 class="card-title text-dark text-left-not-lg">Contact Med</h5>
-               </div>
-               <div class="card-body text-left-not-lg">
-                  <div class="pxp-single-candidate-side-info-label ">Personal website</div>
-                  <a class="pxp-single-candidate-side-info-data" href="{{candidate.site}}">{{candidate.site}}</a>
-                  <div class="explore-des-2c text-dark ">Adresse E-mail</div>
-                  <div class="explore-des-3c text-primary">{{candidate.email}}</div>
-                  <div class="mt-4">
-                     <div class="explore-des-2c text-dark fw-bold">{{candidate.address|capitalize}}</div>
-                     <div class="explore-des-3c text-primary" >{{candidate.city|capitalize}},{{candidate.country|capitalize}}</div>
+               <hr>
+               {% endif %}
+               {% if candidate.workexperiences is not empty %}
+               <h3 class="mb-0 text-dark">Expérience professionnelle</h3>
+               <div class="resume-list-wrapper">
+                  <div class="resume-list-item">
+                     <div class="row">
+                        {% for work in candidate.workexperiences %}
+                        <div class="pxp-single-candidate-timeline">
+                           <div class="pxp-single-candidate-timeline-item">
+                              <div class="pxp-single-candidate-timeline-dot" ></div>
+                              <div class="pxp-single-candidate-timeline-info ms-3">
+                                 <div class=" pxp-single-candidate-timeline-time text-dark"><span class="bg-200">{{work.startdate|date("d/m/y")}} {{work.enddate|date("d/m/y")}}</span></div>
+                                 <div class="">
+                                    <h6 class="fs-0 mb-0 text-primary">{{work.title|capitalize}}</h6>
+                                 </div>
+                                 <div class=" pxp-text-light">
+                                    <h6 class="fs-0 mb-0">{{work.company|capitalize}}</h6>
+                                 </div>
+                                 <p class="text-dark pb-4">{{work.duties|capitalize}}</p>
+                              </div>
+                           </div>
+                        </div>
+                        {% endfor %}
+                     </div>
                   </div>
-                  <div class="mt-4">
-                     <div class="explore-des-2c text-dark fw-bold ">Téléphone</div>
-                     <div class="explore-des-3c text-primary" >{{candidate.phone}}</div>
+               </div>
+               <hr>
+               {% endif %}
+               {% if candidate.formations is not empty %}
+               <h3 class="mb-0 text-dark">Formation</h3>
+               <div class="resume-list-wrapper">
+                  <div class="resume-list-item">
+                     <div class="row">
+                        {% for formation in candidate.formations %}
+                        <div class="pxp-single-candidate-timeline">
+                           <div class="pxp-single-candidate-timeline-item">
+                              <div class="pxp-single-candidate-timeline-dot" ></div>
+                              <div class="pxp-single-candidate-timeline-info ms-3">
+                                 <div class=" pxp-single-candidate-timeline-time text-dark"><span class="bg-200">{{formation.startdate|date("d/m/y")}} {{formation.enddate|date("d/m/y")}}</span></div>
+                                 <div class=" ">
+                                    <h6 class="fs-0 mb-0 text-primary">{{formation.diploma|capitalize}}</h6>
+                                 </div>
+                                 <div class="pxp-text-light">
+                                    <h6 class="fs-0 mb-0">{{formation.university|capitalize}}</h6>
+                                 </div>
+                                 <div class="text-dark pb-4">{{formation.description|capitalize}}</div>
+                              </div>
+                           </div>
+                        </div>
+                        {% endfor %}
+                     </div>
                   </div>
                </div>
-            </div>
-            <div class="card mb-3   ">
-               <div class="card-body text-left-not-lg">
-                  <form >
-                     <div class="mb-3">
-                        <div class="explore-des-2c text-dark fw-bold">Nom</div>
-                        <input type="text" value="{{app.user.fname}} {{app.user.lname}}" class="form-control " id="contact-candidate-name" placeholder="Enter your name">
-                     </div>
-                     <div class="mb-3">
-                        <div class="explore-des-2c text-dark fw-bold" class="form-label">Adressse e-mail</div>
-                        <input type="text" value="{{app.user.email}} " class="form-control " id="contact-candidate-email" placeholder="Enter your email address">
-                     </div>
-                     <div class="mb-3">
-                        <div class="explore-des-2c text-dark fw-bold" class="form-label ">Message</div>
-                        <textarea class="form-control" id="contact-candidate-message" placeholder="Type your message here..."></textarea>
-                     </div>
-                     <a href="#" class="btn btn-primary rounded-pill pxp-section-cta d-block">Envoyer</a>
-                  </form>
-               </div>
+               {% endif %}
             </div>
          </div>
       </div>
    </div>
-
-
-
-   {% endblock %}
+   <div class=" col-lg-5 col-xl-4 col-xxl-3 text-center ">
+    
+    
+      <div class="card mb-3 card-body   ">
+         <ul class="list-inline m-a0">
+            {% if candidate.fb  is not empty %}
+            <li><a target="_blank" href="{{candidate.fb}}" class="site-button  facebook circle "><i class="fab fa-facebook-f"></i></a></li>
+            {% endif %}
+            {% if candidate.gl  is not empty %}
+            <li><a target="_blank" href="{{candidate.gl}}" class="site-button  google-plus circle "><i class="fab fa-google-plus-g"></i></a></li>
+            {% endif %}
+            {% if candidate.ln  is not empty %}
+            <li><a target="_blank" href="'{{candidate.ln}}" class="site-button  linkedin circle "><i class="fab fa-linkedin-in"></i></a></li>
+            {% endif %}
+            {% if candidate.tw  is not empty %}
+            <li><a target="_blank" href="{{candidate.tw}}" class="site-button  twitter circle "><i class="fab fa-twitter"></i></a></li>
+            {% endif %}
+         </ul>
+      </div>
+  
+     
+      {% if candidate.skill  is not empty %}
+      <div class="card mb-3" >
+         <div class="card-header card-title ">
+            <h5 class="explore-des text-dark  text-left-not-lg">Compétences</h5>
+         </div>
+         <div class="card-body">
+            <div class="job-time m-t15 m-b10">
+               {% for skill in candidate.skill %}    
+               <span class="rounded-pill bg-primary tecos-h text-white">
+               {{ skill.title|capitalize}}
+               </span>
+               {% endfor %}
+            </div>
+         </div>
+      </div>
+      {% endif %}
+      {% if candidate.languages  is not empty %}
+      <div class="card mb-3">
+         <div class="resume-list-wrapper">
+            <div class="card-header card-title ">
+               <h5 class="explore-des text-dark text-left-not-lg">Langues</h5>
+            </div>
+            <div class="card-body text-left-not-lg">
+               <div class="resume-list-item">
+                  <div class="row">
+                     {% for language in candidate.languages %}
+                     <div class="m-b20">
+                        <a >
+                           <h5 class="explore-des-2c text-dark">{{language.lname|capitalize}}</h5>
+                        </a>
+                        {% if language.reading =='Débutant'   %} 
+                        {%  set a='10'   %} 
+                        {% else %}
+                        {%  set a='0' %}
+                        {% endif %}
+                        {% if  language.speak =='Débutant'  %}
+                        {%  set b='10'   %}
+                        {% else %}
+                        {%  set b='0' %}
+                        {% endif %}
+                        {% if language.writing =='Débutant'  %}
+                        {%  set c='10'   %}
+                        {% else %}
+                        {%  set c='0' %}
+                        {% endif %}               
+                        {% if language.reading =='Intermédiaire'   %}
+                        {%  set d='20'   %}
+                        {% else %}
+                        {%  set d='0' %}
+                        {% endif %}
+                        {% if  language.speak =='Intermédiaire'  %}
+                        {%  set e='20'   %}
+                        {% else %}
+                        {%  set e='0' %}
+                        {% endif %}
+                        {% if language.writing =='Intermédiaire'  %}
+                        {%  set f='20'   %}
+                        {% else %}
+                        {%  set f='0' %}
+                        {% endif %}
+                        {% if language.reading =='Avancé'   %}
+                        {%  set j='30'   %}
+                        {% else %}
+                        {%  set j='0' %}
+                        {% endif %}
+                        {% if  language.speak =='Avancé'  %}
+                        {%  set k='30'   %}
+                        {% else %}
+                        {%  set k='0' %}
+                        {% endif %}
+                        {% if language.writing =='Avancé'  %}
+                        {%  set h='30'   %}
+                        {% else %}
+                        {%  set h='0' %}
+                        {% endif %}
+                        {%  set progress=a+b+c+d+e+f+j+k+h %}
+                        <div class=" progress "style="height:10px">
+                           <div class="progress-bar  bg-primary"  style="width: {{progress}}%"
+                              role="progressbar"></div>
+                        </div>
+                     </div>
+                     <hr>
+                     {% endfor %}
+                  </div>
+               </div>
+            </div>
+         </div>
+      </div>
+      {% endif %}
+      <div class="card mb-3 ">
+         <div class="card-header card-title  ">
+            <h5 class="card-title text-dark text-left-not-lg">Contact Med</h5>
+         </div>
+         <div class="card-body text-left-not-lg">
+            {% if candidate.site  is not empty %}
+            <div class="pxp-single-candidate-side-info-label ">Personal website</div>
+            <a class="pxp-single-candidate-side-info-data" href="{{candidate.site}}">{{candidate.site}}</a>{% endif %}
+            <div class="explore-des-2c text-dark ">Adresse E-mail</div>
+            <div class="explore-des-3c text-primary">{{candidate.email}}</div>
+            {% if candidate.address  is not empty %}
+            <div class="mt-4">
+               <div class="explore-des-2c text-dark fw-bold">{{candidate.address|capitalize}}</div>
+               <div class="explore-des-3c text-primary" >{{candidate.city|capitalize}},{{candidate.country|capitalize}}</div>
+            </div>
+            {% endif %}
+            {% if candidate.phone  is not empty %}
+            <div class="mt-4">
+               <div class="explore-des-2c text-dark fw-bold ">Téléphone</div>
+               <div class="explore-des-3c text-primary" >{{candidate.phone}}</div>
+            </div>
+            {% endif %}
+         </div>
+      </div>
+      <div class="card mb-3   ">
+         <div class="card-body text-left-not-lg">
+            <form >
+               <div class="mb-3">
+                  <div class="explore-des-2c text-dark fw-bold">Nom</div>
+                  <input type="text" value="{{app.user.fname}} {{app.user.lname}}" class="form-control " id="contact-candidate-name" placeholder="Enter your name">
+               </div>
+               <div class="mb-3">
+                  <div class="explore-des-2c text-dark fw-bold" class="form-label">Adressse e-mail</div>
+                  <input type="text" value="{{app.user.email}} " class="form-control " id="contact-candidate-email" placeholder="Enter your email address">
+               </div>
+               <div class="mb-3">
+                  <div class="explore-des-2c text-dark fw-bold" class="form-label ">Message</div>
+                  <textarea class="form-control" id="contact-candidate-message" placeholder="Type your message here..."></textarea>
+               </div>
+               <a href="#" class="btn btn-primary rounded-pill pxp-section-cta d-block">Envoyer</a>
+            </form>
+         </div>
+      </div>
+   </div>
+</div>
+</div>
+{% endblock %}

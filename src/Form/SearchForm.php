@@ -31,8 +31,7 @@ class SearchForm extends AbstractType
                'required'=> false,
                   'query_builder' => function (EntityRepository $er) {
               return $er->createQueryBuilder('u')
-             ->Where('u.id != :check')
-              ->setParameter('check', 609679)
+            
                ->andWhere('u.status != :status')
               ->setParameter('status', 'nonActif');
     },

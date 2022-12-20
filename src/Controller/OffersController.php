@@ -35,6 +35,7 @@ class OffersController extends AbstractController
          $data->page = $request->query->getInt('page', 1);
         $form= $this->createForm(SearchForm::class, $data);
         $form->handleRequest($request) ;
+        
         $jobs = $repository->findSearch($data);
      
        

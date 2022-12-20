@@ -51,10 +51,12 @@
    <span class="badge badge rounded-pill badge-soft-warning">Non Lu</span></td>
    {% endif %}
 
-    <td class="dtr-control sorting_1 border border-2 border-300 " tabindex="0">    <div class="avatar avatar-2xl  " style="background-image"  > <img class="pxp-single-candidate-hero-avatar
-	 " src="{{asset('images/users/' ~candidate.image)}}" alt="image" ></div>
-                               <span class="py-2 fs-0 mb-0 m-t10" > <a class="text-dark" href="{{path('candidatProfile',{'fname':candidate.fname,'lname':candidate.lname,'id':candidate.id})}}" target="_blank">{{candidate.fname|capitalize}} {{candidate.lname|capitalize}}</a>
-                               </span></td>
+    <td class="dtr-control sorting_1 border border-2 border-300 " tabindex="0"> <div class="d-flex align-items-center">
+                              <div class="avatar avatar-xl">
+                                <img class="pxp-single-candidate-hero-avatar border-2 border-primary rounded-pill" src="{{asset('images/users/' ~candidate.image)}}" alt="">
+                              </div>
+                              <div class="ms-2 "><a class="text-dark fw-bold"href="{{path('candidatProfile',{'id':candidate.id})}}" target="_blank">{{candidate.fname|capitalize}} {{candidate.lname|capitalize}} </a></div>
+                            </div></td>
 
     <td class="border border-2 border-300 d-none">{{candidate.email}}</td>
  
@@ -97,15 +99,17 @@
 
  <td class="border border-2 border-300 text-center">
 
-  {% if candidate.status=='Traité' %}
-    <span class="badge badge rounded-pill badge-soft-success">{{candidate.status}} <i class="fa fa-check"></i></span>
-  {% elseif candidate.status=='en cours de traitement' %}
-  <span class="badge badge rounded-pill badge-soft-primary">En cours <i class="fa fa-spinner"></i><h6 class="badge-soft-primary">de traitement</h6></span>
+  {% for application in candidate.applications|slice(0,1) %}
+  {% if application.status=='Traité' %}
+    <span class="badge badge rounded-pill badge-soft-success">{{application.status}} <i class="fa fa-check"></i></span>
+  {% elseif application.status=='En cours de Traitement' %}
+  <span class="badge badge rounded-pill badge-soft-primary">En cours <i class="fa fa-spinner"></i><h6 class="badge-soft-primary">de Traitement</h6></span>
     {% else %}
 
-     <span class="badge badge rounded-pill badge-soft-warning">Non traité <i class="fa fa-false"></i></span>
+     <span class="badge badge rounded-pill badge-soft-warning">Non Traité <i class="fa fa-false"></i></span>
     
     {% endif %}
+    {% endfor %}
 
 
 

@@ -46,7 +46,7 @@ class IndexControlller extends AbstractController
         $form= $this->createForm(SearchForJob::class, $data);
         $form->handleRequest($request) ;
         $jobs=$this->manager->getRepository(Jobs::class)->SearchForJob($data);
-        $spontane=$this->getDoctrine()->getRepository(Jobs::class)->find(609679);
+      
        
            $t=time();
         $Userid=$t;
@@ -80,8 +80,9 @@ class IndexControlller extends AbstractController
                 
             }   
           
-        $application->setJob($spontane);
+        $application->setJob(null);
         $application->setCandidate($candidate);
+         $candidate->setImage('default.jpg');
 
         $em->persist($cv);        
         $em->persist($candidate);
@@ -159,11 +160,13 @@ class IndexControlller extends AbstractController
                 $uploadedCV->move($destination,$newCvName);
                $cv->setCv($CvName);
                $cv->setCandidate($candidate);
+               $em->persist($cv); 
                 
             }   
         $application->setJob($job);
         $application->setCandidate($candidate);
-        $em->persist($cv); 
+         $application->setStatus('Non Traité');
+        
         $em->persist($user);       
         $em->persist($candidate);
         $em->persist($application);
@@ -240,11 +243,13 @@ $form_guest->handleRequest($request) ;
                 $uploadedCV->move($destination,$newCvName);
                $cv->setCv($CvName);
                $cv->setCandidate($candidate);
+                 $em->persist($cv); 
                 
             }   
         $application->setJob($job);
         $application->setCandidate($candidate);
-        $em->persist($cv);      
+        $application->setStatus('Non Traité');
+             
         $em->persist($candidate);
         $em->persist($application);
         $em->flush();
@@ -320,6 +325,7 @@ $form_guest->handleRequest($request) ;
          else{
         $application->setJob($job);
         $application->setCandidate($candidate);
+         $application->setStatus('Non Traité');
          
     
         $em->persist($application);

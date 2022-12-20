@@ -117,7 +117,7 @@
                                           </ul>
                                           <div class="posted-info clearfix bg-300 m-b10" >
                                              <p class="m-tb0  float-start  "><span class=" text-dark fw-bold ">Date de candidature :</span> <span class="text-dark" >{{application.appdate|date()}}</span></p>
-                                             <a href="{{path('offre_get',{'slug':application.job.slug,'id':application.job.id})}}" class="btn btn-primary btn-sm float-end rounded-pill">Voir offre</a>
+                                             <span class="badge badge rounded-pill  badge-soft-success float-end">{{application.status}}</span>
                                           </div>
                                        </div>
 

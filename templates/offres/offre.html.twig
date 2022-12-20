@@ -56,9 +56,113 @@
                </div>
             </div>
             {% for message in app.flashes('successApply') %}
-            <div class="text-center text-dark alert alert-success">
-               {{ message }}
+         <div class="modal show" id="jobapply" tabindex="-1" role="dialog" style="display: block; padding-left: 0px;" aria-modal="true">
+   <div class="modal-dialog modal-dialog-centered" role="document" style="margin-top: 28.2px;">
+      <div class="modal-content position-relative border border-dark">
+        
+        
+
+
+
+
+
+         <div class="offcanvas-header settings-panel-header bg-shape  rounded-top bg-primary">
+        <div class="z-index-1 py-1 light">
+          <div class="">
+            <h5 class="text-white mb-0 me-2">Postuler</h5>
+          </div>
+        
+           <p class="mb-0 fs--1 text-white opacity-75">Si vous avez déjà un compte,<span><a class="text-white opacity-100" target="_blank" href="/login"> identifiez-vous </a></span></p>
+        </div><button class=" z-index-1  btn-close btn btn-sm btn-circle" type="button" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+         <div class="modal-body card">
+            <div class="row gap-20">
+               <div class="">
+                  <div class=" tab-content ">
+                     <div id="signup_apply" class="tab-pane active col-12 p-a0 show" style="">
+                       
+                       
+                        <form name="application" method="post" class="needs-validation" novalidate="" enctype="multipart/form-data">  
+                        <div id="error3"></div>
+                     <div class=" row gap-20 m-b20">
+                           <div class="  ">
+                            
+                              <input type="text" id="application_lname" name="application[lname]" required="required" class="form-control m-t20 m-b20" placeholder="Nom">
+                           </div>
+                           <div class=" ">
+                           
+                              <input type="text" id="application_fname" name="application[fname]" required="required" class="form-control m-b20" placeholder="Prénom">
+                           </div>
+                           <div class=" ">
+                            
+                              <input type="text" id="application_email" name="application[email]" required="required" class="form-control m-b20" placeholder="Adresse électronique" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+.[a-z]{2,63}$">
+                           </div>
+                           <div class=" m-b10">
+                            
+                               <input type="password" id="application_newpassword" name="application[newpassword]" required="required" class="form-control " pattern=".{8,20}" placeholder="Mot de passe : Min 8 et Max 20 caractères"> 
+                           </div>
+                           <div class="fs-0">cv</div>
+                           <div class=" ">
+                              <input type="file" id="application_cvfield" name="application[cvfield]" accept="application/pdf" class="form-control"> 
+                           </div>
+                        </div>
+                        <div class="d-grid gap-2"><button class="btn btn-primary" type="submit">Postuler</button></div>
+                        <input type="hidden" id="application_cv" name="application[cv]"><input type="hidden" id="application__token" name="application[_token]" value="0369c5e5479f4b3ce624fda58b37d64._rkNL6phXb9BE2FJmh2nERTp0Hj3JJXzfYvjAzUeRPs.kPg8Vu4FLMopXVcc7FieSHGOlSq9QfmcMLy7ZBguKbS1wG9I7ywzzHhhOA"></form>
+                        <hr class="hr-text bg-dark" data-content="AND">
+                        <div class="text-center"> 
+                           <a class="btn btn-outline-secondary rounded-pill " data-bs-toggle="tab" href="#login_apply">Postulter sans compte</a>
+                        </div>
+                     </div>
+                     <div id="login_apply" class="tab-pane fade col-12 p-a0 show active" name="frm" method="POST" autocomplete="off " style="display: none;">
+                    
+                        <form name="form" method="post" class="needs-validation" novalidate="" enctype="multipart/form-data">  
+                        <div id="error3"></div>
+                       <div class=" row gap-20 m-b20">
+                           <div class="  ">
+                            
+                              <input type="text" id="form_lname" name="form[lname]" required="required" class="form-control m-t20 m-b20 needs-validation" placeholder="Nom">
+                           </div>
+                           <div class=" ">
+                           
+                              <input type="text" id="form_fname" name="form[fname]" required="required" class="form-control m-b20" placeholder="Prénom">
+                           </div>
+                           <div class=" ">
+                            
+                              <input type="text" id="form_email" name="form[email]" required="required" class="form-control m-b10" placeholder="Adresse électronique" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+.[a-z]{2,63}$">
+                           </div>
+                          
+                           <div class="fs-0">cv</div>
+                           <div class=" ">
+                              <input type="file" id="form_cvfield" name="form[cvfield]" accept="application/pdf" class="form-control"> 
+                           </div>
+                        </div>
+                        <div class="d-grid gap-2"><button class="btn btn-primary" type="submit">Postuler</button></div>
+                        <input type="hidden" id="form_cv" name="form[cv]"><input type="hidden" id="form__token" name="form[_token]" value="e8f9c4da510151d682aed.1EJQYUN2UV631LEofvm2m1CVHgbf0purH8eN05UomD0.jisYMzkYIjvzi4JPIav91wTZWFfqndLBaoPJ4txK4AXsChUWDwwoMvWd2g"></form>
+                        <ul></ul>
+                        <hr class="hr-text bg-dark" data-content="AND">
+                        <div class="text-center">
+                           <a class="btn btn-outline-success rounded-pill" data-bs-toggle="tab" href="#signup_apply">S'inscrire</a>
+                        </div>
+                     </div>
+                     <div id="forgot-password-apply" class="tab-pane fade  col-12 p-a0" style="display: none;">
+                        <h4 class="popup-title text-center text-dark text-dark">Mot de passe oublié ?</h4>
+                        <p class="text-center">Nous vous enverrons un e-mail pour réinitialiser votre mot de passe</p>
+                        <div class="form-group">
+                           <div class="fs-0">E-mail</div>
+                           <input name="dzName" required="" class="form-control" placeholder="Your Email Address" type="email">
+                        </div>
+                        <div class="text-left"> 
+                           <a class="btn btn-outline-primary  gray rounded-pill" data-bs-toggle="tab" href="#login_apply">Retour</a>
+                           <button class="btn btn-primary float-end rounded-pill">Envoyer</button>
+                        </div>
+                     </div>
+                  </div>
+               </div>
             </div>
+         </div>
+      </div>
+   </div>
+</div>
             {% endfor %}
             {% for message in app.flashes('error') %}
             <div class="text-center text-dark alert alert-warning">
@@ -155,28 +259,28 @@
                      <div id="signup_apply" class="tab-pane active  col-12 p-a0 "  >
                        
                        
-                        {{ form_start(form ,{attr: {class: ''}}) }}  
+                        {{ form_start(form ,{attr: {class: 'needs-validation',novalidate:''}}) }}  
                         <div id="error3"></div>
-                        <div class=" row gap-20 m-b20">
+                     <div class=" row gap-20 m-b20">
                            <div class="  ">
-                              <div class="fs-0">Nom</div>
-                              {{ form_widget(form.lname,{attr: {class: 'form-control'}}) }}
+                            
+                              {{ form_widget(form.lname,{attr: {class: 'form-control m-t20 m-b20',placeholder:'Nom'}}) }}
                            </div>
                            <div class=" ">
-                              <div class="fs-0">Prénom</div>
-                              {{ form_widget(form.fname,{attr: {class: 'form-control'}}) }}
+                           
+                              {{ form_widget(form.fname,{attr: {class: 'form-control m-b20',placeholder:'Prénom'}}) }}
                            </div>
                            <div class=" ">
-                              <div class="fs-0">Adresse E-mail</div>
-                              {{ form_widget(form.email, {'attr': {'pattern': '[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,63}$'}}) }}
+                            
+                              {{ form_widget(form.email, {'attr': {class:'form-control m-b20',placeholder:'Adresse électronique','pattern': '[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,63}$'}}) }}
                            </div>
                            <div class=" m-b10">
-                              <div class="fs-0">Mot de passe</div>
-                              {{ form_widget(form.newpassword,{attr: {class: 'form-control'}}) }} 
+                            
+                               {{ form_widget(form.newpassword,{attr: {class: 'form-control ',pattern:'.{8,20}',placeholder:'Mot de passe : Min 8 et Max 20 caractères',required:'true'}}) }} 
                            </div>
                            <div class="fs-0">cv</div>
                            <div class=" ">
-                              {{ form_widget(form.cvfield,{attr: {class: 'form-control'}}) }} 
+                              {{ form_widget(form.cvfield,{attr: {class: 'form-control'},required:false}) }} 
                            </div>
                         </div>
                         <div class="d-grid gap-2"><button class="btn btn-primary" type="submit">Postuler</button></div>
@@ -188,24 +292,25 @@
                      </div>
                      <div id="login_apply"  class="tab-pane fade col-12 p-a0 " name="frm"  method="POST" autocomplete="off " >
                     
-                        {{ form_start(form_guest ,{attr: {class: ''}}) }}  
+                        {{ form_start(form_guest ,{attr: {class: 'needs-validation',novalidate:''}}) }}  
                         <div id="error3"></div>
-                        <div class=" row gap-20 m-b20">
+                       <div class=" row gap-20 m-b20">
                            <div class="  ">
-                              <div class="fs-0">Nom</div>
-                              {{ form_widget(form_guest.lname,{attr: {class: 'form-control'}}) }}
+                            
+                              {{ form_widget(form_guest.lname,{attr: {class: 'form-control m-t20 m-b20 needs-validation',placeholder:'Nom'}}) }}
                            </div>
                            <div class=" ">
-                              <div class="fs-0">Prénom</div>
-                              {{ form_widget(form_guest.fname,{attr: {class: 'form-control'}}) }}
+                           
+                              {{ form_widget(form_guest.fname,{attr: {class: 'form-control m-b20',placeholder:'Prénom'}}) }}
                            </div>
                            <div class=" ">
-                              <div class="fs-0">Adresse E-mail</div>
-                              {{ form_widget(form_guest.email, {'attr': {'pattern': '[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,63}$'}}) }}
+                            
+                              {{ form_widget(form_guest.email, {'attr': {class:'form-control m-b10',placeholder:'Adresse électronique','pattern': '[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,63}$'}}) }}
                            </div>
+                          
                            <div class="fs-0">cv</div>
                            <div class=" ">
-                              {{ form_widget(form_guest.cvfield,{attr: {class: 'form-control'}}) }} 
+                              {{ form_widget(form_guest.cvfield,{attr: {class: 'form-control'},required:false}) }} 
                            </div>
                         </div>
                         <div class="d-grid gap-2"><button class="btn btn-primary" type="submit">Postuler</button></div>

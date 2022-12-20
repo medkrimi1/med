@@ -24,7 +24,7 @@
                                        <tr class="border-bottom border-400">
                                           <td>
                                              <div class="d-flex align-items-center position-relative">
-                                               {% if application.job.title !=609679 %}
+                                               {% if application.job !=null %}
                                                 <div class="posted-info clearfix  ">
                                                    <div class="m-tb0  float-start "><span  class=" text-dark  ">Nouvelle candidature pour: </span>{{application.job.title}} <span  class=" text-dark  ">par</span><a
                                                    class="" href="{{path('candidatProfile',{'fname':application.candidate.fname,'lname':application.candidate.lname,'id':application.candidate.id})}}" > {{application.candidate.fullname}} </a></div>

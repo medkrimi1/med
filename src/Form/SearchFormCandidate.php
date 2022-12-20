@@ -51,9 +51,8 @@ class SearchFormCandidate extends AbstractType
                
                'required'=> false,
                   'query_builder' => function (EntityRepository $er) {
-              return $er->createQueryBuilder('u')
-             ->Where('u.id != :check')
-              ->setParameter('check', 609679);
+              return $er->createQueryBuilder('u');
+            
     },
              
             ])
@@ -95,7 +94,7 @@ class SearchFormCandidate extends AbstractType
             
        ])
                ->add('status',ChoiceType::class, [
-        'choices'=>['Traité'=>'Traité','en cours de traitement'=>'en cours de traitement','Non traité'=>'Non traité'],
+        'choices'=>['Traité'=>'Traité','En Cours de Traitement'=>'En Cours de Traitement','Non Traité'=>'Non Traité'],
  'label' => false ,
             'required' => false ,
             'attr' => [

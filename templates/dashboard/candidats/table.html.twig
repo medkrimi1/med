@@ -21,11 +21,10 @@
 
                      
                  
-                  
                       
 
 
-                                <div id="" class="dataTables_wrapper dt-bootstrap5 "><div class="row"><div class="col-sm-12 col-md-6"></div><div class="col-sm-12 col-md-6"></div></div><div class="row "><div class="col-sm-12 table-responsive scrollbar"><table id="example" class=" dataTable dtr-inline border border-dark border-3  rounded-3 text-dark" style="width: 100%;" aria-describedby="example_info"><thead>
+                                <div id="" class="dataTables_wrapper dt-bootstrap5 "><div class="row"><div class="col-sm-12 col-md-6"></div><div class="col-sm-12 col-md-6"></div></div><div class="row "><div class="col-sm-12 table-responsive scrollbar"><table id="example" class=" dataTable dtr-inline border border-dark border-3  rounded-3 text-dark bg-200" style="width: 100%;" aria-describedby="example_info"><thead>
     <tr >
 <th class="sorting sorting_asc text-dark text-center" tabindex="0" aria-controls="example" rowspan="1" colspan="1" style="width: 5px;" aria-label="Name: activate to sort column descending" aria-sort="ascending"></th>
     <th class="sorting sorting_asc text-dark text-center" tabindex="0" aria-controls="example" rowspan="1" colspan="1" style="width: 350px;" aria-label="Name: activate to sort column descending" aria-sort="ascending">Candidat</th>
@@ -59,21 +58,21 @@
                               <div class="avatar avatar-xl">
                                 <img class="pxp-single-candidate-hero-avatar border-2 border-primary rounded-pill" src="{{asset('images/users/' ~candidate.image)}}" alt="">
                               </div>
-                              <div class="ms-2 ">{{candidate.fname|capitalize}} {{candidate.lname|capitalize}}</div>
+                              <div class="ms-2 "><a class="text-dark"href="{{path('candidatProfile',{'id':candidate.id})}}" target="_blank"><h6>{{candidate.fname|capitalize}} {{candidate.lname|capitalize}}</h6></a></div>
                             </div></td>
 
 
                              
-     <td class="border border-1 border-300 text-center"> {% if candidate.bdate !='' %}{% if (("now"|date("m")) == candidate.bdate|date("m") or ("now"|date("m")) < candidate.bdate|date("m")) and ("now"|date("d")) == candidate.bdate|date("d") or ("now"|date("d")) < candidate.bdate|date("d")  %} {% set x = 0 %} {% else %}  {% set x = 1 %}{% endif %}
-        {{ ("now"|date("Y")) - candidate.bdate|date("Y") - x }}  {% endif %} </td>
+     <td class="border border-1 border-300 text-center"><h6> {% if candidate.bdate !='' %}{% if (("now"|date("m")) == candidate.bdate|date("m") or ("now"|date("m")) < candidate.bdate|date("m")) and ("now"|date("d")) == candidate.bdate|date("d") or ("now"|date("d")) < candidate.bdate|date("d")  %} {% set x = 0 %} {% else %}  {% set x = 1 %}{% endif %}
+        {{ ("now"|date("Y")) - candidate.bdate|date("Y") - x }}  {% endif %} </h6></td>
     <td class="border border-1 border-300 d-none">{{candidate.email}}</td>
-    <td class="border border-1 border-300 text-center">{{candidate.titre|capitalize}}</td>
+    <td class="border border-1 border-300 text-center"><h6>{{candidate.titre|capitalize}}</h6></td>
 
 
     
 
-    <td class="border border-1 border-300 text-center">{{candidate.experience|capitalize}}</td>
-    <td class="border border-1 border-300 text-center">{{candidate.country|capitalize}}</td>
+    <td class="border border-1 border-300 text-center"><h6>{{candidate.experience|capitalize}}</h6></td>
+    <td class="border border-1 border-300 text-center"><h6>{{candidate.country|capitalize}}</h6></td>
 
 
 
@@ -103,7 +102,7 @@
                                        <tr class="border-bottom border-400">
                                           <td>
                                              <div class="d-flex align-items-center position-relative">
-                                               {% if applications.job.title != 609679 %} 
+                                               {% if applications.job !=null %} 
                                                 <div class="posted-info clearfix  ">
                                                    <div class="m-tb0  float-start "><span  class=" text-dark  ">Nouvelle candidature pour:</span><a
                                                    class="" href="{{path('offre_get',{'slug':applications.job.slug,'id':applications.job.id})}}" > {{applications.job.title|capitalize}} </a></div>
@@ -143,11 +142,12 @@
                     </div>
 </td>
 
- <td class="border border-1 border-300 text-center">  {% for applications in candidate.applications|reverse|slice(0, 1) %}{{applications.appdate|date("d/m/Y")}} {% endfor %}</td>
+ <td class="border border-1 border-300 text-center"><h6>  {% for applications in candidate.applications|reverse|slice(0, 1) %}{{applications.appdate|date("d/m/Y")}} {% endfor %}</h6></td>
 
  
-    <td class="border border-1 border-300 text-center"><a class="text-primary" type="button" data-bs-toggle="modal" data-bs-target="#modal{{candidate.id}}"><i class="fas fa-file"></i> </a></td>
-   
+    <td class="border border-1 border-300 text-center">
+        {% if candidate.cv is not empty %}<a class="text-primary" type="button" data-bs-toggle="modal" data-bs-target="#modal{{candidate.id}}"><i class="fas fa-file"></i> </a> {% endif %}</td>
+   {% if candidate.cv is not empty %}
     {% for modal in candidate.cv|reverse %}
      <div class="modal fade" id="modal{{candidate.id}}" data-bs-keyboard="false" data-bs-backdrop="static" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
   <div class="modal-dialog modal-lg mt-6" role="document">
@@ -160,7 +160,7 @@
         </div>
         <div class="">
           <div class="row">
-          <iframe src="{{asset('cv/' ~modal.cv)}}"
+          <iframe  src="{{asset('cv/' ~modal.cv)}}"
  
                 
                 height="500">
@@ -175,17 +175,20 @@
   </div>
 </div>
 {% endfor %} 
+{% endif %}
  <td class="border border-1 border-300 text-center">
 
-  {% if candidate.status=='Traité' %}
-    <span class="badge badge rounded-pill badge-soft-success">{{candidate.status}} <i class="fa fa-check"></i></span>
-  {% elseif candidate.status=='en cours de traitement' %}
-  <span class="badge badge rounded-pill badge-soft-primary">En cours <i class="fa fa-spinner"></i><h6 class="badge-soft-primary">de traitement</h6></span>
+{% for application in candidate.applications|slice(0,1) %}
+  {% if application.status=='Traité' %}
+    <span class="badge badge rounded-pill badge-soft-success">{{application.status}} <i class="fa fa-check"></i></span>
+  {% elseif application.status=='En cours de Traitement' %}
+  <span class="badge badge rounded-pill badge-soft-primary">En cours <i class="fa fa-spinner"></i><h6 class="badge-soft-primary">de Traitement</h6></span>
     {% else %}
 
-     <span class="badge badge rounded-pill badge-soft-warning">Non traité <i class="fa fa-false"></i></span>
+     <span class="badge badge rounded-pill badge-soft-warning">Non Traité <i class="fa fa-false"></i></span>
     
     {% endif %}
+    {% endfor %}
 
 
 

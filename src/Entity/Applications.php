@@ -34,6 +34,11 @@ class Applications
      */
     private $appdate;
 
+    /**
+     * @ORM\Column(type="string", length=255, nullable=true)
+     */
+    private $status;
+
      public function __construct()
     {
        
@@ -80,6 +85,18 @@ class Applications
     public function setAppdate(\DateTimeInterface $appdate): self
     {
         $this->appdate = $appdate;
+
+        return $this;
+    }
+
+    public function getStatus(): ?string
+    {
+        return $this->status;
+    }
+
+    public function setStatus(?string $status): self
+    {
+        $this->status = $status;
 
         return $this;
     }
