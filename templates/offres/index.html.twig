@@ -137,11 +137,11 @@
                            </div>
                            <div class="">
                               <div class="fs-0">cv</div>
-                              {{ form_widget(form2.cvfield,{attr: {class: 'form-control '}}) }} 
+                              {{ form_widget(form2.cvfield,{attr: {class: 'form-control '},id:'uploadfile' }) }} 
                            </div>
                         </div>
                         {{ form_widget(form2.newpassword,{attr: {class: 'd-none'},required:false}) }} 
-                        <div class="d-grid gap-2 "><button class="btn btn-primary" type="submit">Déposer CV</button></div>
+                        <div class="d-grid gap-2 "><button class="btn btn-primary" name="Upload File" value="Upload File" id="upload_btl" type="submit" >Déposer CV</button></div>
                         {{ form_end(form2) }}
                      </div>
                   </div>

@@ -102,12 +102,7 @@ class CandidateProfileController extends AbstractController
             ->add('tw')
             ->add('gl')
             ->add('ln')
-            ->add('imagefield', FileType::class, [
-                'mapped' => false,  'required'=>false, 'attr' => ['accept' =>"image/*"  ]   ])
-                 ->add('image', HiddenType::class)
-             ->add('coverfield', FileType::class, [
-                'mapped' => false,  'required'=>false, 'attr' => ['accept' =>"image/*"  ]   ])
-                 ->add('cover', HiddenType::class)
+        
         
          ->getForm();
         $form->handleRequest($request) ;
@@ -119,10 +114,7 @@ class CandidateProfileController extends AbstractController
            $Month=$form->get('month')->getData();
            $Year=$form->get('year')->getData();
            
-            $uploadedImage = $form['imagefield']->getData();
-            $uploadedCover = $form['coverfield']->getData();
-            $image=$candidate->getImage();
-            $cover=$candidate->getCover();
+         
            $destination = $this->getParameter('kernel.project_dir').'/public/images/users';
         foreach ($users as $userr){
             $userArray[] = strtolower(str_replace(' ', '',$userr->getEmail()));
@@ -133,35 +125,10 @@ class CandidateProfileController extends AbstractController
       
    if ($form->isSubmitted() && $form->isValid()) {
   
-            if ($uploadedImage) {
-            $ImageName = uniqid().'.'.$uploadedImage->guessExtension();
          
-                $newImageName = $ImageName;
-                $uploadedImage->move($destination,$newImageName);
-                $candidate->setImage($ImageName);
-                $user->setImage($ImageName);            
-            }
-            else {
-          $candidate->setImage($image);
-
-            }
+        
 
 
-               if ($uploadedCover) {
-            $CoverName = uniqid().'.'.$uploadedCover->guessExtension();
-         
-                $newCoverName = $CoverName;
-                $uploadedCover->move($destination,$newCoverName);
-                $candidate->setCover($CoverName);
-               
-               
-               
-               
-            }
-              else {
-          $candidate->setCover($cover);
-
-            }
      $candidate->setBdate($Month.'/'.$Day.'/'.$Year);
      $em->persist($candidate);
      $user->setFname($fname);
@@ -171,8 +138,9 @@ class CandidateProfileController extends AbstractController
            
            
           $em->flush();
-        
+         
               $this->addFlash('success', 'Votre profil a été mis à jour');
+
     if($email!=$l){ 
      if(in_array(strtolower(str_replace(' ', '',$form->get('mail')->getData())), $userArray)){
                 
@@ -206,4 +174,133 @@ class CandidateProfileController extends AbstractController
   
         return $this->render('candidat/profil/index.html.twig',['form'=>$form->createView()]);
     }
+
+
+
+
+
+
+/**
+     * @Route("/candidat/profil/{id}/image", name="candidate_profile_image")
+     */
+    public function image($id ,Request $request){
+        $candidate=$this->getDoctrine()->getRepository(Candidates::class)->find($id);
+        $user=$this->getDoctrine()->getRepository(User::class)->find($id);
+         
+       
+          
+          $form= $this->createFormBuilder()
+     
+            
+
+        
+            ->add('imagefield', FileType::class, [
+                'mapped' => false,  'required'=>false, 'attr' => ['accept' =>"image/*"  ]   ])
+                 ->add('image', HiddenType::class)
+             ->add('coverfield', FileType::class, [
+                'mapped' => false,  'required'=>false, 'attr' => ['accept' =>"image/*"  ]   ])
+                 ->add('cover', HiddenType::class)
+        
+         ->getForm();
+        $form->handleRequest($request) ;
+           $em = $this->getDoctrine()->getManager();
+           $users = $this->manager->getRepository(User::class)->findAll();
+      
+           
+            $uploadedImage = $form['imagefield']->getData();
+            $uploadedCover = $form['coverfield']->getData();
+            $image=$candidate->getImage();
+            $cover=$candidate->getCover();
+           $destination = $this->getParameter('kernel.project_dir').'/public/images/users';
+        foreach ($users as $userr){
+            $userArray[] = strtolower(str_replace(' ', '',$userr->getEmail()));
+            
+        }
+    
+     
+      
+   if ($form->isSubmitted() && $form->isValid()) {
+  
+            if ($uploadedImage) {
+            $ImageName = uniqid().'.'.$uploadedImage->guessExtension();
+         
+                $newImageName = $ImageName;
+                $uploadedImage->move($destination,$newImageName);
+                $candidate->setImage($ImageName);
+                $user->setImage($ImageName);            
+            }
+            else {
+          $candidate->setImage($image);
+
+            }
+
+
+               if ($uploadedCover) {
+            $CoverName = uniqid().'.'.$uploadedCover->guessExtension();
+         
+                $newCoverName = $CoverName;
+                $uploadedCover->move($destination,$newCoverName);
+                $candidate->setCover($CoverName);
+               
+               
+               
+               
+            }
+              else {
+          $candidate->setCover($cover);
+
+            }
+    
+   
+    
+
+           
+           
+          $em->flush();
+         return $this->redirectToRoute("candidate_profile_image",["id"=>$id]);
+              $this->addFlash('success', 'Votre profil a été mis à jour');
+              
+  
+           
+               
+       
+
+ }
+
+
+
+  
+         
+        
+  
+        return $this->render('candidat/profil/image.html.twig',['form'=>$form->createView()]);
+    }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 }

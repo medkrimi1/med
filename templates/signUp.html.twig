@@ -25,7 +25,7 @@
                                     
                                 
                                 <p class="text-center">Si vous avez déjà un compte,<span><a class="text-primary" href="{{path('app_login')}}">identifiez-vous </a></span></p>
-                       {{ form_start(form ,{attr: {class: ''}}) }}  
+                       {{ form_start(form ,{attr: {class: 'needs-validation',novalidate:''}}) }}  
                          {% for message in app.flashes('success') %}
             <div class="text-center text-dark alert alert-success">
                 {{ message }}
@@ -55,10 +55,10 @@
                            </div>
                            <div class="fs-0">cv</div>
                            <div class=" ">
-                              {{ form_widget(form.cvfield,{attr: {class: 'form-control'},required:false}) }} 
+                              {{ form_widget(form.cvfield,{attr: {class: 'form-control'},required:false,id:'uploadfile' }) }} 
                            </div>
                         </div>
-                        <div class="d-grid gap-2"><button class="btn btn-primary rounded-pill w-100  m-t10" type="submit">S'inscrire</button></div>
+                        <div class="d-grid gap-2"><button class="btn btn-primary rounded-pill w-100  m-t10" type="submit"  name="Upload File" value="Upload File" id="upload_btl">S'inscrire</button></div>
                         {{ form_end(form) }}
 
 

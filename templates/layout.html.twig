@@ -31,6 +31,7 @@
       <link href="{{ asset('vendors/choices/choices.min.css') }}" rel="stylesheet" />
       {% endblock %}
       {% block javascripts %}
+
       <script src="vendors/typed.js/typed.js"></script>
       <script src="{{ asset('vendors/popper/popper.min.js') }}"></script>
       <script src="{{ asset('vendors/bootstrap/bootstrap.min.js') }}"></script>
@@ -298,11 +299,11 @@ $(document).ready(function() {
                      <div class="widget border-0">
                         <ul class="">
                            <li>
-                              <div class="btn btn bg-300 btn-lg text-dark" style="width:200px" href="javascript:void(0);">+33  1 43 37 85 74</div>
+                              <div class="btn btn bg-300 btn-lg text-dark" style="width:230px" href="javascript:void(0);">+33  1 43 37 85 74</div>
                            </li>
                            </br>
                            <li>
-                              <div class="btn btn bg-300 btn-lg text-dark" href="javascript:void(0); " style="width:200px">contact@it-tecos.fr</div>
+                              <div class="btn btn bg-300 btn-lg text-center text-dark" href="javascript:void(0); " style="width:230px">contact@it-tecos.fr</div>
                            </li>
                            </br>
                            <li class="fl2 text-center"  style="width:200px" ><a href="javascript:void(0);"><i class="fas fa-home"></i>  7 RUE DU LAOS 75015 PARIS, FRANCE</a></li>
@@ -342,4 +343,34 @@ $(document).ready(function() {
          
       </script>
    </body>
+   <script>
+$("#uploadfile").on("change", function() {
+  var fileName = $(this).val().split("\\").pop();
+  $(this).siblings("#file_name").addClass("selected").html(fileName);
+});
+
+
+document.getElementById('upload_btl').onclick = function (){
+  var image=document.getElementById('uploadfile').value;
+      if(image!=''){
+        var checkimg = image.toLowerCase();
+        if(!checkimg.match(/(\.pdf|\.doc|\.docx)$/)){
+           alert("Please Select pdf,doc,docx File"); 
+           document.getElementById('uploadfile').value="";
+           document.getElementById('file_name').innerHTML="Choose file";exit;
+        }
+        var image=document.getElementById('uploadfile');
+        var size = parseFloat(image.files[0].size / (1024 * 1024)).toFixed(2);
+        if (size > 2){
+            alert("Please Select Size Less Than 2 MB"); 
+           document.getElementById('uploadfile').value="";
+           document.getElementById('file_name').innerHTML="Choose file";exit; 
+        } else {
+          
+        }
+      }
+
+}
+
+</script>
 </html>

@@ -1,0 +1,101 @@
+<head>
+      <meta charset="UTF-8">
+      <meta http-equiv="X-UA-Compatible" content="IE=edge">
+      <meta name="viewport" content="width=device-width, initial-scale=1">
+      <title>{% block title %}Welcome!{% endblock %}</title>
+      <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 128 128%22><text y=%221.2em%22 font-size=%2296%22>⚫️</text></svg>">
+      {# Run `composer require symfony/webpack-encore-bundle` to start using Symfony UX #}
+      {% block stylesheets %}
+      <!-- ===============================================-->
+      <!-- Stylesheets-->
+      <!-- ===============================================-->
+      <script src="{{ asset('assets/js/config.js') }}"></script>
+      <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.6.0/css/bootstrap-datepicker.css">
+      <script src="{{ asset('vendors/overlayscrollbars/OverlayScrollbars.min.js') }}"></script>
+      <!-- ===============================================-->
+      <!-- Stylesheets-->
+      <!-- ===============================================-->
+      <link rel="preconnect" href="https://fonts.gstatic.com">
+      <link href="//fonts.googleapis.com/css?family=Open+Sans:300,400,500,600,700%7cPoppins:300,400,500,600,700,800,900&amp;display=swap" rel="stylesheet">
+      <link rel="stylesheet" type="text/css" href="{{ asset('css/plugins.css') }}">
+      <link rel="stylesheet" type="text/css" href="{{ asset('css/style.css') }}">
+      <link rel="stylesheet" type="text/css" href="{{ asset('css/templete.css') }}">
+      <link href="{{ asset('vendors/overlayscrollbars/OverlayScrollbars.min.css') }}" rel="stylesheet">
+      <link href="{{ asset('assets/css/select2.min.css')}}" rel="stylesheet" >
+
+      <link href="{{ asset('assets/css/theme.min.css') }}" rel="stylesheet" id="style-default">
+      <link href="{{ asset('assets/css/user.min.css') }}" rel="stylesheet" id="user-style-default">
+      <link href="{{ asset('assets/css/user.min.css') }}" rel="stylesheet" id="user-style-default">
+      <link href="{{ asset('vendors/choices/choices.min.css') }}" rel="stylesheet" />
+      {% endblock %}
+      {% block javascripts %}
+      <script src="vendors/typed.js/typed.js"></script>
+      <script src="{{ asset('vendors/popper/popper.min.js') }}"></script>
+      <script src="{{ asset('vendors/bootstrap/bootstrap.min.js') }}"></script>
+      <script src="{{ asset('vendors/anchorjs/anchor.min.js') }}"></script>
+      <script src="{{ asset('vendors/is/is.min.js') }}"></script>
+      <script src="{{ asset('vendors/echarts/echarts.min.js') }}"></script>
+      <script src="{{ asset('vendors/fontawesome/all.min.js') }}"></script>
+      <script src="{{ asset('vendors/lodash/lodash.min.js') }}"></script>
+      <script src="{{ asset('assets/js/theme.js') }}"></script>
+      <script src="{{ asset('assets/js/theme.js') }}"></script>
+      <script src="{{ asset('vendors/tinymce/tinymce.min.js') }}"></script>
+      <script src="{{ asset('js/jquery.min.js') }}"></script>
+      <script src="{{ asset('vendors/magnific-popup/magnific-popup.js') }}"></script>
+      <script src="{{ asset('js/custom.js') }}"></script>
+      <script src="{{ asset('js/custom.js') }}"></script>
+      <script src="{{ asset('vendors/choices/choices.min.js') }}"></script>
+       <script src="{{ asset('js/select2.min.js')}}"></script>
+      <script type="text/javascript">  $(document).ready(function() {
+         if(window.location.href.indexOf('#spontanee') != -1) {
+           $('#spontanee').modal('show');
+         }
+         
+         });
+      </script>
+       <script> 
+$(document).ready(function() {
+    $('.multiselect-dropdown').select2();
+});</script>
+
+   <script> 
+$(document).ready(function() {
+    $('.js-example-basic-single').select2();
+});</script>
+      {% endblock %}
+   </head>
+ <div class="modal-body">
+            <div class="row gap-20">
+               <div class="">
+                  <div class=" tab-content ">
+                     <div id="signup_apply" class="tab-pane active  col-12 p-a0 "  >
+                        <h4 class=" popup-title text-center text-dark">Candidature Spontanée </h4>
+                        <p class="text-center">Déposez votre candidature maintenant</p>
+                        {{ form_start(form2 ,{attr: {class:  'needs-validation',novalidate:''}}) }}  
+                        <div id="error3"></div>
+                        <div class=" row gap-20 m-b30 ">
+                           <div class=" ">
+                              <div class="fs-0">Nom</div>
+                              {{ form_widget(form2.lname,{attr: {class: 'form-control'}}) }}
+                           </div>
+                           <div class=" ">
+                              <div class="fs-0">Prénom</div>
+                              {{ form_widget(form2.fname,{attr: {class: 'form-control'}}) }}
+                           </div>
+                           <div class=" ">
+                              <div class="fs-0">Adresse E-mail</div>
+                              {{ form_widget(form2.email, {'attr': {'pattern': '[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,63}$'}}) }}
+                           </div>
+                           <div class="">
+                              <div class="fs-0">cv</div>
+                              {{ form_widget(form2.cvfield,{attr: {class: 'form-control '}}) }} 
+                           </div>
+                        </div>
+                        {{ form_widget(form2.newpassword,{attr: {class: 'd-none'},required:false}) }} 
+                        <div class="d-grid gap-2 "><button class="btn btn-primary" type="submit">Déposer CV</button></div>
+                        {{ form_end(form2) }}
+                     </div>
+                  </div>
+               </div>
+            </div>
+         </div>

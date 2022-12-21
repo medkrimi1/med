@@ -23,7 +23,7 @@ use Symfony\Component\Form\Extension\Core\Type\HiddenType;
 use Symfony\Component\Form\Extension\Core\Type\FileType;
 use Symfony\Component\Form\Extension\Core\Type\PasswordType;
 use Symfony\Component\PasswordHasher\Hasher\UserPasswordHasherInterface;
-
+use Symfony\Component\Validator\Constraints\File;
 
  
 
@@ -37,17 +37,11 @@ class IndexControlller extends AbstractController
         $this->JobsRepository = $JobsRepository;
     }
 
-    /**
-     * @Route("/", name="offres")
+ /**
+     * @Route("/spontanee", name="spontanee")
      */
-    public function index(JobsRepository $repository , Request $request ){
-        $data=new SearchData1();
-       
-        $form= $this->createForm(SearchForJob::class, $data);
-        $form->handleRequest($request) ;
-        $jobs=$this->manager->getRepository(Jobs::class)->SearchForJob($data);
+    public function spontanee(JobsRepository $repository , Request $request ){
       
-       
            $t=time();
         $Userid=$t;
          $em = $this->getDoctrine()->getManager();
@@ -89,6 +83,78 @@ class IndexControlller extends AbstractController
         $em->persist($application);
         $em->flush();
 
+   $this->addFlash('successFreeApply', 'Vous avez postulé avec succès');
+  
+}
+          if(empty($jobsArray)){$jobsArray=[];}
+
+        return $this->render('spontanee.html.twig', [
+            'form2' => $form2-> createView()
+        ]);
+    }
+
+
+
+
+
+
+
+
+    /**
+     * @Route("/", name="offres")
+     */
+    public function index(JobsRepository $repository , Request $request ){
+        $data=new SearchData1();
+       
+        $form= $this->createForm(SearchForJob::class, $data);
+        $form->handleRequest($request) ;
+        $jobs=$this->manager->getRepository(Jobs::class)->SearchForJob($data);
+      
+       
+           $t=time();
+        $Userid=$t;
+         $em = $this->getDoctrine()->getManager();
+        $candidate = new Candidates();
+        $cv = new Cv(); 
+        $application = new Applications();  
+        $form2 = $this->createForm(Application::class,$candidate);
+        $form2->handleRequest($request);
+         $email=$form2->get('email')->getData();
+        if($form2->isSubmitted() && $form2->isValid()) {
+       $check = $em->getRepository(Candidates::class)->findBy(["email" => $email]);
+              
+           
+        $fname=ucwords($form2->get('fname')->getData());
+        $lname=ucwords($form2->get('lname')->getData());
+        $uploadedCV = $form2['cvfield']->getData();
+        $candidate->setFname($fname);
+        $candidate->setLname($lname);
+         $candidate->setId($Userid);
+        $candidate->setFullname($fname.' '.$lname); 
+
+          
+            $destination = $this->getParameter('kernel.project_dir').'/public/cv';
+            if ($uploadedCV) {
+
+
+
+                $CvName = 'cv'.uniqid().'.'.$uploadedCV->guessExtension();
+                $newCvName = $CvName;
+                $uploadedCV->move($destination,$newCvName);
+               $cv->setCv($CvName);
+               $cv->setCandidate($candidate);
+                
+                  }   
+          
+        $application->setJob(null);
+        $application->setCandidate($candidate);
+         $candidate->setImage('default.jpg');
+
+        $em->persist($cv);        
+        $em->persist($candidate);
+        $em->persist($application);
+        $em->flush();
+
    
    return $this->redirectToRoute("offres");
 }
@@ -119,17 +185,24 @@ class IndexControlller extends AbstractController
          $password=$form->get('newpassword')->getData();
         if($form->isSubmitted() && $form->isValid()) {
        $check = $em->getRepository(Candidates::class)->findBy(["email" => $email]);
-             
+            
             if($check) {
                 $this->addFlash('error', 'Adresse existe déja');
-             return $this->redirect($request->getUri());
+            
             }
             else {
+         
+
         $fname=ucwords($form->get('fname')->getData());
         $lname=ucwords($form->get('lname')->getData());
         $uploadedCV = $form['cvfield']->getData();
         
-
+       $cvType = $uploadedCV->guessExtension();
+      
+        if($cvType=='pdf' or $cvType=='doc' or $cvType=='docx') {
+        $filesize=filesize($uploadedCV);
+        
+        if ($filesize<5000000){
         $candidate->setId($Userid);
         $candidate->setFname($fname);
         
@@ -171,9 +244,21 @@ class IndexControlller extends AbstractController
         $em->persist($candidate);
         $em->persist($application);
         $em->flush();
-
+ $this->addFlash('successApply', 'Vous avez postulé avec succès');
    }
-   $this->addFlash('successApply', 'Vous avez postulé avec succès');
+   else {  $this->addFlash('error', 'taille de fichier ne doit pas dépasser 5 mo ,veuillez réessayer !');
+  return $this->redirect($request->getUri());}
+}
+
+  
+
+   else 
+{
+ $this->addFlash('error', 'Format de cv non supporté, veuillez réessayer avec d\' autres formats (PDF,DOC,DOCS)');
+   return $this->redirect($request->getUri());
+    
+}
+}
 }
 
 
@@ -198,11 +283,18 @@ $form_guest= $this->createFormBuilder()
 ]
 ])
 ->add('cvfield', FileType::class, [
-'mapped' => false,
-'required'=>true,     'attr' => [
-'accept' => "application/pdf"
-]
-])
+                'required' => true,
+                'constraints' => [
+                    new File([
+                        'maxSize' => '5M',
+                        'mimeTypes' => [
+                            'application/pdf',
+                            'application/x-pdf',
+                        ],
+                        'mimeTypesMessage' => 'Please upload a valid PDF',
+                    ])
+                ]
+            ])
 ->add('cv', HiddenType::class, [
 'mapped'=>false
 ])
@@ -220,10 +312,18 @@ $form_guest->handleRequest($request) ;
 
          $check=$this->getDoctrine()->getRepository(Applications::class)->findBy(array('Candidate' => $emailcheck,'job' => $job)); 
 
-         if($check){ $this->addFlash('error', 'Vous avez déjà postulé à cette offre');
-       return $this->redirect($request->getUri());}
+         if($check){ $this->addFlash('error', 'Vous avez déjà postulé à cette offre'); }
+     
           
             else {
+
+
+                  $cvType = $uploadedCV->guessExtension();
+      
+        if($cvType=='pdf' or $cvType=='doc' or $cvType=='docx') {
+        $filesize=filesize($uploadedCV);
+        
+        if ($filesize<5000000){
          $t=time();
         $Userid=$t;
         $candidate->setId($Userid);
@@ -254,12 +354,25 @@ $form_guest->handleRequest($request) ;
         $em->persist($application);
         $em->flush();
 
-   }
+  
    $this->addFlash('successApply', 'Vous avez postulé avec succès');
-      return $this->redirect($request->getUri());
+    }
+      else {  $this->addFlash('error', 'taille de fichier ne doit pas dépasser 5 mo ,veuillez réessayer !');
+    return $this->redirect($request->getUri());}
 }
 
+  
 
+   else 
+{
+ $this->addFlash('error', 'Format de cv non supporté, veuillez réessayer avec d\' autres formats (PDF,DOC,DOCS)');
+   return $this->redirect($request->getUri());
+    
+}
+    }
+
+
+}
 
   
           

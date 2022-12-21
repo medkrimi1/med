@@ -117,7 +117,15 @@
                                           </ul>
                                           <div class="posted-info clearfix bg-300 m-b10" >
                                              <p class="m-tb0  float-start  "><span class=" text-dark fw-bold ">Date de candidature :</span> <span class="text-dark" >{{application.appdate|date()}}</span></p>
-                                             <span class="badge badge rounded-pill  badge-soft-success float-end">{{application.status}}</span>
+                                             {% if application.status=='Traité' %}
+    <span class="badge badge rounded-pill badge-soft-success float-end">{{application.status}} <i class="fa fa-check"></i></span>
+  {% elseif application.status=='En cours de Traitement' %}
+  <span class="badge badge rounded-pill badge-soft-primary float-end">En cours <i class="fa fa-spinner"></i><h6 class="badge-soft-primary">de Traitement</h6></span>
+    {% else %}
+
+     <span class="badge badge rounded-pill badge-soft-warning float-end">Non Traité <i class="fa fa-false"></i></span>
+    
+    {% endif %}</span>
                                           </div>
                                        </div>
 

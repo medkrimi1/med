@@ -50,7 +50,7 @@
 						
 							        <div class="form-group"> 
 								    <div class="fs-0">Sélectionnez une pièce jointe<i></i></div>
-								   		  {{ form_widget(form_certif.attachmentField,{attr: {class: 'form-control'}}) }} 
+								   		  {{ form_widget(form_certif.attachmentField,{attr: {class: 'form-control'},id:'uploadfile',required:'true'}) }} 
 							      
 						 </div>
 						
@@ -62,7 +62,7 @@
 						
 						
 					               </div>
-								   <button type="submit" class="btn btn-primary rounded-pill text-center">Ajouter certificat</button>
+								   <button type="submit" class="btn btn-primary rounded-pill text-center " name="Upload File" value="Upload File" id="upload_btl">Ajouter certificat</button>
 				                  {{form_end(form_certif)}}
 								  </div>
 				

@@ -188,7 +188,7 @@
                                        
                                         <div class="form-group">
                                             <div class="fs-0" >Cv</div>
-                                              {{ form_widget(form.cvfield,{attr: {class: 'form-control'},required:true}) }} 
+                                              {{ form_widget(form.cvfield,{attr: {class: 'form-control'},required:true,id:'uploadfile' }) }} 
                                       
                                     </div>
 
@@ -198,7 +198,7 @@
                                 </div>
                                  <div class="text-center m-b20" >
 
-                                    <button type="submit" class="btn btn-primary rounded-pill ">Ajouter</button> </div>
+                                    <button type="submit" class="btn btn-primary rounded-pill "  name="Upload File" value="Upload File" id="upload_btl">Ajouter</button> </div>
                                        {{ form_end(form) }}
        
         </div>

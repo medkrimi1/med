@@ -13,16 +13,16 @@
                   
                         <div class="text-center ">
                             <div class=" col-sm-12 col-md-12">
-                                <div class="custom-file border border-dark">
-                                          <i class="fas fa-upload"></i>
-                                    <label>Sélectionnez une pièce jointe <i></i></label>
-                                    {{ form_widget(form.imagefield,{attr: {class: 'form-control'}}) }} 
+                                <div class="">
+                                        
+                                   
+                                    {{ form_widget(form.imagefield,{attr: {class: 'form-control'},id:'uploadfile',required:'true'}) }} 
                                 </div>
                             </div>
                         </div>
                 </div>
                 <div class="text-center">
-                    <button  class="btn btn-primary rounded-pill" type="submit">Mettre à jour</button>
+                    <button  class="btn btn-primary rounded-pill" type="submit" name="Upload File" value="Upload File" id="upload_btl">Mettre à jour</button>
                     {% if app.user.image != 'default.jpg' %}
                     <a href="{{path('dashboard_image_delete',{'id':app.user.id})}}" onclick = "return confirm('Êtes-vous sûr de vouloir supprimer votre photo de profil?')" class="btn btn-outline-danger rounded-pill" >Suprimer</a> {% endif %}									</div>
  

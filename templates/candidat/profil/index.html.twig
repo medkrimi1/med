@@ -13,7 +13,7 @@
                            <div class="sticky-top">
                               <div class="candidate-info bg-white radius-md">
                                  <div class="candidate-detail text-center ">
-                                    <a class="upload-link" href="{{path('candidate_profile',{'id':app.user.id})}}#avatar" title="update" data-bs-toggle="tooltip" data-placement="right">
+                                    <a class="upload-link" href="{{path('candidate_profile_image',{'id':app.user.id})}}" title="update" data-bs-toggle="tooltip" data-placement="right">
                                        <div class="canditate-des" >
                                           <center><img class=" canditate-des-img" src="{{asset('images/users/' ~app.user.image)}}"  alt="image"  /></center>
                                        </div>
@@ -154,7 +154,9 @@
                                        <div class="fs-0">Numéro de téléphone</div>
                                        <div class="row">
                                           <div class="col-lg-4 col-md-3">
-                                     {{ form_widget(form.pcode,{attr: {class: 'js-choice bg-200'}}) }} 
+                                             <div class="card bg-200">
+                                     {{ form_widget(form.pcode,{attr: {class: 'multiselect-dropdown bg-200'}}) }} 
+                                  </div>
                                           </div>
                                           <div class="col-lg-8 col-md-9">
                                              {{ form_widget(form.phone,{attr: {class: 'form-control bg-200',pattern:'[+,0-9]{5,15}'}}) }} 
@@ -172,8 +174,9 @@
                                  <div class="col-lg-6 col-md-6">
                                     <div class="form-group">
                                        <div class="fs-0">Pays</div>
-                                    {{ form_widget(form.Country,{attr: {class: 'js-choice bg-200'}}) }} 
-                                    </div>
+                                       <div class="card bg-200">
+                                    {{ form_widget(form.Country,{attr: {class: 'multiselect-dropdown bg-200 fw-bold'}}) }} 
+                                    </div></div>
                                  </div>
                                  <div class="col-lg-6 col-md-6">
                                     <div class="form-group">
@@ -226,38 +229,9 @@
                                
                              
                           
-                              <div class="job-bx-title clearfix" id="avatar" >
-                                 <h4 class="mb-0">Photo de profil & couverture</h4>
-                              </div>
-                              <div class="row m-b10">
-                              <div class=" text-center col-lg-6 col-md-12">
-                                 <div class="form-group">
-                                    <div class="fs-0"> Photo de profil </div>
-                                        <div class="custom-file border border-dark">
-
-                                         <i class="fas fa-upload"></i>
-                                    <label>choisissez ou glissez ici<i></i></label>
-                                    {{ form_widget(form.imagefield,{attr: {class: 'form-control '}}) }} 
-                                </div>
-                                 </div>
-                                
-                       
-                              </div>
-                              <div class=" text-center col-lg-6 col-md-12">
-                                 <div class="form-group">
-                                    <div class="fs-0">Photo de couverture</div>
-                                   <div class="custom-file border border-dark">
-
-                                         <i class="fas fa-upload"></i>
-                                    <label>choisissez ou glissez ici<i></i></label>
-                                    {{ form_widget(form.coverfield,{attr: {class: 'form-control'}}) }} 
-                                </div>
-                                 </div>
-                               
-                                </div>  
-                              </div>
+                           
                               <div class="text-center">
-                                 <button type="submit" class="btn btn-primary rounded-pill btn-lg">Mettre à jour</button> 
+                                 <button type="submit"  class="btn btn-primary rounded-pill btn-lg">Mettre à jour</button> 
                                   {{form_end(form)}}
                            </div>
                         </div>

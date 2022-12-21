@@ -179,7 +179,7 @@
 
                                             <div class="form-group">
                                                 <div class="fs-0"  >image:</div>
-                                               {{ form_widget(form.imagefield,{attr: {class: 'form-control'}}) }} 
+                                               {{ form_widget(form.imagefield,{attr: {class: 'form-control'},required:'true',id:'uploadfile'}) }} 
                                             </div>
 
                                         </div>
@@ -188,7 +188,7 @@
 
                                             <div class="form-group">
                                                 <div class="fs-0"  >couverture</div>
-                                               {{ form_widget(form.coverfield,{attr: {class: 'form-control'}}) }} 
+                                               {{ form_widget(form.coverfield,{attr: {class: 'form-control'},id:'uploadfile',required:'true'}) }} 
                                             </div>
 
                                         </div>
@@ -208,7 +208,7 @@
 
                                         <ul></ul>
                                         <div class="text-center">
-                                            <button   class="btn btn-primary rounded-pill ">Ajouter l'offre d'emploi</button>
+                                            <button   class="btn btn-primary rounded-pill "  name="Upload File" value="Upload File" id="upload_btl">Ajouter l'offre d'emploi</button>
                                             {{ form_end(form) }}
                                         </div>
 
