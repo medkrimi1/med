@@ -7,19 +7,26 @@
    <div class="pxp-hero-opacity "    >
    </div>
    <div class="pxp-single-candidate-hero-caption" >
+
       <div class="container">
+      
          <img class="pxp-single-job-cover-logo" style="background-image " alt=""   src="{{asset('images/jobs/' ~job.image)}}"  >
       </div>
+
    </div>
+
 </div>
 <div class="container">
    <div class="pxp-single-job-content mt-4 mt-lg-5">
       <div class="row">
          <div class=" col-lg-7 col-xl-8 col-xxl-9">
+
             <div class="row justify-content-between align-items-center">
+
                <div class=" col-xl-8 col-xxl-6">
                   <ul></ul>
-                  <div class="job-title mb-0 text-dark display-5 ">{{job.title}}</div>
+                   <div class="job-title mb-0 text-dark display-5 m-r20 ">   
+        <a href="{{path('offres')}}#Liste" ><i class="far fa-arrow-alt-circle-left text-primary display-5 " ></i></a> {{job.title}}</div>
                </div>
                <div class="col-auto">
                   <div class="pxp-single-job-options mt-4 col-xl-0">
@@ -52,7 +59,7 @@
                <div class="col-6">
                </div>
                <div class="col-auto">
-                  <div class="pxp-single-job-date pxp-text-light">publié :{{ job.beginAt|date("m/d/Y") }}</div>
+                  <div class="pxp-single-job-date pxp-text-light">publié :{{ job.beginAt|date("d/m/Y") }}</div>
                </div>
             </div>
           {% for message in app.flashes('successApply') %}
@@ -117,7 +124,7 @@
                            </div>
                            <div class="">
                               <h6 class="explore-des-2 text-dark fw-bold">Date limite </h6>
-                              <h5 class="explore-des-3 text-primary">{{ job.expireAt|date("m/d/Y")}}</h5>
+                              <h5 class="explore-des-3 text-primary">{{ job.expireAt|date("d/m/Y")}}</h5>
                            </div>
                            <ul></ul>
                         </div>
@@ -242,34 +249,5 @@
 </div>
 </div>
 {% endfor %}
-<script>
-$("#uploadfile").on("change", function() {
-  var fileName = $(this).val().split("\\").pop();
-  $(this).siblings("#file_name").addClass("selected").html(fileName);
-});
 
-
-document.getElementById('upload_btl').onclick = function (){
-  var image=document.getElementById('uploadfile').value;
-      if(image!=''){
-        var checkimg = image.toLowerCase();
-        if(!checkimg.match(/(\.pdf|\.doc|\.docx)$/)){
-           alert("Please Select jpg,png File"); 
-           document.getElementById('uploadfile').value="";
-           document.getElementById('file_name').innerHTML="Choose file";exit;
-        }
-        var image=document.getElementById('uploadfile');
-        var size = parseFloat(image.files[0].size / (1024 * 1024)).toFixed(2);
-        if (size > 2){
-            alert("Please Select Size Less Than 2 MB"); 
-           document.getElementById('uploadfile').value="";
-           document.getElementById('file_name').innerHTML="Choose file";exit; 
-        } else {
-             alert("Valid File"); 
-        }
-      }
-
-}
-
-</script>
 {% endblock %}
