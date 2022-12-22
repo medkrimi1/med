@@ -309,7 +309,7 @@
       {% endif %}
       <div class="card mb-3 ">
          <div class="card-header card-title  ">
-            <h5 class="card-title text-dark text-left-not-lg">Contacter {{candidate.fname}}</h5>
+            <h5 class="card-title text-dark text-left-not-lg">Contacter {{candidate.fname|capitalize}}</h5>
          </div>
          <div class="card-body text-left-not-lg">
             {% if candidate.site  is not empty %}
