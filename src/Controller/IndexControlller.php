@@ -165,7 +165,7 @@ class IndexControlller extends AbstractController
         ]);
     }
 
-    
+
 
     /**
      * @Route("/offre/{slug}/{id}", name="offre_get")
@@ -435,10 +435,13 @@ $form_guest->handleRequest($request) ;
        $candidate=$this->getDoctrine()->getRepository(Candidates::class)->find($idc);
        $slug=$job->getSlug();
        $jobid=$job->getId();
-         $check=$this->getDoctrine()->getRepository(Applications::class)->findBy(array('Candidate' => $candidate,'job' => $job)); 
+         $check=$this->getDoctrine()->getRepository(Applications::class)->findBy(array('Candidate' => $candidate,'job' => $job));
+          $checkCv=$this->getDoctrine()->getRepository(CV::class)->findBy(['candidate' => $candidate]);  
          if($check){ $this->addFlash('error', 'Vous avez déjà postulé à cette offre');}
          else{
-        $application->setJob($job);
+
+            if ($checkCv) {
+               $application->setJob($job);
         $application->setCandidate($candidate);
          $application->setStatus('Non Traité');
          
@@ -446,7 +449,12 @@ $form_guest->handleRequest($request) ;
         $em->persist($application);
         $em->flush();
         $this->addFlash('successApply', 'Vous avez postulé avec succès');
+            }
+            else {
+     
+        $this->addFlash('error', 'Vous devez ajouter au moins un cv pour postuler à une offre');
     }
+}
  return $this->redirectToRoute("offre_get",["slug"=>$slug,"id"=>$jobid]);
     
      

@@ -62,7 +62,7 @@
  
 
   {% for cv in candidate.cv %}
-    <td class="border border-2 border-300 text-center"><a class="text-primary" type="button" data-bs-toggle="modal" data-bs-target="#modal{{cv.id}}">{{cv.cv}}</a></td>
+    <td class="border border-2 border-300 text-center"><a class="text-primary" type="button" data-bs-toggle="modal" data-bs-target="#modal{{candidate.id}}"><i class="fas fa-file"></i></td>
 	{% endfor %}
 	{% for modal in candidate.cv %}
      <div class="modal fade" id="modal{{modal.id}}" data-bs-keyboard="false" data-bs-backdrop="static" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">

@@ -19,6 +19,7 @@
       <link rel="preconnect" href="https://fonts.gstatic.com">
       <link href="//fonts.googleapis.com/css?family=Open+Sans:300,400,500,600,700%7cPoppins:300,400,500,600,700,800,900&amp;display=swap" rel="stylesheet">
       <link rel="stylesheet" type="text/css" href="{{ asset('css/plugins.css') }}">
+      <link rel="stylesheet" type="text/css" href="{{ asset('assets/css/table.css') }}">
       <link rel="stylesheet" type="text/css" href="{{ asset('css/style.css') }}">
       <link rel="stylesheet" type="text/css" href="{{ asset('css/templete.css') }}">
       <link rel="stylesheet" type="text/css" src="{{asset('vendors/datatables.net-bs5/dataTables.bootstrap5.min.css')}}">
@@ -29,7 +30,7 @@
 
     
       <link href="{{ asset('vendors/choices/choices.min.css') }}" rel="stylesheet" >
-      <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.13.1/css/jquery.dataTables.css">
+ 
       <script>
          var isRTL = JSON.parse(localStorage.getItem('isRTL'));
          if (isRTL) {
@@ -47,7 +48,7 @@
       </script>
       {% endblock %}
       {% block javascripts %}
-      <script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.13.1/js/jquery.dataTables.js"></script>
+   
       <script src="//cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.6.0/js/bootstrap-datepicker.min.js"></script>
       <script src="{{ asset('vendors/popper/popper.min.js') }}"></script>
       <script src="{{ asset('vendors/bootstrap/bootstrap.min.js') }}"></script>
@@ -60,7 +61,7 @@
       <script src="{{ asset('vendors/countup/countUp.umd.js') }}"></script>
       <script src="{{ asset('js/theme.js') }}"></script>
       <script src="{{ asset('js/jquery.min.js') }}"></script>
-      <script src="{{asset('vendors/datatables.net/jquery.dataTables.min.js')}}"></script>
+      <script src="{{asset('vendors/datatables.net/jquery.dataTable.min.js')}}"></script>
       <script src="{{asset('vendors/datatables.net-bs5/dataTables.bootstrap5.min.js')}}"></script>
       <script src="{{asset('vendors/datatables.net-fixedColumns/dataTables.fixedColumns.min.js')}}"></script> 
       <script src="{{ asset('js/select2.min.js')}}"></script>

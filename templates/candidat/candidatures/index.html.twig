@@ -116,7 +116,7 @@
                                           {{application.job.country|capitalize}}</li>
                                           </ul>
                                           <div class="posted-info clearfix bg-300 m-b10" >
-                                             <p class="m-tb0  float-start  "><span class=" text-dark fw-bold ">Date de candidature :</span> <span class="text-dark" >{{application.appdate|date()}}</span></p>
+                                             <p class="m-tb0  float-start  "><span class=" text-dark fw-bold ">Date de candidature :</span> <span class="text-dark" >{{application.appdate|date("d/m/Y g:ia")}}</span></p>
                                              {% if application.status=='Traité' %}
     <span class="badge badge rounded-pill badge-soft-success float-end">{{application.status}} <i class="fa fa-check"></i></span>
   {% elseif application.status=='En cours de Traitement' %}
