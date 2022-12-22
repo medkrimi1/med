@@ -198,7 +198,7 @@
    </div>
    <div class=" col-lg-5 col-xl-4 col-xxl-3 text-center ">
     
-    
+     {% if candidate.fb  is not empty or candidate.ln  is not empty or candidate.gl  is not empty or candidate.tw  is not empty %}
       <div class="card mb-3 card-body   ">
          <ul class="list-inline m-a0">
             {% if candidate.fb  is not empty %}
@@ -215,6 +215,7 @@
             {% endif %}
          </ul>
       </div>
+      {% endif %}
   
      
       {% if candidate.skill  is not empty %}
