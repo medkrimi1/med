@@ -2,39 +2,34 @@
 {% block body %}
 <div class="header-w bg-white" > </div>
 <div class="dez-bnr-inr overlay-black-middle" >
-    {% for job in job %}
+   {% for job in job %}
    <img class="dez-bnr-inr overlay-black-middle" style="background-image " alt="image"   src="{{asset('images/jobs/' ~job.cover)}}">
    <div class="pxp-hero-opacity "    >
    </div>
    <div class="pxp-single-candidate-hero-caption" >
-
       <div class="container">
-      
          <img class="pxp-single-job-cover-logo" style="background-image " alt=""   src="{{asset('images/jobs/' ~job.image)}}"  >
       </div>
-
    </div>
-
 </div>
 <div class="container">
    <div class="pxp-single-job-content mt-4 mt-lg-5">
       <div class="row">
          <div class=" col-lg-7 col-xl-8 col-xxl-9">
-
             <div class="row justify-content-between align-items-center">
-
                <div class=" col-xl-8 col-xxl-6">
                   <ul></ul>
-                   <div class="job-title mb-0 text-dark display-5 m-r20 ">   
-        <a href="{{path('offres')}}#Liste" ><i class="far fa-arrow-alt-circle-left text-primary display-5 " ></i></a> {{job.title}}</div>
+                  <div class="job-title mb-0 text-dark display-5 m-r20 ">   
+                     <a href="{{path('offres')}}#Liste" ><i class="far fa-arrow-alt-circle-left text-primary display-5 " ></i></a> {{job.title}}
+                  </div>
                </div>
                <div class="col-auto">
                   <div class="pxp-single-job-options mt-4 col-xl-0">
                      <div class="sticky-sidebar">
                         <div class="apply-job-wrapper">
-                     {% if job.today > job.expire   %}
-              <a type="button" class="btn btn-primary rounded-pill btn-lg disabled btn-hidden">Offre expiré</a>
-                            {% else %}
+                           {% if job.today > job.expire   %}
+                           <a type="button" class="btn btn-primary rounded-pill btn-lg disabled btn-hidden">Offre expiré</a>
+                           {% else %}
                            {% if app.user %}
                            {% for role in app.user.roles %}
                            <a type="button" class="btn btn-primary rounded-pill btn-lg 
@@ -48,7 +43,7 @@
                            {% else %}
                            <a href="javascript:void(0);" title="READ MORE" rel="bookmark" data-bs-toggle="modal" data-bs-target="#jobapply" class="btn btn-primary rounded-pill btn-lg"> Postuler </a>
                            {% endif %}
-                             {% endif %}
+                           {% endif %}
                         </div>
                      </div>
                   </div>
@@ -62,35 +57,28 @@
                   <div class="pxp-single-job-date pxp-text-light">publié :{{ job.beginAt|date("d/m/Y") }}</div>
                </div>
             </div>
-          {% for message in app.flashes('successApply') %}
+            {% for message in app.flashes('successApply') %}
             <div class="text-center text-dark alert alert-success">
                {{ message }}
             </div>
             {% endfor %}
-            
             {% for message in app.flashes('error') %}
             <div class="text-center text-dark alert alert-warning">
                {{ message }}
             </div>
             {% endfor %}
-          
-           
             <div class="card mb-3 m-t10">
-              
                <div class="card-body ">
-                 <h3 class="mb-0 text-dark">Presentation</h3>
+                  <h3 class="mb-0 text-dark">Presentation</h3>
                   <p class="text-dark"> {{ job.presentation}}</p>
                   <hr>
                   <h3 class="mb-0 text-dark">Description du poste</h3>
-                   <p class="text-dark"> {{ job.resp }}</p>
-                   <hr>
-                   <h3 class="mb-0 text-dark">Profil recherché</h3>
-                    <p class="text-dark">{{ job.req }}</p>
+                  <p class="text-dark"> {{ job.resp }}</p>
+                  <hr>
+                  <h3 class="mb-0 text-dark">Profil recherché</h3>
+                  <p class="text-dark">{{ job.req }}</p>
                </div>
-
             </div>
-         
-           
          </div>
          <div class="col-lg-5 col-xl-4 col-xxl-3 text-center">
             <div class="">
@@ -131,7 +119,6 @@
                      </div>
                   </div>
                </div>
-         
             </div>
          </div>
       </div>
@@ -140,53 +127,39 @@
 <div class="modal" id="jobapply" tabindex="-1" role="dialog" aria-hidden="true">
    <div class="modal-dialog modal-dialog-centered" role="document">
       <div class="modal-content position-relative border border-dark">
-        
-        
-
-
-
-
-
          <div class="offcanvas-header settings-panel-header bg-shape  rounded-top bg-primary"  >
-        <div class="z-index-1 py-1 light">
-          <div class="">
-            <h5 class="text-white mb-0 me-2">Postuler</h5>
-          </div>
-        
-           <p class="mb-0 fs--1 text-white opacity-75">Si vous avez déjà un compte,<span><a class="text-white opacity-100" target="_blank" href="{{path('app_login')}}"> identifiez-vous </a></span></p>
-        </div><button class=" z-index-1  btn-close btn btn-sm btn-circle" type="button" data-bs-dismiss="modal" aria-label="Close"></button>
-      </div>
+            <div class="z-index-1 py-1 light">
+               <div class="">
+                  <h5 class="text-white mb-0 me-2">Postuler</h5>
+               </div>
+               <p class="mb-0 fs--1 text-white opacity-75">Si vous avez déjà un compte,<span><a class="text-white opacity-100" target="_blank" href="{{path('app_login')}}"> identifiez-vous </a></span></p>
+            </div>
+            <button class=" z-index-1  btn-close btn btn-sm btn-circle" type="button" data-bs-dismiss="modal" aria-label="Close"></button>
+         </div>
          <div class="modal-body card">
             <div class="row gap-20">
                <div class="">
                   <div class=" tab-content ">
                      <div id="signup_apply" class="tab-pane active  col-12 p-a0 "  >
-                       
-                       
                         {{ form_start(form ,{attr: {class: 'needs-validation',novalidate:''}}) }}  
                         <div id="error3"></div>
-                     <div class=" row gap-20 m-b20">
+                        <div class=" row gap-20 m-b20">
                            <div class="  ">
-                            
                               {{ form_widget(form.lname,{attr: {class: 'form-control m-t20 m-b20',placeholder:'Nom'}}) }}
                            </div>
                            <div class=" ">
-                           
                               {{ form_widget(form.fname,{attr: {class: 'form-control m-b20',placeholder:'Prénom'}}) }}
                            </div>
                            <div class=" ">
-                            
                               {{ form_widget(form.email, {'attr': {class:'form-control m-b20',placeholder:'Adresse électronique','pattern': '[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,63}$'}}) }}
                            </div>
                            <div class=" m-b10">
-                            
-                               {{ form_widget(form.newpassword,{attr: {class: 'form-control ',pattern:'.{8,20}',placeholder:'Mot de passe : Min 8 et Max 20 caractères',required:'true'}}) }} 
+                              {{ form_widget(form.newpassword,{attr: {class: 'form-control ',pattern:'.{8,20}',placeholder:'Mot de passe : Min 8 et Max 20 caractères',required:'true'}}) }} 
                            </div>
                            <div class="fs-0">cv</div>
                            <div class=" ">
                               {{ form_widget(form.cvfield,{attr: {class: 'form-control',id:'uploadfile'},required:true,id:'uploadfile'}) }} 
                            </div>
-
                         </div>
                         <div class="d-grid gap-2"><button class="btn btn-primary" type="submit" name="Upload File" value="Upload File" id="upload_btl">Postuler</button></div>
                         {{ form_end(form) }}
@@ -196,29 +169,22 @@
                         </div>
                      </div>
                      <div id="login_apply"  class="tab-pane fade col-12 p-a0 " name="frm"  method="POST" autocomplete="off " >
-                    
                         {{ form_start(form_guest ,{attr: {class: 'needs-validation',novalidate:''}}) }}  
                         <div id="error3"></div>
-                       <div class=" row gap-20 m-b20">
+                        <div class=" row gap-20 m-b20">
                            <div class="  ">
-                            
                               {{ form_widget(form_guest.lname,{attr: {class: 'form-control m-t20 m-b20 needs-validation',placeholder:'Nom'}}) }}
                            </div>
                            <div class=" ">
-                           
                               {{ form_widget(form_guest.fname,{attr: {class: 'form-control m-b20',placeholder:'Prénom'}}) }}
                            </div>
                            <div class=" ">
-                            
                               {{ form_widget(form_guest.email, {'attr': {class:'form-control m-b10',placeholder:'Adresse électronique','pattern': '[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,63}$'}}) }}
                            </div>
-                          
                            <div class="fs-0">cv</div>
                            <div class=" ">
                               {{ form_widget(form_guest.cvfield,{attr: {class: 'form-control',id:'uploadfile',onchange:'validateSize(this)'},required:true,onchange:'validateSize(this)',id:'uploadfile' }) }} 
-
                            </div>
-
                         </div>
                         <div class="d-grid gap-2"><button class="btn btn-primary" type="submit" name="Upload File" value="Upload File" id="upload_btl">Postuler</button></div>
                         {{ form_end(form_guest) }}
@@ -249,5 +215,4 @@
 </div>
 </div>
 {% endfor %}
-
 {% endblock %}

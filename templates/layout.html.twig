@@ -24,14 +24,12 @@
       <link rel="stylesheet" type="text/css" href="{{ asset('css/templete.css') }}">
       <link href="{{ asset('vendors/overlayscrollbars/OverlayScrollbars.min.css') }}" rel="stylesheet">
       <link href="{{ asset('assets/css/select2.min.css')}}" rel="stylesheet" >
-
       <link href="{{ asset('assets/css/theme.min.css') }}" rel="stylesheet" id="style-default">
       <link href="{{ asset('assets/css/user.min.css') }}" rel="stylesheet" id="user-style-default">
       <link href="{{ asset('assets/css/user.min.css') }}" rel="stylesheet" id="user-style-default">
       <link href="{{ asset('vendors/choices/choices.min.css') }}" rel="stylesheet" />
       {% endblock %}
       {% block javascripts %}
-
       <script src="vendors/typed.js/typed.js"></script>
       <script src="{{ asset('vendors/popper/popper.min.js') }}"></script>
       <script src="{{ asset('vendors/bootstrap/bootstrap.min.js') }}"></script>
@@ -48,7 +46,7 @@
       <script src="{{ asset('js/custom.js') }}"></script>
       <script src="{{ asset('js/custom.js') }}"></script>
       <script src="{{ asset('vendors/choices/choices.min.js') }}"></script>
-       <script src="{{ asset('js/select2.min.js')}}"></script>
+      <script src="{{ asset('js/select2.min.js')}}"></script>
       <script type="text/javascript">  $(document).ready(function() {
          if(window.location.href.indexOf('#spontanee') != -1) {
            $('#spontanee').modal('show');
@@ -56,15 +54,16 @@
          
          });
       </script>
-       <script> 
-$(document).ready(function() {
-    $('.multiselect-dropdown').select2();
-});</script>
-
-   <script> 
-$(document).ready(function() {
-    $('.js-example-basic-single').select2();
-});</script>
+      <script> 
+         $(document).ready(function() {
+             $('.multiselect-dropdown').select2();
+         });
+      </script>
+      <script> 
+         $(document).ready(function() {
+             $('.js-example-basic-single').select2();
+         });
+      </script>
       {% endblock %}
    </head>
    <body>
@@ -74,7 +73,6 @@ $(document).ready(function() {
                <div class="toggle-icon-wrapper">
                   <button class="btn navbar-toggler-humburger-icon navbar-vertical-toggle" data-bs-toggle="tooltip" data-bs-placement="left" title="" data-bs-original-title="Toggle Navigation" aria-label="Toggle Navigation"><span class="navbar-toggle-icon"><span class="toggle-line"></span></span></button>
                </div>
-             
             </div>
             <div class="collapse navbar-collapse scrollbar m-l30" id="navbarVerticalCollapse">
                <div class="container " >
@@ -344,33 +342,33 @@ $(document).ready(function() {
       </script>
    </body>
    <script>
-$("#uploadfile").on("change", function() {
-  var fileName = $(this).val().split("\\").pop();
-  $(this).siblings("#file_name").addClass("selected").html(fileName);
-});
-
-
-document.getElementById('upload_btl').onclick = function (){
-  var image=document.getElementById('uploadfile').value;
-      if(image!=''){
-        var checkimg = image.toLowerCase();
-        if(!checkimg.match(/(\.pdf|\.doc|\.docx)$/)){
-           alert("Please Select pdf,doc,docx File"); 
-           document.getElementById('uploadfile').value="";
-           document.getElementById('file_name').innerHTML="Choose file";exit;
-        }
-        var image=document.getElementById('uploadfile');
-        var size = parseFloat(image.files[0].size / (1024 * 1024)).toFixed(2);
-        if (size > 2){
-            alert("Please Select Size Less Than 2 MB"); 
-           document.getElementById('uploadfile').value="";
-           document.getElementById('file_name').innerHTML="Choose file";exit; 
-        } else {
-          
-        }
+      $("#uploadfile").on("change", function() {
+        var fileName = $(this).val().split("\\").pop();
+        $(this).siblings("#file_name").addClass("selected").html(fileName);
+      });
+      
+      
+      document.getElementById('upload_btl').onclick = function (){
+        var image=document.getElementById('uploadfile').value;
+            if(image!=''){
+              var checkimg = image.toLowerCase();
+              if(!checkimg.match(/(\.pdf|\.doc|\.docx)$/)){
+                 alert("Please Select pdf,doc,docx File"); 
+                 document.getElementById('uploadfile').value="";
+                 document.getElementById('file_name').innerHTML="Choose file";exit;
+              }
+              var image=document.getElementById('uploadfile');
+              var size = parseFloat(image.files[0].size / (1024 * 1024)).toFixed(2);
+              if (size > 2){
+                  alert("Please Select Size Less Than 2 MB"); 
+                 document.getElementById('uploadfile').value="";
+                 document.getElementById('file_name').innerHTML="Choose file";exit; 
+              } else {
+                
+              }
+            }
+      
       }
-
-}
-
-</script>
+      
+   </script>
 </html>

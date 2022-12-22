@@ -1,6 +1,6 @@
 {% extends 'layout.html.twig' %}
 {% block body %}
- <div class="header-w bg-white" > </div>
+<div class="header-w bg-white" > </div>
 <div class="page-content-glass">
    <!-- Section Banner -->
    <div class="dez-bnr-inr dez-bnr-inr-md   text-white text-center bg-img-fix" style="background-image: url({{ asset('images/Home.png') }});">
@@ -8,41 +8,33 @@
          <div class="dez-bnr-inr-entry align-m ">
             <div class="dezPlaceAni">
                <div class=" carriere-title  fw-bold display-2 m-b20" >Bienvenue sur votre espace carrière</div>
-             
                <div class="pxp-hero-form pxp-hero-form-round pxp-large bg-white ">
                   {{ form_start(form ,{attr: {class: 'row  align-items-center d-flex justify-content-center'}}) }} 
-                 
-                        <div class="col-12 col-lg">
-                            <div class="input-group mb-3 mb-lg-0">
-                         
-                              {{ form_widget(form.Name,{attr: {class: 'form-control bg-200 text-center text-dark rounded-pill fw-bold'}}) }}
-                            </div>
-                        </div>
-                     
-                        <div class="col-12 col-lg pxp-has-left-border">
-                            <div class="input-group mb-3 mb-lg-0">
-                              
-                               {{ form_widget(form.TypeJobs,{attr: {class: 'form-select bg-200 text-center text-primary rounded-pill  fw-bold'}}) }} 
-                            </div>
-                        </div>
-                        <div class="col-12 col-lg-auto">
-                           <button type="submit" class="rounded-pill btn btn-primary btn-lg card-title bg-primary " style="height:40px;">Rechercher</button>
-                        </div>
-                 
-                      {{ form_end(form) }} 
-                </div>
+                  <div class="col-12 col-lg">
+                     <div class="input-group mb-3 mb-lg-0">
+                        {{ form_widget(form.Name,{attr: {class: 'form-control bg-200 text-center text-dark rounded-pill fw-bold'}}) }}
+                     </div>
+                  </div>
+                  <div class="col-12 col-lg pxp-has-left-border">
+                     <div class="input-group mb-3 mb-lg-0">
+                        {{ form_widget(form.TypeJobs,{attr: {class: 'form-select bg-200 text-center text-primary rounded-pill  fw-bold'}}) }} 
+                     </div>
+                  </div>
+                  <div class="col-12 col-lg-auto">
+                     <button type="submit" class="rounded-pill btn btn-primary btn-lg card-title bg-primary " style="height:40px;">Rechercher</button>
+                  </div>
+                  {{ form_end(form) }} 
+               </div>
             </div>
          </div>
       </div>
    </div>
-     <div class=" text-center carriere-title  fw-bold display-5 m-t30 m-b20 text-dark" id="Liste" >Offres d'emploi récentes ({{jobs|length}})</div>
-             
+   <div class=" text-center carriere-title  fw-bold display-5 m-t30 m-b20 text-dark" id="Liste" >Offres d'emploi récentes ({{jobs|length}})</div>
    <div class="section-full  content">
       <div class="container">
-        
          <div class="row "  >
             <div class="col-lg-9">
-                 {% if jobs is empty %}
+               {% if jobs is empty %}
                <div class="alert alert-warning text-center" role="alert">
                   0 offre trouvé 
                </div>
@@ -79,7 +71,6 @@
                   </li>
                   </a>
                   {% endfor %}
-                 
                </ul>
             </div>
             <div class="col-lg-3">
@@ -88,7 +79,6 @@
                      <div class="candidates-bx ">
                         <div class="testimonial-pic radius "><img src="{{ asset('images/fondateur.jpg') }}" alt="" width="100" height="100"></div>
                         <div class="testimonial-text  ">
-                          
                            <p class=" text-dark">Nous sommes un centre spécialisé dans la transformation digitale notre priorité c’est de vous apporter un service IT de qualité auprès de nos clients et de notre société.</p>
                         </div>
                         <div class="testimonial-detail"> <strong class="fn text-primary">Firas Makni</strong> <span class="fn2">Fondateur,Tecos</span> </div>

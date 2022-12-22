@@ -165,6 +165,8 @@ class IndexControlller extends AbstractController
         ]);
     }
 
+    
+
     /**
      * @Route("/offre/{slug}/{id}", name="offre_get")
      */
