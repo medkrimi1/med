@@ -56,7 +56,7 @@ $lname=ucwords($form2->get('lname')->getData());
 $uploadedCV = $form2['cvfield']->getData();
 $candidate->setFname($fname);
 $candidate->setLname($lname);
-$candidate->setId($Userid);
+
 $candidate->setFullname($fname.' '.$lname); 
 $destination = $this->getParameter('kernel.project_dir').'/public/cv';
 if ($uploadedCV) {

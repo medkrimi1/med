@@ -186,8 +186,8 @@ class OffersController extends AbstractController
         $jobs = new Jobs();
         $form = $this->createForm(JobsAddType::class, $jobs);
         $form->handleRequest($request);
-        $str = [' ','é','è','\'','ç'];
-        $rplc =['-','e','e','','c'];
+        $str = [' ','é','è','\'','ç','/','à'];
+        $rplc =['-','e','e','','c','-','a'];
         $title = $form['title']->getData();
           if($form->isSubmitted() && $form->isValid()) {
             $em = $this->getDoctrine()->getManager();
@@ -246,8 +246,8 @@ class OffersController extends AbstractController
         $jobs = new Jobs();
         $form = $this->createForm(JobsAddType::class, $job);
         $form->handleRequest($request);
-        $str = [' ','é','è','\'','ç'];
-        $rplc =['-','e','e','','c'];
+        $str = [' ','é','è','\'','ç','/','à'];
+        $rplc =['-','e','e','','c','-','a'];
         $title = $form['title']->getData();
         if($form->isSubmitted() && $form->isValid()) {
             $em = $this->getDoctrine()->getManager();
