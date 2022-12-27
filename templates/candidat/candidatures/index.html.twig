@@ -104,8 +104,8 @@
 </div>
 
                               {% endif %}
-                               {% for application in applications %}
-                              
+                               {% for application in applications|reverse %}
+                              {% if application.status!='annulé' %}
                               <div class="post-job-bx browse-job ">
                                  <li>
                                     <div class="post-bx bg-200 border-3 bg-white  m-b30">
@@ -134,6 +134,34 @@
                                     </div>
                                  </li>
                               </div>
+                              {% else %}
+                        <div class="post-job-bx browse-job ">
+                                 <li>
+                                    <div class="post-bx bg-200 border-3 bg-white  m-b30">
+                                       <div class="job-post-info m-a0">
+                                          <h5 class="mt-1 fw-bold"><a href="{{path('offre_get',{'slug':application.job.slug,'id':application.job.id})}}">{{application.job.title|capitalize}}</a></h5>
+                                          <ul>
+                                             <li ><i class="fas fa-map-marker-alt"></i> {{application.job.city|capitalize}},
+                                          {{application.job.country|capitalize}}</li>
+                                          </ul>
+                                          <div class="posted-info clearfix bg-300 m-b30" >
+                                             <p class="m-tb0  float-start  "><span class=" text-dark fw-bold ">Date de candidature :</span> <span class="text-dark" >{{application.appdate|date("d/m/Y g:ia")}}</span></p>
+                                         
+    
+
+     <span class="badge badge rounded-pill badge-soft-danger float-end">Annulé <i class="fa fa-false"></i></span>
+    
+   </span>
+                                          </div>
+                                       </div>
+
+                  
+                
+                                    </div>
+                                 </li>
+                              </div>
+                        {% endif %}
+
                                 {% endfor %}
                               <ul></ul>
                            </div>

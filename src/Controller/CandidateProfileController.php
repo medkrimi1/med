@@ -129,14 +129,14 @@ $form= $this->createFormBuilder($candidate)
 ->add('city')
 ->add('address')
 ->add('site',TextType::class,[
-'attr'=>  ['pattern'=>'(https://|http://).([a-zA-Z0-9_.-_/]{5,30})','placeholder'=>'https://exemple.com'],'required'=>false ])
+'attr'=>  ['pattern'=>'((https://|http://)|())(www.|)([a-z]{2,30}).([a-z]{2,7})/([a-zA-Z0-9_.-]{5,30})','placeholder'=>'https://exemple.com'],'required'=>false ])
 ->add('fb',TextType::class,[
-'attr'=>  ['pattern'=>'(https://|http://)(www.|)facebook.([a-z]{2,3})/([a-zA-Z0-9_.-]{5,30})','placeholder'=>'https://facebook.com/user'] ,'required'=>false])
+'attr'=>  ['pattern'=>'((https://|http://)|())(www.|)facebook.([a-z]{2,3})/([a-zA-Z0-9_.-]{5,30})','placeholder'=>'https://facebook.com/user'] ,'required'=>false])
 ->add('tw',TextType::class,[
-'attr'=>  ['pattern'=>'(https://|http://)(www.|)twitter.([a-z]{2,3})/([a-zA-Z0-9_.-]{5,30})','placeholder'=>'https://twitter.com/user'] ,'required'=>false])
+'attr'=>  ['pattern'=>'((https://|http://)|())(www.|)twitter.([a-z]{2,3})/([a-zA-Z0-9_.-]{5,30})','placeholder'=>'https://twitter.com/user'] ,'required'=>false])
 
 ->add('ln',TextType::class,[
-'attr'=>  ['pattern'=>'(https://|http://)(www.|)linkedin.([a-z]{2,3})/([a-zA-Z0-9_.-]{5,30})','placeholder'=>'https://linkedin.com/user'] ,'required'=>false])
+'attr'=>  ['pattern'=>'((https://|http://)|())(www.|)linkedin.([a-z]{2,3})/([a-zA-Z0-9_.-]{5,30})','placeholder'=>'https://linkedin.com/user'] ,'required'=>false])
 ->getForm();
 $form->handleRequest($request) ;
 

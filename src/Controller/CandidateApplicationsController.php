@@ -20,9 +20,10 @@ class CandidateApplicationsController extends AbstractController
      * @Route("/candidat/candidatures/{id}", name="my_applications")
      */
     public function index($id){
-     $status="annulé";
+     $status='annulé';
+    
     $candidate=$this->getDoctrine()->getRepository(Candidates::class)->find($id);
-    $applications=$this->getDoctrine()->getRepository(Applications::class)->findBy(array("Candidate" => $candidate,"status"=>!$status )) ;
+    $applications=$this->getDoctrine()->getRepository(Applications::class)->findBy(array("Candidate" => $candidate )) ;
      
     
 

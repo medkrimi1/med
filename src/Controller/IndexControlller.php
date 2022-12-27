@@ -335,9 +335,29 @@ $application = new Applications();
 $candidate=$this->getDoctrine()->getRepository(Candidates::class)->find($idc);
 $slug=$job->getSlug();
 $jobid=$job->getId();
-$check=$this->getDoctrine()->getRepository(Applications::class)->findBy(array('Candidate' => $candidate,'job' => $job));
-$checkCv=$this->getDoctrine()->getRepository(CV::class)->findBy(['candidate' => $candidate]);  
-if($check){ $this->addFlash('error', 'Vous avez déjà postulé à cette offre');}
+$checks=$this->getDoctrine()->getRepository(Applications::class)->findBy(array('Candidate' => $candidate,'job' => $job));
+$checkCv=$this->getDoctrine()->getRepository(CV::class)->findBy(['candidate' => $candidate]); 
+
+foreach ($checks as $check ) {
+   $status=$check->getStatus();
+}
+
+if($check ){
+if($status!='annulé' )
+ {   
+ $this->addFlash('error', 'Vous avez déjà postulé à cette offre');}
+ else {if ($checkCv) {
+$application->setJob($job);
+$application->setCandidate($candidate);
+$application->setStatus('Non Traité');
+$em->persist($application);
+$em->flush();
+$this->addFlash('successApply', 'Vous avez postulé avec succès');
+}
+else {
+$this->addFlash('error', 'Vous devez ajouter au moins un cv pour postuler à une offre');
+} }
+}
 else{
 if ($checkCv) {
 $application->setJob($job);

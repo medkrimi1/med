@@ -181,6 +181,7 @@
  <td class="border border-1 border-300 text-center">
 
 {% for application in candidate.applications|slice(0,1) %}
+
   {% if application.status=='Traité' %}
     <span class="badge badge rounded-pill badge-soft-success">{{application.status}} <i class="fa fa-check"></i></span>
   {% elseif application.status=='En cours de Traitement' %}
