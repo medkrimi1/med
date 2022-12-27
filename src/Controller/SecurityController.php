@@ -107,7 +107,7 @@ class SecurityController extends AbstractController
          $email=$form->get('email')->getData();
          $password=$form->get('newpassword')->getData();
         if($form->isSubmitted() && $form->isValid()) {
-       $check = $em->getRepository(Candidates::class)->findBy(["email" => $email]);
+       $check = $em->getRepository(User::class)->findBy(["email" => $email]);
              
             if($check) {
                 $this->addFlash('error', 'Adresse existe déja');
@@ -124,7 +124,7 @@ class SecurityController extends AbstractController
           $candidate->setEmail($email);
         
         $candidate->setLname($lname);
-          $candidate->setBdate('');
+          $candidate->setBdate(null);
         $candidate->setFullname($fname.' '.$lname); 
         $user->setFname($fname);
         $user->setLname($lname);

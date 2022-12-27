@@ -35,9 +35,10 @@ public function index($id ,Request $request){
 $candidate=$this->getDoctrine()->getRepository(Candidates::class)->find($id);
 $user=$this->getDoctrine()->getRepository(User::class)->find($id);
 $l=$user->getEmail();
-$day=substr(($candidate->getBdate()),0,2);
-$month=substr(($candidate->getBdate()),3,-5);
-$year=substr(($candidate->getBdate()),-4);
+$Year=date('Y')-13;
+$maxBirth=$Year."-"."01"."-"."01" ;
+
+$currentBdate=$candidate->getBdate();
 $form_image= $this->createFormBuilder()
 ->add('imagefield', FileType::class, [
 'mapped' => false,  'required'=>false, 'attr' => ['accept' =>"image/*"  ]   ])
@@ -89,6 +90,7 @@ $em->flush();
 return $this->redirectToRoute("candidate_profile",["id"=>$id]);
 $this->addFlash('success', 'Votre photo de couverture a été mis à jour');
 }
+
 $form= $this->createFormBuilder($candidate)
 ->add('fname')
 ->add('lname')
@@ -110,59 +112,72 @@ $form= $this->createFormBuilder($candidate)
 'required'=>false,
 'placeholder' => 'Select',
 ])
-->add('day', ChoiceType::class, [
-'mapped'=>false,
-'required'=>false,
-'data' => $day,
-'choices'  => 
-['01' => '01','02' => '02','03' => '03','04' => '04','05' => '05','06' => '06','07' => '07','08' => '08','09' => '09','10' => '10','11' => '11','12'=> '12',],'placeholder' => 'Select' ])
-->add('month', ChoiceType::class, [
-'mapped'=>false,  
-'data' => $month,
-'required'=>false,
-'choices'  => 
-['01' => '01','02' => '02','03' => '03','04' => '04','05' => '05','06' => '06','07' => '07','08' => '08','09' => '09','10' => '10','11' => '11','12'=> '12',],'placeholder' => 'Select' ])
-->add('year', ChoiceType::class, [
-'mapped'=>false,  
-'required'=>false,
-'data' => $year,
-'choices'  => ['1970' => '1970','1971' => '1971','1972' => '1972','1973' => '1973','1974' => '1974','1975' => '1975','1976' => '1976','1977' => '1977','1978' => '1978','1979' => '1979','1980' => '1980','1981' => '1981','1982' => '1982','1983' => '1983','1984' => '1984','1985' => '1985','1986' => '1986','1987' => '1987','1988' => '1988','1989' => '1989','1990' => '1990','1991'=> '1991','1992'=> '1992','1993'=> '1993','1994'=> '1994','1995'=> '1995','1996'=> '1996','1997'=> '1997','1998'=> '1998','1999'=> '1999','2000'=> '2000','2001'=> '2001','2002'=> '2002','2003'=> '2003','2004'],'placeholder' => 'Select' ])
-->add('pcode', EntityType::class, [
-'class' => Country::class,
-'choice_label' => 'phonecode',
-'required'=>false,
-'placeholder' => 'Select',
-])
+
+ ->add('bdate', DateType::class, [ 
+        'widget' => 'single_text',
+         'required'=>true,
+         'mapped'=>false,
+
+
+                  'attr' => ['class' => 'js-datepicker text-center text-primary','value'=>$currentBdate,'max'=>$maxBirth, 'min'=>'1930-01-01'],  
+        ])
+
+->add('pcode')
+->add('phonecode',TextType::class, ['mapped'=>false,'required'=>false ] )
 ->add('mail',EmailType::class,[ 'mapped' => false,'attr' => ['value' => $l]])
 ->add('zip')
 ->add('city')
 ->add('address')
 ->add('site',TextType::class,[
-'attr'=>  ['pattern'=>'https://.*','placeholder'=>'https://exemple.com'] ])
+'attr'=>  ['pattern'=>'(https://|http://).([a-zA-Z0-9_.-_/]{5,30})','placeholder'=>'https://exemple.com'],'required'=>false ])
 ->add('fb',TextType::class,[
-'attr'=>  ['pattern'=>'https://facebook.*','placeholder'=>'https://facebook.com/user'] ])
+'attr'=>  ['pattern'=>'(https://|http://)(www.|)facebook.([a-z]{2,3})/([a-zA-Z0-9_.-]{5,30})','placeholder'=>'https://facebook.com/user'] ,'required'=>false])
 ->add('tw',TextType::class,[
-'attr'=>  ['pattern'=>'https://twitter.*','placeholder'=>'https://twitter.com/user'] ])
-->add('gl',TextType::class,[
-'attr'=>  ['pattern'=>'https://google.*','placeholder'=>'https://google.com/user'] ])
+'attr'=>  ['pattern'=>'(https://|http://)(www.|)twitter.([a-z]{2,3})/([a-zA-Z0-9_.-]{5,30})','placeholder'=>'https://twitter.com/user'] ,'required'=>false])
+
 ->add('ln',TextType::class,[
-'attr'=>  ['pattern'=>'https://linkedin.*','placeholder'=>'https://linkedin.com/user'] ])
+'attr'=>  ['pattern'=>'(https://|http://)(www.|)linkedin.([a-z]{2,3})/([a-zA-Z0-9_.-]{5,30})','placeholder'=>'https://linkedin.com/user'] ,'required'=>false])
 ->getForm();
 $form->handleRequest($request) ;
+
+ 
+
+
+  
+// Use JSON encoded string and converts
+// it into a PHP variable
+$ipdat = @json_decode(file_get_contents(
+    "http://www.geoplugin.net/json.gp?ip=" ));
+$ip=$ipdat->geoplugin_countryCode;
 $em = $this->getDoctrine()->getManager();
 $users = $this->manager->getRepository(User::class)->findAll();
 $fname=$form->get('fname')->getData();
 $lname=$form->get('lname')->getData();
-$Day=$form->get('day')->getData();
-$Month=$form->get('month')->getData();
-$Year=$form->get('year')->getData();
+
+$phone=$form->get('phone')->getData();
+$phonecode=$form->get('phonecode')->getData();
+
 $destination = $this->getParameter('kernel.project_dir').'/public/images/users';
 foreach ($users as $userr){
 $userArray[] = strtolower(str_replace(' ', '',$userr->getEmail()));
 }
 $email=$form->get('mail')->getData();
 if ($form->isSubmitted() && $form->isValid()) {
-$candidate->setBdate($Month.'/'.$Day.'/'.$Year);
+    if ($phone){
+ $candidate->setPhone('+'.$phonecode.' '. str_replace(' ','', $phone));  
+  }
+
+  else 
+{$candidate->setPhone(null); }
+
+  $bdate=$form->get('bdate')->getData();
+  
+ if($bdate!=null){
+          $Bdate=$bdate->format('Y-m-d') ; 
+          $candidate->setBdate($Bdate);}
+          else {
+            $candidate->setBdate(null); 
+          }
 $em->persist($candidate);
 $user->setFname($fname);
 $user->setLname($lname);
@@ -182,7 +197,7 @@ return $this->redirect($request->getUri());
 }
 }
 }
-return $this->render('candidat/profil/index.html.twig',['candidate'=>$candidate, 'form'=>$form->createView(),'form_image'=>$form_image->createView(),'form_cover'=>$form_cover->createView()]);
+return $this->render('candidat/profil/index.html.twig',[ 'ip'=>$ip ,'candidate'=>$candidate, 'form'=>$form->createView(),'form_image'=>$form_image->createView(),'form_cover'=>$form_cover->createView()]);
 }
 /**
 * @Route("/candidat/profil/{id}/image/delete", name="candidate_image_delete")

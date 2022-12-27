@@ -33,7 +33,10 @@ class CandidatePasswordController extends AbstractController
          $user=$this->getDoctrine()->getRepository(User::class)->find($id);
          $em = $this->getDoctrine()->getManager();
          $form_pass= $this->createFormBuilder($user)
-
+       ->add('oldpassword',PasswordType::class, [ 
+                'mapped' => false,
+               
+            ])
         ->add('newpassword',PasswordType::class, [ 
                 'mapped' => false,
                
@@ -43,12 +46,9 @@ class CandidatePasswordController extends AbstractController
                
             ])
 
-        
-         
-
-        
          ->getForm();
         $form_pass->handleRequest($request) ;
+         $oldpassword=$form_pass->get('oldpassword')->getData();
         $newpassword=$form_pass->get('newpassword')->getData();
         $repeatedpassword=$form_pass->get('repeatedpassword')->getData();
        
@@ -57,7 +57,7 @@ class CandidatePasswordController extends AbstractController
    
    if ($form_pass->isSubmitted() && $form_pass->isValid()) {
  
-  
+  if ($userPasswordHasher->isPasswordValid($user, $oldpassword)) {
   
     if($newpassword==$repeatedpassword) {
                $user->setPassword(
@@ -78,6 +78,9 @@ class CandidatePasswordController extends AbstractController
            
                
     }
+
+}
+else{ $this->addFlash('error', 'Votre mot de passe est incorrect');}
              return $this->redirect($request->getUri());
  }
 

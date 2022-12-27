@@ -24,14 +24,14 @@
          </div>
       </div>
    </div>
-   <div class="container">
+   <div class="container m-t40">
       <ul></ul>
       <div class="row">
          <ul></ul>
            <div class="col-lg-7 col-xl-8 col-xxl-9 ">
            
             <div class=" text-justify ">
-               <ul></ul>
+            
             
            
                <div class="card mb-3">
@@ -157,16 +157,26 @@
          </div>
          <div class=" col-lg-5 col-xl-4 col-xxl-3 text-center ">
           
-            <div class="card mb-3 card-body m-t20 ">
-               <ul class="list-inline m-a0">
-                  <li><a target="_blank" href="{{candidate.site}}" class="site-button  facebook circle "><i class="fab fa-facebook-f"></i></a></li>
-                  <li><a target="_blank" href="{{candidate.site}}" class="site-button  google-plus circle "><i class="fab fa-google-plus-g"></i></a></li>
-                  <li><a target="_blank" href="'{{candidate.site}}" class="site-button  linkedin circle "><i class="fab fa-linkedin-in"></i></a></li>
-                  <li><a target="_blank" href="{{candidate.site}}" class="site-button  twitter circle "><i class="fab fa-twitter"></i></a></li>
-               </ul>
-            </div>
+              {% if candidate.fb  is not empty or candidate.ln  is not empty or candidate.gl  is not empty or candidate.tw  is not empty %}
+      <div class="card mb-3 card-body   ">
+         <ul class="list-inline m-a0">
+            {% if candidate.fb  is not empty %}
+            <li><a target="_blank" href="{{candidate.fb}}" class="site-button  facebook circle "><i class="fab fa-facebook-f"></i></a></li>
+            {% endif %}
+            {% if candidate.gl  is not empty %}
+            <li><a target="_blank" href="{{candidate.gl}}" class="site-button  google-plus circle "><i class="fab fa-google-plus-g"></i></a></li>
+            {% endif %}
+            {% if candidate.ln  is not empty %}
+            <li><a target="_blank" href="'{{candidate.ln}}" class="site-button  linkedin circle "><i class="fab fa-linkedin-in"></i></a></li>
+            {% endif %}
+            {% if candidate.tw  is not empty %}
+            <li><a target="_blank" href="{{candidate.tw}}" class="site-button  twitter circle "><i class="fab fa-twitter"></i></a></li>
+            {% endif %}
+         </ul>
+      </div>
+      {% endif %}
             <div class="card mb-3" >
-               <div class="card-header card-title bg-300">
+               <div class="card-header card-title ">
                   <h5 class="explore-des text-dark text-left-not-lg">Compétences</h5>
                </div>
                <div class="card-body">
@@ -182,7 +192,7 @@
             </div>
             <div class="card mb-3">
                <div class="resume-list-wrapper">
-                  <div class="card-header card-title bg-300">
+                  <div class="card-header card-title ">
                      <h5 class="explore-des text-dark text-left-not-lg">Langues</h5>
                   </div>
                   <div class="card-body text-left-not-lg">
@@ -272,23 +282,26 @@
             </div>
 
             <div class="card mb-3 ">
-               <div class="card-header card-title bg-300">
+               <div class="card-header card-title ">
                   <h5 class="card-title text-dark text-left-not-lg">Contact</h5>
                </div>
                <div class="card-body text-left-not-lg">
-                  <div class="pxp-single-candidate-side-info-label ">Personal website</div>
-                  <a class="pxp-single-candidate-side-info-data" href="{{candidate.site}}">{{candidate.site}}</a>
-                  <div class="explore-des-2c text-dark ">Adresse E-mail</div>
+                  <div class="explore-des-2c text-dark  ">Site web personnel</div>
+                  <a class="pxp-single-candidate-side-info-data " href="{{candidate.site}}">{{candidate.site}}</a>
+                  <hr>
+                  <div class="explore-des-2c text-dark m-t20">Adresse E-mail</div>
                   <div class="explore-des-3c text-primary">{{candidate.email}}</div>
-                  <div class="mt-4">
+                  <hr>
+      
                      <div class="explore-des-2c text-dark fw-bold">{{candidate.address|capitalize}}</div>
                      <div class="explore-des-3c text-primary" >{{candidate.city}},{{candidate.country}}</div>
-                  </div>
-                  <div class="mt-4">
+               
+                  <hr>
+           
                      <div class="explore-des-2c text-dark fw-bold ">Téléphone</div>
                      <div class="explore-des-3c text-primary" > {{candidate.phone}} </div>
 
-                  </div>
+                 
                </div>
             </div>
            

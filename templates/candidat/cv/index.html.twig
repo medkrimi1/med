@@ -170,13 +170,13 @@
 
      <div class="modal fade" id="cv" tabindex="-1" role="dialog" aria-hidden="true">
   <div class="modal-dialog modal-dialog-centered" role="document" style="max-width: 500px">
-    <div class="modal-content position-relative">
+    <div class="modal-content position-relative bg-200">
       <div class="position-absolute top-0 end-0 mt-2 me-2 z-index-1">
-        <button class="btn-close btn btn-sm btn-circle d-flex flex-center transition-base float-end" data-bs-dismiss="modal" aria-label="Close"></button>
+        <button class="btn-close btn btn-sm btn-circle  d-flex flex-center transition-base float-end" data-bs-dismiss="modal" aria-label="Close"></button>
       </div>
       <div class="modal-body p-0">
-        <div class="rounded-top-lg py-3 ps-4 pe-6 bg-200">
-          <h4 class="" id="modalExampleDemoLabel">Ajouter cv</h4>
+        <div class="rounded-top-lg py-3 ps-4 pe-6">
+          <h4 class="" id="modalExampleDemoLabel"></h4>
         </div>
         <div class="p-4 pb-0">
        
@@ -187,7 +187,7 @@
                                      
                                        
                                         <div class="form-group">
-                                            <div class="fs-0" >Cv</div>
+                                            <div class="fs-0 text-dark fw-bold text-center" > (Taille Max: 2 MB /PDF,DOCX,DOC)</div>
                                               {{ form_widget(form.cvfield,{attr: {class: 'form-control'},required:true,id:'uploadfile' }) }} 
                                       
                                     </div>
@@ -198,7 +198,7 @@
                                 </div>
                                  <div class="text-center m-b20" >
 
-                                    <button type="submit" class="btn btn-primary rounded-pill "  name="Upload File" value="Upload File" id="upload_btl">Ajouter</button> </div>
+                                    <button type="submit" class="btn btn-primary rounded-pill "  name="Upload File" value="Upload File" id="upload_btl">Ajouter CV</button> </div>
                                        {{ form_end(form) }}
        
         </div>

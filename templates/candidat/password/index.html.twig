@@ -41,7 +41,7 @@
                                     <h4 class="m-b5"><a href="javascript:void(0);"><h4 class="mt-2 text-dark">{{app.user.fname}} {{app.user.lname}}</h4></a></h4>
                                
                                  </div>
-                                 <a class="btn btn-outline-primary rounded-pill btn-sm" href="{{path('candidate_profile',{'id':app.user.id})}}">Voir profil</a>
+                                 <a class="btn btn-outline-primary rounded-pill btn-sm" href="{{ path('candidat_profil',{'id':app.user.id})}}">Voir profil</a>
                               </div>
                            </div>
                            <div class="row navbar-vertical-label-wrapper " >
@@ -99,7 +99,12 @@
                            <div class="row">
                             
                              
-                             
+                             <div class="col-lg-6">
+                                 <div class="form-group">
+                                     <div class="fs-0" >Mot de passe actuel</div>
+                                    {{ form_widget(form_pass.oldpassword,{attr: {class: 'form-control'}}) }} 
+                                 </div>
+                              </div>
                          
                               <div class="col-lg-6">
                                  <div class="form-group">
@@ -107,15 +112,15 @@
                                     {{ form_widget(form_pass.newpassword,{attr: {class: 'form-control',pattern:'.{8,20}',placeholder:'Min 8 et Max 20 caractères'}}) }} 
                                  </div>
                               </div>
-                                 <div class="col-lg-6">
+                                 <div class="col-lg-6 ">
                                  <div class="form-group">
                                      <div class="fs-0" >Confimer nouveau mot de passe</div>
                                     {{ form_widget(form_pass.repeatedpassword,{attr: {class: 'form-control',pattern:'.{8,20}',placeholder:'Min 8 et Max 20 caractères'}}) }} 
                                  </div>
                               </div>
                               
-                              <div class="col-lg-12 m-b10 text-center">
-                                 <button type="submit"  name="submit"class="btn btn-primary rounded-pill">Mettre à jour</button>
+                              <div class="col-lg-12 m-b10 text-center" >
+                                 <button type="submit"  name="submit"class="btn btn-primary rounded-pill" >Mettre à jour</button>
                      
                            </div>
                     {{form_end(form_pass)}}

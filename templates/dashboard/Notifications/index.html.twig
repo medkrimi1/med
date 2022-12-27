@@ -25,10 +25,21 @@
                                           <td>
                                              <div class="d-flex align-items-center position-relative">
                                                {% if application.job !=null %}
+
+                                             {% if application.status=='annulé'  %}
+                                                <div class="posted-info clearfix  ">
+                                                   <div class="m-tb0  float-start "><span  class=" text-dark  ">Annulation candidature pour: </span>{{application.job.title}} <span  class=" text-dark  ">par</span><a
+                                                   class="" href="{{path('candidatProfile',{'fname':application.candidate.fname,'lname':application.candidate.lname,'id':application.candidate.id})}}" > {{application.candidate.fullname}} </a></div>
+                                                </div>
+                                                 {% else %}
+
                                                 <div class="posted-info clearfix  ">
                                                    <div class="m-tb0  float-start "><span  class=" text-dark  ">Nouvelle candidature pour: </span>{{application.job.title}} <span  class=" text-dark  ">par</span><a
                                                    class="" href="{{path('candidatProfile',{'fname':application.candidate.fname,'lname':application.candidate.lname,'id':application.candidate.id})}}" > {{application.candidate.fullname}} </a></div>
                                                 </div>
+                                           
+                                              {% endif %}
+
                                                 {% else %}
                                               <div class="posted-info clearfix  ">
                                                    <div class="m-tb0  float-start "><span  class=" text-dark  ">Nouvelle candidature spontanée </span> <span  class=" text-dark  ">par</span><a

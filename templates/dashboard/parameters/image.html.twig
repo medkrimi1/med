@@ -9,19 +9,19 @@
 
 
                             </div>
- <div class="modal-body">
+ 
                   
-                        <div class="text-center ">
-                            <div class=" col-sm-12 col-md-12">
-                                <div class="">
-                                        
+                        <div class="text-center m-b20">
+                            <div class=" col-sm-6 col-md-6">
+                                <div class="text-left">
+                                 (Taille Max:2 MB /JPG,JPEG,PNG)       
                                    
                                     {{ form_widget(form.imagefield,{attr: {class: 'form-control'},id:'uploadfile',required:'true'}) }} 
                                 </div>
                             </div>
                         </div>
-                </div>
-                <div class="text-center">
+              
+                <div class="text-left">
                     <button  class="btn btn-primary rounded-pill" type="submit" name="Upload File" value="Upload File" id="upload_btl">Mettre à jour</button>
                     {% if app.user.image != 'default.jpg' %}
                     <a href="{{path('dashboard_image_delete',{'id':app.user.id})}}" onclick = "return confirm('Êtes-vous sûr de vouloir supprimer votre photo de profil?')" class="btn btn-outline-danger rounded-pill" >Suprimer</a> {% endif %}									</div>

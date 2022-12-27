@@ -14,7 +14,7 @@
  
 <div class="row  border-1 border-dark bg-200 rounded-3 ">
      
- <div class="col-lg-4 col-md-6 d-none">
+ <div class="col-lg-5 col-md-6 d-none">
 
 
                                       
@@ -25,7 +25,7 @@
                                         
 
                                     </div>
-                                     <div class="col-lg-4 col-md-6 d-none ">
+                                     <div class="col-lg-5 col-md-6 d-none ">
 
                                         <div class="">
                                             <div class="fs-0" >Email:</div>
@@ -34,7 +34,7 @@
                                      
 
                                     </div>
-                                       <div class="col-lg-4">
+                                       <div class="col-lg-3">
                                      <div class="fs-0" >Offre:</div>
                                      <div class="card">
                                               {{ form_widget(form.Jobs,{attr: {class: 'multiselect-dropdown  '}}) }} </div>
@@ -42,22 +42,7 @@
 
                                   
                                 </div>
-                                     
-                                    
-                                   
-                                        <div class="col-lg-4 ">
-                                            <div class="m-b10">
-                                 
-                                         <div class="fs-0" >Statut</div>
-										    {{ form_widget(form.status,{attr: {class: 'form-select ' }}) }}
-                                       
-                                    </div>
-                                          
-                                      
-
-                                  
-                                </div>
-                                       <div class="col-lg-4 ">
+                                      <div class="col-lg-3 ">
                                        
 
                                         
@@ -70,9 +55,35 @@
                                    
                                 
                             </div>
+                                     <div class="col-lg-3  ">
+                                            <div class="m-b10">
+                                 
+                                         <div class="fs-0" >Pays</div>
+                                          <div class="card">
+                                          {{ form_row(form.Country,{attr: {class: 'multiselect-dropdown'}}) }}
+                                      </div></div>
+                                          
+                                      
+
+                                  
+                                </div>
+                                   
+                                        <div class="col-lg-3 ">
+                                            <div class="m-b10">
+                                 
+                                         <div class="fs-0" >Statut</div>
+										    {{ form_widget(form.status,{attr: {class: 'form-select ' }}) }}
+                                       
+                                    </div>
+                                          
+                                      
+
+                                  
+                                </div>
+                                      
                              
                                  
-                                     <div class="col-lg-6 m-b10">
+                                     <div class="col-lg-10 m-b10">
                                      <div class="m-1b0" >
 
                                     
@@ -82,12 +93,13 @@
                                       </div>
                                        </div>
                                     </div>
-									 <div class="col-lg-6 m-b10 ">
-                                            <div class="m-b10">
+									
+                                 <div class="col-lg-2 ">
+                                            <div class="m-t30 ">
                                  
-                                         <div class="fs-0" >Pays</div>
+                                       
                                           <div class="card">
-                                          {{ form_row(form.Country,{attr: {class: 'multiselect-dropdown'}}) }}
+                                     <button class="btn btn-primary">Rechercher</button>
                                       </div></div>
                                           
                                       

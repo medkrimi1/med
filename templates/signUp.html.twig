@@ -53,7 +53,7 @@
                             
                                {{ form_widget(form.newpassword,{attr: {class: 'form-control ',pattern:'.{8,20}',placeholder:'Mot de passe : Min 8 et Max 20 caractères',required:'true'}}) }} 
                            </div>
-                           <div class="fs-0">cv</div>
+                           <div class="fs-0 text-dark">CV<span class="text-600">(Taille Max: 2 MB /PDF,DOCX,DOC)</span> </div>
                            <div class=" ">
                               {{ form_widget(form.cvfield,{attr: {class: 'form-control'},required:false,id:'uploadfile' }) }} 
                            </div>

@@ -1,0 +1,339 @@
+{% extends 'layout.html.twig' %}
+{% block body %}
+<script type="text/javascript">var input = document.querySelector("#phone");
+window.intlTelInput(input, {
+  separateDialCode: true
+});</script>
+
+
+<div class="header-w bg-white" > </div>
+<div class=" page-wraper-glass">
+   <div class=" page-content">
+      <div class="content-block">
+         <div class=" bg- browse-job p-t50 p-b20">
+            <div class="container">
+               <div class="row">
+                  <div class="d-none d-lg-block col-xl-3 col-lg-4 m-b30 ">
+                     <div class="sticky-top">
+                        <div class="candidate-info bg-white radius-md">
+                           <div class="candidate-detail text-center ">
+                              <a class="upload-link" href="{{path('candidate_profile',{'id':app.user.id})}}#avatar" title="update" data-bs-toggle="tooltip" data-placement="right">
+                                 <div class="canditate-des" >
+                                    <center><img class=" canditate-des-img" src="{{asset('images/users/' ~app.user.image)}}"  alt="image"  /></center>
+                                 </div>
+                              </a>
+                              <div class=" candidate-title">
+                                 <div class="">
+                                    <h4 class="m-b5">
+                                       <a href="javascript:void(0);">
+                                          <h4 class="mt-2 text-dark">{{app.user.fname}} {{app.user.lname}}</h4>
+                                       </a>
+                                    </h4>
+                                 </div>
+                                 <a class="btn btn-outline-primary rounded-pill btn-sm" href="{{ path('candidat_profil',{'id':app.user.id})}}">Voir profil</a>
+                              </div>
+                           </div>
+                           <div class="row navbar-vertical-label-wrapper " >
+                              <ul class="">
+                                 <li>
+                                    <a href="{{path('candidate_profile',{'id':app.user.id})}}" class="active">
+                                       <span>
+                                          <h6 class="fs-0 text-white fw-bold"><i class=" far fa-user" aria-hidden="true"></i> Profil</h6>
+                                       </span>
+                                    </a>
+                                 </li>
+                                 <li>
+                                    <a href="{{ path('my_resume',{'id':app.user.id})}}">
+                                       <span>
+                                          <h6 class="fs-0"><i class="far fa-file-alt" aria-hidden="true"></i>  Mon CV En Ligne</h6>
+                                       </span>
+                                    </a>
+                                 </li>
+                                 <li>
+                                    <a href="{{ path('my_applications',{'id':app.user.id})}}">
+                                       <span>
+                                          <h6 class="fs-0"><i class="fa fa-briefcase " aria-hidden="true"></i> Mes candidatures</h6>
+                                       </span>
+                                    </a>
+                                 </li>
+                                 <li>
+                                    <a href="{{ path('my_cv',{'id':app.user.id})}}">
+                                       <span>
+                                          <h6 class="fs-0"><i class="far fa-id-card" aria-hidden="true"></i> Gérer CV</h6>
+                                       </span>
+                                    </a>
+                                 </li>
+                                 <li>
+                                    <a href="{{ path('candidate_password',{'id':app.user.id})}}">
+                                       <span>
+                                          <h6 class="fs-0"><i class="fa fa-cog" aria-hidden="true"></i> Paramètres</h6>
+                                       </span>
+                                    </a>
+                                 </li>
+                                 <li>
+                                    <a href="{{path('app_logout')}}">
+                                       <span>
+                                          <h6 class="fs-0"> <i class="fas fa-sign-out-alt" aria-hidden="true"></i> Déconnexion</h6>
+                                       </span>
+                                    </a>
+                                 </li>
+                              </ul>
+                           </div>
+                        </div>
+                     </div>
+                  </div>
+                  
+                  <div class="col-xl-9 col-lg-8 m-b30">
+                     <div class="job-bx job-profile  bg-white ">
+                        <div class="job-bx-title clearfix">
+                           <h5 class="mb-0">Informations basiques</h5>
+                        </div>
+                        {% for message in app.flashes('success') %}
+                        <div class="text-center text-dark alert alert-success">
+                           {{ message }}
+                        </div>
+                        {% endfor %}
+                        {% for message in app.flashes('error') %}
+                        <div class="text-center text-dark alert alert-warning">
+                           {{ message }}
+                        </div>
+                        {% endfor %}
+                        {{form_start(form)}}
+                        <div class="row m-b30">
+                           <div class="col-lg-6 col-md-6">
+                              <div class="form-group">
+                                 <div class="fs-0">Nom</div>
+                                 {{ form_widget(form.lname,{attr: {class: 'form-control bg-200'}}) }} 
+                              </div>
+                           </div>
+                           <div class="col-lg-6 col-md-6">
+                              <div class=" form-group" >
+                                 <div class="fs-0">Prénom</div>
+                                 {{ form_widget(form.fname,{attr: {class: 'form-control bg-200'}}) }} 
+                              </div>
+                           </div>
+                           <div class="clear"></div>
+                           <div class="col-lg-6 col-md-6">
+                              <div class="form-group">
+                                 <div class="fs-0">Profession</div>
+                                 {{ form_widget(form.titre,{attr: {class: 'form-select bg-200'}}) }} 
+                              </div>
+                           </div>
+                           <div class="col-lg-6 col-md-6">
+                              <div class="form-group">
+                                 <div class="fs-0">Années d'expérience</div>
+                                 {{ form_widget(form.experience,{attr: {class: 'form-select bg-200'}}) }} 
+                              </div>
+                           </div>
+                           <div class="col-lg-6 col-md-6 col-sm-4">
+                              <div class="form-group">
+                                 <div class="fs-0">Date de naissance</div>
+                                 <div class="row">
+                                    <div class="col-lg-4 col-sm-4 col-md-3">
+                                       {{ form_widget(form.day,{attr: {class: 'form-control text-center bg-200'}}) }} 
+                                    </div>
+                                    <div class="col-lg-4 col-sm-4 col-md-3">
+                                       {{ form_widget(form.month,{attr: {class: 'form-control text-center bg-200'}}) }}  
+                                    </div>
+                                    <div class="col-lg-4 col-sm-4 col-md-3">
+                                       {{ form_widget(form.year,{attr: {class: 'form-control text-center bg-200'}}) }}   
+                                    </div>
+                                 </div>
+                              </div>
+                           </div>
+                           <div class="col-lg-12 col-md-12">
+                              <div class="form-group bootstrap-wysihtml5-wrapper">
+                                 <div class="fs-0">À propos de moi</div>
+                                 {{ form_widget(form.about,{attr: {class: 'form-control bg-200'}}) }} 
+                              </div>
+                           </div>
+                        </div>
+                        <div class="job-bx-title clearfix">
+                           <h5 class="mb-0">Informations de contact</h5>
+                        </div>
+                        <div class="row">
+                           <div class="col-lg-6 col-md-6">
+                              <div class="form-group">
+                                 <div class="fs-0">Numéro de téléphone</div>
+                                 <div class="row">
+                                    <div class="col-lg-4 col-md-3">
+                                       <div class="card bg-200">
+                                          {{ form_widget(form.pcode,{attr: {class: 'multiselect-dropdown bg-200'}}) }} 
+                                       </div>
+                                    </div>
+                                    <div class="col-lg-8 col-md-9">
+                                       {{ form_widget(form.phone,{attr: {class: 'form-control bg-200',pattern:'[+,0-9]{5,15}'}}) }} 
+                                    </div>
+                                 </div>
+                              </div>
+                           </div>
+                           <div class="col-lg-6 col-md-6">
+                              <div class="form-group">
+                                 <div class="fs-0">Adresse E-mail</div>
+                                 {{ form_widget(form.mail,{attr: {class: 'form-control bg-200'}}) }} 
+                              </div>
+                           </div>
+                           <div class="col-lg-6 col-md-6">
+                              <div class="form-group">
+                                 <div class="fs-0">Pays</div>
+                                 <div class="card bg-200">
+                                    {{ form_widget(form.Country,{attr: {class: 'multiselect-dropdown bg-200 fw-bold'}}) }} 
+                                 </div>
+                              </div>
+                           </div>
+                           <div class="col-lg-6 col-md-6">
+                              <div class="form-group">
+                                 <div class="fs-0">Code postal </div>
+                                 {{ form_widget(form.zip,{attr: {class: 'form-control bg-200'}}) }} 
+                              </div>
+                           </div>
+                           <div class="col-lg-6 col-md-6">
+                              <div class="form-group">
+                                 <div class="fs-0">Ville</div>
+                                 {{ form_widget(form.city,{attr: {class: 'form-control bg-200'}}) }}   
+                              </div>
+                           </div>
+                           <div class="col-lg-6 col-md-6">
+                              <div class="form-group">
+                                 <div class="fs-0">Adresse</div>
+                                 {{ form_widget(form.address,{attr: {class: 'form-control bg-200'}}) }} 
+                              </div>
+                           </div>
+                           <div class="form-group">
+                              <div class="fs-0">Site web personnel</div>
+                              {{ form_widget(form.site,{attr: {class: 'form-control bg-200'}}) }} 
+                           </div>
+                           <div class="job-bx-title clearfix">
+                              <h4 class=" mb-0">Profils sociaux</h4>
+                           </div>
+                           <div class="col-lg-6 col-md-6">
+                              <div class="form-group">
+                                 <div class="fs-0">Facebook</div>
+                                 {{ form_widget(form.fb,{attr: {class: 'form-control bg-200'}}) }} 
+                              </div>
+                           </div>
+                           <div class="col-lg-6 col-md-6">
+                              <div class="form-group">
+                                 <div class="fs-0">Twitter</div>
+                                 {{ form_widget(form.tw,{attr: {class: 'form-control bg-200'}}) }}    
+                              </div>
+                           </div>
+                           <div class="col-lg-6 col-md-6">
+                              <div class="form-group">
+                                 <div class="fs-0">Google</div>
+                                 {{ form_widget(form.gl,{attr: {class: 'form-control bg-200'}}) }}  
+                              </div>
+                           </div>
+                           <div class="col-lg-6 col-md-6">
+                              <div class="form-group">
+                                 <div class="fs-0">Linkedin</div>
+                                 {{ form_widget(form.ln,{attr: {class: 'form-control bg-200'}}) }} 
+                              </div>
+                           </div>
+                        </div>
+                        <div class="text-center m-b20">
+                           <button type="submit"  class="btn btn-primary rounded-pill " style="width:15rem" >Mettre à jour</button> 
+                           {{form_end(form)}}
+                        </div>
+                        <hr>
+                        <div class="row m-b30">
+                           <div class="m-b20" >
+                              <h4 class="mb-0" id="avatar">Photo de profil & couverture</h4>
+                           </div>
+                           <div class="col-lg-6 col-md-6">
+                              <div class="text-center ">
+                                 <div class="form-group">
+                                    <div class="fs-0">photo de profil</div>
+                                    {{ form_start(form_image) }}      
+                                    {{ form_widget(form_image.imagefield,{attr: {class: 'form-control'},id:'image',required:'true'}) }} 
+                                 </div>
+                              </div>
+                              <div class="text-center m-b20">
+                                 <button  class="btn btn-primary rounded-pill " type="submit"id="upload_bt0">Mettre à jour</button>  {% if app.user.image != 'default.jpg' %}
+                                 <a href="{{path('candidate_image_delete',{'id':app.user.id})}}" onclick = "return confirm('Êtes-vous sûr de vouloir supprimer votre photo de profil?')" class="btn btn-outline-danger rounded-pill" >Suprimer</a> {% endif %}     
+                              </div>
+                           </div>
+                           {{ form_end(form_image) }} 
+                           <div class="col-lg-6 col-md-6">
+                              <div class="text-center">
+                                 <div class="form-group">
+                                    <div class="fs-0">photo de couverture</div>
+                                    {{ form_start(form_cover) }} 
+                                    {{ form_widget(form_cover.coverfield,{attr: {class: 'form-control'},id:'cover',required:'true'}) }} 
+                                 </div>
+                                 <button  class="btn btn-primary rounded-pill" type="submit" name="Upload File" value="Upload File" id="upload_bt2">Mettre à jour</button>
+                                 {% if candidate.cover != '' %}
+                                 <a href="{{path('candidate_cover_delete',{'id':app.user.id})}}" onclick = "return confirm('Êtes-vous sûr de vouloir supprimer votre photo de couverture?')" class="btn btn-outline-danger rounded-pill" >Suprimer</a>  {% endif %} 
+                              </div>
+                              {{ form_end(form_cover) }}  
+                           </div>
+                        </div>
+                     </div>
+                  </div>
+               </div>
+            </div>
+         </div>
+      </div>
+   </div>
+</div>
+<script>
+   $("#cover").on("change", function() {
+     var fileName = $(this).val().split("\\").pop();
+     $(this).siblings("#file_name").addClass("selected").html(fileName);
+   });
+   
+   
+   document.getElementById('upload_bt2').onclick = function (){
+     var image=document.getElementById('cover').value;
+         if(image!=''){
+           var checkimg = image.toLowerCase();
+           if(!checkimg.match(/(\.jpg|\.png|\.JPG|\.PNG|\.jpeg|\.JPEG)$/)){
+              alert("Please Select jpg,png File"); 
+              document.getElementById('cover').value="";
+              document.getElementById('file_name').innerHTML="Choose file";exit;
+           }
+           var image=document.getElementById('cover');
+           var size = parseFloat(image.files[0].size / (1024 * 1024)).toFixed(2);
+           if (size > 2){
+               alert("Please Select Size Less Than 2 MB"); 
+              document.getElementById('cover').value="";
+              document.getElementById('file_name').innerHTML="Choose file";exit; 
+           } else {
+               
+           }
+         }
+   
+   }
+</script>
+<script>
+   $("#image").on("change", function() {
+     var fileName = $(this).val().split("\\").pop();
+     $(this).siblings("#file_name").addClass("selected").html(fileName);
+   });
+   
+   
+   document.getElementById('upload_bt0').onclick = function (){
+     var image=document.getElementById('image').value;
+         if(image!=''){
+           var checkimg = image.toLowerCase();
+           if(!checkimg.match(/(\.jpg|\.png|\.JPG|\.PNG|\.jpeg|\.JPEG)$/)){
+              alert("Please Select pdf,doc,docx File"); 
+              document.getElementById('image').value="";
+              document.getElementById('file_name').innerHTML="Choose file";exit;
+           }
+           var image=document.getElementById('image');
+           var size = parseFloat(image.files[0].size / (1024 * 1024)).toFixed(2);
+           if (size > 2){
+               alert("Please Select Size Less Than 2 MB"); 
+              document.getElementById('image').value="";
+              document.getElementById('file_name').innerHTML="Choose file";exit; 
+           } else {
+             
+           }
+         }
+   
+   }
+   
+</script>
+
+{% endblock %}

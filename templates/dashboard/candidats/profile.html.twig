@@ -77,12 +77,17 @@
                                  candidature spontanée
                   </div>
                   {% endif %} </td>
-                  <td class="border border-1 border-300 fs--0 text-center" style="width:15rem">    
+                  <td class="border border-1 border-300 fs--0 text-center" style="width:15rem">  
+                     {% if application.status=='annulé'  %}
+                    <span class="badge badge rounded-pill badge-soft-danger"style="width:10rem">Annulé <i class="fa fa-times"></i></span>
+                  {% else %}
                   <select class="form-select badge badge {% if application.status=='Traité' %} badge-soft-success  {% elseif application.status=='En cours de Traitement' %}badge-soft-primary {% else %} badge-soft-warning {% endif %}" onchange="location = this.value;" style="border-radius: 500px;width: auto;" >
                   <option {% if application.status=='En cours de Traitement' %} selected {% endif %} value="{{path('Traité',{'idc':candidate.id ,'id':application.id,'status':'En cours de Traitement'})}}" > En cours de Traitement</option>
                   <option {% if application.status=='Non Traité' %} selected {% endif %} value="{{path('Traité',{'idc':candidate.id ,'id':application.id,'status':'Non Traité'})}}">Non Traité</option>
                   <option {% if application.status=='Traité' %} selected{% endif %} value="{{path('Traité',{'idc':candidate.id ,'id':application.id,'status':'Traité'})}}">Traité</option>
-                  </select>  
+                  </select> 
+
+                  {% endif %} 
                   </td>
                   </tr>
                   {% endfor %}
@@ -198,15 +203,13 @@
    </div>
    <div class=" col-lg-5 col-xl-4 col-xxl-3 text-center ">
     
-     {% if candidate.fb  is not empty or candidate.ln  is not empty or candidate.gl  is not empty or candidate.tw  is not empty %}
+     {% if candidate.fb  is not empty or candidate.ln  is not empty  or candidate.tw  is not empty %}
       <div class="card mb-3 card-body   ">
          <ul class="list-inline m-a0">
             {% if candidate.fb  is not empty %}
             <li><a target="_blank" href="{{candidate.fb}}" class="site-button  facebook circle "><i class="fab fa-facebook-f"></i></a></li>
             {% endif %}
-            {% if candidate.gl  is not empty %}
-            <li><a target="_blank" href="{{candidate.gl}}" class="site-button  google-plus circle "><i class="fab fa-google-plus-g"></i></a></li>
-            {% endif %}
+           
             {% if candidate.ln  is not empty %}
             <li><a target="_blank" href="'{{candidate.ln}}" class="site-button  linkedin circle "><i class="fab fa-linkedin-in"></i></a></li>
             {% endif %}
@@ -326,7 +329,7 @@
             {% if candidate.phone  is not empty %}
             <div class="mt-4">
                <div class="explore-des-2c text-dark fw-bold ">Téléphone</div>
-               <div class="explore-des-3c text-primary" >{{candidate.phone}}</div>
+               <div class="explore-des-3c text-primary" > {{candidate.phone}}</div>
             </div>
             {% endif %}
          </div>

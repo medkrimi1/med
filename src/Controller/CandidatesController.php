@@ -3,6 +3,9 @@
 namespace App\Controller;
 use App\Entity\Candidates;
 use App\Entity\Jobs;
+use App\Entity\Skills;
+use App\Entity\Candidatexp;
+use App\Entity\Country;
 use App\Data\SearchDataCandidate;
 use App\Form\SearchFormCandidate;
 use App\Repository\CandidatesRepository;
@@ -31,11 +34,15 @@ class CandidatesController extends AbstractController
         $form= $this->createForm(SearchFormCandidate::class, $data);
         $form->handleRequest($request) ;
         $candidates=$this->manager->getRepository(Candidates::class)->findSearchCandidate($data);
-
+        $skills=$this->manager->getRepository(Skills::class)->findAll();
+         $experiences=$this->manager->getRepository(Candidatexp::class)->findAll();
+         $countries=$this->manager->getRepository(Country::class)->findAll();
+        
       
      
-   return $this->render('dashboard/candidats/candidats.html.twig', [
-            'candidates' => $candidates , 'form' => $form-> createView()
+   return $this->render('dashboard/candidats/candidats.html.twig', [ 'skills'=>$skills,
+         'experiences'=>$experiences, 'countries'=>$countries,  
+            'candidates' => $candidates ,'form' => $form-> createView()
         ]);
     }
 

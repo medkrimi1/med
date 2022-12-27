@@ -1,5 +1,6 @@
 {% extends 'layout.html.twig' %}
 {% block body %}
+
 <div class="header-w bg-white" > </div>
 <div class="dez-bnr-inr overlay-black-middle" >
    {% for job in job %}
@@ -130,17 +131,24 @@
          <div class="offcanvas-header settings-panel-header bg-shape  rounded-top bg-primary"  >
             <div class="z-index-1 py-1 light">
                <div class="">
-                  <h5 class="text-white mb-0 me-2">Postuler</h5>
+                  <h5 class="text-white mb-0 me-2">Postuler maintenant</h5>
                </div>
-               <p class="mb-0 fs--1 text-white opacity-75">Si vous avez déjà un compte,<span><a class="text-white opacity-100" target="_blank" href="{{path('app_login')}}"> identifiez-vous </a></span></p>
+             
             </div>
             <button class=" z-index-1  btn-close btn btn-sm btn-circle" type="button" data-bs-dismiss="modal" aria-label="Close"></button>
          </div>
          <div class="modal-body card">
             <div class="row gap-20">
                <div class="">
+ <div class="fs-0 m-t5 text-dark fw-bold">Si vous avez déjà un compte,<span><a class="text-primary opacity-100"  href="{{path('apply_login',{'id':job.id})}}"> identifiez-vous ici </a></span></div>
+
+
+  
                   <div class=" tab-content ">
+
+
                      <div id="signup_apply" class="tab-pane active  col-12 p-a0 "  >
+
                         {{ form_start(form ,{attr: {class: 'needs-validation',novalidate:''}}) }}  
                         <div id="error3"></div>
                         <div class=" row gap-20 m-b20">
@@ -156,7 +164,7 @@
                            <div class=" m-b10">
                               {{ form_widget(form.newpassword,{attr: {class: 'form-control ',pattern:'.{8,20}',placeholder:'Mot de passe : Min 8 et Max 20 caractères',required:'true'}}) }} 
                            </div>
-                           <div class="fs-0">cv</div>
+                           <div class="fs-0 text-dark">CV<span class="text-600">(Taille Max: 2 MB /PDF,DOCX,DOC)</span> </div>
                            <div class=" ">
                               {{ form_widget(form.cvfield,{attr: {class: 'form-control',id:'uploadfile'},required:true,id:'uploadfile'}) }} 
                            </div>
@@ -181,7 +189,7 @@
                            <div class=" ">
                               {{ form_widget(form_guest.email, {'attr': {class:'form-control m-b10',placeholder:'Adresse électronique','pattern': '[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,63}$'}}) }}
                            </div>
-                           <div class="fs-0">cv</div>
+                          <div class="fs-0 text-dark">CV<span class="text-600">(Taille Max: 2 MB /PDF,DOCX,DOC)</span> </div>
                            <div class=" ">
                               {{ form_widget(form_guest.cvfield,{attr: {class: 'form-control',id:'uploadfile',onchange:'validateSize(this)'},required:true,onchange:'validateSize(this)',id:'uploadfile' }) }} 
                            </div>

@@ -110,7 +110,7 @@ class SearchFormCandidate extends AbstractType
                 ->add('startdate', DateType::class, [
     
     
-    'attr' => ['class' => 'js-datepicker'],
+    'attr' => ['class' => ''],
     'label' => false ,
      'format' => 'ddMMyyyy',
  'required' => true ,

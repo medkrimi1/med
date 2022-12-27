@@ -39,6 +39,11 @@ class Country
      */
     private $phonecode;
 
+    /**
+     * @ORM\Column(type="string", length=255, nullable=true)
+     */
+    private $iso;
+
     public function __construct()
     {
         $this->candidates = new ArrayCollection();
@@ -94,12 +99,12 @@ class Country
 
     
  public function __toString() 
-                        
-                        
-                            {
-                          return $this->Name ;
-                        
-                            }
+                                 
+                                 
+                                     {
+                                   return $this->Name ;
+                                 
+                                     }
 
     /**
      * @return Collection<int, Jobs>
@@ -139,6 +144,18 @@ class Country
     public function setPhonecode(string $phonecode): self
     {
         $this->phonecode = $phonecode;
+
+        return $this;
+    }
+
+    public function getIso(): ?string
+    {
+        return $this->iso;
+    }
+
+    public function setIso(?string $iso): self
+    {
+        $this->iso = $iso;
 
         return $this;
     }

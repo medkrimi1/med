@@ -3,7 +3,9 @@
 namespace App\Controller;
 use App\Entity\Candidates;
 use App\Entity\Applications;
+use App\Entity\Country;
 use App\Repository\CandidatesRepository;
+use App\Repository\CountryRepository;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\Routing\Annotation\Route;
@@ -29,13 +31,14 @@ class profil_page_Controller extends AbstractController
      */
      public function index($id){
          $candidate=$this->getDoctrine()->getRepository(Candidates::class)->find($id);
-      
-      
+        
+       
+         
 
 
         return $this->render('candidat/profil_page/index.html.twig'
     , [
-            'candidate' => $candidate
+            'candidate' => $candidate 
         ]);
     }
 

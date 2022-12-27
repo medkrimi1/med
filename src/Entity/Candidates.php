@@ -140,7 +140,7 @@ class Candidates
    
 
     /**
-     * @ORM\ManyToOne(targetEntity=Country::class,)
+    * @ORM\Column(type="string", length=255, nullable=true)
      */
     private $pcode;
 
@@ -557,12 +557,12 @@ public function setFullname(string $fullname): self
 
  
 
-  public function getPcode(): ?Country
+  public function getPcode(): ?string
   {
       return $this->pcode;
   }
 
-  public function setPcode(?Country $pcode): self
+  public function setPcode(?string $pcode): self
   {
       $this->pcode = $pcode;
 

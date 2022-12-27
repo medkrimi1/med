@@ -20,8 +20,9 @@ class CandidateApplicationsController extends AbstractController
      * @Route("/candidat/candidatures/{id}", name="my_applications")
      */
     public function index($id){
+     $status="annulé";
     $candidate=$this->getDoctrine()->getRepository(Candidates::class)->find($id);
-    $applications=$this->getDoctrine()->getRepository(Applications::class)->findBy(["Candidate" => $candidate]);
+    $applications=$this->getDoctrine()->getRepository(Applications::class)->findBy(array("Candidate" => $candidate,"status"=>!$status )) ;
      
     
 
@@ -35,9 +36,18 @@ class CandidateApplicationsController extends AbstractController
      */
     public function delete(Applications $application,$idc)
     {  
+
+
         $em = $this->getDoctrine()->getManager();
-        $em->remove($application);
-        $em->flush();
+      
+         
+         $application->setStatus('annulé');
+         
+         
+          $em->persist($application);
+          $em->flush();
+
+
          $this->addFlash('success', 'Votre candidature a été annulé avec succès!');
         return $this->redirectToRoute("my_applications",["id"=>$idc]);
 
