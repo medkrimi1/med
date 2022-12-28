@@ -116,7 +116,7 @@ var countryData = window.intlTelInputGlobals.getCountryData(),
 // init plugin
 
 var iti = window.intlTelInput(input, { separateDialCode: true,autocomplete: "off",
-   initialCountry: "{{ip}}",  
+   initialCountry: "fr",  
     geoIpLookup: function(callback) {
     $.get('https://ipinfo.io', function() {}, "jsonp").always(function(resp) {
       var countryCode = (resp ) ? resp.country : "us";

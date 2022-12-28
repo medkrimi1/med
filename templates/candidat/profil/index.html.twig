@@ -342,7 +342,7 @@ var countryData = window.intlTelInputGlobals.getCountryData(),
 // init plugin
 
 var iti = window.intlTelInput(input, { separateDialCode: true,autocomplete: "off",
-   initialCountry: "{% if candidate.pcode is not null  %}{{candidate.pcode}}{% else %}{{ip}}{% endif %}",  
+   initialCountry: "{% if candidate.pcode is not null  %}{{candidate.pcode}}{% else %}fr{% endif %}",  
     geoIpLookup: function(callback) {
     $.get('https://ipinfo.io', function() {}, "jsonp").always(function(resp) {
       var countryCode = (resp ) ? resp.country : "us";
