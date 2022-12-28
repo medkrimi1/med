@@ -178,9 +178,11 @@ if ($form->isSubmitted() && $form->isValid()) {
           else {
             $candidate->setBdate(null); 
           }
+  $candidate->setFullname($fname.' '.$lname);         
 $em->persist($candidate);
 $user->setFname($fname);
 $user->setLname($lname);
+
 $em->flush();
 $this->addFlash('success', 'Votre profil a été mis à jour');
 if($email!=$l){ 
