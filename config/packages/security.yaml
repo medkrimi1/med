@@ -35,7 +35,7 @@ security:
    
 
     access_control:
-       - { path: ^/dashboard, roles:[ ROLE_ADMIN ,ROLE_RH] }
+     
       
        - { path: ^/candidat, roles: ROLE_Candidate }
        
