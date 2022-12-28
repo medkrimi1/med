@@ -66,7 +66,7 @@
                   <div class="toggle-icon-wrapper">
                      <button class="btn navbar-toggler-humburger-icon navbar-vertical-toggle " data-bs-toggle="tooltip" data-bs-placement="left" title="Toggle Navigation"><span class="navbar-toggle-icon"><span class="toggle-line"></span></span></button>
                   </div>
-                  <a class="navbar-brand" href="{{path('dashboard_page')}}">
+                  <a class="navbar-brand" href="{{path('offres')}}">
                      <div class="d-flex align-items-center py-3"><img class="me-9" src="{{ asset('images/logo.png') }}" alt="" width="700" /></div>
                   </a>
                </div>
@@ -244,14 +244,14 @@
             </nav>
             <nav class="navbar navbar-light navbar-glass navbar-top navbar-expand-xl" style="display: none;">
                <button class="btn navbar-toggler-humburger-icon navbar-toggler me-1 me-sm-3" type="button" data-bs-toggle="collapse" data-bs-target="#navbarStandard" aria-controls="navbarStandard" aria-expanded="false" aria-label="Toggle Navigation"><span class="navbar-toggle-icon"><span class="toggle-line"></span></span></button>
-               <a class="navbar-brand me-1 me-sm-3" href="{{path('dashboard_page')}}">
+               <a class="navbar-brand me-1 me-sm-3" href="{{path('offres')}}">
                   <div class="d-flex align-items-center"><img class="me-2" src="{{asset('images/logo.png')}}" alt="" width="150" /></div>
                </a>
             </nav>
             <div class="content">
                <nav class="navbar navbar-light navbar-glass navbar-top navbar-expand" style="display: none;">
                   <button class="btn navbar-toggler-humburger-icon navbar-toggler me-1 me-sm-3" type="button" data-bs-toggle="collapse" data-bs-target="#navbarVerticalCollapse" aria-controls="navbarVerticalCollapse" aria-expanded="false" aria-label="Toggle Navigation"><span class="navbar-toggle-icon"><span class="toggle-line"></span></span></button>
-                  <a class="navbar-brand me-1 me-sm-3" href="{{path('dashboard_page')}}">
+                  <a class="navbar-brand me-1 me-sm-3" href="{{path('offres')}}">
                      <div class="d-flex align-items-center"><img class="me-9" src="{{asset('images/logo.png')}}" alt="" width="150" /></div>
                   </a>
                   <ul class="navbar-nav navbar-nav-icons ms-auto flex-row align-items-center">
@@ -422,7 +422,7 @@
               var spinHandle = loadingOverlay.activate();
                 setTimeout(function() {
                     loadingOverlay.cancel(spinHandle);
-                }, 1000);
+                }, 20000);
               
             };
         })();

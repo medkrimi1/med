@@ -105,7 +105,7 @@ class SearchFormCandidate extends AbstractType
 
                 ->add('dfiltre', CheckboxType::class, [
                 'label' => 'Activer/Désactiver ',
-                'required' => false,
+                'required' => false, 'attr'=>['class'=>'form-check bg-500 form-control '  ,'type'=>'checkbox' ]
             ])
                 ->add('startdate', DateType::class, [
     

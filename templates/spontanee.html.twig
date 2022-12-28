@@ -1,101 +1,197 @@
-<head>
-      <meta charset="UTF-8">
-      <meta http-equiv="X-UA-Compatible" content="IE=edge">
-      <meta name="viewport" content="width=device-width, initial-scale=1">
-      <title>{% block title %}Welcome!{% endblock %}</title>
-      <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 128 128%22><text y=%221.2em%22 font-size=%2296%22>⚫️</text></svg>">
-      {# Run `composer require symfony/webpack-encore-bundle` to start using Symfony UX #}
-      {% block stylesheets %}
-      <!-- ===============================================-->
-      <!-- Stylesheets-->
-      <!-- ===============================================-->
-      <script src="{{ asset('assets/js/config.js') }}"></script>
-      <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.6.0/css/bootstrap-datepicker.css">
-      <script src="{{ asset('vendors/overlayscrollbars/OverlayScrollbars.min.js') }}"></script>
-      <!-- ===============================================-->
-      <!-- Stylesheets-->
-      <!-- ===============================================-->
-      <link rel="preconnect" href="https://fonts.gstatic.com">
-      <link href="//fonts.googleapis.com/css?family=Open+Sans:300,400,500,600,700%7cPoppins:300,400,500,600,700,800,900&amp;display=swap" rel="stylesheet">
-      <link rel="stylesheet" type="text/css" href="{{ asset('css/plugins.css') }}">
-      <link rel="stylesheet" type="text/css" href="{{ asset('css/style.css') }}">
-      <link rel="stylesheet" type="text/css" href="{{ asset('css/templete.css') }}">
-      <link href="{{ asset('vendors/overlayscrollbars/OverlayScrollbars.min.css') }}" rel="stylesheet">
-      <link href="{{ asset('assets/css/select2.min.css')}}" rel="stylesheet" >
+{% extends 'layout.html.twig' %}
 
-      <link href="{{ asset('assets/css/theme.min.css') }}" rel="stylesheet" id="style-default">
-      <link href="{{ asset('assets/css/user.min.css') }}" rel="stylesheet" id="user-style-default">
-      <link href="{{ asset('assets/css/user.min.css') }}" rel="stylesheet" id="user-style-default">
-      <link href="{{ asset('vendors/choices/choices.min.css') }}" rel="stylesheet" />
-      {% endblock %}
-      {% block javascripts %}
-      <script src="vendors/typed.js/typed.js"></script>
-      <script src="{{ asset('vendors/popper/popper.min.js') }}"></script>
-      <script src="{{ asset('vendors/bootstrap/bootstrap.min.js') }}"></script>
-      <script src="{{ asset('vendors/anchorjs/anchor.min.js') }}"></script>
-      <script src="{{ asset('vendors/is/is.min.js') }}"></script>
-      <script src="{{ asset('vendors/echarts/echarts.min.js') }}"></script>
-      <script src="{{ asset('vendors/fontawesome/all.min.js') }}"></script>
-      <script src="{{ asset('vendors/lodash/lodash.min.js') }}"></script>
-      <script src="{{ asset('assets/js/theme.js') }}"></script>
-      <script src="{{ asset('assets/js/theme.js') }}"></script>
-      <script src="{{ asset('vendors/tinymce/tinymce.min.js') }}"></script>
-      <script src="{{ asset('js/jquery.min.js') }}"></script>
-      <script src="{{ asset('vendors/magnific-popup/magnific-popup.js') }}"></script>
-      <script src="{{ asset('js/custom.js') }}"></script>
-      <script src="{{ asset('js/custom.js') }}"></script>
-      <script src="{{ asset('vendors/choices/choices.min.js') }}"></script>
-       <script src="{{ asset('js/select2.min.js')}}"></script>
-      <script type="text/javascript">  $(document).ready(function() {
-         if(window.location.href.indexOf('#spontanee') != -1) {
-           $('#spontanee').modal('show');
-         }
+
+
+      
+{% block body %}
+       <div class="header-w bg-white" > </div>
+       <div class="dez-bnr-inr overlay-black-dark m-b20" style="background-image:url(images/home-c.png); height:150px ">
+            <div class="container">
+                <div class="dez-bnr-inr-entry">
+                  <h3 class="font-weight-bold  display-4 text-center T-breadcrumb mb-3" >Candidature Spontanée</h3>
+               <!-- Breadcrumb row -->
+               <div class="breadcrumb-row">
+               
+               </div>
+               <!-- Breadcrumb row END -->
+                </div>
+            </div>
+        </div>
+
+
+ <div class=" ">
+      <div class="container">
+         <div class="row "  >
+            <div class="col-lg-9">
+               <div class="card mb-3 bg-white border-2 border-500">
+                 <div  class="card-body"  >
+                   
+                      
+
+                          {% for message in app.flashes('successSpontanee') %}
+
+           <div class="alert alert-success alert-dismissible fade show text-center" role="alert"><span class="fas fa-check-circle text-primary fs-2 "></span>
+   {{ message }}
+  <button class="btn-close" type="button" data-bs-dismiss="alert" aria-label="Close"></button>
+</div>
+            {% endfor %}
          
-         });
-      </script>
-       <script> 
-$(document).ready(function() {
-    $('.multiselect-dropdown').select2();
-});</script>
-
-   <script> 
-$(document).ready(function() {
-    $('.js-example-basic-single').select2();
-});</script>
-      {% endblock %}
-   </head>
- <div class="modal-body">
-            <div class="row gap-20">
-               <div class="">
-                  <div class=" tab-content ">
-                     <div id="signup_apply" class="tab-pane active  col-12 p-a0 "  >
-                        <h4 class=" popup-title text-center text-dark">Candidature Spontanée </h4>
-                        <p class="text-center">Déposez votre candidature maintenant</p>
-                        {{ form_start(form2 ,{attr: {class:  'needs-validation',novalidate:''}}) }}  
+                        {{ form_start(form2 ,{attr: {class:  'needs-validation',novalidate:'' }}) }}  
                         <div id="error3"></div>
                         <div class=" row gap-20 m-b30 ">
-                           <div class=" ">
+                           <div class="col-lg-6 m-b10 ">
                               <div class="fs-0">Nom</div>
-                              {{ form_widget(form2.lname,{attr: {class: 'form-control'}}) }}
+                              {{ form_widget(form2.lname,{attr: {class: 'form-control bg-200',placeholder:'Entrez votre nom' ,maxlength:'30'}}) }}
                            </div>
-                           <div class=" ">
+                           <div class="col-lg-6 m-b10">
                               <div class="fs-0">Prénom</div>
-                              {{ form_widget(form2.fname,{attr: {class: 'form-control'}}) }}
+                              {{ form_widget(form2.fname,{attr: {class: 'form-control bg-200' ,placeholder:'Entrez votre prénom' ,maxlength:'30'}} ) }}
                            </div>
-                           <div class=" ">
+                           <div class="col-lg-6 m-b10">
                               <div class="fs-0">Adresse E-mail</div>
-                              {{ form_widget(form2.email, {'attr': {'pattern': '[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,63}$'}}) }}
+                              {{ form_widget(form2.email, {'attr': {class: 'form-control bg-200','pattern': '[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,30}$',placeholder:'Entrez votre adresse électronique' ,maxlength:'30' }}) }}
                            </div>
-                           <div class="">
-                              <div class="fs-0">cv</div>
-                              {{ form_widget(form2.cvfield,{attr: {class: 'form-control '}}) }} 
+                            <div class="col-lg-6 col-md-6 m-b10">
+                          
+                                 <div class="fs-0">Numéro de téléphone</div>
+                                 <div class="card bg-white">
+                           
+                                 {{ form_widget(form2.phonecode,{attr: {class: 'd-none'},id:'address-country' }) }} 
+                              {{ form_widget(form2.pcode,{attr: {class: ' d-none'},id:'address-country2' }) }} 
+                                       {{ form_widget(form2.phone,{attr: {class: 'form-control bg-200',pattern:'[0-9_ ]{7,12}'},id:'phone',type:'tel',maxlength:'12'  }) }} 
+                              
+                                 </div>
+                   
+                           </div>
+                           <div class="col-lg-12 m-b10" >
+                              <div class="fs-0 text-dark">CV<span class="text-600">(Taille Max: 2 MB /PDF,DOCX,DOC)</span> </div>
+                              {{ form_widget(form2.cvfield,{attr: {class: 'form-control bg-200 '},id:'spontanee'}) }} 
+                           </div>
+
+                            <div class="col-lg-12 ">
+                              <div class="fs-0">Lettre de motivation</div>
+                              {{ form_widget(form2.about,{attr: {class: 'form-control bg-200 text-justify',style:'height:7rem',maxlength:'1999' } }) }} 
                            </div>
                         </div>
-                        {{ form_widget(form2.newpassword,{attr: {class: 'd-none'},required:false}) }} 
-                        <div class="d-grid gap-2 "><button class="btn btn-primary" type="submit">Déposer CV</button></div>
+
+                      
+                        <div class=""><button class="btn btn-primary" name="spontanee_btn" id="spontanee_btn" type="submit">Déposer candidature </button></div>
                         {{ form_end(form2) }}
+                     </div></div>
+            </div>
+            <div class="col-lg-3">
+               <div class="">
+                  <div class="candidates-are-sys m-b30 bg-white border-2 border-500">
+                     <div class="candidates-bx ">
+                        <div class="testimonial-pic radius "><img src="{{ asset('images/fondateur.jpg') }}" alt="" width="100" height="100"></div>
+                        <div class="testimonial-text  ">
+                           <p class=" text-dark">Nous sommes un centre spécialisé dans la transformation digitale notre priorité c’est de vous apporter un service IT de qualité auprès de nos clients et de notre société.</p>
+                        </div>
+                        <div class="testimonial-detail" > <strong class="fn text-primary">Firas Makni</strong> <span class="fn2">Fondateur,Tecos</span> </div>
                      </div>
+                     <hr>
+                     <div class="text-center">
+                     <a class="btn btn-primary rounded-pill" href="{{path('offres')}} " >Offres d'emploi</a>
                   </div>
+               </div>
+              
                </div>
             </div>
          </div>
+      </div>
+   </div>
+       
+<script src="build/js/intlTelInput.js"></script>
+  <script>
+ 
+// International telephone format
+// $("#phone").intlTelInput();
+// get the country data from the plugin
+var countryData = window.intlTelInputGlobals.getCountryData(),
+  input = document.querySelector("#phone"),
+  addressDropdown = document.querySelector("#address-country");
+  addressDropdown2 = document.querySelector("#address-country2");
+
+
+// init plugin
+
+var iti = window.intlTelInput(input, { separateDialCode: true,autocomplete: "off",
+   initialCountry: "{{ip}}",  
+    geoIpLookup: function(callback) {
+    $.get('https://ipinfo.io', function() {}, "jsonp").always(function(resp) {
+      var countryCode = (resp ) ? resp.country : "us";
+      callback(countryCode);
+    });
+  },
+
+  utilsScript: "https://intl-tel-input.com/node_modules/intl-tel-input/build/js/utils.js?1549804213570" // just for formatting/placeholders etc
+});
+
+
+// populate the country dropdown
+for (var i = 0; i < countryData.length; i++) {
+  var country = countryData[i];
+  var optionNode = document.createElement("option");
+  optionNode.value = country.iso2;
+  var textNode = document.createTextNode(country.name);
+  optionNode.appendChild(textNode);
+  addressDropdown.appendChild(optionNode);
+}
+// set it's initial value
+addressDropdown.value = iti.getSelectedCountryData().dialCode;
+
+// listen to the telephone input for changes
+input.addEventListener('countrychange', function(e) {
+  addressDropdown.value = iti.getSelectedCountryData().dialCode;
+});
+
+addressDropdown2.value = iti.getSelectedCountryData().iso2;
+
+// listen to the telephone input for changes
+input.addEventListener('countrychange', function(e) {
+  addressDropdown2.value = iti.getSelectedCountryData().iso2;
+});
+
+// listen to the address dropdown for changes
+addressDropdown.addEventListener('change', function() {
+  iti.setCountry(this.value);
+});
+
+// listen to the address dropdown for changes
+addressDropdown2.addEventListener('change', function() {
+  iti.setCountry(this.value);
+});
+
+  </script>
+   <script>
+      $("#spontanee").on("change", function() {
+        var fileName = $(this).val().split("\\").pop();
+        $(this).siblings("#file_name").addClass("selected").html(fileName);
+      });
+      
+      
+      document.getElementById('spontanee_btn').onclick = function (){
+        var image=document.getElementById('spontanee').value;
+            if(image!=''){
+              var checkimg = image.toLowerCase();
+              if(!checkimg.match(/(\.pdf|\.doc|\.docx)$/)){
+                 alert("Please Select pdf,doc,docx File"); 
+                 document.getElementById('spontanee').value="";
+                 document.getElementById('file_name').innerHTML="Choose file";exit;
+              }
+              var image=document.getElementById('spontanee');
+              var size = parseFloat(image.files[0].size / (1024 * 1024)).toFixed(2);
+              if (size > 2){
+                  alert("Please Select Size Less Than 2 MB"); 
+                 document.getElementById('spontanee').value="";
+                 document.getElementById('file_name').innerHTML="Choose file";exit; 
+              } else {
+                
+              }
+            }
+      
+      }
+      
+   </script>
+
+         {% endblock %}

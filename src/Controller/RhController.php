@@ -29,8 +29,22 @@ class RhController extends AbstractController
     /**
      * @Route("/dashboard/management", name="dashboard_management")
      */
-    public function index(UserRepository $repository , Request $request, EntityManagerInterface $em, UserPasswordHasherInterface $userPasswordHasher){
+    public function index(){
         $RH=$this->manager->getRepository(User::class)->findRH();
+     
+    
+        return $this->render('dashboard/rh/management.html.twig',['RH'=>$RH]);
+    }
+
+
+
+
+
+ /**
+     * @Route("/dashboard/RH/Ajouter", name="RH_Add")
+     */
+    public function AddRH(UserRepository $repository , Request $request, EntityManagerInterface $em, UserPasswordHasherInterface $userPasswordHasher){
+       
         $user=new User();
           $form= $this->createFormBuilder($user)
         ->add('fname')
@@ -90,14 +104,19 @@ class RhController extends AbstractController
            $em->persist($user);
             $em->flush();
             $this->addFlash('success', 'L\'utilisateur a été Ajoutée avec succès!');
-           return $this->redirect($request->getUri());
+           return $this->redirectToRoute('dashboard_management');
           }
              
         }
 
     
-        return $this->render('dashboard/rh/management.html.twig',['RH'=>$RH,'form'=>$form->createView()]);
+        return $this->render('dashboard/rh/AddRh.html.twig',['form'=>$form->createView()]);
     }
+
+
+
+
+
 
 
 

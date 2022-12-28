@@ -21,7 +21,7 @@
                <div class=" col-xl-8 col-xxl-6">
                   <ul></ul>
                   <div class="job-title mb-0 text-dark display-5 m-r20 ">   
-                     <a href="{{path('offres')}}#Liste" ><i class="far fa-arrow-alt-circle-left text-primary display-5 " ></i></a> {{job.title}}
+                   {{job.title}}
                   </div>
                </div>
                <div class="col-auto">
@@ -58,15 +58,24 @@
                   <div class="pxp-single-job-date pxp-text-light">publié :{{ job.beginAt|date("d/m/Y") }}</div>
                </div>
             </div>
+
+
+
             {% for message in app.flashes('successApply') %}
-            <div class="text-center text-dark alert alert-success">
-               {{ message }}
-            </div>
+             <div class="alert alert-success alert-dismissible fade show text-center" role="alert">
+   {{ message }}
+  <button class="btn-close" type="button" data-bs-dismiss="alert" aria-label="Close"></button>
+</div>
+             
+           
             {% endfor %}
             {% for message in app.flashes('error') %}
-            <div class="text-center text-dark alert alert-warning">
-               {{ message }}
-            </div>
+              <div class="alert alert-warning alert-dismissible fade show text-center" role="alert">
+   {{ message }}
+  <button class="btn-close" type="button" data-bs-dismiss="alert" aria-label="Close"></button>
+</div>
+             
+             
             {% endfor %}
             <div class="card mb-3 m-t10">
                <div class="card-body ">
@@ -140,7 +149,7 @@
          <div class="modal-body card">
             <div class="row gap-20">
                <div class="">
- <div class="fs-0 m-t5 text-dark fw-bold">Si vous avez déjà un compte,<span><a class="text-primary opacity-100"  href="{{path('apply_login',{'id':job.id})}}"> identifiez-vous ici </a></span></div>
+
 
 
   
@@ -153,16 +162,16 @@
                         <div id="error3"></div>
                         <div class=" row gap-20 m-b20">
                            <div class="  ">
-                              {{ form_widget(form.lname,{attr: {class: 'form-control m-t20 m-b20',placeholder:'Nom'}}) }}
+                              {{ form_widget(form.lname,{attr: {class: 'form-control bg-200 m-t20 m-b20',placeholder:'Nom',maxlength:'30'}}) }}
                            </div>
                            <div class=" ">
-                              {{ form_widget(form.fname,{attr: {class: 'form-control m-b20',placeholder:'Prénom'}}) }}
+                              {{ form_widget(form.fname,{attr: {class: 'form-control m-b20 bg-200',placeholder:'Prénom',maxlength:'30'}}) }}
                            </div>
                            <div class=" ">
-                              {{ form_widget(form.email, {'attr': {class:'form-control m-b20',placeholder:'Adresse électronique','pattern': '[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,63}$'}}) }}
+                              {{ form_widget(form.email, {'attr': {class:'form-control bg-200 m-b20',placeholder:'Adresse électronique','pattern': '[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,30}$'}}) }}
                            </div>
                            <div class=" m-b10">
-                              {{ form_widget(form.newpassword,{attr: {class: 'form-control ',pattern:'.{8,20}',placeholder:'Mot de passe : Min 8 et Max 20 caractères',required:'true'}}) }} 
+                              {{ form_widget(form.newpassword,{attr: {class: 'form-control bg-200 ',pattern:'.{8,20}',placeholder:'Mot de passe : Min 8 et Max 20 caractères',required:'true',maxlength:'20'}}) }} 
                            </div>
                            <div class="fs-0 text-dark">CV<span class="text-600">(Taille Max: 2 MB /PDF,DOCX,DOC)</span> </div>
                            <div class=" ">
@@ -171,49 +180,11 @@
                         </div>
                         <div class="d-grid gap-2"><button class="btn btn-primary" type="submit" name="Upload File" value="Upload File" id="upload_btl">Postuler</button></div>
                         {{ form_end(form) }}
-                        <hr class="hr-text bg-dark" data-content="AND">
-                        <div class="text-center"> 
-                           <a class="btn btn-outline-secondary rounded-pill " data-bs-toggle="tab" href="#login_apply">Postulter sans compte</a>
-                        </div>
+                       <hr>
+                        <div class="fs-0 m-t5 text-dark fw-bold text-center">Si vous avez déjà un compte,<span><a class="text-primary opacity-100"  href="{{path('app_login')}} " target="x_blank"  > identifiez-vous ici </a></span></div>
                      </div>
-                     <div id="login_apply"  class="tab-pane fade col-12 p-a0 " name="frm"  method="POST" autocomplete="off " >
-                        {{ form_start(form_guest ,{attr: {class: 'needs-validation',novalidate:''}}) }}  
-                        <div id="error3"></div>
-                        <div class=" row gap-20 m-b20">
-                           <div class="  ">
-                              {{ form_widget(form_guest.lname,{attr: {class: 'form-control m-t20 m-b20 needs-validation',placeholder:'Nom'}}) }}
-                           </div>
-                           <div class=" ">
-                              {{ form_widget(form_guest.fname,{attr: {class: 'form-control m-b20',placeholder:'Prénom'}}) }}
-                           </div>
-                           <div class=" ">
-                              {{ form_widget(form_guest.email, {'attr': {class:'form-control m-b10',placeholder:'Adresse électronique','pattern': '[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,63}$'}}) }}
-                           </div>
-                          <div class="fs-0 text-dark">CV<span class="text-600">(Taille Max: 2 MB /PDF,DOCX,DOC)</span> </div>
-                           <div class=" ">
-                              {{ form_widget(form_guest.cvfield,{attr: {class: 'form-control',id:'uploadfile',onchange:'validateSize(this)'},required:true,onchange:'validateSize(this)',id:'uploadfile' }) }} 
-                           </div>
-                        </div>
-                        <div class="d-grid gap-2"><button class="btn btn-primary" type="submit" name="Upload File" value="Upload File" id="upload_btl">Postuler</button></div>
-                        {{ form_end(form_guest) }}
-                        <ul></ul>
-                        <hr class="hr-text bg-dark" data-content="AND">
-                        <div class="text-center" >
-                           <a class="btn btn-outline-success rounded-pill" data-bs-toggle="tab" href="#signup_apply">S'inscrire</a>
-                        </div>
-                     </div>
-                     <div id="forgot-password-apply" class="tab-pane fade  col-12 p-a0">
-                        <h4 class="popup-title text-center text-dark text-dark">Mot de passe oublié ?</h4>
-                        <p class="text-center">Nous vous enverrons un e-mail pour réinitialiser votre mot de passe</p>
-                        <div class="form-group">
-                           <div class="fs-0">E-mail</div>
-                           <input name="dzName" required="" class="form-control" placeholder="Your Email Address" required type="email">
-                        </div>
-                        <div class="text-left"> 
-                           <a class="btn btn-outline-primary  gray rounded-pill" data-bs-toggle="tab" href="#login_apply">Retour</a>
-                           <button class="btn btn-primary float-end rounded-pill">Envoyer</button>
-                        </div>
-                     </div>
+                 
+                   
                   </div>
                </div>
             </div>

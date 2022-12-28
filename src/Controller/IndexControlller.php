@@ -17,6 +17,7 @@ use App\Data\SearchData1;
 use App\Form\SearchForJob;
 use App\Form\Application;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
+use Symfony\Component\Form\Extension\Core\Type\TextareaType;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\Extension\Core\Type\HiddenType;
 use Symfony\Component\Form\Extension\Core\Type\FileType;
@@ -40,22 +41,64 @@ $this->JobsRepository = $JobsRepository;
 * @Route("/spontanee", name="spontanee")
 */
 public function spontanee(JobsRepository $repository , Request $request ){
-
+    // Use JSON encoded string and converts
+// it into a PHP variable
+$ipdat = @json_decode(file_get_contents(
+    "http://www.geoplugin.net/json.gp?ip=" ));
+$ip=$ipdat->geoplugin_countryCode;
+$t=time();
+$Userid=$t;
 $em = $this->getDoctrine()->getManager();
 $candidate = new Candidates();
 $cv = new Cv(); 
 $application = new Applications();  
-$form2 = $this->createForm(Application::class,$candidate);
+$form2 = $this->createFormBuilder()
+->add('fname', TextType::class, [
+'required'=>true
+])
+->add('lname', TextType::class, [
+'required'=>true
+])
+->add('email', TextType::class, [
+'required'=>true
+])
+->add('phone', TextType::class, [
+'required'=>true
+])
+->add('pcode', TextType::class, [
+'required'=>true
+])
+->add('about', TextareaType::class, [
+'required'=>true
+])
+->add('cvfield', FileType::class, [
+'required'=>true
+])
+->add('cv', HiddenType::class, [
+'required'=>true
+])
+->add('phonecode',TextType::class, ['mapped'=>false,'required'=>false ] )
+->getForm();
 $form2->handleRequest($request);
 $email=$form2->get('email')->getData();
 if($form2->isSubmitted() && $form2->isValid()) {
-$check = $em->getRepository(Candidates::class)->findBy(["email" => $email]);
+$phone=ucwords($form2->get('phone')->getData());
+$phonecode=ucwords($form2->get('phonecode')->getData());
+$about=ucwords($form2->get('about')->getData());
 $fname=ucwords($form2->get('fname')->getData());
 $lname=ucwords($form2->get('lname')->getData());
 $uploadedCV = $form2['cvfield']->getData();
-$candidate->setFname($fname);
-$candidate->setLname($lname);
+    if ($phone){
+ $candidate->setPhone('+'.$phonecode.' '. str_replace(' ','', $phone));  
+  }
 
+  else 
+{$candidate->setPhone(null); }
+$candidate->setFname($fname);
+$candidate->setAbout($about);
+$candidate->setEmail($email);
+$candidate->setLname($lname);
+$candidate->setId($Userid);
 $candidate->setFullname($fname.' '.$lname); 
 $destination = $this->getParameter('kernel.project_dir').'/public/cv';
 if ($uploadedCV) {
@@ -72,10 +115,11 @@ $em->persist($cv);
 $em->persist($candidate);
 $em->persist($application);
 $em->flush();
-$this->addFlash('successFreeApply', 'Vous avez postulé avec succès');
+$this->addFlash('successSpontanee', 'Merci , votre candidature a été acceptée');
+return $this->redirectToRoute("spontanee");
 }
 if(empty($jobsArray)){$jobsArray=[];}
-return $this->render('spontanee.html.twig', [
+return $this->render('spontanee.html.twig', [ 'ip'=>$ip,
 'form2' => $form2-> createView()
 ]);
 }
@@ -213,83 +257,7 @@ return $this->redirect($request->getUri());
 }
 }
 }
-$form_guest= $this->createFormBuilder()
-->add('fname', TextType::class, [
-'required'=>true
-])
-->add('lname', TextType::class, [
-"attr" => [
-"class" => "form-control",
-'required'=>true
-]
-])
-->add('email', TextType::class, [
-"attr" => [ 'required'=>true,
-"class" => "form-control"
-]
-])
-->add('cvfield', FileType::class, [
-'required' => true,
-'constraints' => [
-new File([
-'maxSize' => '5M',
-'mimeTypes' => [
-'application/pdf',
-'application/x-pdf',
-],
-'mimeTypesMessage' => 'Please upload a valid PDF',
-])
-]
-])
-->add('cv', HiddenType::class, [
-'mapped'=>false
-])
-->getForm();
-$form_guest->handleRequest($request) ;
-$fname=ucwords($form_guest->get('fname')->getData());
-$lname=ucwords($form_guest->get('lname')->getData());
-$emailGuest=$form_guest->get('email')->getData();
-$uploadedCV = $form_guest['cvfield']->getData();
-if($form_guest->isSubmitted() && $form_guest->isValid()) {
-$emailcheck = $em->getRepository(Candidates::class)->findBy(["email" => $emailGuest]);
-$check=$this->getDoctrine()->getRepository(Applications::class)->findBy(array('Candidate' => $emailcheck,'job' => $job)); 
-if($check){ $this->addFlash('error', 'Vous avez déjà postulé à cette offre'); }
-else {
 
-
-$filesize=filesize($uploadedCV);
-
-$t=time();
-$Userid=$t;
-$candidate->setId($Userid);
-$candidate->setFname($fname);
-$candidate->setLname($lname);
-
-$candidate->setBdate(null);
-$candidate->setEmail($emailGuest);
-$candidate->setFullname($fname.' '.$lname); 
-$candidate->setImage('default.jpg');
-$destination = $this->getParameter('kernel.project_dir').'/public/cv';
-if ($uploadedCV) {
-$CvName = 'cv'.uniqid().'.'.$uploadedCV->guessExtension();
-$newCvName = $CvName;
-$uploadedCV->move($destination,$newCvName);
-$cv->setCv($CvName);
-$cv->setCandidate($candidate);
-$em->persist($cv); 
-}   
-$application->setJob($job);
-$application->setCandidate($candidate);
-$application->setStatus('Non Traité');
-$em->persist($candidate);
-$em->persist($application);
-$em->flush();
-$this->addFlash('successApply', 'Vous avez postulé avec succès');
-
-
-
-}
-}
 $expired=$job->getExpiredAt()->format('Y-m-d');
 $skills=[];
 foreach($job->getSkills() as $skill)
@@ -318,7 +286,7 @@ $jobsArray[] = [
 'skills'=>$skills,
 'expire'=>strtotime($expired),
 ];
-return $this->render('offres/offre.html.twig',['job'=>$jobsArray, 'form' => $form-> createView(), 'form_guest' => $form_guest-> createView()]);
+return $this->render('offres/offre.html.twig',['job'=>$jobsArray, 'form' => $form-> createView()]);
 }
 
 
@@ -332,6 +300,7 @@ public function apply(Jobs $job,$idc, Request $request): Response
 $em = $this->getDoctrine()->getManager();
 $application = new Applications();
 $candidate=$this->getDoctrine()->getRepository(Candidates::class)->find($idc);
+$user=$this->getDoctrine()->getRepository(User::class)->find($idc);
 $slug=$job->getSlug();
 $jobid=$job->getId();
 $checks=$this->getDoctrine()->getRepository(Applications::class)->findBy(array('Candidate' => $candidate,'job' => $job));

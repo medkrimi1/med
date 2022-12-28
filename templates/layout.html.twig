@@ -118,7 +118,7 @@
                         <ul class="navbar-nav tecos-H text-dark fw-bold" data-top-nav-dropdowns="data-top-nav-dropdowns ">
                            <li class="nav-item dropdown"><a class="nav-link  tecos-H  text-dark" role="button" >Nos Services</a>
                            </li>
-                           <li class="nav-item dropdown"><a type="button" class="nav-link  tecos-H  text-dark"{% if app.request.get('_route') == 'offres' %} data-bs-toggle="modal" data-bs-target="#spontanee" {% else %}  href="{{ path('offres')}}#spontanee"  {% endif %} >Candidature Spontanée</a>
+                           <li class="nav-item dropdown"><a type="button" class="nav-link  tecos-H  text-dark" href="{{ path('spontanee')}}"  >Candidature Spontanée</a>
                            </li>
                            <li class="nav-item dropdown"><a class="nav-link  tecos-H text-dark" href="{{ path('offres')}}" role="button" aria-haspopup="true" aria-expanded="false" >Offres d'emploi</a>
                            </li>
@@ -373,7 +373,7 @@
               var spinHandle = loadingOverlay.activate();
                 setTimeout(function() {
                     loadingOverlay.cancel(spinHandle);
-                }, 1000);
+                }, 20000);
               
             };
         })();

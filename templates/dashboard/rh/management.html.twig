@@ -10,7 +10,7 @@
                                 </h5>
                                   <div class="float-end">
 
-                                <a href="javascript:void(0);" data-bs-toggle="modal" data-bs-target="#create-RH" class="btn btn-primary rounded-pill add-btn btn-sm"><i class="fas fa-plus fa-sm "></i> Ajouter</a>
+                                <a href="{{path('RH_Add')}} " class="btn btn-primary rounded-pill add-btn btn-sm"><i class="fas fa-plus fa-sm "></i> Ajouter</a>
                             </div>
                             </div>
                                       {% for message in app.flashes('success') %}
@@ -67,60 +67,5 @@
 
 
 
-      <!-- Modal -->
-    <div class="modal" id="create-RH" tabindex="-1" role="dialog" aria-hidden="true">
-        <div class="modal-dialog modal-dialog-centered" role="document">
-            <div class="modal-content position-relative border border-dark">
-                <div class="d-flex flex-row-reverse">
-                    <button class="btn-close btn btn-sm btn-circle d-flex flex-center transition-base" data-bs-dismiss="modal" aria-label="Close"></button>
-                </div>
-                <div class="modal-body">
-                    <div class="row gap-20">
-                        <div class="">
-                            <div class=" tab-content ">
-                         
-                                    <h4 class=" font-weight-700 text-center">Ajouter un nouvel utilisateur</h4>
-                                    <p class="font-weight-600"></p>
-                                    <div id="error3"></div>
-                                     {{ form_start(form,{attr:{class:'needs-validation',novalidate:''} }) }}
-                                    <div class=" row gap-20 text-center">
-                                        <div class=" col-sm-6 col-md-6">
-                                            <div class="form-group ">
-                                                <label>Nom</label>
-                                                  {{ form_widget(form.lname,{attr: {class: 'form-control text-center',placeholder:'Entrez le nom',required:'true'}}) }} 
-                                             
-                                            </div>
-                                        </div>
-                                        <div class=" col-sm-6 col-md-6 ">
-                                            <div class="form-group ">
-                                                <label>Prénom</label>
-                                                  {{ form_widget(form.fname,{attr: {class: 'form-control text-center',placeholder:'Entrez le prénom',required:'true'}}) }} 
-                                          
-                                            </div>
-                                        </div>
-                                        <div class=" col-sm-6 col-md-6">
-                                            <div class="form-group">
-                                                <label>Adresse E-mail</label>
-                                                  {{ form_widget(form.mail,{attr: {class: 'form-control text-center',placeholder:"Entrer l'adresse E-mail"}}) }} 
-                                             
-                                            </div>
-                                        </div>
-                                        <div class=" col-sm-6 col-md-6">
-                                            <div class="form-group">
-                                                <label>Mot de passe</label>
-                                                  {{ form_widget(form.newpassword,{attr: {class: 'form-control text-center',pattern:'.{8,20}',placeholder:'Min 8 et Max 20 caractères',required:'true'}}) }} 
-                                              
-                                        </div>
-                                    </div>
-                                   
-                                    <div class="text-center mb-20">
-                                        <button  type="submit"  class="rounded-pill btn btn-primary">Ajouter</button>
-                                    </div>
-                                    
-                                     {{ form_end(form) }}
-                              
-                            </div>
-                        </div>
-                     
          
 {% endblock %}

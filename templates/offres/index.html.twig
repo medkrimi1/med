@@ -33,6 +33,7 @@
    <div class=" text-center carriere-title  fw-bold display-5 m-t30 m-b20 text-dark" id="Liste" >Offres d'emploi récentes ({{jobs|length}})</div>
    <div class="section-full  content">
       <div class="container">
+        <hr>
          <div class="row "  >
             <div class="col-lg-9">
                {% if jobs is empty %}
@@ -86,7 +87,7 @@
                      <div class="quote-info">
                         <h4 class="w-d text-dark ">Faites la différence avec votre CV en ligne !</h4>
                         <p class="w-d2 text-dark">Votre CV en quelques minutes avec l'assistant de CV Tecos est prêt !</p>
-                        <a data-bs-toggle="modal" data-bs-target="#spontanee"  class="btn btn-primary rounded-pill" >Déposer CV</a>
+                        <a href="{{path('spontanee')}}" class="btn btn-primary rounded-pill" >Déposer CV</a>
                      </div>
                   </div>
                </div>

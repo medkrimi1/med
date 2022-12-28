@@ -27,7 +27,8 @@ use Symfony\Component\OptionsResolver\OptionsResolver;
 class JobsAddType extends AbstractType
 {
     public function buildForm(FormBuilderInterface $builder, array $options): void
-    {
+    {  
+        $today_date=date('Y-m-d');
         $builder
              ->add('title', TextType::class, [
                 "attr" => [
@@ -96,7 +97,7 @@ class JobsAddType extends AbstractType
             ])
                           ->add('ExpiredAt', DateType::class, [ 
         'widget' => 'single_text',
-                  'attr' => ['class' => 'js-datepicker'],  
+                  'attr' => ['class' => 'js-datepicker','min'=>$today_date],  
         ])
                        
 

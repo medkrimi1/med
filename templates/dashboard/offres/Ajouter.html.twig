@@ -21,7 +21,7 @@
 
                                         <div class="form-group">
                                             <div class="fs-0" >Titre de l'emploi</div>
-                                          {{ form_widget(form.title,{attr: {class: ' form-control'}}) }}  
+                                          {{ form_widget(form.title,{attr: {class: ' form-control',maxlength:'100'}}) }}  
                                         </div>
 
                                     </div>
@@ -32,7 +32,7 @@
 
                                         <div class="form-group">
                                             <div class="fs-0" >Ville</div>
-                                         {{ form_widget(form.city,{attr: {class: ' form-control'}}) }} 
+                                         {{ form_widget(form.city,{attr: {class: ' form-control' ,maxlength:'20'}}) }} 
                                         </div>
 
                                     </div>
@@ -81,7 +81,7 @@
 
                                         <div class="form-group bootstrap3-wysihtml5-wrapper">
                                             <div class="fs-0" >Presentation</div>
-                                            {{ form_widget(form.presentation,{attr: {class: 'form-control'}}) }} 
+                                            {{ form_widget(form.presentation,{attr: {class: 'form-control',maxlength:'1999' }}) }} 
                                         </div>
 
                                     </div>
@@ -92,7 +92,7 @@
 
                                         <div class="form-group bootstrap3-wysihtml5-wrapper">
                                             <div class="fs-0" >Description du poste</div>
-                                           {{ form_widget(form.resp,{attr: {class: ' form-control'}}) }} 
+                                           {{ form_widget(form.resp,{attr: {class: ' form-control',maxlength:'1999'}}) }} 
                                         </div>
 
                                     </div>
@@ -103,7 +103,7 @@
 
                                         <div class="form-group bootstrap3-wysihtml5-wrapper">
                                             <div class="fs-0" >Profil recherché</div>
-                                            {{ form_widget(form.req,{attr: {class: 'form-control'}}) }} 
+                                            {{ form_widget(form.req,{attr: {class: 'form-control',maxlength:'1999'}}) }} 
                                         </div>
 
                                     </div>
