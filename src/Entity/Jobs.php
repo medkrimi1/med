@@ -54,17 +54,17 @@ class Jobs
    
 
     /**
-     * @ORM\Column(type="string", length=2000)
+     * @ORM\Column(type="string", length=4000)
      */
     private $presentation;
 
     /**
-     * @ORM\Column(type="string", length=2000)
+     * @ORM\Column(type="string", length=4000)
      */
     private $resp;
 
     /**
-     * @ORM\Column(type="string", length=2000)
+     * @ORM\Column(type="string", length=4000)
      */
     private $req;
 
