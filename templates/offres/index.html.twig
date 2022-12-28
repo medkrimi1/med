@@ -31,7 +31,6 @@
       </div>
    </div>
    <div class=" text-center carriere-title  fw-bold display-5 m-t30 m-b20 text-dark" id="Liste" >Offres d'emploi récentes ({{jobs|length}})</div>
-   
    <div class="section-full  content">
       <div class="container">
          <div class="row "  >
@@ -47,7 +46,11 @@
                      <div class="post-bx bg-200 border-3 bg-white  " > 
                       <a href="{{path('offre_get',{'slug':job.slug,'id':job.id})}}" class=" stretched-link"></a>
                         <div class="d-flex m-b10">
-                          
+                           <div class="">
+                              <span> <img class="job-post-company d-none d-lg-block" style="background-image " src="
+                                 {{asset('images/jobs/' ~job.image)}}" alt="Image" >
+                              </span>
+                           </div>
                            <div class="job-post-info ">
                               <h5 class="job-title text-dark">{{ job.title }}</h5>
                               <ul>
@@ -129,7 +132,6 @@
                               {{ form_widget(form2.cvfield,{attr: {class: 'form-control '},id:'uploadfile' }) }} 
                            </div>
                         </div>
-
                         {{ form_widget(form2.newpassword,{attr: {class: 'd-none'},required:false}) }} 
                         <div class="d-grid gap-2 "><button class="btn btn-primary" name="Upload File" value="Upload File" id="upload_btl" type="submit" >Déposer CV</button></div>
                         {{ form_end(form2) }}
@@ -142,5 +144,4 @@
    </div>
 </div>
 </div>
-
 {% endblock %}
