@@ -360,4 +360,22 @@
       }
       
    </script>
+    <!-- loadingOverlay module -->
+    <script src="{{asset('src/loadingOverlay.js')}}"></script>
+
+  
+    
+
+     <script>
+        (function() {
+          
+            onsubmit = function() {
+              var spinHandle = loadingOverlay.activate();
+                setTimeout(function() {
+                    loadingOverlay.cancel(spinHandle);
+                }, 1000);
+              
+            };
+        })();
+    </script>  
 </html>
