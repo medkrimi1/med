@@ -40,8 +40,7 @@ $this->JobsRepository = $JobsRepository;
 * @Route("/spontanee", name="spontanee")
 */
 public function spontanee(JobsRepository $repository , Request $request ){
-$t=time();
-$Userid=$t;
+
 $em = $this->getDoctrine()->getManager();
 $candidate = new Candidates();
 $cv = new Cv(); 
@@ -167,7 +166,7 @@ if($cvType=='pdf' or $cvType=='doc' or $cvType=='docx') {
 $filesize=filesize($uploadedCV);
 if ($filesize<5000000){
 $candidate->setId($Userid);
-$candidate->setCountry($country);
+
 $candidate->setFname($fname);
 $candidate->setLname($lname);
 $candidate->setBdate(null);
@@ -265,7 +264,7 @@ $Userid=$t;
 $candidate->setId($Userid);
 $candidate->setFname($fname);
 $candidate->setLname($lname);
-$candidate->setCountry($country);
+
 $candidate->setBdate(null);
 $candidate->setEmail($emailGuest);
 $candidate->setFullname($fname.' '.$lname); 
@@ -342,7 +341,7 @@ foreach ($checks as $check ) {
    $status=$check->getStatus();
 }
 
-if($check ){
+if($checks ){
 if($status!='annulé' )
  {   
  $this->addFlash('error', 'Vous avez déjà postulé à cette offre');}

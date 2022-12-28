@@ -11,48 +11,31 @@
       <!-- ===============================================-->
       <!-- Stylesheets-->
       <!-- ===============================================-->
-      <script src="{{ asset('assets/js/config.js') }}"></script>
-      <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.6.0/css/bootstrap-datepicker.css">
       <script src="{{ asset('vendors/overlayscrollbars/OverlayScrollbars.min.js') }}"></script>
       <!-- ===============================================-->
       <!-- Stylesheets-->
       <!-- ===============================================-->
       <link rel="preconnect" href="https://fonts.gstatic.com">
       <link href="//fonts.googleapis.com/css?family=Open+Sans:300,400,500,600,700%7cPoppins:300,400,500,600,700,800,900&amp;display=swap" rel="stylesheet">
-      <link rel="stylesheet" type="text/css" href="{{ asset('css/plugins.css') }}">
       <link rel="stylesheet" type="text/css" href="{{ asset('css/style.css') }}">
       <link rel="stylesheet" type="text/css" href="{{ asset('css/templete.css') }}">
-      <link href="{{ asset('vendors/overlayscrollbars/OverlayScrollbars.min.css') }}" rel="stylesheet">
       <link href="{{ asset('assets/css/select2.min.css')}}" rel="stylesheet" >
       <link href="{{ asset('assets/css/theme.min.css') }}" rel="stylesheet" id="style-default">
-      <link href="{{ asset('assets/css/user.min.css') }}" rel="stylesheet" id="user-style-default">
-      <link href="{{ asset('assets/css/user.min.css') }}" rel="stylesheet" id="user-style-default">
-      <link href="{{ asset('vendors/choices/choices.min.css') }}" rel="stylesheet" />
-        <link rel="stylesheet" href="{{asset('build/css/intlTelInput.css')}}">
-  
-
+      <link rel="stylesheet" href="{{asset('build/css/intlTelInput.css')}}">
       {% endblock %}
       {% block javascripts %}
-      <script src="vendors/typed.js/typed.js"></script>
-      <script src="{{ asset('vendors/popper/popper.min.js') }}"></script>
       <script src="{{ asset('vendors/bootstrap/bootstrap.min.js') }}"></script>
       <script src="{{ asset('vendors/anchorjs/anchor.min.js') }}"></script>
-      <script src="{{ asset('vendors/is/is.min.js') }}"></script>
-      <script src="{{ asset('vendors/echarts/echarts.min.js') }}"></script>
-
       <script src="{{ asset('vendors/fontawesome/all.min.js') }}"></script>
       <script src="{{ asset('vendors/lodash/lodash.min.js') }}"></script>
       <script src="{{ asset('assets/js/theme.js') }}"></script>
-      <script src="{{ asset('assets/js/theme.js') }}"></script>
+      <script src="{{ asset('assets/js/config.js') }}"></script>
       <script src="{{ asset('vendors/tinymce/tinymce.min.js') }}"></script>
       <script src="{{ asset('js/jquery.min.js') }}"></script>
       <script src="{{ asset('vendors/magnific-popup/magnific-popup.js') }}"></script>
       <script src="{{ asset('js/custom.js') }}"></script>
-      <script src="{{ asset('js/custom.js') }}"></script>
-      <script src="{{ asset('vendors/choices/choices.min.js') }}"></script>
       <script src="{{ asset('js/select2.min.js')}}"></script>
-       <script src="{{asset('build/js/intlTelInput.js')}}"></script>
-     
+      <script src="{{asset('build/js/intlTelInput.js')}}"></script>
       <script type="text/javascript">  $(document).ready(function() {
          if(window.location.href.indexOf('#spontanee') != -1) {
            $('#spontanee').modal('show');
@@ -73,9 +56,6 @@
       {% endblock %}
    </head>
    <body>
-
-
-
       <header class="fixed-top  border-bottom border-dark" data-navbar-darken-on-scroll="data-navbar-darken-on-scroll" >
          <nav class=" d-lg-none  navbar navbar-light navbar-vertical navbar-expand-xl " >
             <div class="d-flex align-items-center ">
@@ -136,13 +116,13 @@
                   <div class="d-none d-lg-block" id="navbarStandard">
                      <div class="d-flex justify-content-center">
                         <ul class="navbar-nav tecos-H text-dark fw-bold" data-top-nav-dropdowns="data-top-nav-dropdowns ">
-                           <li class="nav-item dropdown"><a class="nav-link  tecos-H  text-dark" href="?a=Blockchain" >Nos Services</a>
+                           <li class="nav-item dropdown"><a class="nav-link  tecos-H  text-dark" role="button" >Nos Services</a>
                            </li>
                            <li class="nav-item dropdown"><a type="button" class="nav-link  tecos-H  text-dark"{% if app.request.get('_route') == 'offres' %} data-bs-toggle="modal" data-bs-target="#spontanee" {% else %}  href="{{ path('offres')}}#spontanee"  {% endif %} >Candidature Spontanée</a>
                            </li>
                            <li class="nav-item dropdown"><a class="nav-link  tecos-H text-dark" href="{{ path('offres')}}" role="button" aria-haspopup="true" aria-expanded="false" >Offres d'emploi</a>
                            </li>
-                           <li class="nav-item dropdown"><a class="nav-link  tecos-H text-dark" href="?a=Contact" role="button" >Contact</a>
+                           <li class="nav-item dropdown"><a class="nav-link  tecos-H text-dark"  role="button" >Contact</a>
                            </li>
                         </ul>
                      </div>
@@ -380,6 +360,4 @@
       }
       
    </script>
-
-
 </html>
