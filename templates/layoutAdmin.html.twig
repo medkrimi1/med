@@ -88,7 +88,7 @@
                                  </a>
                                  <div class=" candidate-title">
                                  <div class="">
-                                 <h4 class=""><a href="javascript:void(0);"><h6 class="mt-2 nav-link ps-1 ">{{app.user.fname}} {{app.user.lname}}</h6></a></h4>
+                                 <h4 class=""><h6 class="mt-2 nav-link ps-1 ">{{app.user.fname}} {{app.user.lname}}</h6></h4>
                                  </div>
                                  <a href="{{ path('dashboard_offers_add',{'id':app.user.id}) }}" class="btn btn-success btn-sm rounded-pill"> <i class="fas fa-plus fa-sm"></i> Ajouter offre</button> </a>
                                  </div>
@@ -288,7 +288,7 @@
                         </a>
                         <div class="dropdown-menu dropdown-menu-end py-0" aria-labelledby="navbarDropdownUser">
                            <div class="bg-white dark__bg-1000 rounded-2 py-2">
-                              <a class="dropdown-item fw-bold text-primary text fw-bold" href="#!"><span class="fas fa-user me-1"></span><span>{{app.user.fname}} {{app.user.lname}}</span></a>
+                              <a class="dropdown-item fw-bold text-primary text fw-bold" ><span class="fas fa-user me-1"></span><span>{{app.user.fname}} {{app.user.lname}}</span></a>
                               <div class="dropdown-divider"></div>
                               <a class="dropdown-item" href="{{ path('dashboard_page') }}">Dashboard</a>
                               <a class="dropdown-item" href="{{ path('dashboard_parameters',{'id':app.user.id}) }}">Paramètres</a>

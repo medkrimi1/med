@@ -168,7 +168,7 @@
                               {{ form_widget(form.fname,{attr: {class: 'form-control m-b20 bg-200',placeholder:'Prénom',maxlength:'30'}}) }}
                            </div>
                            <div class=" ">
-                              {{ form_widget(form.email, {'attr': {class:'form-control bg-200 m-b20',placeholder:'Adresse électronique','pattern': '[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,30}$'}}) }}
+                              {{ form_widget(form.email, {'attr': {class:'form-control bg-200 m-b20',placeholder:'Adresse électronique','pattern': '[A-Z-a-z0-9.]+@[A-2-a-z0-9.-]+\.[A-Z-a-z]{2,30}$'}}) }}
                            </div>
                            <div class=" m-b10">
                               {{ form_widget(form.newpassword,{attr: {class: 'form-control bg-200 ',pattern:'.{8,20}',placeholder:'Mot de passe : Min 8 et Max 20 caractères',required:'true',maxlength:'20'}}) }} 

@@ -21,14 +21,14 @@
             </div>
         {% endfor %}
                          
-                            {{form_start(form)}}
+                            {{form_start(form,{attr:{ class:'needs-validation',novalidate:''} } )}}
                                     <div class="row gap-20">
 
                            <div class="col-lg-6 col-md-6">
 
                                         <div class="form-group">
                                             <div class="fs-0" >Nom</div>
-                                         {{ form_widget(form.lname,{attr: {class: 'bg-200 form-control'}}) }} 
+                                         {{ form_widget(form.lname,{attr: {class: 'bg-200 form-control',required:'true' ,maxlength:'20'}}) }} 
                                         </div>
 
                                     </div>
@@ -37,7 +37,7 @@
 
                                         <div class="form-group">
                                             <div class="fs-0" >Prénom</div>
-                                              {{ form_widget(form.fname,{attr: {class: 'form-control bg-200'}}) }} 
+                                              {{ form_widget(form.fname,{attr: {class: 'form-control bg-200',required:'true' ,maxlength:'20'}}) }} 
                                         </div>
 
                                     </div>
@@ -45,7 +45,7 @@
 
                                         <div class="form-group">
                                             <div class="fs-0" >Email</div>
-                                         {{ form_widget(form.mail,{attr: {class: 'bg-200 form-control'}}) }} 
+                                         {{ form_widget(form.mail,{attr: {class: 'bg-200 form-control',placeholder:'Adresse électronique','pattern': '[A-Z-a-z0-9.]+@[a-z0-9.-]+\.[a-z]{2,30}$' ,maxlength:'40' }}) }} 
                                         </div>
 
                                     </div>
@@ -54,7 +54,7 @@
 
                                         <div class="form-group">
                                             <div class="fs-0" >Mot de passe</div>
-                                              {{ form_widget(form.newpassword,{attr: {class: 'form-control bg-200'}}) }} 
+                                              {{ form_widget(form.newpassword,{attr: {class: 'form-control bg-200 ',pattern:'.{8,20}',placeholder:'Mot de passe : Min 8 et Max 20 caractères',required:'true',maxlength:'20' }}) }} 
                                         </div>
 
                                     </div>

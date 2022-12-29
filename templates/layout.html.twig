@@ -165,13 +165,16 @@
                            </a>
                            <div class="dropdown-menu dropdown-menu-end py-0" aria-labelledby="navbarDropdownUser">
                               <div class="bg-white dark__bg-1000 rounded-2 py-2">
-                                 <a class="dropdown-item dash-nav-title fw-bold text-primary" href="{{ path('candidat_profil',{'id':app.user.id})}}">
-                                    {{app.user.fname|capitalize}} {{app.user.lname|capitalize}} 
-                                    <div class="dropdown-divider"></div>
+                                
+                                   
                                     {% for role in app.user.roles %}
                                     {% if role =='ROLE_ADMIN' or role =='ROLE_RH' %}
+                                     <a class="dropdown-item dash-nav-title fw-bold text-primary" href="{{ path('dashboard_page')}}">
+                                    {{app.user.fname|capitalize}} {{app.user.lname|capitalize}} 
                                  <a class="dropdown-item dash-nav fw-bold" href="{{path('dashboard_page')}}">Dashboard</a>
                                  {% elseif role =='ROLE_Candidate'  %}
+                                  <a class="dropdown-item dash-nav-title fw-bold text-primary" href="{{ path('candidat_profil',{'id':app.user.id})}}">
+                                    {{app.user.fname|capitalize}} {{app.user.lname|capitalize}} 
                                  <a class="dropdown-item dash-nav fw-bold" href="{{path('candidate_profile',{'id':app.user.id})}}">Profil</a>
                                  <a class="dropdown-item dash-nav fw-bold" href="{{ path('my_resume',{'id':app.user.id})}}">Mon CV En Ligne</a>
                                  <a class="dropdown-item dash-nav fw-bold" href="{{ path('my_applications',{'id':app.user.id})}}">Mes candidatures</a>

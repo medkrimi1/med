@@ -24,26 +24,26 @@
 
                       
        
-  {{ form_start(form) }}
+  {{ form_start(form ,{attr: {class:  'needs-validation',novalidate:'' }}) }}  
                                        <div class="row gap-20">
                                           <div class="col-lg-6 col-md-6">
 
                                         <div class="form-group">
                                             <div class="fs-0" >Nom</div>
-                                              {{ form_widget(form.lname,{attr: {class: 'form-control'}}) }} 
+                                              {{ form_widget(form.lname,{attr: {class: 'form-control',required:'true',maxlength:'20' }}) }} 
                                         </div>
 
                                     </div>
                                         <div class="col-lg-6 col-md-6">
                                         <div class="form-group">
                                             <div class="fs-0" >Prénom</div>
-                                         {{ form_widget(form.fname,{attr: {class: 'form-control'}}) }} 
+                                         {{ form_widget(form.fname,{attr: {class: 'form-control',required:'true' ,maxlength:'20'}}) }} 
                                         </div>
                                     </div>
                                      <div class="col-lg-6 col-md-6">
                                         <div class="form-group">
                                             <div class="fs-0" >Adresse électronique</div>
-                                         {{ form_widget(form.mail,{attr: {class: 'form-control'}}) }} 
+                                         {{ form_widget(form.mail,{attr: {class: 'form-control','pattern': '[A-Z-a-z0-9.]+@[A-2-a-z0-9.-]+\.[A-Z-a-z]{2,30}$',maxlength:'40'}}) }} 
                                         </div>
                                     </div>
                                      <div class="col-lg-6 col-md-6">
@@ -161,25 +161,25 @@
         </div>
         <div class="p-4 pb-0">
        
-  {{ form_start(form_pass) }}
+   {{ form_start(form_pass ,{attr: {class:  'needs-validation',novalidate:'' }}) }}  
                                        <div class="row gap-20">
                                          
                                             <div class="form-group">
                                             <div class="fs-0" >Mot de passe actuel</div>
-                                              {{ form_widget(form_pass.oldpassword,{attr: {class: 'form-control'} }) }} 
+                                              {{ form_widget(form_pass.oldpassword,{attr: {class: 'form-control',maxlength:'20'} }) }} 
                                       
 
                                     </div>
                                         <div class="form-group">
                                             <div class="fs-0" >Nouveau mot de passe</div>
-                                              {{ form_widget(form_pass.newpassword,{attr: {class: 'form-control',pattern:'.{8,20}',placeholder:'Min 8 et Max 20 caractères'}}) }} 
+                                              {{ form_widget(form_pass.newpassword,{attr: {class: 'form-control',pattern:'.{8,20}',placeholder:'Min 8 et Max 20 caractères',maxlentgh:'20'}}) }} 
                                       
 
                                     </div>
                                        
                                         <div class="form-group">
                                             <div class="fs-0" >Confirmer Nouveau mot de passe</div>
-                                              {{ form_widget(form_pass.repeatedpassword,{attr: {class: 'form-control',pattern:'.{8,20}',placeholder:'Min 8 et Max 20 caractères'}}) }} 
+                                              {{ form_widget(form_pass.repeatedpassword,{attr: {class: 'form-control',pattern:'.{8,20}',placeholder:'Min 8 et Max 20 caractères',maxlength:'20'}}) }} 
                                       
                                     </div>
 
