@@ -1,9 +1,10 @@
 {% extends 'layout.html.twig' %}
 {% block body %}
 
-<div class="header-w bg-white" > </div>
+<div class="header-w " > </div>
+
 {% for job in job %}
- <div class="dez-bnr-inr overlay-black-dark m-b20" style="background-image:url(images/jobs/); height:150px ">
+ <div class="dez-bnr-inr overlay-black-dark m-b20" style="background-image:url({{asset('images/coverr.png')}}); height:150px ">
             <div class="container">
                 <div class="dez-bnr-inr-entry">
                   <h3 class="font-weight-bold  display-5 text-center T-breadcrumb mb-3" >  {{job.title}}</h3>
@@ -16,6 +17,7 @@
             </div>
         </div>
 <div class="container">
+
    <div class="pxp-single-job-content mt-4 mt-lg-5">
       <div class="row">
          <div class=" col-lg-7 col-xl-8 col-xxl-9">
@@ -40,10 +42,11 @@
              
              
             {% endfor %}
-            <div class="card mb-3">
+            <div class="card mb-3 border-1 ">
                <div class="card-body ">
                 
-                  <h4 class="text-dark">Description du poste</h4>
+                  <h4 class="text-dark">Description du poste <span class=" float-end pxp-single-job-date pxp-text-light">     publié :{{ job.beginAt|date("d/m/Y") }}
+              </span> </h4>
                   <p class="text-dark"> {{ job.resp }}</p>
                   <hr>
                   <h4 class="text-dark">Profil recherché</h4>
@@ -51,13 +54,14 @@
                </div>
             </div>
          </div>
+
+              
          <div class="col-lg-5 col-xl-4 col-xxl-3 text-center">
             <div class="">
                <div>
                 
-                  <div class="card mb-3">
-                      <div class="card-body border-bottom">
-                        {% if job.today > job.expire   %}
+                  <div class="card mb-3 border-1 ">
+     {% if job.today > job.expire   %}
                            <a type="button" class="btn btn-success  btn-lg disabled btn-hidden">Offre expiré</a>
                            {% else %}
                            {% if app.user %}
@@ -73,10 +77,11 @@
                            {% else %}
                            <a title="READ MORE" rel="bookmark" data-bs-toggle="modal" data-bs-target="#jobapply" class="btn btn-success  btn-lg"> Postuler maintenant </a>
                            {% endif %}
-                           {% endif %}</div> 
-                     <div class="sticky-sidebar">
+                           {% endif %}
+                         
+                     <div class="">
                     
-                        <div class="card-body text-left-not-lg">
+                        <div class=" text-left-not-lg">
                      
                            </br>
                            <h5>Lieu de travail</h5>
@@ -100,13 +105,15 @@
                               </span>
                               {% endfor %}
                            </div>
+                          
                            <div class="job-bx-title clearfix">
                            </div>
                            <div class="">
                               <h5>Date limite </h5>
                               <h5 class="text-primary">{{ job.expireAt|date("d/m/Y")}}</h5>
                            </div>
-                           <ul></ul>
+                          
+                    
                         </div>
                      </div>
                   </div>
@@ -119,7 +126,7 @@
 <div class="modal" id="jobapply" tabindex="-1" role="dialog" aria-hidden="true">
    <div class="modal-dialog modal-dialog-centered" role="document">
       <div class="modal-content position-relative border border-dark">
-         <div class="offcanvas-header settings-panel-header  rounded-top"  >
+         <div class="offcanvas-header settings-panel-header bg-100 rounded-top"  >
             <div class="">
                <div class="">
                   <h4 class=" m-t10 me-2 text-dark"> Postuler maintenant</h4>
@@ -176,4 +183,5 @@
 </div>
 </div>
 {% endfor %}
+
 {% endblock %}

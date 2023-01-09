@@ -235,9 +235,8 @@ class JobsRepository extends ServiceEntityRepository
 
         if (!empty($search->Name)) {
             $query = $query
-                ->andWhere('p.title LIKE :Name')
-                ->setParameter('Name', "%{$search->Name}%")
-                   ->ORWhere('c.title Like :Skills')
+                ->andWhere('p.title LIKE :Name or c.title Like :Skills')
+                ->setParameter('Name', "%{$search->Name}%")     
                 ->setParameter('Skills', "%{$search->Name}%")
                  ->andWhere('p.ExpiredAt > :date')
             ->setParameter('date', new \DateTime());
