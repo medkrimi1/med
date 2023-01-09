@@ -4,8 +4,8 @@
   
                         <div class="job-bx job-profile  bg-white ">
                             <div class="dezPlaceAni">
-                                <div class="job-bx-title clearfix">
-                                    <h5 class="font-weight-700 float-start  text-primary">Archives ({{jobs|length}}) </h5>
+                                <div class="job-bx-title clearfix border-dark">
+                                    <h5 class="font-weight-700 float-start  text-success">Archives ({{jobs|length}}) </h5>
                               
                                     <div class="float-end">
                                           <a data-bs-toggle="offcanvas" data-bs-target="#offcanvasRight" class="text-right "><h5 class="text-primary">
@@ -98,7 +98,7 @@
    
 
 
-<div class="d-grid gap-2 m-t20" ><button class="btn btn-primary" type="submit">Rechercher</button>
+<div class="d-grid gap-2 m-t20" ><button class="btn btn-success" type="submit">Rechercher</button>
 </div>
 
 
@@ -123,13 +123,11 @@
 
                             <ul class=" post-job-bx ">
                                 {% for job in jobs %}
-                                <div class="post-bx bg-200 border-3 bg-white  m-b30">
+                                <div class="post-bx bg-200 border-1 bg-white  m-b30">
                                      
                                     <div class="d-flex m-b20 ">
-                                        <a href="javascript:void(0);" data-bs-toggle="modal" data-bs-target="#changeimg"><span>
-                              <img class="job-post-company d-none d-lg-block "  src="
-                              {{asset('images/jobs/' ~job.image)}}" ></span></a>
-                              </span></a>
+                                      
+                         
                                         <div class="job-post-info">
                                             <ul>
                                           <li>  <a  href="{{path('offre_get',{'slug':job.slug,'id':job.id})}}"  class=" text-bold">

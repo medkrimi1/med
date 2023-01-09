@@ -55,24 +55,26 @@
    <body>
       <main class="main" id="top">
          <div class="container-fluid" data-layout="container-fluid">
-            <nav class="navbar navbar-light navbar-vertical navbar-expand-xl " style="display: none;">
+            <nav class="navbar  navbar-vertical navbar-expand-xl navbar-vibrant  " style="20rem">
                <script>
                   var navbarStyle = localStorage.getItem("navbarStyle");
                   if (navbarStyle && navbarStyle !== 'transparent') {
                       document.querySelector('.navbar-vertical').classList.add(`navbar-${navbarStyle}`);
                   }
                </script>
+               
+              
                <div class="d-flex align-items-center">
                   <div class="toggle-icon-wrapper">
-                     <button class="btn navbar-toggler-humburger-icon navbar-vertical-toggle " data-bs-toggle="tooltip" data-bs-placement="left" title="Toggle Navigation"><span class="navbar-toggle-icon"><span class="toggle-line"></span></span></button>
+                     <button class="btn navbar-toggler-humburger-icon navbar-vertical-toggle  " data-bs-toggle="tooltip" data-bs-placement="left" title="Toggle Navigation"><span class="navbar-toggle-icon"><span class="toggle-line"></span></span></button>
                   </div>
                   <a class="navbar-brand" href="{{path('offres')}}">
                      <div class="d-flex align-items-center py-3"><img class="me-9" src="{{ asset('images/logo.png') }}" alt="" width="700" /></div>
                   </a>
                </div>
                <hr class="d-lg-none d-lg-block">
-               <div class="collapse navbar-collapse row border-1 rounded-3" id="navbarVerticalCollapse">
-                  <div class="navbar-vertical-content scrollbar">
+               <div class="collapse navbar-collapse  " style="width:15rem" id="navbarVerticalCollapse">
+                  <div class="navbar-vertical-content scrollbar bg-success ">
                      <ul class="navbar-nav flex-column mb-3" id="navbarVerticalNav">
                         <li class="nav-item">
                            <!-- parent pages-->
@@ -90,7 +92,7 @@
                                  <div class="">
                                  <h4 class=""><h6 class="mt-2 nav-link ps-1 ">{{app.user.fname}} {{app.user.lname}}</h6></h4>
                                  </div>
-                                 <a href="{{ path('dashboard_offers_add',{'id':app.user.id}) }}" class="btn btn-success btn-sm rounded-pill"> <i class="fas fa-plus fa-sm"></i> Ajouter offre</button> </a>
+                                 <a href="{{ path('dashboard_offers_add',{'id':app.user.id}) }}" class="btn btn-white bg-white text-dark btn-sm rounded-pill fw-bold"> <i class="fas fa-plus fa-sm text-success "></i> Ajouter offre</button> </a>
                                  </div>
                                  </div></span></div>
                                  </a><!-- more inner pages-->
@@ -354,11 +356,12 @@
                   <div class="col-6"><input class="btn-check" id="navbar-style-inverted" type="radio" name="navbarStyle" value="inverted" data-theme-control="navbarStyle" /><label class="btn d-block w-100 btn-navbar-style fs--1" for="navbar-style-inverted"> <img class="img-fluid img-prototype" src="{{asset ('../assets/img/generic/inverted.png')}}" alt="" /></label></div>
                   <div class="col-6"><input class="btn-check" id="navbar-style-card" type="radio" name="navbarStyle" value="card" data-theme-control="navbarStyle" /><label class="btn d-block w-100 btn-navbar-style fs--1" for="navbar-style-card"> <img class="img-fluid img-prototype" src="{{asset('../assets/img/generic/card.png')}}" alt="" /></label></div>
                   <div class="col-6"><input class="btn-check" id="navbar-style-vibrant" type="radio" name="navbarStyle" value="vibrant" data-theme-control="navbarStyle" /><label class="btn d-block w-100 btn-navbar-style fs--1" for="navbar-style-vibrant"> <img class="img-fluid img-prototype" src="{{asset('../assets/img/generic/vibrant.png')}}" alt="" /></label></div>
+                    <div class="col-6"><input class="btn-check" id="navbar-style-green" type="radio" name="navbarStyle" value="green" data-theme-control="navbarStyle" /><label class="btn d-block w-100 btn-navbar-style fs--1" for="navbar-style-green"> <img class="img-fluid img-prototype" src="{{asset('../assets/img/generic/vibrant.png')}}" alt="" /></label></div>
                </div>
             </div>
          </div>
       </div>
-      <a class=" d-none d-lg-block setting-toggle" href="#settings-offcanvas" data-bs-toggle="offcanvas">
+      <a class=" d-none  setting-toggle" href="#settings-offcanvas" data-bs-toggle="offcanvas">
          <div class="card-body d-flex align-items-center py-md-2 px-2 py-1">
             <div class="bg-soft-primary position-relative rounded-start" style="height:34px;width:28px">
                <div class="settings-popover">

@@ -5,7 +5,7 @@
 
                         <div class="job-bx job-profile  bg-white">
                             <div class="job-bx-title clearfix">
-                                <h5 class="font-weight-700 float-start  text-primary">Profil</h5>
+                                <h5 class="font-weight-700 float-start  text-success">Profil</h5>
 
 
                             </div>
@@ -59,9 +59,9 @@
 
                                   
                                 </div>
-                                 <div class="text-center m-b20" >
+                                 <div class=" m-t20" >
 
-                                    <button type="submit" class="btn btn-primary rounded-pill ">Mettre à jour</button> </div>
+                                    <button type="submit" class="btn btn-success  ">Mettre à jour</button> </div>
                                        {{ form_end(form) }}
        
        
@@ -84,60 +84,17 @@
 
 
 
-
-                                <ul> </ul>
-
-
-
-                               
                         
                         </div>
                        
 
             
-<div class="modal fade" id="nom" tabindex="-1" role="dialog" aria-hidden="true">
-  <div class="modal-dialog modal-dialog-centered" role="document" style="max-width: 500px">
-    <div class="modal-content position-relative">
-      <div class="position-absolute top-0 end-0 mt-2 me-2 z-index-1">
-        <button class="btn-close btn btn-sm btn-circle d-flex flex-center transition-base" data-bs-dismiss="modal" aria-label="Close"></button>
-      </div>
-      <div class="modal-body p-0">
-        <div class="rounded-top-lg py-3 ps-4 pe-6 bg-light">
-          <h4 class="" id="modalExampleDemoLabel">Nom Complet</h4>
-        </div>
-       
-      </div>
-   
-    </div>
-  </div>
-</div>
 
 
 
 
 
 
-
-<div class="modal fade" id="e-mail" tabindex="-1" role="dialog" aria-hidden="true">
-  <div class="modal-dialog modal-dialog-centered" role="document" style="max-width: 500px">
-    <div class="modal-content position-relative">
-      <div class="position-absolute top-0 end-0 mt-2 me-2 z-index-1">
-        <button class="btn-close btn btn-sm btn-circle d-flex flex-center transition-base" data-bs-dismiss="modal" aria-label="Close"></button>
-      </div>
-      <div class="modal-body p-0">
-        <div class="rounded-top-lg py-3 ps-4 pe-6 bg-light">
-          <h4 class="" id="modalExampleDemoLabel">Adresse électronique</h4>
-        </div>
-        <div class="p-4 pb-0">
-       
- 
-       
-        </div>
-      </div>
-   
-    </div>
-  </div>
-</div>
 
 
 
@@ -155,11 +112,11 @@
       <div class="position-absolute top-0 end-0 mt-2 me-2 z-index-1">
         <button class="btn-close btn btn-sm btn-circle d-flex flex-center transition-base" data-bs-dismiss="modal" aria-label="Close"></button>
       </div>
-      <div class="modal-body p-0">
+      <div class="modal-body p-0 ">
         <div class="rounded-top-lg py-3 ps-4 pe-6 bg-light">
-          <h4 class="" id="modalExampleDemoLabel">Modifier Mot de passe</h4>
+          <h5 class="m-t10" id="modalExampleDemoLabel">Modifier Mot de passe</h5>
         </div>
-        <div class="p-4 pb-0">
+        <div class="p-4 pb-0 border-top border-dark">
        
    {{ form_start(form_pass ,{attr: {class:  'needs-validation',novalidate:'' }}) }}  
                                        <div class="row gap-20">
@@ -187,9 +144,9 @@
 
                                   
                                 </div>
-                                 <div class="text-center m-b20" >
+                                 <div class=" m-t20 m-b20" >
 
-                                    <button type="submit" class="btn btn-primary rounded-pill ">Mettre à jour</button> </div>
+                                    <button type="submit" class="btn btn-success  ">Mettre à jour</button> </div>
                                        {{ form_end(form_pass) }}
        
         </div>
@@ -215,4 +172,5 @@
     </div>
   </div>
 </div>
+
 {% endblock %}

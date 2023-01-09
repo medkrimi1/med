@@ -1,211 +1,175 @@
 {% extends 'layout.html.twig' %}
-
 {% block body %}
-
 <div class="header-w bg-white" > </div>
-   <div class="page-wraper-glass">
+<div class="page-wraper-glass">
    <div class="page-content ">
-   <div class="content-block">
-   <div class="section-full browse-job p-t50 p-b20">
-   <div class="container">
-   <div class="row">
-   <div class="d-none d-lg-block col-xl-3 col-lg-4 m-b30">
-      <div class="sticky-top">
-         <div class="candidate-info bg-white radius-md">
-            <div class="candidate-detail text-center ">
-               <a class="upload-link " href="{{path('candidate_profile',{'id':app.user.id})}}#avatar" title="update" data-bs-toggle="tooltip" data-placement="right">
-                  <div class="canditate-des" >
-                     <center><img class=" canditate-des-img" src="{{asset('images/users/' ~app.user.image)}}"  alt="image"  /></center>
-                  </div>
-               </a>
-               <div class="candidate-title">
-                  <div class="">
-                     <h4 class="m-b5">
-                        <a href="javascript:void(0);">
-                           <h4 class="mt-2 text-dark">{{app.user.fname}} {{app.user.lname}}</h4>
-                        </a>
-                     </h4>
-                   
-                  </div>
-                  <a class="btn btn-outline-primary rounded-pill btn-sm" href="{{ path('candidat_profil',{'id':app.user.id})}}">Voir profil</a>
-               </div>
-            </div>
-            <div class="row navbar-vertical-label-wrapper " >
-               <ul class="">
-                  <li>
-                     <a href="{{path('candidate_profile',{'id':app.user.id})}}" >
-                        <span>
-                           <h6 class="fs-0 "><i class=" far fa-user" aria-hidden="true"></i> Profil</h6>
-                        </span>
-                     </a>
-                  </li>
-                  <li>
-                     <a href="{{ path('my_resume',{'id':app.user.id})}}">
-                        <span>
-                           <h6 class="fs-0"><i class="far fa-file-alt" aria-hidden="true"></i> Mon CV En Ligne</h6>
-                        </span>
-                     </a>
-                  </li>
-                  <li>
-                     <a href="{{ path('my_applications',{'id':app.user.id})}}">
-                        <span>
-                           <h6 class="fs-0"><i class="fa fa-briefcase " aria-hidden="true"></i> Mes candidatures</h6>
-                        </span>
-                     </a>
-                  </li>
-                  <li>
-                     <a href="{{ path('my_cv',{'id':app.user.id})}}" class="active">
-                        <span>
-                           <h6 class="fs-0 text-white fw-bold"><i class="far fa-id-card" aria-hidden="true"></i> Gérer CV</h6>
-                        </span>
-                     </a>
-                  </li>
-                  <li>
-                     <a href="{{ path('candidate_password',{'id':app.user.id})}}">
-                        <span>
-                           <h6 class="fs-0"><i class="fa fa-cog" aria-hidden="true"></i> Paramètres</h6>
-                        </span>
-                     </a>
-                  </li>
-                  <li>
-                     <a href="{{path('app_logout')}}">
-                        <span>
-                           <h6 class="fs-0"> <i class="fas fa-sign-out-alt" aria-hidden="true"></i> Déconnexion</h6>
-                        </span>
-                     </a>
-                  </li>
-               </ul>
-            </div>
-         </div>
-      </div>
-   </div>
-   <div  class="col-xl-9 col-lg-8 m-b30">
-      <div class="job-bx job-profile bg-white">
-         <div class="job-bx-title clearfix">
-            <h5 class="font-weight-700 float-start text-primary">Gérer CV ({{cvs|length}})</h5>
-             <a  data-bs-toggle="modal" data-bs-target="#cv" class="fw float-end btn btn-primary add-btn btn-sm rounded-pill"><i class="fas fa-plus fa-sm "></i> Ajouter</a>
-         </div>
-              {% for message in app.flashes('success') %}
-            <div class="text-center text-dark alert alert-success">
-                {{ message }}
-            </div>
-            {% endfor %}
-                {% for message in app.flashes('error') %}
-            <div class="text-center text-dark alert alert-warning">
-                {{ message }}
-            </div>
-        {% endfor %}
-         <div class=" GridLex-col-9_sm-8_xs-12">
-            <ul></ul>
-            <ul class=" post-job-bx browse-job-grid post-resume row ">
-               <li class="col-lg-12 col-md-6">
-                 {% set i = 0 %}
-                  {% for cv in cvs|reverse %}
- 
-                  <div class="post-bx bg-200 border-3 bg-white  m-b30">
-                     <div class="d-flex m-b20">
-                        <div class="job-post-info">
-
- 
- 
- 
-                           <h5 class="mt-1 fw-bold"><a class="text-primary" type="button" data-bs-toggle="modal" data-bs-target="#modal{{cv.id}}">{{cv.cv}}</a></h5>
+      <div class="content-block">
+         <div class="section-full browse-job p-t50 p-b20">
+            <div class="container">
+               <div class="row">
+                  <div class="d-none d-lg-block col-xl-3 col-lg-4 m-b30">
+                     <div class="sticky-top">
+                        <div class="candidate-info bg-white radius-md">
+                           <div class="candidate-detail text-center ">
+                              <a class="upload-link " href="{{path('candidate_profile',{'id':app.user.id})}}#avatar" title="update" data-bs-toggle="tooltip" data-placement="right">
+                                 <div class="canditate-des" >
+                                    <center><img class=" canditate-des-img" src="{{asset('images/users/' ~app.user.image)}}"  alt="image"  /></center>
+                                 </div>
+                              </a>
+                              <div class="candidate-title">
+                                 <div class="">
+                                    <h4 class="m-b5">
+                                       <a href="javascript:void(0);">
+                                          <h4 class="mt-2 text-dark">{{app.user.fname}} {{app.user.lname}}</h4>
+                                       </a>
+                                    </h4>
+                                 </div>
+                                 <a class="btn btn-outline-primary rounded-pill btn-sm" href="{{ path('candidat_profil',{'id':app.user.id})}}">Voir profil</a>
+                              </div>
+                           </div>
+                           <div class="row navbar-vertical-label-wrapper " >
+                              <ul class="">
+                                 <li>
+                                    <a href="{{path('candidate_profile',{'id':app.user.id})}}" >
+                                       <span>
+                                          <h6 class="fs-0 "><i class=" far fa-user" aria-hidden="true"></i> Profil</h6>
+                                       </span>
+                                    </a>
+                                 </li>
+                                 <li>
+                                    <a href="{{ path('my_resume',{'id':app.user.id})}}">
+                                       <span>
+                                          <h6 class="fs-0"><i class="far fa-file-alt" aria-hidden="true"></i> Mon CV En Ligne</h6>
+                                       </span>
+                                    </a>
+                                 </li>
+                                 <li>
+                                    <a href="{{ path('my_applications',{'id':app.user.id})}}">
+                                       <span>
+                                          <h6 class="fs-0"><i class="fa fa-briefcase " aria-hidden="true"></i> Mes candidatures</h6>
+                                       </span>
+                                    </a>
+                                 </li>
+                                 <li>
+                                    <a href="{{ path('my_cv',{'id':app.user.id})}}" class="active">
+                                       <span>
+                                          <h6 class="fs-0 text-white fw-bold"><i class="far fa-id-card" aria-hidden="true"></i> Gérer CV</h6>
+                                       </span>
+                                    </a>
+                                 </li>
+                                 <li>
+                                    <a href="{{ path('candidate_password',{'id':app.user.id})}}">
+                                       <span>
+                                          <h6 class="fs-0"><i class="fa fa-cog" aria-hidden="true"></i> Paramètres</h6>
+                                       </span>
+                                    </a>
+                                 </li>
+                                 <li>
+                                    <a href="{{path('app_logout')}}">
+                                       <span>
+                                          <h6 class="fs-0"> <i class="fas fa-sign-out-alt" aria-hidden="true"></i> Déconnexion</h6>
+                                       </span>
+                                    </a>
+                                 </li>
+                              </ul>
+                           </div>
                         </div>
                      </div>
-                     <div class="posted-info clearfix   " >
-                        <p class="m-tb0  float-end  "><span class=" text-dark fw-bold ">Date d'ajout :</span> <span class="text-dark">{{cv.date|date()}}</span></p>
-                     </div>
-                     <div class="job-links" >
-                        <a data-bs-toggle="modal" data-bs-target="#modal{{cv.id}}" class="  btn btn-outline-primary btn-sm "><i class=" fas fa-expand-arrows-alt" ></i> </a>
-                        <a href="{{path('cv_delete',{'idc':app.user.id ,'id':cv.id})}}" onclick = "return confirm('Êtes-vous sûr de vouloir supprimer votre CV?')"  class="  btn btn-outline-danger add-btn btn-sm "><i class="fas fa-trash" ></i> </a>
+                  </div>
+                  <div  class="col-xl-9 col-lg-8 m-b30">
+                     <div class="job-bx job-profile bg-white">
+                        <div class="job-bx-title clearfix">
+                           <h5 class="font-weight-700 float-start text-primary">Gérer CV ({{cvs|length}})</h5>
+                           <a  data-bs-toggle="modal" data-bs-target="#cv" class="fw float-end btn btn-primary add-btn btn-sm rounded-pill"><i class="fas fa-plus fa-sm "></i> Ajouter</a>
+                        </div>
+                        {% for message in app.flashes('success') %}
+                        <div class="text-center text-dark alert alert-success">
+                           {{ message }}
+                        </div>
+                        {% endfor %}
+                        {% for message in app.flashes('error') %}
+                        <div class="text-center text-dark alert alert-warning">
+                           {{ message }}
+                        </div>
+                        {% endfor %}
+                        <div class=" GridLex-col-9_sm-8_xs-12">
+                           <ul></ul>
+                           <ul class=" post-job-bx browse-job-grid post-resume row ">
+                              <li class="col-lg-12 col-md-6">
+                                 {% set i = 0 %}
+                                 {% for cv in cvs|reverse %}
+                                 <div class="post-bx bg-200 border-1 bg-white  m-b30">
+                                    <div class="d-flex m-b20">
+                                       <div class="job-post-info">
+                                          <h5 class="mt-1 fw-bold"><a class="text-primary" type="button" data-bs-toggle="modal" data-bs-target="#modal{{cv.id}}">{{cv.cv}}</a></h5>
+                                       </div>
+                                    </div>
+                                    <div class="posted-info clearfix   " >
+                                       <p class="m-tb0  float-end  "><span class=" text-dark fw-bold ">Date d'ajout :</span> <span class="text-dark">{{cv.date|date()}}</span></p>
+                                    </div>
+                                    <div class="job-links" >
+                                       <a data-bs-toggle="modal" data-bs-target="#modal{{cv.id}}" class="  btn btn-outline-primary btn-sm "><i class=" fas fa-expand-arrows-alt" ></i> </a>
+                                       <a href="{{path('cv_delete',{'idc':app.user.id ,'id':cv.id})}}" onclick = "return confirm('Êtes-vous sûr de vouloir supprimer votre CV?')"  class="  btn btn-outline-danger add-btn btn-sm "><i class="fas fa-trash" ></i> </a>
+                                    </div>
+                                 </div>
+                                 <div class="modal fade" id="modal{{cv.id}}" data-bs-keyboard="false" data-bs-backdrop="static" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+                                    <div class="modal-dialog modal-lg mt-6" role="document">
+                                       <div class="modal-content border-0">
+                                          <div class="position-absolute top-0 end-0 mt-3 me-3 z-index-1"><button class="btn-close btn btn-sm btn-circle d-flex flex-center transition-base float-end" data-bs-dismiss="modal" aria-label="Close"></button></div>
+                                          <div class="modal-body p-0">
+                                             <div class="bg-light rounded-top-lg py-3 ps-4 pe-6">
+                                                <h4 class="mb-1 text-center" id="staticBackdropLabel">{{cv.cv}}</h4>
+                                             </div>
+                                             <div class="">
+                                                <div class="row">
+                                                   <iframe src="{{asset('cv/' ~cv.cv)}}"
+                                                      height="500">
+                                                   </iframe>
+                                                </div>
+                                             </div>
+                                          </div>
+                                       </div>
+                                    </div>
+                                 </div>
+                                 {% endfor %}
+                              </li>
+                              </li>
+                           </ul>
+                           <ul></ul>
+                        </div>
                      </div>
                   </div>
-                   <div class="modal fade" id="modal{{cv.id}}" data-bs-keyboard="false" data-bs-backdrop="static" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
-  <div class="modal-dialog modal-lg mt-6" role="document">
-    <div class="modal-content border-0">
-      <div class="position-absolute top-0 end-0 mt-3 me-3 z-index-1"><button class="btn-close btn btn-sm btn-circle d-flex flex-center transition-base float-end" data-bs-dismiss="modal" aria-label="Close"></button></div>
-      <div class="modal-body p-0">
-        <div class="bg-light rounded-top-lg py-3 ps-4 pe-6">
-          <h4 class="mb-1 text-center" id="staticBackdropLabel">{{cv.cv}}</h4>
-        
-        </div>
-        <div class="">
-          <div class="row">
-          <iframe src="{{asset('cv/' ~cv.cv)}}"
- 
-                
-                height="500">
-        </iframe>
-      
-      
-          
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-</div>
-                  {% endfor %}
-               </li>
-               </li>
-            </ul>
-            <ul></ul>
+               </div>
+            </div>
          </div>
       </div>
    </div>
-      </div>
-     </div>
-     </div>
-     </div>
-     </div>
-     </div>
-
-
-
-
-
-
-
-
-
-     <div class="modal fade" id="cv" tabindex="-1" role="dialog" aria-hidden="true">
-  <div class="modal-dialog modal-dialog-centered" role="document" style="max-width: 500px">
-    <div class="modal-content position-relative bg-200">
-      <div class="position-absolute top-0 end-0 mt-2 me-2 z-index-1">
-        <button class="btn-close btn btn-sm btn-circle  d-flex flex-center transition-base float-end" data-bs-dismiss="modal" aria-label="Close"></button>
-      </div>
-      <div class="modal-body p-0">
-        <div class="rounded-top-lg py-3 ps-4 pe-6">
-          <h4 class="" id="modalExampleDemoLabel"></h4>
-        </div>
-        <div class="p-4 pb-0">
-       
-  {{ form_start(form) }}
-                                       <div class="row gap-20">
-                                         
-
-                                     
-                                       
-                                        <div class="form-group">
-                                            <div class="fs-0 text-dark fw-bold text-center" > (Taille Max: 2 MB /PDF,DOCX,DOC)</div>
-                                              {{ form_widget(form.cvfield,{attr: {class: 'form-control'},required:true,id:'uploadfile' }) }} 
-                                      
-                                    </div>
-
-                                   
-
-                                  
-                                </div>
-                                 <div class="text-center m-b20" >
-
-                                    <button type="submit" class="btn btn-primary rounded-pill "  name="Upload File" value="Upload File" id="upload_btl">Ajouter CV</button> </div>
-                                       {{ form_end(form) }}
-       
-        </div>
-      </div>
-   
-    </div>
-  </div>
 </div>
-
+<div class="modal fade" id="cv" tabindex="-1" role="dialog" aria-hidden="true">
+   <div class="modal-dialog modal-dialog-centered" role="document" style="max-width: 500px">
+      <div class="modal-content position-relative bg-200">
+         <div class="position-absolute top-0 end-0 mt-2 me-2 z-index-1">
+            <button class="btn-close btn btn-sm btn-circle  d-flex flex-center transition-base float-end" data-bs-dismiss="modal" aria-label="Close"></button>
+         </div>
+         <div class="modal-body p-0">
+            <div class="rounded-top-lg py-3 ps-4 pe-6">
+               <h4 class="" id="modalExampleDemoLabel"></h4>
+            </div>
+            <div class="p-4 pb-0">
+               {{ form_start(form) }}
+               <div class="row gap-20">
+                  <div class="form-group">
+                     <div class="fs-0 text-dark fw-bold text-center" > (Taille Max: 2 MB /PDF,DOCX,DOC)</div>
+                     {{ form_widget(form.cvfield,{attr: {class: 'form-control'},required:true,id:'uploadfile' }) }} 
+                  </div>
+               </div>
+               <div class="text-center m-b20" >
+                  <button type="submit" class="btn btn-primary rounded-pill "  name="Upload File" value="Upload File" id="upload_btl">Ajouter CV</button> 
+               </div>
+               {{ form_end(form) }}
+            </div>
+         </div>
+      </div>
+   </div>
+</div>
 {% endblock %}

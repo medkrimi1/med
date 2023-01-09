@@ -53,10 +53,7 @@ class Jobs
 
    
 
-    /**
-     * @ORM\Column(type="string", length=4000)
-     */
-    private $presentation;
+   
 
     /**
      * @ORM\Column(type="string", length=4000)
@@ -93,17 +90,7 @@ class Jobs
 
    
 
-  
-    /**
-     * @ORM\Column(type="string", length=255)
-     */
-    private $image;
-
-    /**
-     * @ORM\Column(type="string", length=255)
-     */
-    private $cover;
-
+ 
     /**
      * @ORM\Column(type="datetime")
      */
@@ -229,17 +216,7 @@ class Jobs
 
    
 
-    public function getPresentation(): ?string
-    {
-        return $this->presentation;
-    }
-
-    public function setPresentation(string $presentation): self
-    {
-        $this->presentation = $presentation;
-
-        return $this;
-    }
+   
 
     public function getResp(): ?string
     {
@@ -382,32 +359,6 @@ class Jobs
              }
 
 
-
-   
-
-   public function getImage(): ?string
-   {
-       return $this->image;
-   }
-
-   public function setImage(string $image): self
-   {
-       $this->image = $image;
-
-       return $this;
-   }
-
-   public function getCover(): ?string
-   {
-       return $this->cover;
-   }
-
-   public function setCover(string $cover): self
-   {
-       $this->cover = $cover;
-
-       return $this;
-   }
 
    public function getExpiredAt(): ?\DateTimeInterface
    {

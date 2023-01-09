@@ -83,7 +83,7 @@
                   <div class="col-xl-9 col-lg-8 m-b30">
                      <div class="job-bx job-profile  bg-white ">
                         <div class="job-bx-title clearfix">
-                           <h5 class="mb-0">Informations basiques</h5>
+                           <h5>Informations basiques</h5>
                         </div>
                         {% for message in app.flashes('success') %}
                         <div class="text-center text-dark alert alert-success">
@@ -146,7 +146,7 @@
                            </div>
                         </div>
                         <div class="job-bx-title clearfix">
-                           <h5 class="mb-0">Informations de contact</h5>
+                           <h5 >Informations de contact</h5>
                         </div>
                         <div class="row">
                            <div class="col-lg-6 col-md-6">
@@ -187,7 +187,7 @@
                                  {{ form_widget(form.city,{attr: {class: 'form-control bg-200'}}) }}   
                               </div>
                            </div>
-                           <div class="col-lg-6 col-md-6">
+                           <div class="col-lg-6 col-md-6 m-b20">
                               <div class="form-group">
                                  <div class="fs-0">Adresse</div>
                                  {{ form_widget(form.address,{attr: {class: 'form-control bg-200'}}) }} 
@@ -195,7 +195,7 @@
                            </div>
                          
                            <div class="job-bx-title clearfix">
-                              <h4 class=" mb-0">Profils sociaux</h4>
+                              <h5>Profils sociaux</h5>
                            </div>
                            <div class="col-lg-6 col-md-6">
                               <div class="form-group">
@@ -224,13 +224,13 @@
                            </div>
                         </div>
                         <div class="text-center m-b20">
-                           <button type="submit"  class="btn btn-primary rounded-pill " style="width:15rem" >Mettre à jour</button> 
+                           <button type="submit"  class="btn btn-success rounded-pill " style="width:15rem" >Mettre à jour</button> 
                            {{form_end(form)}}
                         </div>
                         <hr>
                         <div class="row m-b30">
                            <div class="m-b20" >
-                              <h4 class="mb-0" id="avatar">Photo de profil & couverture</h4>
+                              <h5 id="avatar">Photo de profil & couverture</h5>
                            </div>
                            <div class="col-lg-6 col-md-6">
                               <div class="text-center ">
@@ -241,7 +241,7 @@
                                  </div>
                               </div>
                               <div class="text-center m-b20">
-                                 <button  class="btn btn-primary rounded-pill " type="submit"id="upload_bt0">Mettre à jour</button>  {% if app.user.image != 'default.jpg' %}
+                                 <button  class="btn btn-success rounded-pill " type="submit"id="upload_bt0">Mettre à jour</button>  {% if app.user.image != 'default.jpg' %}
                                  <a href="{{path('candidate_image_delete',{'id':app.user.id})}}" onclick = "return confirm('Êtes-vous sûr de vouloir supprimer votre photo de profil?')" class="btn btn-outline-danger rounded-pill" >Suprimer</a> {% endif %}     
                               </div>
                            </div>
@@ -253,7 +253,7 @@
                                     {{ form_start(form_cover) }} 
                                     {{ form_widget(form_cover.coverfield,{attr: {class: 'form-control'},id:'cover',required:'true'}) }} 
                                  </div>
-                                 <button  class="btn btn-primary rounded-pill" type="submit" name="Upload File" value="Upload File" id="upload_bt2">Mettre à jour</button>
+                                 <button  class="btn btn-success rounded-pill" type="submit" name="Upload File" value="Upload File" id="upload_bt2">Mettre à jour</button>
                                  {% if candidate.cover != '' %}
                                  <a href="{{path('candidate_cover_delete',{'id':app.user.id})}}" onclick = "return confirm('Êtes-vous sûr de vouloir supprimer votre photo de couverture?')" class="btn btn-outline-danger rounded-pill" >Suprimer</a>  {% endif %} 
                               </div>

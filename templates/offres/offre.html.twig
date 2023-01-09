@@ -2,62 +2,25 @@
 {% block body %}
 
 <div class="header-w bg-white" > </div>
-<div class="dez-bnr-inr overlay-black-middle" >
-   {% for job in job %}
-   <img class="dez-bnr-inr overlay-black-middle" style="background-image " alt="image"   src="{{asset('images/jobs/' ~job.cover)}}">
-   <div class="pxp-hero-opacity "    >
-   </div>
-   <div class="pxp-single-candidate-hero-caption" >
-      <div class="container">
-         <img class="pxp-single-job-cover-logo" style="background-image " alt=""   src="{{asset('images/jobs/' ~job.image)}}"  >
-      </div>
-   </div>
-</div>
+{% for job in job %}
+ <div class="dez-bnr-inr overlay-black-dark m-b20" style="background-image:url(images/jobs/); height:150px ">
+            <div class="container">
+                <div class="dez-bnr-inr-entry">
+                  <h3 class="font-weight-bold  display-5 text-center T-breadcrumb mb-3" >  {{job.title}}</h3>
+               <!-- Breadcrumb row -->
+               <div class="breadcrumb-row">
+               
+               </div>
+               <!-- Breadcrumb row END -->
+                </div>
+            </div>
+        </div>
 <div class="container">
    <div class="pxp-single-job-content mt-4 mt-lg-5">
       <div class="row">
          <div class=" col-lg-7 col-xl-8 col-xxl-9">
-            <div class="row justify-content-between align-items-center">
-               <div class=" col-xl-8 col-xxl-6">
-                  <ul></ul>
-                  <div class="job-title mb-0 text-dark display-5 m-r20 ">   
-                   {{job.title}}
-                  </div>
-               </div>
-               <div class="col-auto">
-                  <div class="pxp-single-job-options mt-4 col-xl-0">
-                     <div class="sticky-sidebar">
-                        <div class="apply-job-wrapper">
-                           {% if job.today > job.expire   %}
-                           <a type="button" class="btn btn-primary rounded-pill btn-lg disabled btn-hidden">Offre expiré</a>
-                           {% else %}
-                           {% if app.user %}
-                           {% for role in app.user.roles %}
-                           <a type="button" class="btn btn-primary rounded-pill btn-lg 
-                           {% if role =='ROLE_Candidate' %}            
-                           " href="{{path('apply',{'id':job.id,'idc':app.user.id})}}"
-                           {% else %}
-                           disabled btn-hidden"
-                           {% endif %}  
-                           {% endfor %}  
-                           > Postuler</a> 
-                           {% else %}
-                           <a href="javascript:void(0);" title="READ MORE" rel="bookmark" data-bs-toggle="modal" data-bs-target="#jobapply" class="btn btn-primary rounded-pill btn-lg"> Postuler </a>
-                           {% endif %}
-                           {% endif %}
-                        </div>
-                     </div>
-                  </div>
-               </div>
-            </div>
-            <p id="data"></p>
-            <div class="row mt-4 justify-content-between align-items-center">
-               <div class="col-6">
-               </div>
-               <div class="col-auto">
-                  <div class="pxp-single-job-date pxp-text-light">publié :{{ job.beginAt|date("d/m/Y") }}</div>
-               </div>
-            </div>
+          
+          
 
 
 
@@ -77,15 +40,13 @@
              
              
             {% endfor %}
-            <div class="card mb-3 m-t10">
+            <div class="card mb-3">
                <div class="card-body ">
-                  <h3 class="mb-0 text-dark">Presentation</h3>
-                  <p class="text-dark"> {{ job.presentation}}</p>
-                  <hr>
-                  <h3 class="mb-0 text-dark">Description du poste</h3>
+                
+                  <h4 class="text-dark">Description du poste</h4>
                   <p class="text-dark"> {{ job.resp }}</p>
                   <hr>
-                  <h3 class="mb-0 text-dark">Profil recherché</h3>
+                  <h4 class="text-dark">Profil recherché</h4>
                   <p class="text-dark">{{ job.req }}</p>
                </div>
             </div>
@@ -93,27 +54,48 @@
          <div class="col-lg-5 col-xl-4 col-xxl-3 text-center">
             <div class="">
                <div>
+                
                   <div class="card mb-3">
+                      <div class="card-body border-bottom">
+                        {% if job.today > job.expire   %}
+                           <a type="button" class="btn btn-success  btn-lg disabled btn-hidden">Offre expiré</a>
+                           {% else %}
+                           {% if app.user %}
+                           {% for role in app.user.roles %}
+                           <a type="button" class="btn btn-success  btn-lg 
+                           {% if role =='ROLE_Candidate' %}            
+                           " href="{{path('apply',{'id':job.id,'idc':app.user.id})}}"
+                           {% else %}
+                           disabled btn-hidden"
+                           {% endif %}  
+                           {% endfor %}  
+                           > Postuler maintenant</a> 
+                           {% else %}
+                           <a title="READ MORE" rel="bookmark" data-bs-toggle="modal" data-bs-target="#jobapply" class="btn btn-success  btn-lg"> Postuler maintenant </a>
+                           {% endif %}
+                           {% endif %}</div> 
                      <div class="sticky-sidebar">
+                    
                         <div class="card-body text-left-not-lg">
+                     
                            </br>
-                           <h6 class="explore-des-2 text-dark fw-bold">Lieu de travail</h6>
-                           <h5 class="explore-des-3 text-primary"><i class=" fas fa-map-marker-alt"></i> {{  job.country|capitalize }},{{  job.city|capitalize }}</h5>
+                           <h5>Lieu de travail</h5>
+                           <h5 class="text-primary"><i class=" fas fa-map-marker-alt"></i> {{  job.country|capitalize }},{{  job.city|capitalize }}</h5>
                            <div class="job-bx-title clearfix">
                            </div>
-                           <h6 class="explore-des-2 text-dark fw-bold">Experience</h6>
-                           <h5 class="explore-des-3 text-primary">{{ job.exp|capitalize}}</h5>
+                           <h5>Experience</h5>
+                           <h5 class="text-primary">{{ job.exp|capitalize}}</h5>
                            <div class="job-bx-title clearfix">
                            </div>
-                           <h6 class="explore-des-2 text-dark fw-bold">Type d'emploi</h6>
-                           <h5 class="explore-des-3 text-primary">{{ job.type|capitalize}}</h5>
+                           <h5>Type d'emploi</h6>
+                           <h5 class="text-primary">{{ job.type|capitalize}}</h5>
                            <div class="job-bx-title clearfix">
                            </div>
-                           <h6 class="explore-des-2 text-dark fw-bold">Compétences</h6>
+                           <h5>Compétences</h5>
                            <div class="pxp-single-job-side-info-data"></div>
                            <div class="job-time   m-t15 m-b10">
                               {% for skill in job.skills %}    
-                              <span class="rounded-pill bg-primary tecos-h text-white">
+                              <span class=" bg-500 rounded-pill tecos-h text-white">
                               {{ skill.title|capitalize}}
                               </span>
                               {% endfor %}
@@ -121,8 +103,8 @@
                            <div class="job-bx-title clearfix">
                            </div>
                            <div class="">
-                              <h6 class="explore-des-2 text-dark fw-bold">Date limite </h6>
-                              <h5 class="explore-des-3 text-primary">{{ job.expireAt|date("d/m/Y")}}</h5>
+                              <h5>Date limite </h5>
+                              <h5 class="text-primary">{{ job.expireAt|date("d/m/Y")}}</h5>
                            </div>
                            <ul></ul>
                         </div>
@@ -137,16 +119,16 @@
 <div class="modal" id="jobapply" tabindex="-1" role="dialog" aria-hidden="true">
    <div class="modal-dialog modal-dialog-centered" role="document">
       <div class="modal-content position-relative border border-dark">
-         <div class="offcanvas-header settings-panel-header bg-shape  rounded-top bg-primary"  >
-            <div class="z-index-1 py-1 light">
+         <div class="offcanvas-header settings-panel-header  rounded-top"  >
+            <div class="">
                <div class="">
-                  <h5 class="text-white mb-0 me-2">Postuler maintenant</h5>
+                  <h4 class=" m-t10 me-2 text-dark"> Postuler maintenant</h4>
                </div>
              
             </div>
             <button class=" z-index-1  btn-close btn btn-sm btn-circle" type="button" data-bs-dismiss="modal" aria-label="Close"></button>
          </div>
-         <div class="modal-body card">
+         <div class="modal-body card border-top border-dark">
             <div class="row gap-20">
                <div class="">
 
@@ -162,23 +144,23 @@
                         <div id="error3"></div>
                         <div class=" row gap-20 m-b20">
                            <div class="  ">
-                              {{ form_widget(form.lname,{attr: {class: 'form-control bg-200 m-t20 m-b20',placeholder:'Nom',maxlength:'30'}}) }}
+                              {{ form_widget(form.lname,{attr: {class: 'form-control m-t20 m-b20',placeholder:'Nom',maxlength:'30'}}) }}
                            </div>
                            <div class=" ">
-                              {{ form_widget(form.fname,{attr: {class: 'form-control m-b20 bg-200',placeholder:'Prénom',maxlength:'30'}}) }}
+                              {{ form_widget(form.fname,{attr: {class: 'form-control m-b20',placeholder:'Prénom',maxlength:'30'}}) }}
                            </div>
                            <div class=" ">
-                              {{ form_widget(form.email, {'attr': {class:'form-control bg-200 m-b20',placeholder:'Adresse électronique','pattern': '[A-Z-a-z0-9.]+@[A-2-a-z0-9.-]+\.[A-Z-a-z]{2,30}$'}}) }}
+                              {{ form_widget(form.email, {'attr': {class:'form-control m-b20',placeholder:'Adresse électronique','pattern': '[A-Z-a-z0-9.]+@[A-2-a-z0-9.-]+\.[A-Z-a-z]{2,30}$'}}) }}
                            </div>
                            <div class=" m-b10">
-                              {{ form_widget(form.newpassword,{attr: {class: 'form-control bg-200 ',pattern:'.{8,20}',placeholder:'Mot de passe : Min 8 et Max 20 caractères',required:'true',maxlength:'20'}}) }} 
+                              {{ form_widget(form.newpassword,{attr: {class: 'form-control ',pattern:'.{8,20}',placeholder:'Mot de passe : Min 8 et Max 20 caractères',required:'true',maxlength:'20'}}) }} 
                            </div>
                            <div class="fs-0 text-dark">CV<span class="text-600">(Taille Max: 2 MB /PDF,DOCX,DOC)</span> </div>
                            <div class=" ">
                               {{ form_widget(form.cvfield,{attr: {class: 'form-control',id:'uploadfile'},required:true,id:'uploadfile'}) }} 
                            </div>
                         </div>
-                        <div class="d-grid gap-2"><button class="btn btn-primary" type="submit" name="Upload File" value="Upload File" id="upload_btl">Postuler</button></div>
+                        <div class="d-grid gap-2"><button class="btn btn-success" type="submit" name="Upload File" value="Upload File" id="upload_btl">Postuler</button></div>
                         {{ form_end(form) }}
                        <hr>
                         <div class="fs-0 m-t5 text-dark fw-bold text-center">Si vous avez déjà un compte,<span><a class="text-primary opacity-100"  href="{{path('app_login')}} " target="x_blank"  > identifiez-vous ici </a></span></div>

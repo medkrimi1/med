@@ -5,12 +5,12 @@
 
 
                         <div class="job-bx job-profile bg-white">
-                            <div class="job-bx-title clearfix">
-                                <h5 class="font-weight-700 float-start text-primary">Modifier offre</h5>
+                           <div class="row">
+                                <h5 class="font-weight-700 float-start text-success">Modifier offre</h5>
 
 
                             </div>
-
+                            <div class="border-1 m-b20"></div>
                           {{ form_start(form) }}
 
                                 <div class="row gap-20">
@@ -75,14 +75,7 @@
 
                                         </div>
 
-                                    <div class="col-sm-12 col-md-12 ">
-
-                                        <div class="form-group bootstrap3-wysihtml5-wrapper">
-                                            <div class="fs-0" >Presentation</div>
-                                            {{ form_widget(form.presentation,{attr: {class: 'form-control'}}) }} 
-                                        </div>
-
-                                    </div>
+                                 
 
                                     <div class="clear"></div>
 
@@ -126,70 +119,7 @@
                                     <div
 
 
-
-
-                                    <div
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-                                    <div class=" GridLex-col-9_sm-8_xs-12">
-
-  <div class="col-sm-12 col-md-12">
-
-                                            <div class="form-group">
-                                                <div class="fs-0"  >image:</div>
-                                               {{ form_widget(form.imagefield,{attr: {class: 'form-control'},id:'uploadfile'}) }} 
-                                            </div>
-
-                                        </div>
-
-                                        <div class="col-sm-12 col-md-12">
-
-                                            <div class="form-group">
-                                                <div class="fs-0"  >couverture</div>
-                                               {{ form_widget(form.coverfield,{attr: {class: 'form-control'},id:'uploadfile'}) }} 
-                                            </div>
-
-                                        </div>
+ 
 
 
 
@@ -205,9 +135,8 @@
 
                                     
 
-                                        <ul></ul>
-                                        <div class="text-center">
-                                            <button   class="btn btn-primary rounded-pill " name="Upload File" value="Upload File" id="upload_btl">Modifier l'offre d'emploi</button>
+                                        <div class="m-t30">
+                                            <button   class="btn btn-success  " name="Upload File" value="Upload File" id="upload_btl">Modifier l'offre d'emploi</button>
                                             {{ form_end(form) }}
                                         </div>
 

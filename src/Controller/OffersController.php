@@ -45,8 +45,8 @@ class OffersController extends AbstractController
            $datexpire= $job->getExpiredAt();
            $ccc= $job->getCreatedAt();
            $title=$job->getTitle();
-            $str = [' ','é','è','\'','ç'];
-            $rplc =['-','e','e','','c'];
+         $str = [' ','é','è','\'','ç','/','à'];
+        $rplc =['-','e','e','','c','-','a'];
              $candidates=[];
             foreach($job->getApplications() as $candidate)
             {
@@ -63,15 +63,12 @@ class OffersController extends AbstractController
 
                    'id' => $job->getId(),
                 'title' => $job->getTitle(),
-                'image' => $job->getImage(),
-                'cover' => $job->getCover(),
               'country' => strtolower($job->getCountry()->getName()),
                 'city' => $job->getCity(),
                 'beginAt'=>$job->getCreatedAt(),
                 'expireAt' => $job->getExpiredAt(),
                 'type' => $job->getTypeid()->getTitle(),
                 'exp' => $job->getExp()->getTitle() ,
-                'presentation' => $job->getPresentation(),
                 'resp' => $job->getResp() ,
                 'req' => $job->getReq (),
                 'fname' => $job->getUser()->getFname(),
@@ -137,15 +134,12 @@ class OffersController extends AbstractController
 
                    'id' => $job->getId(),
                 'title' => $job->getTitle(),
-                'image' => $job->getImage(),
-                'cover' => $job->getCover(),
               'country' => strtolower($job->getCountry()->getName()),
                 'city' => $job->getCity(),
                 'beginAt'=>$job->getCreatedAt(),
                 'expireAt' => $job->getExpiredAt(),
                 'type' => $job->getTypeid()->getTitle(),
                 'exp' => $job->getExp()->getTitle() ,
-                'presentation' => $job->getPresentation(),
                 'resp' => $job->getResp() ,
                 'req' => $job->getReq (),
                 'fname' => $job->getUser()->getFname(),
@@ -192,35 +186,9 @@ class OffersController extends AbstractController
           if($form->isSubmitted() && $form->isValid()) {
             $em = $this->getDoctrine()->getManager();
 
-           
-    if ($form->isSubmitted() && $form->isValid()) {
-            /** @var UploadedFile $uploadedFile */
-            $uploadedImage = $form['imagefield']->getData();
-            $uploadedCover = $form['coverfield']->getData();
-
-           
-            $destination = $this->getParameter('kernel.project_dir').'/public/images/jobs';
-            if ($uploadedImage) {
-            $ImageName = 'image'.uniqid().'.'.$uploadedImage->guessExtension();
-           
-                $newImageName = $ImageName;
-                $uploadedImage->move($destination,$newImageName);
-                $jobs->setImage($ImageName);
-                
-            }
-            else { $jobs->setImage('DefaultImage.png');}
-             if ($uploadedCover) {
-             $CoverName = 'cover'.uniqid().'.'.$uploadedCover->guessExtension();
-              
-                $newCoverName = $CoverName;
-                $uploadedCover->move($destination,$newCoverName);
-                $jobs->setCover($CoverName);
-           
-            }
-
-            else { $jobs->setCover('DefaultCover.png');}
+  
             $jobs->setStatus('Actif');
-        }
+      
           $jobs->setSlug(strtolower(str_replace($str,$rplc,$title)));
           $jobs->setUser($user);
          $em->persist($jobs);
@@ -252,31 +220,6 @@ class OffersController extends AbstractController
         if($form->isSubmitted() && $form->isValid()) {
             $em = $this->getDoctrine()->getManager();
 
-           
-    if ($form->isSubmitted() && $form->isValid()) {
-            /** @var UploadedFile $uploadedFile */
-            $uploadedImage = $form['imagefield']->getData();
-            $uploadedCover = $form['coverfield']->getData();
-
-           
-            $destination = $this->getParameter('kernel.project_dir').'/public/images/jobs';
-            if ($uploadedImage) {
-            $ImageName = uniqid().'.'.$uploadedImage->guessExtension();
-         
-                $newImageName = $ImageName;
-                $uploadedImage->move($destination,$newImageName);
-                $job->setImage($ImageName);
-                    }
-             if ($uploadedCover) {
-             $CoverName = uniqid().'.'.$uploadedCover->guessExtension();
-              
-                $newCoverName = $CoverName;
-                $uploadedCover->move($destination,$newCoverName);
-                $job->setCover($CoverName);
-                            
-            }
-
-        }
         $job->setSlug(strtolower(str_replace($str,$rplc,$title)));
          $em->persist($job);
             $em->flush();
@@ -301,37 +244,13 @@ class OffersController extends AbstractController
         $jobs = new Jobs();
         $form = $this->createForm(JobsAddType::class, $job);
         $form->handleRequest($request);
-        $str = [' ','é','è','\'','ç'];
-        $rplc =['-','e','e','','c'];
+        $str = [' ','é','è','\'','ç','/','à'];
+        $rplc =['-','e','e','','c','-','a'];
         $title = $form['title']->getData();
         if($form->isSubmitted() && $form->isValid()) {
             $em = $this->getDoctrine()->getManager();
 
            
-    if ($form->isSubmitted() && $form->isValid()) {
-            /** @var UploadedFile $uploadedFile */
-            $uploadedImage = $form['imagefield']->getData();
-            $uploadedCover = $form['coverfield']->getData();
-
-           
-            $destination = $this->getParameter('kernel.project_dir').'/public/images/jobs';
-            if ($uploadedImage) {
-            $ImageName = uniqid().'.'.$uploadedImage->guessExtension();
-         
-                $newImageName = $ImageName;
-                $uploadedImage->move($destination,$newImageName);
-                $job->setImage($ImageName);
-                    }
-             if ($uploadedCover) {
-             $CoverName = uniqid().'.'.$uploadedCover->guessExtension();
-              
-                $newCoverName = $CoverName;
-                $uploadedCover->move($destination,$newCoverName);
-                $job->setCover($CoverName);
-                            
-            }
-
-        }
         $job->setSlug(strtolower(str_replace($str,$rplc,$title)));
          $em->persist($job);
             $em->flush();

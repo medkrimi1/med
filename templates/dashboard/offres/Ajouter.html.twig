@@ -1,209 +1,73 @@
 {% extends 'layoutAdmin.html.twig' %}
-
 {% block body %}
-
-
-
-                        <div class="job-bx job-profile bg-white">
-                            <div class="row">
-                                <h5 class="font-weight-700 float-start text-primary">Ajouter offre</h5>
-
-
-                            </div>
-                            <div class="border-1 m-b20"></div>
-
-                          {{ form_start(form,{attr:{class:'needs-validation',novalidate:''} }) }}
-
-                                <div class="row gap-20 ">
-
-
-                                    <div class="col-lg-12 col-md-6">
-
-                                        <div class="form-group">
-                                            <div class="fs-0" >Titre de l'emploi</div>
-                                          {{ form_widget(form.title,{attr: {class: ' form-control',maxlength:'100'}}) }}  
-                                        </div>
-
-                                    </div>
-
-                                    <div class="clear"></div>
-
-                                    <div class="col-lg-6 col-md-6">
-
-                                        <div class="form-group">
-                                            <div class="fs-0" >Ville</div>
-                                         {{ form_widget(form.city,{attr: {class: ' form-control' ,maxlength:'20'}}) }} 
-                                        </div>
-
-                                    </div>
-
-                                    <div class="col-lg-6 col-md-6">
-
-                                        <div class="form-group">
-                                            <div class="fs-0" >Pays</div>
-                                              {{ form_widget(form.country,{attr: {class: 'form-control text-primary'}}) }} 
-                                        </div>
-
-                                    </div>
-
-                                    <div class="col-lg-6 col-md-6">
-
-                                        <div class="form-group mb-20" data-live-search="true">
-                                            <div class="fs-0" >Experience:</div>
-                                            {{ form_widget(form.exp,{attr: {class: 'form-control text-primary'}}) }} 
-                                        </div>
-                                         </div>
-                                        <div class="col-lg-6 col-md-6">
-
-                                         <div class="form-group mb-20">
-                                            <div class="fs-0" >Type:</div>
-                                          
-                                            {{ form_widget(form.typeid,{attr: {class: 'form-control text-primary'}}) }} 
-                                        </div>
-
-
-                                    </div>
-
-                                   <div class="clear"></div>
-                                  
-                                        <div class="col-lg-12 col-sm-8 col-md-8">
-
-                                            <div class="fs-0" >Compétences</div>
-                                           <div class="card m-b20">
-                             
-                                                {{ form_widget(form.Skills,{attr: {class: 'multiselect-dropdown text-primary'}}) }} 
-
-                                            </div>
-
-                                        </div>
-
-                                    <div class="col-sm-12 col-md-12 ">
-
-                                        <div class="form-group bootstrap3-wysihtml5-wrapper">
-                                            <div class="fs-0" >Presentation</div>
-                                            {{ form_widget(form.presentation,{attr: {class: 'form-control',maxlength:'1999' }}) }} 
-                                        </div>
-
-                                    </div>
-
-                                    <div class="clear"></div>
-
-                                    <div class="col-sm-12 col-md-12">
-
-                                        <div class="form-group bootstrap3-wysihtml5-wrapper">
-                                            <div class="fs-0" >Description du poste</div>
-                                           {{ form_widget(form.resp,{attr: {class: ' form-control',maxlength:'1999'}}) }} 
-                                        </div>
-
-                                    </div>
-
-                                    <div class="clear"></div>
-
-                                    <div class="col-sm-12 col-md-12">
-
-                                        <div class="form-group bootstrap3-wysihtml5-wrapper">
-                                            <div class="fs-0" >Profil recherché</div>
-                                            {{ form_widget(form.req,{attr: {class: 'form-control',maxlength:'1999'}}) }} 
-                                        </div>
-
-                                    </div>
-                               
-                                    <div class="col-lg-6 col-md-6">
-
-
-                                        <div class="form-group">
-                                            <div class="fs-0"  >Date limite</div>
-                                             {{ form_widget(form.ExpiredAt,{attr: {class: 'js-datepicker text-primary fw-bold'}}) }} 
-                                        </div>
-
-
-                                    </div>
-                                   
-                                   
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-                                 
-                                            <div class="form-group">
-                                                <div class="fs-0 text-dark fw-bold"  >Image:<span class=" text-400" >   (Taille Max:2 MB /JPG,JPEG,PNG)</span></div>
-                                               {{ form_widget(form.imagefield,{attr: {class: 'form-control'},required:'true',id:'uploadfile'}) }} 
-                                            </div>
-
-                                        </div>
-
-                                        <div class="col-sm-12 col-md-12">
-
-                                            <div class="form-group">
-                                                <div class="fs-0 text-dark fw-bold"  >Couverture: <span class=" text-400" >   (Taille Max:2 MB /JPG,JPEG,PNG)</span></div>
-                                               {{ form_widget(form.coverfield,{attr: {class: 'form-control'},id:'uploadfile',required:'true'}) }} 
-                                            </div>
-
-                                        </div>
-
-
-
-
-
-
-
-
-
-
-                                
-
-                                    
-
-                                        <ul></ul>
-                                        <div class="text-center">
-                                            <button   class="btn btn-primary rounded-pill " type="submit" >Ajouter l'offre d'emploi</button>
-                                            {{ form_end(form) }}
-                                        </div>
-
-                     
+<div class="job-bx job-profile bg-white">
+<div class="row">
+   <h5 class="font-weight-700 float-start text-success">Ajouter offre</h5>
+</div>
+<div class="border-1 m-b20"></div>
+{{ form_start(form,{attr:{class:'needs-validation',novalidate:''} }) }}
+<div class="row gap-20 ">
+   <div class="col-lg-12 col-md-6">
+      <div class="form-group">
+         <div class="fs-0" >Titre de l'emploi</div>
+         {{ form_widget(form.title,{attr: {class: ' form-control',maxlength:'100'}}) }}  
+      </div>
+   </div>
+   <div class="clear"></div>
+   <div class="col-lg-6 col-md-6">
+      <div class="form-group">
+         <div class="fs-0" >Ville</div>
+         {{ form_widget(form.city,{attr: {class: ' form-control' ,maxlength:'20'}}) }} 
+      </div>
+   </div>
+   <div class="col-lg-6 col-md-6">
+      <div class="form-group">
+         <div class="fs-0" >Pays</div>
+         {{ form_widget(form.country,{attr: {class: 'form-control text-primary'}}) }} 
+      </div>
+   </div>
+   <div class="col-lg-6 col-md-6">
+      <div class="form-group mb-20" data-live-search="true">
+         <div class="fs-0" >Experience:</div>
+         {{ form_widget(form.exp,{attr: {class: 'form-control text-primary'}}) }} 
+      </div>
+   </div>
+   <div class="col-lg-6 col-md-6">
+      <div class="form-group mb-20">
+         <div class="fs-0" >Type:</div>
+         {{ form_widget(form.typeid,{attr: {class: 'form-control text-primary'}}) }} 
+      </div>
+   </div>
+   <div class="clear"></div>
+   <div class="col-lg-12 col-sm-8 col-md-8">
+      <div class="fs-0" >Compétences</div>
+      <div class="card m-b20">
+         {{ form_widget(form.Skills,{attr: {class: 'multiselect-dropdown text-primary'}}) }} 
+      </div>
+   </div>
+   <div class="clear"></div>
+   <div class="col-sm-12 col-md-12">
+      <div class="form-group bootstrap3-wysihtml5-wrapper">
+         <div class="fs-0" >Description du poste</div>
+         {{ form_widget(form.resp,{attr: {class: ' form-control',maxlength:'1999'}}) }} 
+      </div>
+   </div>
+   <div class="clear"></div>
+   <div class="col-sm-12 col-md-12">
+      <div class="form-group bootstrap3-wysihtml5-wrapper">
+         <div class="fs-0" >Profil recherché</div>
+         {{ form_widget(form.req,{attr: {class: 'form-control',maxlength:'1999'}}) }} 
+      </div>
+   </div>
+   <div class="col-lg-6 col-md-6">
+      <div class="form-group">
+         <div class="fs-0"  >Date limite</div>
+         {{ form_widget(form.ExpiredAt,{attr: {class: 'js-datepicker text-primary fw-bold'}}) }} 
+      </div>
+   </div>
+</div>
+<div class="m-t20">
+   <button   class="btn btn-success " type="submit" >Ajouter l'offre d'emploi</button>
+   {{ form_end(form) }}
+</div>
 {% endblock %}

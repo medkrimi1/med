@@ -8,7 +8,7 @@
        <div class="dez-bnr-inr overlay-black-dark m-b20" style="background-image:url(images/home-c.png); height:150px ">
             <div class="container">
                 <div class="dez-bnr-inr-entry">
-                  <h3 class="font-weight-bold  display-4 text-center T-breadcrumb mb-3" >Candidature Spontanée</h3>
+                  <h3 class="font-weight-bold  display-5 text-center T-breadcrumb mb-3" >Candidature Spontanée</h3>
                <!-- Breadcrumb row -->
                <div class="breadcrumb-row">
                
@@ -23,7 +23,7 @@
       <div class="container">
          <div class="row "  >
             <div class="col-lg-9">
-               <div class="card mb-3 bg-white border-2 border-500">
+               <div class="card mb-3 bg-white border-1 border-dark">
                  <div  class="card-body"  >
                    
                       
@@ -41,15 +41,15 @@
                         <div class=" row gap-20 m-b30 ">
                            <div class="col-lg-6 m-b10 ">
                               <div class="fs-0">Nom</div>
-                              {{ form_widget(form2.lname,{attr: {class: 'form-control bg-200',placeholder:'Entrez votre nom' ,maxlength:'30'}}) }}
+                              {{ form_widget(form2.lname,{attr: {class: 'form-control',placeholder:'Entrez votre nom' ,maxlength:'30'}}) }}
                            </div>
                            <div class="col-lg-6 m-b10">
                               <div class="fs-0">Prénom</div>
-                              {{ form_widget(form2.fname,{attr: {class: 'form-control bg-200' ,placeholder:'Entrez votre prénom' ,maxlength:'30'}} ) }}
+                              {{ form_widget(form2.fname,{attr: {class: 'form-control' ,placeholder:'Entrez votre prénom' ,maxlength:'30'}} ) }}
                            </div>
                            <div class="col-lg-6 m-b10">
                               <div class="fs-0">Adresse E-mail</div>
-                              {{ form_widget(form2.email, {'attr': {class: 'form-control bg-200','pattern': '[A-Z-a-z0-9.]+@[A-Z-a-z0-9.-]+\.[A-Z-a-z]{2,30}$',placeholder:'Entrez votre adresse électronique' ,maxlength:'40' }}) }}
+                              {{ form_widget(form2.email, {'attr': {class: 'form-control','pattern': '[A-Z-a-z0-9.]+@[A-Z-a-z0-9.-]+\.[A-Z-a-z]{2,30}$',placeholder:'Entrez votre adresse électronique' ,maxlength:'40' }}) }}
                            </div>
                             <div class="col-lg-6 col-md-6 m-b10">
                           
@@ -58,30 +58,30 @@
                            
                                  {{ form_widget(form2.phonecode,{attr: {class: 'd-none'},id:'address-country' }) }} 
                               {{ form_widget(form2.pcode,{attr: {class: ' d-none'},id:'address-country2' }) }} 
-                                       {{ form_widget(form2.phone,{attr: {class: 'form-control bg-200',pattern:'[0-9_ ]{7,12}'},id:'phone',type:'tel',maxlength:'12'  }) }} 
+                                       {{ form_widget(form2.phone,{attr: {class: 'form-control ',pattern:'[0-9_ ]{7,12}'},id:'phone',type:'tel',maxlength:'12'  }) }} 
                               
                                  </div>
                    
                            </div>
                            <div class="col-lg-12 m-b10" >
                               <div class="fs-0 text-dark">CV<span class="text-600">(Taille Max: 2 MB /PDF,DOCX,DOC)</span> </div>
-                              {{ form_widget(form2.cvfield,{attr: {class: 'form-control bg-200 '},id:'spontanee'}) }} 
+                              {{ form_widget(form2.cvfield,{attr: {class: 'form-control  '},id:'spontanee'}) }} 
                            </div>
 
                             <div class="col-lg-12 ">
                               <div class="fs-0">Lettre de motivation</div>
-                              {{ form_widget(form2.about,{attr: {class: 'form-control bg-200 text-justify',style:'height:7rem',maxlength:'1999' } }) }} 
+                              {{ form_widget(form2.about,{attr: {class: 'form-control  text-justify',style:'height:7rem',maxlength:'1999' } }) }} 
                            </div>
                         </div>
 
                       
-                        <div class=""><button class="btn btn-primary" name="spontanee_btn" id="spontanee_btn" type="submit">Déposer candidature </button></div>
+                        <div class=""><button class="btn btn-success" name="spontanee_btn" id="spontanee_btn" type="submit">Déposer candidature </button></div>
                         {{ form_end(form2) }}
                      </div></div>
             </div>
             <div class="col-lg-3">
                <div class="">
-                  <div class="candidates-are-sys m-b30 bg-white border-2 border-500">
+                  <div class="candidates-are-sys m-b30 bg-white  border-1 border-dark">
                      <div class="candidates-bx ">
                         <div class="testimonial-pic radius "><img src="{{ asset('images/fondateur.jpg') }}" alt="" width="100" height="100"></div>
                         <div class="testimonial-text  ">
@@ -91,7 +91,7 @@
                      </div>
                      <hr>
                      <div class="text-center">
-                     <a class="btn btn-primary rounded-pill" href="{{path('offres')}} " >Offres d'emploi</a>
+                     <a class="btn btn-success " href="{{path('offres')}} "style="width:100%" >Offres d'emploi</a>
                   </div>
                </div>
               

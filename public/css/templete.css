@@ -768,9 +768,10 @@
 .post-job-bx .post-bx{
 	padding:25px;
 	background-color:#fff;
-	border-left: 5px solid;
-	border-color: #e1e7ff;
-	border-radius:4px;
+	
+	border-color: #444754;
+	
+	border-radius:15px;
 	box-shadow: 0 0 10px 0 rgba(0,24,128,0.1);
 	display: block;
 	position:relative;
@@ -1199,7 +1200,7 @@
 }
 .candidate-info ul li a:hover,
 .candidate-info ul li a.active{
-    background: #2c7be5;
+    background: #8fbb22;
 	border-left-color: #000000;
 }
 .candidate-info ul li a span{

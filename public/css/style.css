@@ -2078,7 +2078,7 @@ label {
     border-top-color: #e7ecf1;
 }
 .form-group {
-    margin-bottom: 25px;
+    margin-bottom: 15px;
 }
 .form-control {
     border-color: #000000;
@@ -9336,7 +9336,7 @@ ol.commentlist li .star-rating {
 	color:#000;
 }
 .contact-style-1  .form-group {
-    margin-bottom: 25px;
+    margin-bottom: 10px;
 }
 /* ------------------------------------------------
 31. SHOPPING
@@ -16953,14 +16953,7 @@ body {
 }
 
 
-.fs-0 {
-  
-    font-size: 1.2rem;
-    line-height: 1.8;
-    letter-spacing: .5px;
-	 color: #00001;
-    font-family: Muli,sans-serif;
-}
+
 
 .mb-0 {
       font-weight: 800;

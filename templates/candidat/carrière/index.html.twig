@@ -96,7 +96,7 @@
         {% endfor %}
 
        
-                       <h3 class=" mb-0 text-dark">Compétences<span> <a href="{{path('Edit_Skills_Candidate',{'id':app.user.id })}}" class="btn btn-primary rounded-pill add-btn btn-sm"><i class="fas fa-pen fa-sm "></i></a></span></h3> 
+                       <h3 class=" mb-0 text-dark">Compétences<span> <a href="{{path('Edit_Skills_Candidate',{'id':app.user.id })}}" class="btn btn-success rounded-pill add-btn btn-sm"><i class="fas fa-pen fa-sm "></i></a></span></h3> 
                           <div class="float-end">
                        
                      </div>
@@ -104,7 +104,7 @@
                   
                               <div class="job-time m-t15 m-b10 ">
                        {% for skill in candidate.skill %}    
-                              <span class="rounded-pill bg-primary tecos-h text-white">
+                              <span class="bg-500 rounded-pill tecos-h text-white">
                               {{ skill.title|capitalize}}
                               </span>
                               {% endfor %}

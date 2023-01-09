@@ -108,7 +108,7 @@
                               {% if application.status!='annulé' %}
                               <div class="post-job-bx browse-job ">
                                  <li>
-                                    <div class="post-bx bg-200 border-3 bg-white  m-b30">
+                                    <div class="post-bx bg-200 border-1 bg-white  m-b30">
                                        <div class="job-post-info m-a0">
                                           <h5 class="mt-1 fw-bold"><a href="{{path('offre_get',{'slug':application.job.slug,'id':application.job.id})}}">{{application.job.title|capitalize}}</a></h5>
                                           <ul>
@@ -137,7 +137,7 @@
                               {% else %}
                         <div class="post-job-bx browse-job ">
                                  <li>
-                                    <div class="post-bx bg-200 border-3 bg-white  m-b30">
+                                    <div class="post-bx bg-200 border-1 bg-white  m-b30">
                                        <div class="job-post-info m-a0">
                                           <h5 class="mt-1 fw-bold"><a href="{{path('offre_get',{'slug':application.job.slug,'id':application.job.id})}}">{{application.job.title|capitalize}}</a></h5>
                                           <ul>

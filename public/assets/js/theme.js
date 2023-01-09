@@ -4111,10 +4111,13 @@ var themeControl = function themeControl() {
             navbarVertical.classList.remove('navbar-card');
             navbarVertical.classList.remove('navbar-inverted');
             navbarVertical.classList.remove('navbar-vibrant');
+		
 
             if (value !== 'transparent') {
               navbarVertical.classList.add("navbar-".concat(value));
             }
+			
+			 
 
             break;
           }
