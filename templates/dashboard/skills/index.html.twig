@@ -3,12 +3,12 @@
 {% block body %}
     
                         <div class="job-bx job-profile bg-white">
-                            <div class="job-bx-title clearfix">
-                                <h5 class="font-weight-700 float-start text-primary">Liste des compétences ({{skills|length}}) 
+                            <div class="job-bx-title clearfix border-dark">
+                                <h5 class="font-weight-700 float-start text-success">Liste des compétences ({{skills|length}}) 
                                 </h5>
-                                  <div class="float-end">
+                                  <div class="float-end ">
 
-                                <a href="{{ path ('add_skills') }}"" class="btn btn-primary rounded-pill add-btn btn-sm"><i class="fas fa-plus fa-sm "></i> Ajouter</a>
+                                <a href="{{ path ('add_skills') }}"" class="btn btn-success  rounded-pill add-btn btn-sm"><i class="fas fa-plus fa-sm "></i> Ajouter</a>
                             </div>
                             </div>
                                         {% for message in app.flashes('success') %}

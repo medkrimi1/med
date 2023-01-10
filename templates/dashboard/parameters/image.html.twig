@@ -4,8 +4,8 @@
 {{ form_start(form) }}
 
       <div class="job-bx job-profile  bg-white">
-                            <div class="job-bx-title clearfix">
-                                <h5 class="font-weight-700 float-start  text-primary">Avatar</h5>
+                            <div class="job-bx-title clearfix border-dark">
+                                <h5 class="font-weight-700 float-start  text-success">Avatar</h5>
 
 
                             </div>
@@ -22,9 +22,9 @@
                         </div>
               
                 <div class="text-left">
-                    <button  class="btn btn-primary rounded-pill" type="submit" name="Upload File" value="Upload File" id="upload_btl">Mettre à jour</button>
+                    <button  class="btn btn-success " type="submit" name="Upload File" value="Upload File" id="upload_btl">Mettre à jour</button>
                     {% if app.user.image != 'default.jpg' %}
-                    <a href="{{path('dashboard_image_delete',{'id':app.user.id})}}" onclick = "return confirm('Êtes-vous sûr de vouloir supprimer votre photo de profil?')" class="btn btn-outline-danger rounded-pill" >Suprimer</a> {% endif %}									</div>
+                    <a href="{{path('dashboard_image_delete',{'id':app.user.id})}}" onclick = "return confirm('Êtes-vous sûr de vouloir supprimer votre photo de profil?')" class="btn btn-outline-danger " >Suprimer</a> {% endif %}									</div>
  
 </div>
                                   
