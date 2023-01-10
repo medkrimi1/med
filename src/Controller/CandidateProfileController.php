@@ -185,17 +185,18 @@ $user->setLname($lname);
 
 $em->flush();
 $this->addFlash('success', 'Votre profil a été mis à jour');
+return $this->redirectToRoute("candidate_profile",["id"=>$id]);
 if($email!=$l){ 
 if(in_array(strtolower(str_replace(' ', '',$form->get('mail')->getData())), $userArray)){
 $this->addFlash('error', 'Adresse existe déja');
-return $this->redirect($request->getUri());
+return $this->redirectToRoute("candidate_profile",["id"=>$id]);
 }
 else {
 $user->setEmail($email);
 $candidate->setEmail($email);
 $em->flush();
 $this->addFlash('success', 'L\'adresse été modifié avec succès!');
-return $this->redirect($request->getUri());
+return $this->redirectToRoute("candidate_profile",["id"=>$id]);
 }
 }
 }
