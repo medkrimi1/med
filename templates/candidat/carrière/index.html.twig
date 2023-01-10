@@ -81,8 +81,8 @@
                         </div>
                         <div class="col-xl-9 col-lg-8 m-b30">
                            <div class="job-bx job-profile  bg-white ">
-                              <div class="job-bx-title clearfix">
-                                 <h5 class="font-weight-700 float-start text-primary">Ma carrière</h5>
+                              <div class="job-bx-title clearfix border-dark">
+                                 <h5 class="font-weight-700 float-start text-success">Mon Cv En Ligne</h5>
                               </div>
                                                  {% for message in app.flashes('success') %}
             <div class="text-center text-dark alert alert-success">
@@ -96,7 +96,7 @@
         {% endfor %}
 
        
-                       <h3 class=" mb-0 text-dark">Compétences<span> <a href="{{path('Edit_Skills_Candidate',{'id':app.user.id })}}" class="btn btn-success rounded-pill add-btn btn-sm"><i class="fas fa-pen fa-sm "></i></a></span></h3> 
+                       <h3 class=" mb-0 text-dark">Compétences   {% if candidate.skill is not empty %} <span> <a href="{{path('Edit_Skills_Candidate',{'id':app.user.id })}}" class="btn btn-outline-success rounded-pill add-btn btn-sm"><i class="fas fa-pen fa-sm "></i></a></span>{% endif %} </h3> 
                           <div class="float-end">
                        
                      </div>
@@ -109,9 +109,9 @@
                               </span>
                               {% endfor %}
                   </div>
-                   
-                          
-                              
+                    {% if candidate.skill is empty %}
+                            <a class="mb-4 d-block d-flex align-items-center" href="{{path('Edit_Skills_Candidate',{'id':app.user.id })}}"><span class="circle-dashed"><i class="fas fa-plus" ></i></span><span class="ms-3">Ajouter Compétences</span></a>
+                              {% endif %}
                            
                               <div class=" GridLex-col-9_sm-8_xs-12">
                                

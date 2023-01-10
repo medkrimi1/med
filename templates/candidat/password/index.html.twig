@@ -77,8 +77,9 @@
                   </div>
                   <div  class="col-xl-9 col-lg-8 m-b30">
                      <div class="job-bx job-profile  bg-white">
-                        <div class="job-bx-title clearfix">
-                                 <h5 class="font-weight-700 float-start text-primary">Paramètres</h5>
+                        <div class="job-bx-title clearfix border-dark">
+                                 <h5 class="font-weight-700 float-start text-success">Paramètres</h5>
+                                    <a  href="{{path('candidate_delete',{'id':app.user.id})}}"onclick = "return confirm('Êtes-vous sûr de vouloir supprimer votre compte?')" class="fw float-end btn btn-outline-danger  btn-sm rounded-pill"><i class="fas fa-trash fa-sm "></i> Supprimer compte</a>
                      
                            
                         </div>
@@ -119,16 +120,14 @@
                                  </div>
                               </div>
                               
-                              <div class="col-lg-12 m-b10 text-center" >
-                                 <button type="submit"  name="submit"class="btn btn-primary rounded-pill" >Mettre à jour</button>
+                              <div class="col-lg-12 m-b20 m-t10 " >
+                                 <button type="submit"  name="submit"class="btn btn-success " >Mettre à jour</button>
                      
                            </div>
                     {{form_end(form_pass)}}
-                    <hr>
+              
                    
-                    <div class="col-lg-12 m-b10 text-center">
-                     <a href="{{path('candidate_delete',{'id':app.user.id})}}" class="text-danger" onclick = "return confirm('Êtes-vous sûr de vouloir supprimer votre compte?')">supprimer compte</a>
-                     </div>
+                  
                      
                   </div>
                </div>

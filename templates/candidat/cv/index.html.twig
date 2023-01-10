@@ -78,9 +78,9 @@
                   </div>
                   <div  class="col-xl-9 col-lg-8 m-b30">
                      <div class="job-bx job-profile bg-white">
-                        <div class="job-bx-title clearfix">
-                           <h5 class="font-weight-700 float-start text-primary">Gérer CV ({{cvs|length}})</h5>
-                           <a  data-bs-toggle="modal" data-bs-target="#cv" class="fw float-end btn btn-primary add-btn btn-sm rounded-pill"><i class="fas fa-plus fa-sm "></i> Ajouter</a>
+                        <div class="job-bx-title clearfix border-dark">
+                           <h5 class="font-weight-700 float-start text-success">Gérer CV ({{cvs|length}})</h5>
+                           <a  data-bs-toggle="modal" data-bs-target="#cv" class="fw float-end btn btn-success add-btn btn-sm rounded-pill"><i class="fas fa-plus fa-sm "></i> Ajouter</a>
                         </div>
                         {% for message in app.flashes('success') %}
                         <div class="text-center text-dark alert alert-success">
@@ -164,7 +164,7 @@
                   </div>
                </div>
                <div class="text-center m-b20" >
-                  <button type="submit" class="btn btn-primary rounded-pill "  name="Upload File" value="Upload File" id="upload_btl">Ajouter CV</button> 
+                  <button type="submit" class="btn btn-success rounded-pill "  name="Upload File" value="Upload File" id="upload_btl">Ajouter CV</button> 
                </div>
                {{ form_end(form) }}
             </div>
