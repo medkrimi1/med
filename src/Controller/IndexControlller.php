@@ -69,7 +69,7 @@ $form2 = $this->createFormBuilder()
 'required'=>true
 ])
 ->add('about', TextareaType::class, [
-'required'=>true
+'required'=>false
 ])
 ->add('cvfield', FileType::class, [
 'required'=>true
