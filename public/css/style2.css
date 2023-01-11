@@ -8285,8 +8285,8 @@ footer .widget_services ul li {
 }
 /*widget Getintuch*/
 .footer-top {
-    padding: 80px 0 20px;
-	background-color:#0d0f0d;
+    padding: 20px 0 0px;
+	background-color:#4d5969;
 }
 .footer-top.overlay-black-dark:after {
     opacity: 0.85;
